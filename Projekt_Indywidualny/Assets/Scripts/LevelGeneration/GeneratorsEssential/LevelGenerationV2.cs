@@ -91,7 +91,7 @@ public class LevelGenerationV2 : MonoBehaviour
 
 
 
-            // to siê wypierdoli na ryj jak nie zmieniê metody ChoseRandomRotaation: currentRoomScript.ChooseRandomRotation();
+            // trzeba naprawiæ metodê ChoseRandomRotaation: currentRoomScript.ChooseRandomRotation();
 
 
             int roomSizeX = currentRoomScript.GetRoomSizeX();
