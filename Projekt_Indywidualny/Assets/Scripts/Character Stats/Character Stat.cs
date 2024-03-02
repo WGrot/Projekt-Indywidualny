@@ -7,6 +7,7 @@ using UnityEngine;
 public class CharacterStat
 {
     [SerializeField] private float baseValue;
+    public StatType statType;
 
     public float value { get { return CalculateFinalValue(); } }    //Mo¿na coœ wymyœliæ ¿eby nie obliczaæ tego za ka¿dym razem
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,14 @@ public enum StatModType
     PercentMulti = 300
 }
 
+[Serializable]
 public class StatModifier
 {
-    public readonly float value;
-    public readonly StatModType modType;
-    public readonly int order;
-    public readonly object source;
+    public StatType statType;
+    public StatModType modType;
+    public float value;
+    public int order = 200;
+    public object source;
 
     public StatModifier(float value, StatModType modType, int order, object source)
     {
