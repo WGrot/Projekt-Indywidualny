@@ -7,7 +7,7 @@ public class PassiveItem : Item
 {
     public List<StatModifier> modifiers;
 
-    public void OnPickup()
+    public void OnPickUp()
     {
         for (int i = 0; i < modifiers.Count; i++)
         {
@@ -24,4 +24,6 @@ public class PassiveItem : Item
             }
         }   
     }
+
+
 }
