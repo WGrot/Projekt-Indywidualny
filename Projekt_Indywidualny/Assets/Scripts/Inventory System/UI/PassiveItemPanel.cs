@@ -24,17 +24,19 @@ public class PassiveItemPanel : MonoBehaviour
     private void Awake()
     {
         inputActions = new InputActions();
-        inputActions.UI.OpenInventory.performed += OpenInventory;
+        inputActions.UI.OpenInventory.performed += OpenCloseInventoryOnIPressed;
     }
     private void OnEnable()
     {
         Inventory.OnItemChangedCallback += SetDirty;
+        inputActions.Enable();
 
     }
 
     private void OnDisable()
     {
         Inventory.OnItemChangedCallback -= SetDirty;
+        inputActions.Disable();
     }
 
     private void LoadPassiveItems()
@@ -44,7 +46,8 @@ public class PassiveItemPanel : MonoBehaviour
         {
             GameObject instance = Instantiate(itemSlotPrefab);
             instance.transform.SetParent(itemList.transform, false);
-            instance.GetComponentInChildren<TextMeshProUGUI>().SetText(item.itemName);
+            instance.GetComponent<InventorySlot>().SetItem(item);
+
             rt.sizeDelta = new Vector2(rt.rect.width, 35 * passiveItemList.Count);
         }
         isDirty = false;
@@ -56,24 +59,36 @@ public class PassiveItemPanel : MonoBehaviour
     }
 
 
-    public void OpenInventory(InputAction.CallbackContext context)
+    public void OpenCloseInventoryOnIPressed(InputAction.CallbackContext context)
     {
-        Debug.Log("OpenedInventory");
         if (isPanelOpened)
         {
+            GameStateManager.Instance.ResumeGame();
             passiveItemPanel.SetActive(false);
             isPanelOpened = false;
         }
         else
         {
+            
             passiveItemPanel.SetActive(true);
             if (isDirty)
             {
                 LoadPassiveItems();
             }
+            GameStateManager.Instance.PauseGame();
             isPanelOpened=true;
         }
 
+    }
+
+    public void CloseInventory()
+    {
+        if (isPanelOpened)
+        {
+            GameStateManager.Instance.ResumeGame();
+            passiveItemPanel.SetActive(false);
+            isPanelOpened = false;
+        }
     }
 
 }

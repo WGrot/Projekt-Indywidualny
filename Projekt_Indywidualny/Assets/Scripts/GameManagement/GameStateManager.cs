@@ -18,7 +18,7 @@ public class GameStateManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogError("More than one Inventory instance found!");
+            Debug.LogError("More than one GameStateManager instance found!");
             Destroy(this);
         }
         else
@@ -37,16 +37,26 @@ public class GameStateManager : MonoBehaviour
 
     public void PauseGame()
     {
+        if (pauseState == PauseState.Paused)
+        {
+            Debug.LogError("Tried to pause game when it wasn't running");
+        }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;
+        pauseState = PauseState.Paused;
 
     }
 
     public void ResumeGame()
     {
+        if (pauseState == PauseState.Running)
+        {
+            Debug.LogError("Tried to resume game when it wasn't paused");
+        }
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1f;
+        pauseState = PauseState.Running;
     }
 }

@@ -5,12 +5,24 @@ using UnityEngine;
 
 public class InventorySlot : MonoBehaviour
 {
-    Item item;
-    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] private Item item;
+    [SerializeField] private TextMeshProUGUI itemNameText;
 
-    public void ShowData()
+    public delegate void OnItemSelectedInInventory(Item item);
+    public static event OnItemSelectedInInventory OnItemSelectedInInventoryCallback;
+
+    public void ShowDescription()
     {
-        text.SetText(item.itemName);
+        if (OnItemSelectedInInventoryCallback != null)
+        {
+            OnItemSelectedInInventoryCallback(item);
+        }
+    }
+
+    public void SetItem(Item item)
+    {
+        this.item = item;
+        itemNameText.SetText(item.itemName);
     }
 
 

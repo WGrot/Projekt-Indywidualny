@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Player_base.Jump.performed += Jump;
         inputActions.Player_base.Slam.performed += Slam;
         inputActions.Player_base.Dash.performed += OnDashKeyPressed;
-        inputActions.UI.OpenInventory.performed += test;
     }
 
     private void OnEnable()
@@ -144,10 +143,6 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
-    }
-    void test(InputAction.CallbackContext context)
-    {
-        Debug.Log("dziala");
     }
 
 }
