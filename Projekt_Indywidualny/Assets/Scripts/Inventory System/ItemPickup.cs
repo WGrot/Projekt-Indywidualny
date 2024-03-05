@@ -11,7 +11,7 @@ public class ItemPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Picked Up" + item.itemName);
-            Inventory.Instance.addPassiveItem((PassiveItem)item);
+            Inventory.Instance.AddPassiveItem((PassiveItem)item);
         }
     }
 }

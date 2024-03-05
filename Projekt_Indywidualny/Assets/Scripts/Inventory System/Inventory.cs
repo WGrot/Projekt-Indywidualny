@@ -21,27 +21,26 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
-    public delegate void OnItemChanged(Item item);
-    public static event OnItemChanged onItemChangedCallback;
+    public delegate void OnItemChanged();
+    public static event OnItemChanged OnItemChangedCallback;
 
-    public List<PassiveItem> passiveItems = new List<PassiveItem>(); 
+    private List<PassiveItem> passiveItems = new List<PassiveItem>(); 
 
-    public void addPassiveItem(PassiveItem item)
+
+    public List<PassiveItem> GetPassiveItemList()
+    {
+        return passiveItems;
+    }
+    public void AddPassiveItem(PassiveItem item)
     {
         passiveItems.Add(item);
         item.OnPickUp();
-        if (onItemChangedCallback != null)
-        {
-            onItemChangedCallback(item);
-        }
+        OnItemChangedCallback?.Invoke();
     }
 
     public bool RemovePassiveItem(PassiveItem item)
     {
-        if (onItemChangedCallback != null)
-        {
-            onItemChangedCallback(item);
-        }
+        OnItemChangedCallback?.Invoke();
         return passiveItems.Remove(item);
 
     }
