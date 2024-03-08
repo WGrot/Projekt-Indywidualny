@@ -12,6 +12,7 @@ public class ItemPickup : MonoBehaviour
         {
             Debug.Log("Picked Up" + item.itemName);
             Inventory.Instance.AddPassiveItem((PassiveItem)item);
+            Destroy(gameObject);
         }
     }
 }

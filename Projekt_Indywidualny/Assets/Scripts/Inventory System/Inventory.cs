@@ -40,8 +40,8 @@ public class Inventory : MonoBehaviour
 
     public bool RemovePassiveItem(PassiveItem item)
     {
+        item.OnDrop();
         OnItemChangedCallback?.Invoke();
         return passiveItems.Remove(item);
-
     }
 }

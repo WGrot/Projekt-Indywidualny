@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PassiveItemPanel : MonoBehaviour
 {
@@ -10,11 +11,15 @@ public class PassiveItemPanel : MonoBehaviour
     [SerializeField] GameObject itemSlotPrefab;
     [SerializeField] GameObject passiveItemPanel;
 
+    [SerializeField] private TextMeshProUGUI textBox;
+    [SerializeField] private Image itemIcon;
+
     private InputActions inputActions;
 
     private RectTransform rt;
     private bool isDirty = true;
     private bool isPanelOpened = false;
+    private PassiveItem displayedItem;
 
     private void Start()
     {
@@ -29,6 +34,7 @@ public class PassiveItemPanel : MonoBehaviour
     private void OnEnable()
     {
         Inventory.OnItemChangedCallback += SetDirty;
+        InventorySlot.OnItemSelectedInInventoryCallback += ShowItemData;
         inputActions.Enable();
 
     }
@@ -36,11 +42,17 @@ public class PassiveItemPanel : MonoBehaviour
     private void OnDisable()
     {
         Inventory.OnItemChangedCallback -= SetDirty;
+        InventorySlot.OnItemSelectedInInventoryCallback -= ShowItemData;
         inputActions.Disable();
     }
 
     private void LoadPassiveItems()
     {
+        for (int i = 0; i< itemList.transform.childCount; i++ )
+        {
+            Destroy(itemList.transform.GetChild(i).gameObject);
+        }
+
         List<PassiveItem> passiveItemList = Inventory.Instance.GetPassiveItemList();
         foreach (PassiveItem item in passiveItemList)
         {
@@ -89,6 +101,24 @@ public class PassiveItemPanel : MonoBehaviour
             passiveItemPanel.SetActive(false);
             isPanelOpened = false;
         }
+    }
+
+    private void ShowItemData(Item item)
+    {
+        displayedItem = (PassiveItem)item;
+        textBox.SetText(item.description);
+        itemIcon.sprite = item.icon;
+    }
+
+    public void DropItem()
+    {
+
+        Inventory.Instance.RemovePassiveItem(displayedItem);
+        LoadPassiveItems();
+        displayedItem = null;
+        textBox.SetText("");
+        itemIcon.sprite = null;
+
     }
 
 }

@@ -25,5 +25,23 @@ public class PassiveItem : Item
         }   
     }
 
+    public void OnDrop()
+    {
+        for (int i = 0; i < modifiers.Count; i++)
+        {
+            StatModifier modifier = modifiers[i];
+            int numberOfStats = PlayerStatus.Instance.stats.Count;
+            for (int j = 0; j < numberOfStats; j++)
+            {
+                CharacterStat stat = PlayerStatus.Instance.stats[j];
+                if (modifier.statType == stat.statType)
+                {
+                    Debug.Log(modifier.statType.ToString());
+                    stat.RemoveModifier(modifier);
+                }
+            }
+        }
+    }
+
 
 }
