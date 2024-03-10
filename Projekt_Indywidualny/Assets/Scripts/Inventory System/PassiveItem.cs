@@ -18,7 +18,6 @@ public class PassiveItem : Item
                 CharacterStat stat = PlayerStatus.Instance.stats[j];
                 if (modifier.statType == stat.statType)
                 {
-                    Debug.Log(modifier.statType.ToString());
                     stat.AddModifier(modifier);
                 }
             }
@@ -36,7 +35,6 @@ public class PassiveItem : Item
                 CharacterStat stat = PlayerStatus.Instance.stats[j];
                 if (modifier.statType == stat.statType)
                 {
-                    Debug.Log(modifier.statType.ToString());
                     stat.RemoveModifier(modifier);
                 }
             }

@@ -5,14 +5,6 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    /*
-    public CharacterStat hp;
-    public CharacterStat damage;
-    public CharacterStat moveSpeed;
-    public CharacterStat reloadSpeed;
-    */
-
-
     public List<CharacterStat> stats = new List<CharacterStat>();
 
 

@@ -91,4 +91,9 @@ public class CharacterStat
 
         return (float)Math.Round(finalValue,4);
     }
+
+    public override string ToString()
+    {
+        return statType.ToString() +": " + CalculateFinalValue();
+    }
 }

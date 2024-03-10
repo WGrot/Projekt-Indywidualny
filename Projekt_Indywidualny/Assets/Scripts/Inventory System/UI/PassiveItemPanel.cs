@@ -112,7 +112,10 @@ public class PassiveItemPanel : MonoBehaviour
 
     public void DropItem()
     {
-
+        if (displayedItem == null)
+        {
+            return;
+        }
         Inventory.Instance.RemovePassiveItem(displayedItem);
         LoadPassiveItems();
         displayedItem = null;

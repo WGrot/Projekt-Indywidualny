@@ -7,5 +7,7 @@ public enum StatType
     Hp,
     Damage,
     MoveSpeed,
-    ReloadSpeed
+    ReloadSpeed,
+    Armor,
+    Stamina
 }
