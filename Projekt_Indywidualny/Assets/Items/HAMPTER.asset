@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ed2cb5c77035a3499f85abd3b91bbc0, type: 3}
-  m_Name: Fast_BOI_boots
+  m_Name: HAMPTER
   m_EditorClassIdentifier: 
-  itemName: Fast Boi Boots
-  description: Speedy boots <br>You will run faster than crysis on your PC
-  icon: {fileID: 21300000, guid: 52eaceeaf2f2dba45b2f433eb8859624, type: 3}
+  itemName: HAMPTER
+  description: Hampter <br> spawn of hell destined to destroy mortal world
+  icon: {fileID: 21300000, guid: 137c5f5c44abd3743bfc2ce7f7b61391, type: 3}
   modifiers:
   - statType: 2
-    modType: 200
+    modType: 300
     value: 0.3
-    order: 200
+    order: 300

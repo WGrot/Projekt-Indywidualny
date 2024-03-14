@@ -5,6 +5,12 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
     [SerializeField] Item item;
+    [SerializeField] SpriteRenderer itemSprite;
+
+    private void Start()
+    {
+        itemSprite.sprite = item.icon;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
