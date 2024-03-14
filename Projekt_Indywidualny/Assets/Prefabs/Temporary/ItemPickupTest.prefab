@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 5026349503795412182}
   - component: {fileID: 9091495982307498299}
   - component: {fileID: 7900393098847017343}
+  - component: {fileID: 6407320767333510523}
   m_Layer: 0
   m_Name: ItemPickupTest
   m_TagString: Untagged
@@ -206,3 +207,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6407320767333510523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984738914032359139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013e341ae153a0c4db5c9ab5f8b917eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
