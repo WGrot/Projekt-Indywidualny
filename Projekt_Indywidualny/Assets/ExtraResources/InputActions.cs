@@ -71,6 +71,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0e9dfc1-de22-4ecb-8ab0-7fab0dfa039b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13c138c8-bc6d-4eff-a725-cff2d8a8e7f3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -213,6 +233,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_base_CameraRotation = m_Player_base.FindAction("CameraRotation", throwIfNotFound: true);
         m_Player_base_Slam = m_Player_base.FindAction("Slam", throwIfNotFound: true);
         m_Player_base_Dash = m_Player_base.FindAction("Dash", throwIfNotFound: true);
+        m_Player_base_Interact = m_Player_base.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_OpenInventory = m_UI.FindAction("Open Inventory", throwIfNotFound: true);
@@ -282,6 +303,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_base_CameraRotation;
     private readonly InputAction m_Player_base_Slam;
     private readonly InputAction m_Player_base_Dash;
+    private readonly InputAction m_Player_base_Interact;
     public struct Player_baseActions
     {
         private @InputActions m_Wrapper;
@@ -291,6 +313,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @CameraRotation => m_Wrapper.m_Player_base_CameraRotation;
         public InputAction @Slam => m_Wrapper.m_Player_base_Slam;
         public InputAction @Dash => m_Wrapper.m_Player_base_Dash;
+        public InputAction @Interact => m_Wrapper.m_Player_base_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player_base; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -315,6 +338,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IPlayer_baseActions instance)
@@ -334,6 +360,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IPlayer_baseActions instance)
@@ -404,6 +433,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnCameraRotation(InputAction.CallbackContext context);
         void OnSlam(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
