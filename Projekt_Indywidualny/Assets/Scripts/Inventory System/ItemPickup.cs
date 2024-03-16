@@ -16,6 +16,11 @@ public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
         itemSprite.sprite = item.icon;
     }
 
+    public void SetItem(Item item) { 
+        this.item = item;
+        itemSprite.sprite = item.icon;
+    }
+
     public void DoWhenLookedAt()
     {
         if (!isIconActive)

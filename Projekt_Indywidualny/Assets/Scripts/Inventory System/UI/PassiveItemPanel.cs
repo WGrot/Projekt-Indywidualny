@@ -9,6 +9,7 @@ public class PassiveItemPanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textBox;
     [SerializeField] private Image itemIcon;
+    [SerializeField] private GameObject dropPrefab;
 
     private PassiveItem displayedItem;
 
@@ -37,6 +38,9 @@ public class PassiveItemPanel : MonoBehaviour
             return;
         }
         Inventory.Instance.RemovePassiveItem(displayedItem);
+        Vector3 dropPos = GameObject.FindGameObjectWithTag("Player").transform.position + new Vector3(0, 1, 0);
+        GameObject dropInstance= Instantiate(dropPrefab, dropPos, Quaternion.identity);
+        dropInstance.GetComponent<ItemPickup>().SetItem(displayedItem);
         displayedItem = null;
         textBox.SetText("");
         itemIcon.sprite = null;

@@ -11,23 +11,25 @@ public class BibloardScript : MonoBehaviour
 
     private void OnEnable()
     {
-        LevelGenerationV2.OnLevelGenerated += FindCamera;
+        //Przypisujê szukanie kamery do eventu po stworzeniu lochu
+        //To dla obiektów które zosta³y stworzone przed spawnem gracza
+        LevelGenerationV2.OnLevelGenerated += FindCamera; 
+        FindCamera();
     }
 
     private void OnDisable()
     {
         LevelGenerationV2.OnLevelGenerated -= FindCamera;
+        FindCamera();
     }
     void FindCamera()
     {
-        try
+        if (Camera.main != null)
         {
             mainCamera = Camera.main;
-        }catch(NullReferenceException e)
-        {
-            return;
+            isCameraFound = true;
         }
-        isCameraFound= true;
+
     }
 
     void LateUpdate()
