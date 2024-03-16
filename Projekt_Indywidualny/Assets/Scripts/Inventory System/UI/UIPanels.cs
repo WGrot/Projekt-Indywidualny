@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIPanels : MonoBehaviour
 {
     [SerializeField] private List<GameObject> uiPanels;
+    [SerializeField] private GameObject pauseScreen;
     private int activePanel;
     private bool isPanelOpened = false;
+    private bool isGamePaused = false;
     private InputActions inputActions;
 
 
@@ -27,6 +30,7 @@ public class UIPanels : MonoBehaviour
     {
         inputActions = new InputActions();
         inputActions.UI.OpenInventory.performed += OpenCloseInventoryOnIPressed;
+        inputActions.UI.OpenPauseMenu.performed+= OpenClosePauseMenu;
     }
 
     private void OnEnable()
@@ -39,6 +43,40 @@ public class UIPanels : MonoBehaviour
     {
         Inventory.OnItemChangedCallback -= SetInventoryDirty;
         inputActions.Disable();
+    }
+
+    public void OpenClosePauseMenu(InputAction.CallbackContext context)
+    {
+        if (isGamePaused)
+        {
+            GameStateManager.Instance.ResumeGame();
+            pauseScreen.SetActive(false);
+            isGamePaused = false;
+        }
+        else
+        {
+
+            pauseScreen.SetActive(true);
+            ClosePanels();
+            GameStateManager.Instance.PauseGame();
+            isGamePaused = true;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if (isGamePaused)
+        {
+            GameStateManager.Instance.ResumeGame();
+            pauseScreen.SetActive(false);
+            isGamePaused = false;
+        }
+    }
+
+    public void QuitToMenu()
+    {
+        GameStateManager.Instance.ResumeGame();
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OpenCloseInventoryOnIPressed(InputAction.CallbackContext context)

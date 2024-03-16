@@ -8,6 +8,7 @@ public enum PauseState
     Running
 }
 
+
 public class GameStateManager : MonoBehaviour
 {
 

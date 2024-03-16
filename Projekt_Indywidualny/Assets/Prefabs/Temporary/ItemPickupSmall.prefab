@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7308896019792456349}
   - component: {fileID: 983405634955692674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PickupIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3045500887413905649}
   - component: {fileID: 5268866212676820042}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 9091495982307498299}
   - component: {fileID: 6407320767333510523}
   - component: {fileID: 5030025648392045006}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemPickupSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
