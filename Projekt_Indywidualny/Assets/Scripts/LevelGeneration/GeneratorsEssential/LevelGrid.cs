@@ -22,8 +22,8 @@ public class LevelGrid
 
         if (Instance != null)
         {
-            Debug.LogError("More than one LevelGrid instance found!");
-            return;
+            Debug.Log("Previous instance of levelGrid found destrouing old one and replacing it with new one");
+            Instance = null;
         }
 
         Instance = this;

@@ -76,6 +76,15 @@ public class UIPanels : MonoBehaviour
     public void QuitToMenu()
     {
         GameStateManager.Instance.ResumeGame();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+
+        GameObject manager = GameObject.FindGameObjectWithTag("GameManager");
+        if (manager != null)
+        {
+            Destroy(manager);
+        }
         SceneManager.LoadScene("MainMenu");
     }
 

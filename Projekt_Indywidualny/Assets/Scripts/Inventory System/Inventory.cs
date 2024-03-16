@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Debug.LogError("More than one Inventory instance found!");
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
