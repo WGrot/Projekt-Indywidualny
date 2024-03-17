@@ -13,6 +13,9 @@ public class WeaponHolder : MonoBehaviour
     private List<WeaponSO> weapons;
     private InputActions inputActions;
 
+    private bool wasShootPressedThisFrame = false;
+    private float chargeTime = 0f;
+
 
     private void Awake()
     {
@@ -22,13 +25,13 @@ public class WeaponHolder : MonoBehaviour
     public void OnEnable()
     {
         inputActions.Player_base.Scroll.performed += SwitchWeapon;
-        inputActions.Player_base.Shoot.performed += TryToShoot;
+        inputActions.Player_base.Shoot.canceled += TryToShootCharge;
         Inventory.OnWeaponChangedCallback += EquipNewWeapon;
     }
     public void OnDisable()
     {
         inputActions.Player_base.Scroll.performed -= SwitchWeapon;
-        inputActions.Player_base.Shoot.performed -= TryToShoot;
+        inputActions.Player_base.Shoot.canceled -= TryToShootCharge;
         Inventory.OnWeaponChangedCallback -= EquipNewWeapon;
     }
 
@@ -98,12 +101,57 @@ public class WeaponHolder : MonoBehaviour
     }
     #endregion
 
-    public void TryToShoot(InputAction.CallbackContext context)
+    private void Update()
+    {
+        if (inputActions.Player_base.Shoot.IsPressed())
+        {
+            TryToShootClassic();
+            wasShootPressedThisFrame = true;
+            chargeTime += Time.deltaTime;
+            Debug.Log(chargeTime);
+        }
+        else
+        {
+            wasShootPressedThisFrame = false;
+            chargeTime = 0;
+        }
+    }
+
+    public void TryToShootClassic()
     {
         if (activeWeapon == null)
         {
             return;
         }
-        activeWeapon.Shoot(gameObject);
+
+        if (activeWeapon.shootStyle == WeaponShootingStyle.FullAuto)
+        {
+            activeWeapon.Shoot(gameObject);
+        }
+        else if(activeWeapon.shootStyle == WeaponShootingStyle.OneTap)
+        {
+            if (wasShootPressedThisFrame)
+            {
+                return;
+            }
+            activeWeapon.Shoot(gameObject);
+        }
+
+
     }
+
+    public void TryToShootCharge(InputAction.CallbackContext context)
+    {
+        if (activeWeapon == null)
+        {
+            return;
+        }
+        Debug.Log("ChargedSHootBoi");
+        if (activeWeapon.shootStyle == WeaponShootingStyle.Charge && activeWeapon.chargeTime < chargeTime)
+        {
+            activeWeapon.Shoot(gameObject);
+        }
+
+    }
+
 }

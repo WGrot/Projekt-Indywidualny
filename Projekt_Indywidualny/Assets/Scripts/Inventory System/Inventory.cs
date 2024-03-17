@@ -63,10 +63,6 @@ public class Inventory : MonoBehaviour
         return weapons[index];
     }
 
-
-
-
-
     public void AddWeapon(WeaponSO weapon)
     {
         weapons.Add(weapon);
