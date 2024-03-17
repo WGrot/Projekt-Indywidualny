@@ -89,6 +89,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f8c4a4b-73d8-47c0-bebb-69a7259ad58d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -234,6 +243,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""869c48d1-a031-466b-9017-00feae283b04"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -297,6 +317,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_base_Dash = m_Player_base.FindAction("Dash", throwIfNotFound: true);
         m_Player_base_Interact = m_Player_base.FindAction("Interact", throwIfNotFound: true);
         m_Player_base_Scroll = m_Player_base.FindAction("Scroll", throwIfNotFound: true);
+        m_Player_base_Shoot = m_Player_base.FindAction("Shoot", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_OpenInventory = m_UI.FindAction("Open Inventory", throwIfNotFound: true);
@@ -369,6 +390,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_base_Dash;
     private readonly InputAction m_Player_base_Interact;
     private readonly InputAction m_Player_base_Scroll;
+    private readonly InputAction m_Player_base_Shoot;
     public struct Player_baseActions
     {
         private @InputActions m_Wrapper;
@@ -380,6 +402,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_base_Dash;
         public InputAction @Interact => m_Wrapper.m_Player_base_Interact;
         public InputAction @Scroll => m_Wrapper.m_Player_base_Scroll;
+        public InputAction @Shoot => m_Wrapper.m_Player_base_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Player_base; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -410,6 +433,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Scroll.started += instance.OnScroll;
             @Scroll.performed += instance.OnScroll;
             @Scroll.canceled += instance.OnScroll;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
         }
 
         private void UnregisterCallbacks(IPlayer_baseActions instance)
@@ -435,6 +461,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Scroll.started -= instance.OnScroll;
             @Scroll.performed -= instance.OnScroll;
             @Scroll.canceled -= instance.OnScroll;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
         }
 
         public void RemoveCallbacks(IPlayer_baseActions instance)
@@ -515,6 +544,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

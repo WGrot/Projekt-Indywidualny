@@ -16,16 +16,20 @@ public class WeaponHolder : MonoBehaviour
 
     private void Awake()
     {
-        inputActions= new InputActions();
+        inputActions = new InputActions();
         inputActions.Enable();
     }
     public void OnEnable()
     {
-         inputActions.Player_base.Scroll.performed += SwitchWeapon;
+        inputActions.Player_base.Scroll.performed += SwitchWeapon;
+        inputActions.Player_base.Shoot.performed += TryToShoot;
+        Inventory.OnWeaponChangedCallback += EquipNewWeapon;
     }
     public void OnDisable()
     {
         inputActions.Player_base.Scroll.performed -= SwitchWeapon;
+        inputActions.Player_base.Shoot.performed -= TryToShoot;
+        Inventory.OnWeaponChangedCallback -= EquipNewWeapon;
     }
 
     public IEnumerator Start()
@@ -35,6 +39,8 @@ public class WeaponHolder : MonoBehaviour
         weaponSprite = weaponObject.GetComponent<SpriteRenderer>();
 
     }
+
+    #region SwitchingWeapons
 
     public void SwitchWeapon(InputAction.CallbackContext context)
     {
@@ -50,7 +56,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void SwitchToNextWeapon()
     {
-        if (activeWeaponID +1 > weapons.Count -1)
+        if (activeWeaponID + 1 > weapons.Count - 1)
         {
             activeWeaponID = 0;
 
@@ -69,7 +75,7 @@ public class WeaponHolder : MonoBehaviour
     {
         if (activeWeaponID - 1 < 0)
         {
-            activeWeaponID = weapons.Count -1;
+            activeWeaponID = weapons.Count - 1;
 
         }
         else
@@ -82,4 +88,22 @@ public class WeaponHolder : MonoBehaviour
         weaponSprite.sprite = activeWeapon.icon;
     }
 
+    private void EquipNewWeapon()
+    {
+        activeWeaponID = weapons.Count - 1;
+        activeWeapon = weapons[activeWeaponID];
+        weaponObject.transform.position = transform.position + activeWeapon.SpawnPoint;
+        weaponObject.transform.rotation = transform.rotation * Quaternion.Euler(activeWeapon.SpawnRotation);
+        weaponSprite.sprite = activeWeapon.icon;
+    }
+    #endregion
+
+    public void TryToShoot(InputAction.CallbackContext context)
+    {
+        if (activeWeapon == null)
+        {
+            return;
+        }
+        activeWeapon.Shoot(gameObject);
+    }
 }

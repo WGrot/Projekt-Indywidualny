@@ -10,9 +10,9 @@ public class WeaponSO : Item
     public GameObject ModelPrefab;
     public Vector3 SpawnPoint;
     public Vector3 SpawnRotation;
-
+    public Vector3 ShootPoint;
     public ShootConfigurationSO ShootConfig;
-    //public TrailConfigurationSO TrailConfig;
+
 
 
     private MonoBehaviour activeMonobehaviour;
@@ -23,18 +23,16 @@ public class WeaponSO : Item
 
     public void OnPickup()
     {
-
         Debug.Log("podniesiono cuœ");
-        /*
-        this.activeMonobehaviour = activeMonobehaviour;
-        lastShootTime = 0;
-        model = Instantiate(ModelPrefab);
-        model.transform.SetParent(parent, false);
-        model.transform.position = SpawnPoint;
-        model.transform.rotation = Quaternion.Euler(SpawnRotation);
-        */
      }
 
+    public void Shoot(GameObject weaponHolder)
+    {
+        if(Physics.Raycast(weaponHolder.transform.position + ShootPoint, weaponHolder.transform.forward, out RaycastHit hit))
+        {
+            Instantiate(ModelPrefab, hit.point, Quaternion.identity);
+        }
+    }
 
 
 }

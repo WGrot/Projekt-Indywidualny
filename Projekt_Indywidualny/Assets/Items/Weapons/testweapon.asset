@@ -15,7 +15,9 @@ MonoBehaviour:
   itemName: testweapon
   description: put description here
   icon: {fileID: 21300000, guid: dc643c3fce35aa54d80ea0c7dbf85acd, type: 3}
-  ModelPrefab: {fileID: 0}
+  ModelPrefab: {fileID: 5476410361484694258, guid: 2b5d2c8b8e9f6ff479c707f2076412b2,
+    type: 3}
   SpawnPoint: {x: 0, y: 0, z: 0}
   SpawnRotation: {x: 0, y: 0, z: 0}
+  ShootPoint: {x: 0, y: 0, z: 0}
   ShootConfig: {fileID: 11400000, guid: d325b079317e78a4eb5c593945776902, type: 2}
