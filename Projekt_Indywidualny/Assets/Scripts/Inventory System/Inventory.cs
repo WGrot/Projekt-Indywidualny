@@ -23,14 +23,19 @@ public class Inventory : MonoBehaviour
 
     public delegate void OnItemChanged();
     public static event OnItemChanged OnItemChangedCallback;
+    public delegate void OnItemWeapon();
+    public static event OnItemWeapon OnWeaponChangedCallback;
 
-    private List<PassiveItem> passiveItems = new List<PassiveItem>(); 
+    private List<PassiveItem> passiveItems = new List<PassiveItem>();
+    private List<WeaponSO> weapons = new List<WeaponSO>();
 
+    #region PassiveItems
 
     public List<PassiveItem> GetPassiveItemList()
     {
         return passiveItems;
     }
+
     public void AddPassiveItem(PassiveItem item)
     {
         passiveItems.Add(item);
@@ -44,4 +49,30 @@ public class Inventory : MonoBehaviour
         OnItemChangedCallback?.Invoke();
         return passiveItems.Remove(item);
     }
+    #endregion
+
+
+
+    public List<WeaponSO> GetWeaponsList()
+    {
+        return weapons;
+    }
+
+    public WeaponSO getWeaponWithIndex(int index)
+    {
+        return weapons[index];
+    }
+
+
+
+
+
+    public void AddWeapon(WeaponSO weapon)
+    {
+        weapons.Add(weapon);
+        GameObject holder = GameObject.FindGameObjectWithTag("WeaponHolder");
+        weapon.OnPickup();
+        OnWeaponChangedCallback?.Invoke();
+    }
+
 }

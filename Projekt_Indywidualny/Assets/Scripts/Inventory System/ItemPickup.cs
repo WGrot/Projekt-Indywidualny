@@ -33,7 +33,15 @@ public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
     public void InteractWithPlayer()
     {
         Debug.Log("Picked Up" + item.itemName);
-        Inventory.Instance.AddPassiveItem((PassiveItem)item);
+        if (item is PassiveItem)
+        {
+            Inventory.Instance.AddPassiveItem((PassiveItem)item);
+        }
+        else if (item is WeaponSO)
+        {
+            Inventory.Instance.AddWeapon((WeaponSO)item);
+        }
+
         Destroy(gameObject);
     }
 

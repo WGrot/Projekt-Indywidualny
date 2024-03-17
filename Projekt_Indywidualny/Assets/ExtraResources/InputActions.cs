@@ -80,6 +80,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""b26b1beb-2170-4ee1-893d-b11b09044d8a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Yaxis"",
+                    ""id"": ""5a0792a8-2112-4b9a-a5f3-97ccee4625c5"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""99eb4605-8a6e-4f97-9e9a-0258037d9909"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a22c0cdc-c720-482a-adc1-1831c9becac1"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -254,6 +296,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_base_Slam = m_Player_base.FindAction("Slam", throwIfNotFound: true);
         m_Player_base_Dash = m_Player_base.FindAction("Dash", throwIfNotFound: true);
         m_Player_base_Interact = m_Player_base.FindAction("Interact", throwIfNotFound: true);
+        m_Player_base_Scroll = m_Player_base.FindAction("Scroll", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_OpenInventory = m_UI.FindAction("Open Inventory", throwIfNotFound: true);
@@ -325,6 +368,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_base_Slam;
     private readonly InputAction m_Player_base_Dash;
     private readonly InputAction m_Player_base_Interact;
+    private readonly InputAction m_Player_base_Scroll;
     public struct Player_baseActions
     {
         private @InputActions m_Wrapper;
@@ -335,6 +379,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Slam => m_Wrapper.m_Player_base_Slam;
         public InputAction @Dash => m_Wrapper.m_Player_base_Dash;
         public InputAction @Interact => m_Wrapper.m_Player_base_Interact;
+        public InputAction @Scroll => m_Wrapper.m_Player_base_Scroll;
         public InputActionMap Get() { return m_Wrapper.m_Player_base; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -362,6 +407,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
         }
 
         private void UnregisterCallbacks(IPlayer_baseActions instance)
@@ -384,6 +432,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
         }
 
         public void RemoveCallbacks(IPlayer_baseActions instance)
@@ -463,6 +514,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnSlam(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
