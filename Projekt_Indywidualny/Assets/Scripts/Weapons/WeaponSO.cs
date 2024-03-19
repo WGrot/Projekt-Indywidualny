@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.UI;
 
 public enum WeaponShootingStyle
 {
@@ -14,8 +15,6 @@ public enum WeaponShootingStyle
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Weapons/Weapon")]
 public class WeaponSO : Item
 {
-
-
     public WeaponShootingStyle shootStyle;
     public WeaponPrefix Prefix;
     public float Damage;
@@ -28,6 +27,7 @@ public class WeaponSO : Item
     public Vector3 SpawnRotation;
     public Vector3 ShootOffset;
     public GameObject ModelPrefab;
+    public Sprite idleImage;
 
 
     private float fireRate = 0.25f;
