@@ -10,7 +10,7 @@ public class WeaponHolder : MonoBehaviour
     private WeaponSO activeWeapon;
     [SerializeField] private GameObject weaponObject;
     private SpriteRenderer weaponSprite;
-    private List<WeaponSO> weapons;
+    [SerializeField] private List<WeaponSO> weapons;
     private InputActions inputActions;
 
     private bool wasShootPressedThisFrame = false;
@@ -108,7 +108,6 @@ public class WeaponHolder : MonoBehaviour
             TryToShootClassic();
             wasShootPressedThisFrame = true;
             chargeTime += Time.deltaTime;
-            Debug.Log(chargeTime);
         }
         else
         {
@@ -146,8 +145,8 @@ public class WeaponHolder : MonoBehaviour
         {
             return;
         }
-        Debug.Log("ChargedSHootBoi");
-        if (activeWeapon.shootStyle == WeaponShootingStyle.Charge && activeWeapon.chargeTime < chargeTime)
+
+        if (activeWeapon.shootStyle == WeaponShootingStyle.Charge && activeWeapon.ChargeTime < chargeTime)
         {
             activeWeapon.Shoot(gameObject);
         }

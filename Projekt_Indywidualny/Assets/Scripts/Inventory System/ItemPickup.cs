@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
 {
-    [SerializeField] Item item;
+    [SerializeField] protected Item item;
     [SerializeField] SpriteRenderer itemSprite;
     [SerializeField] private GameObject pickupIcon;
     [SerializeField] private float pickupIconLifeTime;
@@ -30,20 +30,7 @@ public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
 
     }
 
-    public void InteractWithPlayer()
-    {
-        Debug.Log("Picked Up" + item.itemName);
-        if (item is PassiveItem)
-        {
-            Inventory.Instance.AddPassiveItem((PassiveItem)item);
-        }
-        else if (item is WeaponSO)
-        {
-            Inventory.Instance.AddWeapon((WeaponSO)item);
-        }
-
-        Destroy(gameObject);
-    }
+    public virtual void InteractWithPlayer(){}
 
     IEnumerator ShowPickupIcon()
     {
