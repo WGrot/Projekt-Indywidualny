@@ -32,7 +32,7 @@ public class WeaponSO : Item
 
     private float fireRate = 0.25f;
     private float damage;
-    private float chargeTime = 0;
+    public float chargeTime { get; private set; }
     private float reloadTime;
     private int clipSize;
     private Vector3 spread;

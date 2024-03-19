@@ -146,7 +146,7 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
-        if (activeWeapon.shootStyle == WeaponShootingStyle.Charge && activeWeapon.ChargeTime < chargeTime)
+        if (activeWeapon.shootStyle == WeaponShootingStyle.Charge && activeWeapon.chargeTime < chargeTime)
         {
             activeWeapon.Shoot(gameObject);
         }
