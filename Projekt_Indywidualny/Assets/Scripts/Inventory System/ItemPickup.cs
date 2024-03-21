@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
 {
-    [SerializeField] protected Item item;
-    [SerializeField] SpriteRenderer itemSprite;
+    [SerializeField] public Item item;
+    [SerializeField] protected SpriteRenderer itemSprite;
     [SerializeField] private GameObject pickupIcon;
     [SerializeField] private float pickupIconLifeTime;
 
     bool isIconActive = false;
 
-    private void Start()
+    public virtual void Start()
     {
         itemSprite.sprite = item.icon;
     }

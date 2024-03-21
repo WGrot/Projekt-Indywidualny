@@ -25,6 +25,7 @@ public class WeaponSO : Item
     public Vector3 Spread = new Vector3(0.1f, 0.1f, 0.4f);
     public Vector3 SpawnPoint;
     public Vector3 SpawnRotation;
+    public Vector3 ModelScale = new Vector3(1f, 1f, 1f);
     public Vector3 ShootOffset;
     public GameObject ModelPrefab;
     public Sprite idleImage;
@@ -47,6 +48,10 @@ public class WeaponSO : Item
         LastShootTime = Time.time;
     }
 
+    public void SetPrefix(WeaponPrefix prefix)
+    {
+        Prefix = prefix;
+    }
     public void ApplyPrefix()
     {
         if (Prefix == null)

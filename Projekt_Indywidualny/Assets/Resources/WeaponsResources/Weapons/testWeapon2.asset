@@ -17,14 +17,16 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b2a5ab2fbcb3e884fb2964a00ea80cca, type: 3}
   shootStyle: 1
   Prefix: {fileID: 0}
-  FireRate: 0.25
   Damage: 0
+  FireRate: 0.25
   ChargeTime: 0
   ReloadTime: 0
   ClipSize: 0
   Spread: {x: 0.1, y: 0.1, z: 0.1}
   SpawnPoint: {x: 0, y: 0, z: 0}
   SpawnRotation: {x: 0, y: 0, z: 0}
+  ModelScale: {x: 1, y: 1, z: 1}
   ShootOffset: {x: 0, y: 0, z: 0}
   ModelPrefab: {fileID: 5476410361484694258, guid: 2b5d2c8b8e9f6ff479c707f2076412b2,
     type: 3}
+  idleImage: {fileID: 0}

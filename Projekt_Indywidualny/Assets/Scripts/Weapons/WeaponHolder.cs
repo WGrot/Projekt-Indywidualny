@@ -68,10 +68,7 @@ public class WeaponHolder : MonoBehaviour
         {
             activeWeaponID += 1;
         }
-        activeWeapon = weapons[activeWeaponID];
-        weaponObject.transform.position = transform.position + activeWeapon.SpawnPoint;
-        weaponObject.transform.rotation = transform.rotation * Quaternion.Euler(activeWeapon.SpawnRotation);
-        weaponSprite.sprite = activeWeapon.icon;
+        SetWeaponModel();
     }
 
     public void SwitchToPreviousWeapon()
@@ -85,19 +82,23 @@ public class WeaponHolder : MonoBehaviour
         {
             activeWeaponID -= 1;
         }
+        SetWeaponModel();
+    }
+
+    private void SetWeaponModel()
+    {
         activeWeapon = weapons[activeWeaponID];
-        weaponObject.transform.position = transform.position + activeWeapon.SpawnPoint;
+        weaponObject.transform.localPosition = transform.localPosition + activeWeapon.SpawnPoint;
+        Debug.Log(transform.localPosition + "activeweapon sp: " + activeWeapon.SpawnPoint);
         weaponObject.transform.rotation = transform.rotation * Quaternion.Euler(activeWeapon.SpawnRotation);
+        weaponObject.transform.localScale = 1 * activeWeapon.ModelScale;
         weaponSprite.sprite = activeWeapon.icon;
     }
 
     private void EquipNewWeapon()
     {
         activeWeaponID = weapons.Count - 1;
-        activeWeapon = weapons[activeWeaponID];
-        weaponObject.transform.position = transform.position + activeWeapon.SpawnPoint;
-        weaponObject.transform.rotation = transform.rotation * Quaternion.Euler(activeWeapon.SpawnRotation);
-        weaponSprite.sprite = activeWeapon.icon;
+        SetWeaponModel();
     }
     #endregion
 
@@ -127,7 +128,7 @@ public class WeaponHolder : MonoBehaviour
         {
             activeWeapon.Shoot(gameObject);
         }
-        else if(activeWeapon.shootStyle == WeaponShootingStyle.OneTap)
+        else if (activeWeapon.shootStyle == WeaponShootingStyle.OneTap)
         {
             if (wasShootPressedThisFrame)
             {
