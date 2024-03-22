@@ -38,14 +38,21 @@ public class WeaponPickup : ItemPickup
     }
     public override void InteractWithPlayer()
     {
+
+
         if (item is WeaponSO)
         {
+            if (Inventory.Instance.IsWeaponAlreadyInList((WeaponSO)item))
+            {
+                Debug.Log(Inventory.Instance.GetWeaponIndex((WeaponSO)item));
+                GameObject.FindGameObjectWithTag("WeaponHolder").GetComponent<WeaponHolder>().DropWeaponAtIndex(Inventory.Instance.GetWeaponIndex((WeaponSO)item));
+            }
+            Inventory.Instance.AddPrefix(prefix);   //Najpierw trzeba dodaæ prefix dopiero póŸniej broñ bo inaczej sypie nullPointerException
             Inventory.Instance.AddWeapon((WeaponSO)item);
-            Inventory.Instance.AddPrefix(prefix);
         }
         else
         {
-            Debug.LogError("You configures something wrong, you used weapon pickap with item that is not a weapon");
+            Debug.LogError("You configured something wrong, you used weapon pickup with item that is not a weapon");
         }
         Destroy(gameObject);
     }

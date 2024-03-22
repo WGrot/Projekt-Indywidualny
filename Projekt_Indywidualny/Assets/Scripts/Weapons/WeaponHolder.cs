@@ -114,8 +114,7 @@ public class WeaponHolder : MonoBehaviour
         activeWeaponID = weapons.Count - 1;
         activeWeapon = weapons[activeWeaponID];
         activeWeapon.OnEquip();
-        Debug.Log(activeWeaponID);
-        //activeWeapon.ApplyPrefix(prefixes[activeWeaponID]);
+        activeWeapon.ApplyPrefix(prefixes[activeWeaponID]);
         activeWeapon = weapons[activeWeaponID];
         SetWeaponModel();
     }
@@ -194,8 +193,38 @@ public class WeaponHolder : MonoBehaviour
             Disarm();
         }
 
+    }
 
-        
+    public void DropWeaponAtIndex(int index)
+    {
+        if (weapons.Count == 0)
+        {
+            return;
+        }
+
+        if (index > weapons.Count -1)
+        {
+            Debug.LogError("You tried to delete weapon at index that excedes number of weapons");
+            return;
+        }
+
+
+        GameObject pickupInstance = Instantiate(weaponPickup, transform.position, Quaternion.identity);
+        pickupInstance.GetComponent<WeaponPickup>().SetWeaponAndPrefix(weapons[index], prefixes[index]);
+        Inventory.Instance.RemoveWeaponAtIndex(index);
+        Inventory.Instance.RemovePrefixAtIndex(index);
+        if (activeWeaponID == index)
+        {
+            activeWeapon = null;
+        }
+        if (weapons.Count > 0)
+        {
+            SwitchToPreviousWeapon();
+        }
+        else
+        {
+            Disarm();
+        }
 
     }
 

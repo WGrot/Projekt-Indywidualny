@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour
     #endregion
 
 
-
+    #region WeaponsAndPrefixes
     public List<WeaponSO> GetWeaponsList()
     {
         return weapons;
@@ -88,9 +88,17 @@ public class Inventory : MonoBehaviour
         return weapons.Remove(weapon);
     }
 
+    public void RemoveWeaponAtIndex(int index)
+    {
+        weapons.RemoveAt(index);
+    }
     public bool RemovePrefix(WeaponPrefix prefix)
     {
         return prefixes.Remove(prefix);
+    }
+    public void RemovePrefixAtIndex(int index)
+    {
+        prefixes.RemoveAt(index);
     }
 
     public WeaponPrefix GetPrefixWithIndex(int index)
@@ -98,4 +106,14 @@ public class Inventory : MonoBehaviour
         return prefixes[index];
     }
 
+    public bool IsWeaponAlreadyInList(WeaponSO weapon)
+    {
+        return weapons.Contains(weapon);
+    }
+
+    public int GetWeaponIndex(WeaponSO weapon)
+    {
+        return weapons.IndexOf(weapon);
+    }
+    #endregion
 }

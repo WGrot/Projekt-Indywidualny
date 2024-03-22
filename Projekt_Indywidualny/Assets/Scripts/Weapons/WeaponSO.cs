@@ -116,4 +116,22 @@ public class WeaponSO : Item
             }
         }
     }
+
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        WeaponSO other = (WeaponSO)obj;
+        return itemName == other.itemName;
+    }
+
+    public override int GetHashCode()
+    {
+        return itemName.GetHashCode();
+    }
+
 }
