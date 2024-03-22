@@ -4,14 +4,36 @@ using UnityEngine;
 
 public class WeaponPickup : ItemPickup
 {
-    public bool isWeaponRandom = true;
-
+    [SerializeField] private bool isWeaponRandom = true;
+    [SerializeField] private bool isPrefixRandom = true;
+    [SerializeField] private WeaponSO weapon;
+    [SerializeField] private WeaponPrefix prefix;
     public override void Start()
     {
-        ChooseRandomWeapon();
-        WeaponSO weapon = (WeaponSO)item;
-        weapon.SetPrefix(ChooseRandomPrefix());
-        base.item= weapon;
+
+        if (isWeaponRandom)
+        {
+            ChooseRandomWeapon();
+            weapon = (WeaponSO)item;
+        }
+
+        if (isPrefixRandom)
+        {
+            prefix = ChooseRandomPrefix();
+        }
+        if (weapon != null)
+        {
+            base.item = weapon;
+            itemSprite.sprite = item.icon;
+        }
+
+    }
+
+    public void SetWeaponAndPrefix(WeaponSO weapon, WeaponPrefix prefix)
+    {
+
+        this.prefix= prefix;
+        base.item = weapon; 
         itemSprite.sprite = item.icon;
     }
     public override void InteractWithPlayer()
@@ -19,6 +41,7 @@ public class WeaponPickup : ItemPickup
         if (item is WeaponSO)
         {
             Inventory.Instance.AddWeapon((WeaponSO)item);
+            Inventory.Instance.AddPrefix(prefix);
         }
         else
         {
@@ -29,16 +52,17 @@ public class WeaponPickup : ItemPickup
 
     private void ChooseRandomWeapon()
     {
-        int result = Random.Range(1,100);
-        if(result < 50) //50% chance for common weapon
+        int result = Random.Range(1, 100);
+        if (result < 50) //50% chance for common weapon
         {
             Object[] weaponObjects = Resources.LoadAll("WeaponsResources/Weapons/Common");
             WeaponSO[] commonWeapons = new WeaponSO[weaponObjects.Length];
             weaponObjects.CopyTo(commonWeapons, 0);
 
             base.item = commonWeapons[Random.Range(0, weaponObjects.Length)];
-            
-        }else if (result >= 50 && result < 80) // 30% chance for uncommon weapon
+
+        }
+        else if (result >= 50 && result < 80) // 30% chance for uncommon weapon
         {
             Object[] weaponObjects = Resources.LoadAll("WeaponsResources/Weapons/Uncommon");
             WeaponSO[] uncommonWeapons = new WeaponSO[weaponObjects.Length];
@@ -68,7 +92,7 @@ public class WeaponPickup : ItemPickup
     {
         int result = Random.Range(1, 100);
         WeaponPrefix chosenPrefix;
-        if (result < 50) 
+        if (result < 50)
         {
             Object[] prefixesObjects = Resources.LoadAll("WeaponsResources/WeaponPrefixes/Common");
             WeaponPrefix[] commonPrefixes = new WeaponPrefix[prefixesObjects.Length];

@@ -25,9 +25,11 @@ public class Inventory : MonoBehaviour
     public static event OnItemChanged OnItemChangedCallback;
     public delegate void OnItemWeapon();
     public static event OnItemWeapon OnWeaponChangedCallback;
+    public static event OnItemWeapon OnWeaponAddedCallback;
 
     private List<PassiveItem> passiveItems = new List<PassiveItem>();
     private List<WeaponSO> weapons = new List<WeaponSO>();
+    private List<WeaponPrefix> prefixes= new List<WeaponPrefix>();
 
     #region PassiveItems
 
@@ -58,7 +60,7 @@ public class Inventory : MonoBehaviour
         return weapons;
     }
 
-    public WeaponSO getWeaponWithIndex(int index)
+    public WeaponSO GetWeaponWithIndex(int index)
     {
         return weapons[index];
     }
@@ -66,9 +68,34 @@ public class Inventory : MonoBehaviour
     public void AddWeapon(WeaponSO weapon)
     {
         weapons.Add(weapon);
-        GameObject holder = GameObject.FindGameObjectWithTag("WeaponHolder");
         weapon.OnPickup();
-        OnWeaponChangedCallback?.Invoke();
+        OnWeaponAddedCallback?.Invoke();
+    }
+
+    public void AddPrefix(WeaponPrefix prefix)
+    {
+        prefixes.Add(prefix);
+    }
+
+    public List<WeaponPrefix> GetPrefixList()
+    {
+        return prefixes;
+    }
+
+    public bool RemoveWeapon(WeaponSO weapon)
+    {
+        
+        return weapons.Remove(weapon);
+    }
+
+    public bool RemovePrefix(WeaponPrefix prefix)
+    {
+        return prefixes.Remove(prefix);
+    }
+
+    public WeaponPrefix GetPrefixWithIndex(int index)
+    {
+        return prefixes[index];
     }
 
 }

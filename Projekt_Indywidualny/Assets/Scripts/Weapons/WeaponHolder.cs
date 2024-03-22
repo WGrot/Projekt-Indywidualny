@@ -10,7 +10,11 @@ public class WeaponHolder : MonoBehaviour
     private WeaponSO activeWeapon;
     [SerializeField] private GameObject weaponObject;
     private SpriteRenderer weaponSprite;
-    [SerializeField] private List<WeaponSO> weapons;
+    [SerializeField] private GameObject weaponPickup;
+
+
+    private List<WeaponSO> weapons;
+    private List<WeaponPrefix> prefixes;
     private InputActions inputActions;
 
     private bool wasShootPressedThisFrame = false;
@@ -26,19 +30,22 @@ public class WeaponHolder : MonoBehaviour
     {
         inputActions.Player_base.Scroll.performed += SwitchWeapon;
         inputActions.Player_base.Shoot.canceled += TryToShootCharge;
-        Inventory.OnWeaponChangedCallback += EquipNewWeapon;
+        inputActions.Player_base.DropWeapon.performed += DropWeapon;
+        Inventory.OnWeaponAddedCallback += EquipNewWeapon;
     }
     public void OnDisable()
     {
         inputActions.Player_base.Scroll.performed -= SwitchWeapon;
         inputActions.Player_base.Shoot.canceled -= TryToShootCharge;
-        Inventory.OnWeaponChangedCallback -= EquipNewWeapon;
+        inputActions.Player_base.DropWeapon.performed -= DropWeapon;
+        Inventory.OnWeaponAddedCallback -= EquipNewWeapon;
     }
 
     public IEnumerator Start()
     {
         yield return null;
         weapons = Inventory.Instance.GetWeaponsList();
+        prefixes = Inventory.Instance.GetPrefixList();
         weaponSprite = weaponObject.GetComponent<SpriteRenderer>();
 
     }
@@ -47,6 +54,10 @@ public class WeaponHolder : MonoBehaviour
 
     public void SwitchWeapon(InputAction.CallbackContext context)
     {
+        if (weapons.Count < 1)
+        {
+            return;
+        }
         if (context.ReadValueAsButton())
         {
             SwitchToNextWeapon();
@@ -68,6 +79,8 @@ public class WeaponHolder : MonoBehaviour
         {
             activeWeaponID += 1;
         }
+        activeWeapon = weapons[activeWeaponID];
+        weapons[activeWeaponID].ApplyPrefix(prefixes[activeWeaponID]);
         SetWeaponModel();
     }
 
@@ -82,12 +95,13 @@ public class WeaponHolder : MonoBehaviour
         {
             activeWeaponID -= 1;
         }
+        activeWeapon = weapons[activeWeaponID];
+        weapons[activeWeaponID].ApplyPrefix(prefixes[activeWeaponID]);
         SetWeaponModel();
     }
 
     private void SetWeaponModel()
     {
-        activeWeapon = weapons[activeWeaponID];
         weaponObject.transform.localPosition = transform.localPosition + activeWeapon.SpawnPoint;
         Debug.Log(transform.localPosition + "activeweapon sp: " + activeWeapon.SpawnPoint);
         weaponObject.transform.rotation = transform.rotation * Quaternion.Euler(activeWeapon.SpawnRotation);
@@ -98,6 +112,11 @@ public class WeaponHolder : MonoBehaviour
     private void EquipNewWeapon()
     {
         activeWeaponID = weapons.Count - 1;
+        activeWeapon = weapons[activeWeaponID];
+        activeWeapon.OnEquip();
+        Debug.Log(activeWeaponID);
+        //activeWeapon.ApplyPrefix(prefixes[activeWeaponID]);
+        activeWeapon = weapons[activeWeaponID];
         SetWeaponModel();
     }
     #endregion
@@ -152,6 +171,39 @@ public class WeaponHolder : MonoBehaviour
             activeWeapon.Shoot(gameObject);
         }
 
+    }
+
+    public void DropWeapon(InputAction.CallbackContext context)
+    {
+        if (weapons.Count == 0)
+        {
+            return;
+        }
+
+        Inventory.Instance.RemoveWeapon(activeWeapon);
+        GameObject pickupInstance = Instantiate(weaponPickup, transform.position, Quaternion.identity);
+        pickupInstance.GetComponent<WeaponPickup>().SetWeaponAndPrefix(activeWeapon, prefixes[activeWeaponID]);
+        activeWeapon = null;
+        Inventory.Instance.RemovePrefix(prefixes[activeWeaponID]);
+        if (weapons.Count > 0)
+        {
+            SwitchToPreviousWeapon();
+        }
+        else
+        {
+            Disarm();
+        }
+
+
+        
+
+    }
+
+    private void Disarm()
+    {
+        activeWeapon = null;
+        activeWeaponID = 0;
+        weaponSprite.sprite = null;
     }
 
 }

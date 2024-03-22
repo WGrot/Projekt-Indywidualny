@@ -81,7 +81,7 @@ MonoBehaviour:
   coyoteTime: 0.5
   jumpCount: 2
   slamAcceleration: 40
-  dashTime: 0.01
+  dashTime: 0.1
   dashMultipier: 10
   dashCooldown: 1
 --- !u!114 &5768853184840608766
@@ -294,7 +294,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 8765904954025738861}
-  weapons: []
+  weaponPickup: {fileID: 6984738914032359139, guid: 04095ab94e12e34478fe5a81d7bea0d9,
+    type: 3}
+  weaponsInHold: []
+  prefixes: []
 --- !u!1 &8765904954025738861
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +372,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.34117648}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

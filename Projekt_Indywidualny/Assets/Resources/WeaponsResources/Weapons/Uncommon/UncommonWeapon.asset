@@ -12,20 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51598764c5848614dbf708df1bceb5a7, type: 3}
   m_Name: UncommonWeapon
   m_EditorClassIdentifier: 
-  itemName: New Item
+  itemName: UncommonWeapon
   description: put description here
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: caa1cfb5b28954f4cace113ed28aadf3, type: 3}
   shootStyle: 0
-  Prefix: {fileID: 0}
   Damage: 0
   FireRate: 0.25
   ChargeTime: 0
   ReloadTime: 0
   ClipSize: 0
   Spread: {x: 0.1, y: 0.1, z: 0.4}
+  Prefix: {fileID: 0}
   SpawnPoint: {x: 0, y: 0, z: 0}
   SpawnRotation: {x: 0, y: 0, z: 0}
   ModelScale: {x: 1, y: 1, z: 1}
   ShootOffset: {x: 0, y: 0, z: 0}
-  ModelPrefab: {fileID: 0}
+  ModelPrefab: {fileID: 5476410361484694258, guid: 2b5d2c8b8e9f6ff479c707f2076412b2,
+    type: 3}
   idleImage: {fileID: 0}
