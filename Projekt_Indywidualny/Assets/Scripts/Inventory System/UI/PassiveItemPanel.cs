@@ -26,6 +26,10 @@ public class PassiveItemPanel : MonoBehaviour
 
     private void ShowItemData(Item item)
     {
+        if (item is not PassiveItem)
+        {
+            return;
+        }
         displayedItem = (PassiveItem)item;
         textBox.SetText(item.description);
         itemIcon.sprite = item.icon;
