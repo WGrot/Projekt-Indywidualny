@@ -101,10 +101,7 @@ public class UIPanels : MonoBehaviour
 
             uiPanels[0].SetActive(true);
             activePanel = 0;
-            if (isInventoryDirty)
-            {
-                LoadPassiveItems();
-            }
+            LoadPassiveItems();
             GameStateManager.Instance.PauseGame();
             isPanelOpened = true;
         }

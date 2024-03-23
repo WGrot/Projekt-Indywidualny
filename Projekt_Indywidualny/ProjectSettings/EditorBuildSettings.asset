@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FlatTesting.unity
     guid: 5e5ba8eec3cb4584581cba9a8792e8fd
+  - enabled: 1
+    path: Assets/Scenes/TestLevelFloor2.unity
+    guid: ef25bdb2c028b484e962a752d28f358c
   m_configObjects: {}

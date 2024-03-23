@@ -17,7 +17,7 @@ public class LevelGenerationV2 : MonoBehaviour
 
     [Header("Assign Rooms and parameters")]
     [SerializeField] private GameObject spawnRoom;
-    [SerializeField] private GameObject BOSSRoom;
+    [SerializeField] private GameObject ExitRoom;
     [SerializeField] private GameObject[] normalRooms;
 
 
@@ -47,9 +47,14 @@ public class LevelGenerationV2 : MonoBehaviour
 
         levelGrid = new LevelGrid(levelSize , buffour, gridScale);
         GenerateSpecialRoom(spawnRoom, levelSize / 2 + buffour, levelSize / 2 + buffour);
+        if (ExitRoom != null)
+        {
+            GenerateSpecialRoom(ExitRoom, buffour / 2, buffour / 2);
+        }
+
         GenerateRooms();
         GeneratePassages();
-        yield return new WaitForSeconds(0.1f);
+        yield return null; // new WaitForSeconds(0.1f);
         ScanGrid();
         InstantiateCorridors();
         if (OnLevelGenerated != null)
@@ -61,6 +66,7 @@ public class LevelGenerationV2 : MonoBehaviour
 
     private void GenerateSpecialRoom(GameObject room, int x, int z)
     {
+
 
         GameObject roomInstance = Instantiate(room, new Vector3((x ) * gridScale, 0, (z ) * gridScale), Quaternion.identity);
         Room currentRoomScript = roomInstance.GetComponent<Room>();

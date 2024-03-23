@@ -167,16 +167,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e568c7ada8b9644878e910f08d5b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSize: 20
+  levelSize: 40
   buffour: 20
   gridScale: 4
-  numberOfNormalRooms: 10
+  numberOfNormalRooms: 20
   ChanceForEdgeToStay: 0
-  trycounter: 300
+  trycounter: 400
   spawnRoom: {fileID: 4054051608600762380, guid: 3c23fb367d3b0da488c0529b6db11e02,
     type: 3}
-  ExitRoom: {fileID: 4054051608600762380, guid: 37dfd08294a821a4485993b606224671,
-    type: 3}
+  ExitRoom: {fileID: 0}
   normalRooms:
   - {fileID: 4054051608600762380, guid: 9944de0436e92464f88830eacb90d816, type: 3}
   - {fileID: 4054051608600762380, guid: 9944de0436e92464f88830eacb90d816, type: 3}
