@@ -28,6 +28,7 @@ public class PassiveItemPanel : MonoBehaviour
     {
         if (item is not PassiveItem)
         {
+            Debug.LogError("There is something different than passive item in item list");
             return;
         }
         displayedItem = (PassiveItem)item;

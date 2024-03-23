@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5961050a212a44b93addb510329211, type: 3}
   m_Name: Ignorant
   m_EditorClassIdentifier: 
-  PrefixName: New Prefix
+  PrefixName: Ignorant
   forWhatType: 0
   damageModifier: 0
-  fireRateModifier: 0
+  fireRateModifier: -10
   chargeTimeModifier: 0
-  spreadModifier: 0
+  spreadModifier: 10
   reloadTimeModifier: 0

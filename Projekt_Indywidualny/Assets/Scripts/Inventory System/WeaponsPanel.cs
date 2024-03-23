@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class WeaponsPanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textBox;
     [SerializeField] private TextMeshProUGUI prefixBox;
+    [SerializeField] private TextMeshProUGUI weaponNameText;
     [SerializeField] private Image itemIcon;
     [SerializeField] private GameObject dropPrefab;
-    [SerializeField] private GameObject weaponHolder;
+    [SerializeField] private WeaponHolder weaponHolder;
     [SerializeField] private GameObject itemList;
+
     private RectTransform rt;
     [SerializeField] GameObject itemSlotPrefab;
 
@@ -20,7 +23,7 @@ public class WeaponsPanel : MonoBehaviour
     private void OnEnable()
     {
         InventorySlot.OnItemSelectedInInventoryCallback += ShowItemData;
-        weaponHolder = GameObject.FindGameObjectWithTag("WeaponHolder");
+        weaponHolder = GameObject.FindGameObjectWithTag("WeaponHolder").GetComponent<WeaponHolder>();
         rt = itemList.GetComponent<RectTransform>();
         LoadWeapons();
     }
@@ -28,33 +31,38 @@ public class WeaponsPanel : MonoBehaviour
     private void OnDisable()
     {
         InventorySlot.OnItemSelectedInInventoryCallback -= ShowItemData;
+        HideData();
     }
 
     private void ShowItemData(Item item)
     {
         displayedItem = (WeaponSO)item;
         textBox.SetText(item.description);
+        weaponNameText.SetText(item.itemName);
         itemIcon.sprite = item.icon;
         string prefixName = Inventory.Instance.GetPrefixWithIndex(Inventory.Instance.GetWeaponIndex((WeaponSO)item)).PrefixName; //this ungodly line finds prefix corresponding to clicked weapon
         prefixBox.SetText(prefixName);
     }
-    /*
+
+    private void HideData()
+    {
+        displayedItem = null;
+        textBox.SetText("");
+        weaponNameText.SetText("");
+        itemIcon.sprite = null;
+        prefixBox.SetText("");
+    }
+    
     public void DropItem()
     {
         if (displayedItem == null)
         {
             return;
         }
-        Inventory.Instance.RemovePassiveItem(displayedItem);
-        Vector3 dropPos = GameObject.FindGameObjectWithTag("Player").transform.position + new Vector3(0, 1, 0);
-        GameObject dropInstance = Instantiate(dropPrefab, dropPos, Quaternion.identity);
-        dropInstance.GetComponent<ItemPickup>().SetItem(displayedItem);
-        displayedItem = null;
-        textBox.SetText("");
-        itemIcon.sprite = null;
-
+        weaponHolder.DropWeaponAtIndex(Inventory.Instance.GetWeaponIndex(displayedItem));
+        HideData();
     }
-    */
+    
     public void LoadWeapons()
     {
         for (int i = 0; i < itemList.transform.childCount; i++)

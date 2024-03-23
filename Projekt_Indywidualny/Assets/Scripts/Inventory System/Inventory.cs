@@ -24,7 +24,6 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public static event OnItemChanged OnItemChangedCallback;
     public delegate void OnItemWeapon();
-    public static event OnItemWeapon OnWeaponChangedCallback;
     public static event OnItemWeapon OnWeaponAddedCallback;
 
     private List<PassiveItem> passiveItems = new List<PassiveItem>();

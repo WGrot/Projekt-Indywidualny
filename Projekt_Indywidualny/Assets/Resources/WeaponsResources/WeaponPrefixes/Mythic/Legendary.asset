@@ -15,7 +15,7 @@ MonoBehaviour:
   PrefixName: Legendary
   forWhatType: 0
   damageModifier: 15
-  fireRateModifier: -50
+  fireRateModifier: -15
   chargeTimeModifier: 0
   spreadModifier: -10
   reloadTimeModifier: -10

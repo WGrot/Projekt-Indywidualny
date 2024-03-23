@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5961050a212a44b93addb510329211, type: 3}
   m_Name: Frenzying
   m_EditorClassIdentifier: 
-  PrefixName: New Prefix
+  PrefixName: Frenzying
   forWhatType: 0
-  damageModifier: 0
-  fireRateModifier: 0
+  damageModifier: -15
+  fireRateModifier: -20
   chargeTimeModifier: 0
-  spreadModifier: 0
+  spreadModifier: 20
   reloadTimeModifier: 0

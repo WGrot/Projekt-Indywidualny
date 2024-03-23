@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5961050a212a44b93addb510329211, type: 3}
   m_Name: Pointy
   m_EditorClassIdentifier: 
-  PrefixName: New Prefix
+  PrefixName: Pointy
   forWhatType: 0
-  damageModifier: 0
+  damageModifier: 5
   fireRateModifier: 0
   chargeTimeModifier: 0
-  spreadModifier: 0
+  spreadModifier: -25
   reloadTimeModifier: 0
