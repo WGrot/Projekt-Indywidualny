@@ -21,11 +21,12 @@ public class WeaponSO : Item
     public WeaponShootingStyle shootStyle;
     public float Damage;
     public float FireRate = 0.25f;
-    public float ChargeTime = 0;
-    public float ReloadTime;
-    public int ClipSize;
+    public float ChargeTime = 0f;
+    public float ReloadTime = 2f;
+    public int ClipSize = 10;
     public int MaxAmmo = 100;
     public int AmmoUsePerShoot = 1;
+    public int bulletsPerShoot = 1;
     public Vector3 Spread = new Vector3(0.1f, 0.1f, 0.4f);
 
 
@@ -90,26 +91,29 @@ public class WeaponSO : Item
         {
             return;
         }
-
-
-
-        Inventory.Instance.DecreaseAmmoAtIndex(activeWeaponId, AmmoUsePerShoot);
         LastShootTime = Time.time;
-        Vector3 direction = weaponHolder.transform.forward;
-        direction += new Vector3(
-                        UnityEngine.Random.Range(-spread.x, spread.x),
-                        UnityEngine.Random.Range(-spread.y, spread.y),
-                        UnityEngine.Random.Range(-spread.z, spread.z)
-                    );
-        if (Physics.Raycast(weaponHolder.transform.position + ShootOffset, direction, out RaycastHit hit))
+        Inventory.Instance.DecreaseAmmoAtIndex(activeWeaponId, AmmoUsePerShoot);
+        for (int i = 0; i < bulletsPerShoot; i++)
         {
-            Instantiate(ModelPrefab, hit.point, Quaternion.identity);
-            Ihp target = hit.transform.GetComponent<Ihp>();
-            if (target != null)
+
+
+            Vector3 direction = weaponHolder.transform.forward;
+            direction += new Vector3(
+                            UnityEngine.Random.Range(-spread.x, spread.x),
+                            UnityEngine.Random.Range(-spread.y, spread.y),
+                            UnityEngine.Random.Range(-spread.z, spread.z)
+                        );
+            if (Physics.Raycast(weaponHolder.transform.position + ShootOffset, direction, out RaycastHit hit))
             {
-                target.TakeDamage(damage);
+                Instantiate(ModelPrefab, hit.point, Quaternion.identity);
+                Ihp target = hit.transform.GetComponent<Ihp>();
+                if (target != null)
+                {
+                    target.TakeDamage(damage);
+                }
             }
         }
+
     }
 
 
