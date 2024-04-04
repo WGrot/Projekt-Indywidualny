@@ -15,6 +15,7 @@ public class WeaponHolder : MonoBehaviour
 
     private List<WeaponSO> weapons;
     private List<WeaponPrefix> prefixes;
+    private List<int> ammos;
     private InputActions inputActions;
 
     private bool wasShootPressedThisFrame = false;
@@ -46,6 +47,8 @@ public class WeaponHolder : MonoBehaviour
         yield return null;
         weapons = Inventory.Instance.GetWeaponsList();
         prefixes = Inventory.Instance.GetPrefixList();
+        ammos = Inventory.Instance.GetAmmoList();
+        
         weaponSprite = weaponObject.GetComponent<SpriteRenderer>();
 
     }
@@ -144,7 +147,7 @@ public class WeaponHolder : MonoBehaviour
 
         if (activeWeapon.shootStyle == WeaponShootingStyle.FullAuto)
         {
-            activeWeapon.Shoot(gameObject);
+            activeWeapon.Shoot(gameObject, activeWeaponID);
         }
         else if (activeWeapon.shootStyle == WeaponShootingStyle.OneTap)
         {
@@ -152,7 +155,7 @@ public class WeaponHolder : MonoBehaviour
             {
                 return;
             }
-            activeWeapon.Shoot(gameObject);
+            activeWeapon.Shoot(gameObject, activeWeaponID);
         }
 
 
@@ -167,7 +170,7 @@ public class WeaponHolder : MonoBehaviour
 
         if (activeWeapon.shootStyle == WeaponShootingStyle.Charge && activeWeapon.chargeTime < chargeTime)
         {
-            activeWeapon.Shoot(gameObject);
+            activeWeapon.Shoot(gameObject, activeWeaponID);
         }
 
     }
@@ -181,9 +184,10 @@ public class WeaponHolder : MonoBehaviour
 
         Inventory.Instance.RemoveWeapon(activeWeapon);
         GameObject pickupInstance = Instantiate(weaponPickup, transform.position, Quaternion.identity);
-        pickupInstance.GetComponent<WeaponPickup>().SetWeaponAndPrefix(activeWeapon, prefixes[activeWeaponID]);
+        pickupInstance.GetComponent<WeaponPickup>().SetWeaponAndPrefixAndAmmo(activeWeapon, prefixes[activeWeaponID], ammos[activeWeaponID]);
         activeWeapon = null;
         Inventory.Instance.RemovePrefix(prefixes[activeWeaponID]);
+        Inventory.Instance.RemoveAmmo(ammos[activeWeaponID]);
         if (weapons.Count > 0)
         {
             SwitchToPreviousWeapon();
@@ -210,9 +214,10 @@ public class WeaponHolder : MonoBehaviour
 
 
         GameObject pickupInstance = Instantiate(weaponPickup, transform.position, Quaternion.identity);
-        pickupInstance.GetComponent<WeaponPickup>().SetWeaponAndPrefix(weapons[index], prefixes[index]);
+        pickupInstance.GetComponent<WeaponPickup>().SetWeaponAndPrefixAndAmmo(weapons[index], prefixes[index], ammos[index]);
         Inventory.Instance.RemoveWeaponAtIndex(index);
         Inventory.Instance.RemovePrefixAtIndex(index);
+        Inventory.Instance.RemoveAmmoAtIndex(index);
         if (activeWeaponID == index)
         {
             activeWeapon = null;

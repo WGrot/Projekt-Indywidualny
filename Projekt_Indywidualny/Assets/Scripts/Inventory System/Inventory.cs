@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour
     private List<PassiveItem> passiveItems = new List<PassiveItem>();
     private List<WeaponSO> weapons = new List<WeaponSO>();
     private List<WeaponPrefix> prefixes= new List<WeaponPrefix>();
+    private List<int> ammos = new List<int>();
 
     #region PassiveItems
 
@@ -71,6 +72,29 @@ public class Inventory : MonoBehaviour
         OnWeaponAddedCallback?.Invoke();
     }
 
+    public bool RemoveWeapon(WeaponSO weapon)
+    {
+        return weapons.Remove(weapon);
+    }
+
+    public void RemoveWeaponAtIndex(int index)
+    {
+        weapons.RemoveAt(index);
+    }
+
+    public bool IsWeaponAlreadyInList(WeaponSO weapon)
+    {
+        return weapons.Contains(weapon);
+    }
+
+    public int GetWeaponIndex(WeaponSO weapon)
+    {
+        return weapons.IndexOf(weapon);
+    }
+
+
+
+
     public void AddPrefix(WeaponPrefix prefix)
     {
         prefixes.Add(prefix);
@@ -79,17 +103,6 @@ public class Inventory : MonoBehaviour
     public List<WeaponPrefix> GetPrefixList()
     {
         return prefixes;
-    }
-
-    public bool RemoveWeapon(WeaponSO weapon)
-    {
-        
-        return weapons.Remove(weapon);
-    }
-
-    public void RemoveWeaponAtIndex(int index)
-    {
-        weapons.RemoveAt(index);
     }
     public bool RemovePrefix(WeaponPrefix prefix)
     {
@@ -105,14 +118,41 @@ public class Inventory : MonoBehaviour
         return prefixes[index];
     }
 
-    public bool IsWeaponAlreadyInList(WeaponSO weapon)
+
+
+
+
+
+
+    public List<int> GetAmmoList()
     {
-        return weapons.Contains(weapon);
+        return ammos;
+    }
+    public void AddAmmo(int amount)
+    {
+         ammos.Add(amount);
+    }
+    public bool RemoveAmmo(int amount)
+    {
+
+        return ammos.Remove(amount);
+    }
+    public void RemoveAmmoAtIndex(int index)
+    {
+        ammos.RemoveAt(index);
     }
 
-    public int GetWeaponIndex(WeaponSO weapon)
+    public int GetAmmoAtIndex(int index)
     {
-        return weapons.IndexOf(weapon);
+        return ammos[index];
+    }
+    public void DecreaseAmmoAtIndex(int index, int amount)
+    {
+        ammos[index] -= amount;
+        if (ammos[index] < 0)
+        {
+            ammos[index] = 0;
+        }
     }
     #endregion
 }

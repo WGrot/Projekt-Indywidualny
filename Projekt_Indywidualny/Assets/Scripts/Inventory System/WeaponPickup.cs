@@ -8,6 +8,7 @@ public class WeaponPickup : ItemPickup
     [SerializeField] private bool isPrefixRandom = true;
     [SerializeField] private WeaponSO weapon;
     [SerializeField] private WeaponPrefix prefix;
+    [SerializeField] private int ammo;
     public override void Start()
     {
 
@@ -15,6 +16,7 @@ public class WeaponPickup : ItemPickup
         {
             ChooseRandomWeapon();
             weapon = (WeaponSO)item;
+            ammo = ((WeaponSO)item).MaxAmmo;
         }
 
         if (isPrefixRandom)
@@ -29,11 +31,12 @@ public class WeaponPickup : ItemPickup
 
     }
 
-    public void SetWeaponAndPrefix(WeaponSO weapon, WeaponPrefix prefix)
+    public void SetWeaponAndPrefixAndAmmo(WeaponSO weapon, WeaponPrefix prefix, int ammo)
     {
 
         this.prefix= prefix;
         base.item = weapon; 
+        this.ammo = ammo;
         itemSprite.sprite = item.icon;
     }
     public override void InteractWithPlayer()
@@ -49,6 +52,7 @@ public class WeaponPickup : ItemPickup
             }
             Inventory.Instance.AddPrefix(prefix);   //Najpierw trzeba dodaæ prefix dopiero póŸniej broñ bo inaczej sypie nullPointerException
             Inventory.Instance.AddWeapon((WeaponSO)item);
+            Inventory.Instance.AddAmmo(ammo);
         }
         else
         {

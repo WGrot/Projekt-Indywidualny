@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
@@ -23,7 +24,8 @@ public class WeaponSO : Item
     public float ChargeTime = 0;
     public float ReloadTime;
     public int ClipSize;
-    public int MaxAmmo;
+    public int MaxAmmo = 100;
+    public int AmmoUsePerShoot = 1;
     public Vector3 Spread = new Vector3(0.1f, 0.1f, 0.4f);
 
 
@@ -40,12 +42,10 @@ public class WeaponSO : Item
     private float damage;
     public float chargeTime { get; private set; }
     private float reloadTime;
-    private int clipSize;
+    private int ammoInClip;
     private Vector3 spread;
-    private int ammoLeft;
 
     private float LastShootTime;
-    [NonSerialized] private bool isFirstPickup = true;
 
 
 
@@ -84,21 +84,20 @@ public class WeaponSO : Item
         spread = Spread;
     }
 
-    public void ResetAmmoIfNeeded()
-    {
-        if (isFirstPickup)
-        {
-            ammoLeft = MaxAmmo;
-            isFirstPickup= false;
-        }
-    }
     
-    public void Shoot(GameObject weaponHolder)
+    public void Shoot(GameObject weaponHolder, int activeWeaponId)
     {
         if (Time.time < fireRate + LastShootTime)
         {
             return;
         }
+
+        if (Inventory.Instance.GetAmmoAtIndex(activeWeaponId) < 1)
+        {
+            return;
+        }
+
+        Inventory.Instance.DecreaseAmmoAtIndex(activeWeaponId, AmmoUsePerShoot);
         LastShootTime = Time.time;
         Vector3 direction = weaponHolder.transform.forward;
         direction += new Vector3(
