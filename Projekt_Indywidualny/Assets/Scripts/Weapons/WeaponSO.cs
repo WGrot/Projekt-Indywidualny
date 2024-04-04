@@ -41,8 +41,7 @@ public class WeaponSO : Item
     private float fireRate = 0.25f;
     private float damage;
     public float chargeTime { get; private set; }
-    private float reloadTime;
-    private int ammoInClip;
+    public float reloadTime { get; private set; }
     private Vector3 spread;
 
     private float LastShootTime;
@@ -92,10 +91,7 @@ public class WeaponSO : Item
             return;
         }
 
-        if (Inventory.Instance.GetAmmoAtIndex(activeWeaponId) < 1)
-        {
-            return;
-        }
+
 
         Inventory.Instance.DecreaseAmmoAtIndex(activeWeaponId, AmmoUsePerShoot);
         LastShootTime = Time.time;
@@ -115,6 +111,8 @@ public class WeaponSO : Item
             }
         }
     }
+
+
 
 
     public override bool Equals(object obj)

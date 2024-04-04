@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class AmmoData
 {
     public int ammoInClip { get; private set; }
@@ -24,5 +25,18 @@ public class AmmoData
         {
             ammoLeft=0;
         }
+    }
+    
+    public void ReloadClip(int clipSize)
+    {
+        if (ammoLeft <= clipSize)
+        {
+            ammoInClip=ammoLeft;
+        }else
+        {
+            ammoInClip = clipSize;
+        }
+
+
     }
 }

@@ -21,7 +21,8 @@ MonoBehaviour:
   ChargeTime: 0
   ReloadTime: 0
   ClipSize: 0
-  MaxAmmo: 0
+  MaxAmmo: 100
+  AmmoUsePerShoot: 1
   Spread: {x: 0.1, y: 0.1, z: 0.4}
   SpawnPoint: {x: 0.7, y: -0.2, z: -1}
   SpawnRotation: {x: 0, y: 0, z: 0}

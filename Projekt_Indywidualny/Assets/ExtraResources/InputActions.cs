@@ -107,6 +107,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""90db4c49-c6d9-474c-a9a3-43c639af76b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -274,6 +283,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""DropWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d380924f-7322-4c50-a2e7-ffba0d1d3c30"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -339,6 +359,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_base_Scroll = m_Player_base.FindAction("Scroll", throwIfNotFound: true);
         m_Player_base_Shoot = m_Player_base.FindAction("Shoot", throwIfNotFound: true);
         m_Player_base_DropWeapon = m_Player_base.FindAction("DropWeapon", throwIfNotFound: true);
+        m_Player_base_Reload = m_Player_base.FindAction("Reload", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_OpenInventory = m_UI.FindAction("Open Inventory", throwIfNotFound: true);
@@ -413,6 +434,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_base_Scroll;
     private readonly InputAction m_Player_base_Shoot;
     private readonly InputAction m_Player_base_DropWeapon;
+    private readonly InputAction m_Player_base_Reload;
     public struct Player_baseActions
     {
         private @InputActions m_Wrapper;
@@ -426,6 +448,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Scroll => m_Wrapper.m_Player_base_Scroll;
         public InputAction @Shoot => m_Wrapper.m_Player_base_Shoot;
         public InputAction @DropWeapon => m_Wrapper.m_Player_base_DropWeapon;
+        public InputAction @Reload => m_Wrapper.m_Player_base_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Player_base; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -462,6 +485,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @DropWeapon.started += instance.OnDropWeapon;
             @DropWeapon.performed += instance.OnDropWeapon;
             @DropWeapon.canceled += instance.OnDropWeapon;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IPlayer_baseActions instance)
@@ -493,6 +519,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @DropWeapon.started -= instance.OnDropWeapon;
             @DropWeapon.performed -= instance.OnDropWeapon;
             @DropWeapon.canceled -= instance.OnDropWeapon;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IPlayer_baseActions instance)
@@ -575,6 +604,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnScroll(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnDropWeapon(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

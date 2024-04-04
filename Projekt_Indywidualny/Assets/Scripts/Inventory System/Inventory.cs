@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
     private List<PassiveItem> passiveItems = new List<PassiveItem>();
     private List<WeaponSO> weapons = new List<WeaponSO>();
     private List<WeaponPrefix> prefixes= new List<WeaponPrefix>();
-    private List<int> ammos = new List<int>();
+    private List<AmmoData> ammos = new List<AmmoData>();
 
     #region PassiveItems
 
@@ -124,35 +124,31 @@ public class Inventory : MonoBehaviour
 
 
 
-    public List<int> GetAmmoList()
+    public List<AmmoData> GetAmmoList()
     {
         return ammos;
     }
-    public void AddAmmo(int amount)
+    public void AddAmmo(AmmoData ammoData)
     {
-         ammos.Add(amount);
+         ammos.Add(ammoData);
     }
-    public bool RemoveAmmo(int amount)
+    public bool RemoveAmmo(AmmoData ammoData)
     {
 
-        return ammos.Remove(amount);
+        return ammos.Remove(ammoData);
     }
     public void RemoveAmmoAtIndex(int index)
     {
         ammos.RemoveAt(index);
     }
 
-    public int GetAmmoAtIndex(int index)
+    public AmmoData GetAmmoAtIndex(int index)
     {
         return ammos[index];
     }
     public void DecreaseAmmoAtIndex(int index, int amount)
     {
-        ammos[index] -= amount;
-        if (ammos[index] < 0)
-        {
-            ammos[index] = 0;
-        }
+        ammos[index].DecreaseAmmo(amount);
     }
     #endregion
 }

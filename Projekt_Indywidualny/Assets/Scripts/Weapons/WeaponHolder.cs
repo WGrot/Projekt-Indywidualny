@@ -15,10 +15,11 @@ public class WeaponHolder : MonoBehaviour
 
     private List<WeaponSO> weapons;
     private List<WeaponPrefix> prefixes;
-    private List<int> ammos;
+    private List<AmmoData> ammos;
     private InputActions inputActions;
 
     private bool wasShootPressedThisFrame = false;
+    private bool isReloading = false;
     private float chargeTime = 0f;
 
 
@@ -32,6 +33,7 @@ public class WeaponHolder : MonoBehaviour
         inputActions.Player_base.Scroll.performed += SwitchWeapon;
         inputActions.Player_base.Shoot.canceled += TryToShootCharge;
         inputActions.Player_base.DropWeapon.performed += DropWeapon;
+        inputActions.Player_base.Reload.performed += OnReloadCallback;
         Inventory.OnWeaponAddedCallback += EquipNewWeapon;
     }
     public void OnDisable()
@@ -39,6 +41,7 @@ public class WeaponHolder : MonoBehaviour
         inputActions.Player_base.Scroll.performed -= SwitchWeapon;
         inputActions.Player_base.Shoot.canceled -= TryToShootCharge;
         inputActions.Player_base.DropWeapon.performed -= DropWeapon;
+        inputActions.Player_base.Reload.performed -= OnReloadCallback;
         Inventory.OnWeaponAddedCallback -= EquipNewWeapon;
     }
 
@@ -145,6 +148,21 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
+        if (ammos[activeWeaponID].ammoLeft < 1)
+        {
+            Debug.Log("koniec amunicji!! ~Bogdan");
+            return;
+        }
+
+        if (ammos[activeWeaponID].ammoInClip <1 && ammos[activeWeaponID].ammoLeft > 0)
+        {
+            if (!isReloading)
+            {
+                StartReloadCoroutine();
+            }
+            return;
+        }
+
         if (activeWeapon.shootStyle == WeaponShootingStyle.FullAuto)
         {
             activeWeapon.Shoot(gameObject, activeWeaponID);
@@ -233,6 +251,29 @@ public class WeaponHolder : MonoBehaviour
 
     }
 
+    public void OnReloadCallback(InputAction.CallbackContext context)
+    {
+        StartReloadCoroutine();
+    }
+
+    public void StartReloadCoroutine()
+    {
+        if (ammos[activeWeaponID].ammoInClip == activeWeapon.ClipSize)
+        {
+            return;
+        }
+        IEnumerator coroutine = ReloadCoroutine();
+        StartCoroutine(coroutine);
+    }
+    public IEnumerator ReloadCoroutine()
+    {
+        isReloading = true;
+        Debug.Log("Started Reloading");
+        yield return new WaitForSeconds(activeWeapon.reloadTime);
+        Inventory.Instance.GetAmmoAtIndex(activeWeaponID).ReloadClip(activeWeapon.ClipSize);
+        isReloading= false;
+        Debug.Log("Stopped Reloading");
+    }
     private void Disarm()
     {
         activeWeapon = null;
