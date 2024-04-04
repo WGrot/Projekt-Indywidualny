@@ -19,10 +19,11 @@ MonoBehaviour:
   Damage: 0
   FireRate: 0.25
   ChargeTime: 0
-  ReloadTime: 0
-  ClipSize: 0
+  ReloadTime: 1
+  ClipSize: 7
   MaxAmmo: 70
   AmmoUsePerShoot: 1
+  bulletsPerShoot: 10
   Spread: {x: 0.1, y: 0.1, z: 0.4}
   SpawnPoint: {x: 0.7, y: -0.2, z: -1}
   SpawnRotation: {x: 0, y: 0, z: 0}
