@@ -8,6 +8,7 @@ public class UIPanels : MonoBehaviour
 {
     [SerializeField] private List<GameObject> uiPanels;
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject InGameHUD;
     private int activePanel;
     private bool isPanelOpened = false;
     private bool isGamePaused = false;
@@ -51,24 +52,27 @@ public class UIPanels : MonoBehaviour
         {
             GameStateManager.Instance.ResumeGame();
             pauseScreen.SetActive(false);
+            InGameHUD.SetActive(true);
             isGamePaused = false;
         }
         else
         {
 
             pauseScreen.SetActive(true);
+            InGameHUD.SetActive(false);
             ClosePanels();
             GameStateManager.Instance.PauseGame();
             isGamePaused = true;
         }
     }
 
-    public void ResumeGame()
+    public void ResumeGame() //Nie usuwaæ
     {
         if (isGamePaused)
         {
             GameStateManager.Instance.ResumeGame();
             pauseScreen.SetActive(false);
+            InGameHUD.SetActive(true);
             isGamePaused = false;
         }
     }
@@ -94,12 +98,14 @@ public class UIPanels : MonoBehaviour
         {
             GameStateManager.Instance.ResumeGame();
             uiPanels[activePanel].SetActive(false);
+            InGameHUD.SetActive(true);
             isPanelOpened = false;
         }
         else
         {
 
             uiPanels[0].SetActive(true);
+            InGameHUD.SetActive(false);
             activePanel = 0;
             LoadPassiveItems();
             GameStateManager.Instance.PauseGame();

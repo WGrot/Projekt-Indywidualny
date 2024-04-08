@@ -159,7 +159,6 @@ public class WeaponHolder : MonoBehaviour
             wasShootPressedThisFrame = false;
             chargeTime = 0;
         }
-        Debug.Log(activeWeaponID);
     }
 
     public void TryToShootClassic()

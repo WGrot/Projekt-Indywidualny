@@ -6,9 +6,11 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     public List<CharacterStat> stats = new List<CharacterStat>();
-
+    private float currentHp;
+    private bool canTakeDamage = true;
 
     public static PlayerStatus Instance { get; private set; }
+
 
     private void Awake()
     {
@@ -25,8 +27,10 @@ public class PlayerStatus : MonoBehaviour
 
     void Start()
     {
-
+        currentHp = stats[0].value;
     }
+
+
 
 
     void Update()
@@ -37,6 +41,45 @@ public class PlayerStatus : MonoBehaviour
                 Debug.Log(stats[i].value);
 
             }
+            Debug.Log("PlayerHP = " + currentHp);
+        }
+        if (currentHp <= 0)
+        {
+            Debug.Log("POlayerDead");
         }
     }
+
+    public void Die()
+    {
+        Debug.Log("PlayerIsDead");
+    }
+
+    public void Heal(float healAmount)
+    {
+        if (currentHp + healAmount <= stats[0].value)
+        {
+            currentHp += healAmount;
+        }
+        else
+        {
+            currentHp = stats[0].value;
+        }
+
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (!canTakeDamage)
+        {
+            return;
+        }
+
+        currentHp -= damage;
+        if (currentHp <= 0)
+        {
+            Die();
+        }
+    }
+    
+
 }

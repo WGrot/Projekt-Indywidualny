@@ -5887,6 +5887,7 @@ MonoBehaviour:
   - {fileID: 8857198415680227793}
   - {fileID: 1344490163003016262}
   pauseScreen: {fileID: 6475991586683511612}
+  InGameHUD: {fileID: 5592144324469429783}
   itemSlotPrefab: {fileID: 7768568730847128495, guid: 2a0f6a04fa4520f4dbedfd219cfd6d41,
     type: 3}
   itemList: {fileID: 7095213413423951235}
