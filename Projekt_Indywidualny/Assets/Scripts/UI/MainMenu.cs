@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        SceneManager.LoadScene("TestLevel");
+        SceneManager.LoadScene("CastleF1");
     }
 
     public void QuitGame()

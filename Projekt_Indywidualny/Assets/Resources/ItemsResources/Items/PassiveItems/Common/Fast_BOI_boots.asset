@@ -20,3 +20,7 @@ MonoBehaviour:
     modType: 200
     value: 0.3
     order: 200
+  - statType: 0
+    modType: 100
+    value: 30
+    order: 100

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8798574666936869129}
   - component: {fileID: 503314926001982077}
   - component: {fileID: 5768853184840608766}
+  - component: {fileID: 4690687781240297916}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -99,6 +100,18 @@ MonoBehaviour:
   shootPoint: {fileID: 2288863349562957823}
   maxInteractionDistance: 5
   maxLookDistance: 10
+--- !u!114 &4690687781240297916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024662525143589554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d404627bc1b5ba34c9be08b8ca2eedef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1542879405936383099
 GameObject:
   m_ObjectHideFlags: 0

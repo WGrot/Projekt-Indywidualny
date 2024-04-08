@@ -19,14 +19,4 @@ public class PlayerHealth : MonoBehaviour, Ihp
         PlayerStatus.Instance.TakeDamage(damage);
     }
 
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
 }

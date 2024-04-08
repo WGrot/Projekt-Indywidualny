@@ -75,6 +75,7 @@ public class PlayerStatus : MonoBehaviour
         }
 
         currentHp -= damage;
+        Debug.Log("PlayerTook " + damage + "damage");
         if (currentHp <= 0)
         {
             Die();
