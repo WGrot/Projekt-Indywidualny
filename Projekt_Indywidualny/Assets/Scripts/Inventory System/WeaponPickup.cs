@@ -51,8 +51,9 @@ public class WeaponPickup : ItemPickup
                 GameObject.FindGameObjectWithTag("WeaponHolder").GetComponent<WeaponHolder>().DropWeaponAtIndex(Inventory.Instance.GetWeaponIndex((WeaponSO)item));
             }
             Inventory.Instance.AddPrefix(prefix);   //Najpierw trzeba dodaæ prefix dopiero póŸniej broñ bo inaczej sypie nullPointerException
-            Inventory.Instance.AddWeapon((WeaponSO)item);
             Inventory.Instance.AddAmmo(ammoData);
+            Inventory.Instance.AddWeapon((WeaponSO)item);
+
         }
         else
         {

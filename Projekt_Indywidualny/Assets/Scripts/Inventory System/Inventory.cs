@@ -60,7 +60,7 @@ public class Inventory : MonoBehaviour
         return weapons;
     }
 
-    public WeaponSO GetWeaponWithIndex(int index)
+    public WeaponSO GetWeaponAtIndex(int index)
     {
         return weapons[index];
     }

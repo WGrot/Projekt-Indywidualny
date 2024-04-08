@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class AmmoData
 {
+
     public int ammoInClip { get; private set; }
     public int ammoLeft { get; private set; }
     public AmmoData(int ammoInClip, int ammoLeft)

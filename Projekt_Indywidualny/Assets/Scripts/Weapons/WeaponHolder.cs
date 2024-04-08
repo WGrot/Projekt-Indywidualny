@@ -22,6 +22,13 @@ public class WeaponHolder : MonoBehaviour
     private bool isReloading = false;
     private float chargeTime = 0f;
 
+    public delegate void OnWeaponChanged(int activeWeaponId);
+    public static event OnWeaponChanged OnWeaponChangedCallback;
+    public delegate void OnWeaponShoot(int activeWeaponId);
+    public static event OnWeaponShoot OnWeaponShootCallback;
+    public delegate void OnWeaponReload(int activeWeaponId);
+    public static event OnWeaponReload OnWeaponReloadCallback;
+
 
     private void Awake()
     {
@@ -67,11 +74,20 @@ public class WeaponHolder : MonoBehaviour
         if (context.ReadValueAsButton())
         {
             SwitchToNextWeapon();
+            if (OnWeaponChangedCallback != null)
+            {
+                OnWeaponChangedCallback(activeWeaponID);
+            }
         }
         else
         {
             SwitchToPreviousWeapon();
+            if (OnWeaponChangedCallback != null)
+            {
+                OnWeaponChangedCallback(activeWeaponID);
+            }
         }
+
     }
 
     public void SwitchToNextWeapon()
@@ -123,6 +139,10 @@ public class WeaponHolder : MonoBehaviour
         activeWeapon.ApplyPrefix(prefixes[activeWeaponID]);
         activeWeapon = weapons[activeWeaponID];
         SetWeaponModel();
+        if (OnWeaponChangedCallback != null)
+        {
+            OnWeaponChangedCallback(activeWeaponID);
+        }
     }
     #endregion
 
@@ -139,6 +159,7 @@ public class WeaponHolder : MonoBehaviour
             wasShootPressedThisFrame = false;
             chargeTime = 0;
         }
+        Debug.Log(activeWeaponID);
     }
 
     public void TryToShootClassic()
@@ -176,6 +197,11 @@ public class WeaponHolder : MonoBehaviour
             activeWeapon.Shoot(gameObject, activeWeaponID);
         }
 
+        if (OnWeaponShootCallback != null)
+        {
+            OnWeaponShootCallback(activeWeaponID);
+        }
+
 
     }
 
@@ -189,6 +215,10 @@ public class WeaponHolder : MonoBehaviour
         if (activeWeapon.shootStyle == WeaponShootingStyle.Charge && activeWeapon.chargeTime < chargeTime)
         {
             activeWeapon.Shoot(gameObject, activeWeaponID);
+            if (OnWeaponShootCallback != null)
+            {
+                OnWeaponShootCallback(activeWeaponID);
+            }
         }
 
     }
@@ -273,6 +303,10 @@ public class WeaponHolder : MonoBehaviour
         Inventory.Instance.GetAmmoAtIndex(activeWeaponID).ReloadClip(activeWeapon.ClipSize);
         isReloading= false;
         Debug.Log("Stopped Reloading");
+        if (OnWeaponReloadCallback != null)
+        {
+            OnWeaponReloadCallback(activeWeaponID);
+        }
     }
     private void Disarm()
     {
