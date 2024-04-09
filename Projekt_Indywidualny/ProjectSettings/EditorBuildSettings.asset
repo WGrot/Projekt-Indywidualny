@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestLevelFloor2.unity
     guid: ef25bdb2c028b484e962a752d28f358c
+  - enabled: 1
+    path: Assets/Scenes/CastleF1.unity
+    guid: 82d33066461bb9945b7825ca61d6eb87
   m_configObjects: {}

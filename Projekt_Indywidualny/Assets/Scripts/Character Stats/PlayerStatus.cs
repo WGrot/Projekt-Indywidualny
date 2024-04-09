@@ -11,6 +11,12 @@ public class PlayerStatus : MonoBehaviour
 
     public static PlayerStatus Instance { get; private set; }
 
+    public delegate void OnPlayerTakeDamage();
+    public static event OnPlayerTakeDamage OnPlayerTakeDamageCallback;
+    public delegate void OnPlayerHeal();
+    public static event OnPlayerHeal OnPlayerHealCallback;
+    public delegate void OnPlayerDie();
+    public static event OnPlayerDie OnPlayerDieCallback;
 
     private void Awake()
     {
@@ -30,13 +36,17 @@ public class PlayerStatus : MonoBehaviour
         currentHp = stats[0].value;
     }
 
-
+    public float GetCurrentHp()
+    {
+        return currentHp;
+    }
 
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            TakeDamage(10);
             for (int i = 0; i< stats.Count; i++) {
                 Debug.Log(stats[i].value);
 
@@ -52,6 +62,10 @@ public class PlayerStatus : MonoBehaviour
     public void Die()
     {
         Debug.Log("PlayerIsDead");
+        if (OnPlayerDieCallback != null)
+        {
+            OnPlayerDieCallback();
+        }
     }
 
     public void Heal(float healAmount)
@@ -59,11 +73,16 @@ public class PlayerStatus : MonoBehaviour
         if (currentHp + healAmount <= stats[0].value)
         {
             currentHp += healAmount;
+            if (OnPlayerHealCallback != null)
+            {
+                OnPlayerHealCallback();
+            }
         }
         else
         {
             currentHp = stats[0].value;
         }
+        
 
     }
 
@@ -75,6 +94,10 @@ public class PlayerStatus : MonoBehaviour
         }
 
         currentHp -= damage;
+        if (OnPlayerTakeDamageCallback != null)
+        {
+            OnPlayerTakeDamageCallback();
+        }
         Debug.Log("PlayerTook " + damage + "damage");
         if (currentHp <= 0)
         {
