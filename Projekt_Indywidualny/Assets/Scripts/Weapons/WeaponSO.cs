@@ -72,7 +72,6 @@ public class WeaponSO : Item
         chargeTime = ChargeTime * (1 + prefix.chargeTimeModifier/100f);
         reloadTime = ReloadTime * (1 + prefix.reloadTimeModifier/100f);
         spread = Spread * (1 + prefix.spreadModifier/100f);
-        Debug.Log("applied Prefixes");
     }
 
     public void ResetActualValues()

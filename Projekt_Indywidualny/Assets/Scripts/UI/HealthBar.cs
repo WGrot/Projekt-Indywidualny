@@ -13,18 +13,25 @@ public class HealthBar : MonoBehaviour
     {
         PlayerStatus.OnPlayerHealCallback += ShowHealthData;
         PlayerStatus.OnPlayerTakeDamageCallback += ShowHealthData;
+        PL_HealthStat.OnHealthModifierAddedCallback+= ShowHealthData;
     }
 
     private void OnDisable()
     {
         PlayerStatus.OnPlayerHealCallback -= ShowHealthData;
         PlayerStatus.OnPlayerTakeDamageCallback -= ShowHealthData;
+        PL_HealthStat.OnHealthModifierAddedCallback -= ShowHealthData;
     }
+    private void Start()
+    {
+        ShowHealthData();
+    }
+
     private void ShowHealthData()
     {
         float currentHealthData = PlayerStatus.Instance.GetCurrentHp();
         float maxHpData = PlayerStatus.Instance.stats[0].value;
         healthBarImage.fillAmount = currentHealthData / maxHpData;
-        currentHealth.SetText(currentHealthData.ToString());
+        currentHealth.SetText(currentHealthData.ToString() + "/" + maxHpData);
     }
 }

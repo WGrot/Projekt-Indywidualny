@@ -125,7 +125,6 @@ public class WeaponHolder : MonoBehaviour
     private void SetWeaponModel()
     {
         weaponObject.transform.localPosition = transform.localPosition + activeWeapon.SpawnPoint;
-        Debug.Log(transform.localPosition + "activeweapon sp: " + activeWeapon.SpawnPoint);
         weaponObject.transform.rotation = transform.rotation * Quaternion.Euler(activeWeapon.SpawnRotation);
         weaponObject.transform.localScale = 1 * activeWeapon.ModelScale;
         weaponSprite.sprite = activeWeapon.icon;

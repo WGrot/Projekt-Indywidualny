@@ -25,7 +25,6 @@ public class AmmoCorner : MonoBehaviour
 
     private void ShowAmmoData(int activeWeaponId)
     {
-        Debug.Log(activeWeaponId);
         string ammoLeft = Inventory.Instance.GetAmmoAtIndex(activeWeaponId).ammoLeft.ToString();
         string maxAmmo = Inventory.Instance.GetWeaponAtIndex(activeWeaponId).MaxAmmo.ToString();
         string ammoinClipString = Inventory.Instance.GetAmmoAtIndex(activeWeaponId).ammoInClip.ToString(); 

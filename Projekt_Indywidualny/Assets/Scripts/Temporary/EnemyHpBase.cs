@@ -41,18 +41,11 @@ public class EnemyHpBase : MonoBehaviour, Ihp
     public void TakeDamage(float damage)
     {
         currentHp -= damage;
+        Debug.Log("enemy took " + damage + " damage");
         if (currentHp < 0)
         {
             Die();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("player killed an enemy");
-        if (other.CompareTag("Player"))
-        {
-            Die();
-        }
-    }
 }

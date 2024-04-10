@@ -11,7 +11,7 @@ public class CharacterStat
 
     public float value { get { return CalculateFinalValue(); } }    //Mo¿na coœ wymyœliæ ¿eby nie obliczaæ tego za ka¿dym razem
 
-    private readonly List<StatModifier> statModifiers;
+    protected readonly List<StatModifier> statModifiers;
 
 
     public CharacterStat(float baseValue)
@@ -25,7 +25,7 @@ public class CharacterStat
         statModifiers = new List<StatModifier>();
     }
 
-    public void AddModifier(StatModifier modifier)
+    public virtual void AddModifier(StatModifier modifier)
     {
         statModifiers.Add(modifier);
         statModifiers.Sort(CompareModifierOrder);

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     public List<CharacterStat> stats = new List<CharacterStat>();
+    PL_HealthStat hpStat;
     private float currentHp;
     private bool canTakeDamage = true;
 
@@ -29,12 +30,11 @@ public class PlayerStatus : MonoBehaviour
         {
             Instance = this;
         }
-    }
-
-    void Start()
-    {
+        hpStat = new PL_HealthStat(stats[0].value);
+        stats[0] = hpStat;
         currentHp = stats[0].value;
     }
+
 
     public float GetCurrentHp()
     {
@@ -52,6 +52,12 @@ public class PlayerStatus : MonoBehaviour
 
             }
             Debug.Log("PlayerHP = " + currentHp);
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Heal(10);
+
         }
         if (currentHp <= 0)
         {
