@@ -22,7 +22,7 @@ public class TurretBase : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(bulletPrefab, shootPoint.transform.position, Quaternion.identity);
+            Instantiate(bulletPrefab, shootPoint.transform.position, transform.rotation);
             yield return new WaitForSeconds(fireRate);
         }
 

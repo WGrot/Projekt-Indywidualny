@@ -11,7 +11,7 @@ public class EnemyProjectileBasic : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(0, 0, speed);
+        rb.velocity = transform.forward * speed;
     }
 
     private void Update()
