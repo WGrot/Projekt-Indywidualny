@@ -74,18 +74,10 @@ public class WeaponHolder : MonoBehaviour
         if (context.ReadValueAsButton())
         {
             SwitchToNextWeapon();
-            if (OnWeaponChangedCallback != null)
-            {
-                OnWeaponChangedCallback(activeWeaponID);
-            }
         }
         else
         {
             SwitchToPreviousWeapon();
-            if (OnWeaponChangedCallback != null)
-            {
-                OnWeaponChangedCallback(activeWeaponID);
-            }
         }
 
     }
@@ -104,6 +96,10 @@ public class WeaponHolder : MonoBehaviour
         activeWeapon = weapons[activeWeaponID];
         weapons[activeWeaponID].ApplyPrefix(prefixes[activeWeaponID]);
         SetWeaponModel();
+        if (OnWeaponChangedCallback != null)
+        {
+            OnWeaponChangedCallback(activeWeaponID);
+        }
     }
 
     public void SwitchToPreviousWeapon()
@@ -120,6 +116,10 @@ public class WeaponHolder : MonoBehaviour
         activeWeapon = weapons[activeWeaponID];
         weapons[activeWeaponID].ApplyPrefix(prefixes[activeWeaponID]);
         SetWeaponModel();
+        if (OnWeaponChangedCallback != null)
+        {
+            OnWeaponChangedCallback(activeWeaponID);
+        }
     }
 
     private void SetWeaponModel()
