@@ -31,6 +31,18 @@ public class Inventory : MonoBehaviour
     private List<WeaponPrefix> prefixes= new List<WeaponPrefix>();
     private List<AmmoData> ammos = new List<AmmoData>();
 
+    private int activeWeaponID = 0;
+
+    public void SetActiveWeaponID(int id)
+    {
+        activeWeaponID = id;
+    }
+
+    public int GetActiveWeaponID()
+    {
+        return activeWeaponID;
+    }
+
     #region PassiveItems
 
     public List<PassiveItem> GetPassiveItemList()

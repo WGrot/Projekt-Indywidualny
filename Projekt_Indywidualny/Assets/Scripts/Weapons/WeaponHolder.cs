@@ -93,6 +93,7 @@ public class WeaponHolder : MonoBehaviour
         {
             activeWeaponID += 1;
         }
+        Inventory.Instance.SetActiveWeaponID(activeWeaponID);
         activeWeapon = weapons[activeWeaponID];
         weapons[activeWeaponID].ApplyPrefix(prefixes[activeWeaponID]);
         SetWeaponModel();
@@ -113,6 +114,7 @@ public class WeaponHolder : MonoBehaviour
         {
             activeWeaponID -= 1;
         }
+        Inventory.Instance.SetActiveWeaponID(activeWeaponID);
         activeWeapon = weapons[activeWeaponID];
         weapons[activeWeaponID].ApplyPrefix(prefixes[activeWeaponID]);
         SetWeaponModel();
@@ -133,6 +135,7 @@ public class WeaponHolder : MonoBehaviour
     private void EquipNewWeapon()
     {
         activeWeaponID = weapons.Count - 1;
+        Inventory.Instance.SetActiveWeaponID(activeWeaponID);
         activeWeapon = weapons[activeWeaponID];
         activeWeapon.OnEquip();
         activeWeapon.ApplyPrefix(prefixes[activeWeaponID]);
@@ -310,6 +313,7 @@ public class WeaponHolder : MonoBehaviour
     {
         activeWeapon = null;
         activeWeaponID = 0;
+        Inventory.Instance.SetActiveWeaponID(activeWeaponID);
         weaponSprite.sprite = null;
     }
 
