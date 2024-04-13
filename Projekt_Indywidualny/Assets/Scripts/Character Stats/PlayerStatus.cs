@@ -76,19 +76,20 @@ public class PlayerStatus : MonoBehaviour
 
     public void Heal(float healAmount)
     {
+        Debug.Log("healoed");
         if (currentHp + healAmount <= stats[0].value)
         {
             currentHp += healAmount;
-            if (OnPlayerHealCallback != null)
-            {
-                OnPlayerHealCallback();
-            }
         }
         else
         {
+            Debug.Log("chuj " + stats[0].value);
             currentHp = stats[0].value;
         }
-        
+        if (OnPlayerHealCallback != null)
+        {
+            OnPlayerHealCallback();
+        }
 
     }
 

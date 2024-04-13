@@ -47,6 +47,10 @@ public class Inventory : MonoBehaviour
 
     public void RefillActiveWeaponAmmoByPercent(int percent)
     {
+        if(weapons.Count == 0)
+        {
+            return;
+        }
         ammos[activeWeaponID].RefillByPercent(percent);
         if (OnAmmoRefiledCallback!= null)
         {
