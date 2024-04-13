@@ -7,7 +7,7 @@ public class AmmoPickup : MonoBehaviour, I_Interactable
     [SerializeField] Sprite mediumAmmoSprite;
     [SerializeField] Sprite bigAmmoSprite;
     SpriteRenderer spriteRenderer;
-    BoxCollider collider;
+    BoxCollider objectCollider;
     [SerializeField] int amount;
 
 
@@ -18,7 +18,7 @@ public class AmmoPickup : MonoBehaviour, I_Interactable
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<BoxCollider>();
+        objectCollider = GetComponent<BoxCollider>();
         if (isAmmoAmountRandom)
         {
             int randInt = Random.Range(0, 100);
@@ -45,12 +45,13 @@ public class AmmoPickup : MonoBehaviour, I_Interactable
         if(amount == 100)
         {
             spriteRenderer.sprite = bigAmmoSprite;
-            collider.size = new Vector3(2, 2, 0.25f);
+            objectCollider.size = new Vector3(2, 2, 0.25f);
         }
     }
 
     public void InteractWithPlayer()
     {
-        Debug.Log("PlayerTry to picup ammo");
+        Inventory.Instance.RefillActiveWeaponAmmoByPercent(amount);
+        Destroy(gameObject);
     }
 }

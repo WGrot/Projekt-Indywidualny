@@ -25,6 +25,8 @@ public class Inventory : MonoBehaviour
     public static event OnItemChanged OnItemChangedCallback;
     public delegate void OnItemWeapon();
     public static event OnItemWeapon OnWeaponAddedCallback;
+    public delegate void OnAmmoRefiled(int activeweaponID);
+    public static event OnAmmoRefiled OnAmmoRefiledCallback;
 
     private List<PassiveItem> passiveItems = new List<PassiveItem>();
     private List<WeaponSO> weapons = new List<WeaponSO>();
@@ -41,6 +43,15 @@ public class Inventory : MonoBehaviour
     public int GetActiveWeaponID()
     {
         return activeWeaponID;
+    }
+
+    public void RefillActiveWeaponAmmoByPercent(int percent)
+    {
+        ammos[activeWeaponID].RefillByPercent(percent);
+        if (OnAmmoRefiledCallback!= null)
+        {
+            OnAmmoRefiledCallback(activeWeaponID);
+        }
     }
 
     #region PassiveItems

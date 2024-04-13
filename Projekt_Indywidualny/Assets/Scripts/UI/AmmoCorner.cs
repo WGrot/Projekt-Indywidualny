@@ -14,6 +14,7 @@ public class AmmoCorner : MonoBehaviour
         WeaponHolder.OnWeaponShootCallback += ShowAmmoData;
         WeaponHolder.OnWeaponChangedCallback += ShowAmmoData;
         WeaponHolder.OnWeaponReloadCallback += ShowAmmoData;
+        Inventory.OnAmmoRefiledCallback += ShowAmmoData;
     }
 
     private void OnDisable()
@@ -21,6 +22,7 @@ public class AmmoCorner : MonoBehaviour
         WeaponHolder.OnWeaponShootCallback -= ShowAmmoData;
         WeaponHolder.OnWeaponChangedCallback -= ShowAmmoData;
         WeaponHolder.OnWeaponReloadCallback -= ShowAmmoData;
+        Inventory.OnAmmoRefiledCallback -= ShowAmmoData;
     }
 
     private void ShowAmmoData(int activeWeaponId)
