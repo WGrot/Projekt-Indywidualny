@@ -104,7 +104,7 @@ public class WeaponSO : Item
                         );
             if (Physics.Raycast(weaponHolder.transform.position + ShootOffset, direction, out RaycastHit hit))
             {
-                Instantiate(ModelPrefab, hit.point, Quaternion.identity);
+                Instantiate(ModelPrefab, hit.point + hit.normal * 0.05f, Quaternion.LookRotation(hit.normal));
                 Ihp target = hit.transform.GetComponent<Ihp>();
                 if (target != null)
                 {

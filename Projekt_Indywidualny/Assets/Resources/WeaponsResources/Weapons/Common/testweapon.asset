@@ -23,11 +23,12 @@ MonoBehaviour:
   ClipSize: 5
   MaxAmmo: 100
   AmmoUsePerShoot: 1
+  bulletsPerShoot: 1
   Spread: {x: 0.089999996, y: 0.089999996, z: 0.089999996}
   SpawnPoint: {x: 0.7, y: -0.2, z: -1}
   SpawnRotation: {x: 0, y: -80, z: 0}
   ModelScale: {x: 0.25, y: 0.25, z: 0.25}
   ShootOffset: {x: 0, y: 0, z: 0}
-  ModelPrefab: {fileID: 5476410361484694258, guid: 2b5d2c8b8e9f6ff479c707f2076412b2,
+  ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}

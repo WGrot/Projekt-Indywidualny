@@ -29,6 +29,6 @@ MonoBehaviour:
   SpawnRotation: {x: 0, y: 0, z: 0}
   ModelScale: {x: 1, y: 1, z: 1}
   ShootOffset: {x: 0, y: 0, z: 0}
-  ModelPrefab: {fileID: 5476410361484694258, guid: 2b5d2c8b8e9f6ff479c707f2076412b2,
+  ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
