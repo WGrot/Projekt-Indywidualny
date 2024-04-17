@@ -17,17 +17,28 @@ public class CockroachAI : MonoBehaviour
     [SerializeField] private float attackDamage;
     [SerializeField] private float attackRange;
 
+    [Header("AudioConfiguration")]
+    [SerializeField] AudioClip walkingSound;
+    [SerializeField] AudioClip attackSound;
+
+    [Header("AnimationsConfiguration")]
+    [SerializeField] AnimationClip WalkingAnimation;
+    [SerializeField] AnimationClip IdleAnimation;
 
 
     private bool isAttacking = false;
     private float distanceToPlayer;
     private GameObject player;
     private NavMeshAgent agent;
+    private Animator animator;
+    private AudioSource audioSource;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
         agent.speed = speed;
         agent.stoppingDistance = stopRadius;
     }
@@ -39,9 +50,17 @@ public class CockroachAI : MonoBehaviour
         if (distanceToPlayer > attackRange && distanceToPlayer < lookRadius)
         {
             agent.SetDestination(player.transform.position);
+            animator.SetBool("IsCrawling", true);
+
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = walkingSound;
+                audioSource.Play();
+            }
         }
         else if(isAttacking != true)
         {
+            animator.SetBool("IsCrawling", false);
             StartCoroutine("AttackCoroutine");
         }
 

@@ -8,6 +8,12 @@ public class TurretBase : MonoBehaviour
     [SerializeField] private GameObject shootPoint;
     [SerializeField] private float fireRate;
 
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float bulletLifeTime;
+    [SerializeField] private float bulletDamage;
+
+    [SerializeField] private float delayAfterSpawn;
+
     private void OnEnable()
     {
         StartCoroutine("Shoot");
@@ -20,9 +26,10 @@ public class TurretBase : MonoBehaviour
 
     public virtual IEnumerator Shoot()
     {
+        yield return new WaitForSeconds(delayAfterSpawn);
         while (true)
         {
-            Instantiate(bulletPrefab, shootPoint.transform.position, transform.rotation);
+            EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint.transform.position, transform.forward, bulletSpeed, bulletLifeTime, bulletDamage);
             yield return new WaitForSeconds(fireRate);
         }
 

@@ -8,10 +8,44 @@ public class EnemyProjectileBasic : MonoBehaviour
     [SerializeField] private float lifeTime;
     [SerializeField] private float damage;
     private Rigidbody rb;
-    private void Start()
+    private TrailRenderer trailRenderer;
+
+    public delegate void OnDisableCallback(EnemyProjectileBasic instance);
+    public event OnDisableCallback OnDisable;
+
+    public void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        trailRenderer = GetComponent<TrailRenderer>();
+    }
+    public void Shoot(Vector3 position, Vector3 direction, float newSpeed, float newLifeTime, float newDamage)
+    {
+
+        transform.position = position;
+        transform.forward= direction;
+        trailRenderer.Clear();
+        speed = newSpeed;
+        lifeTime = newLifeTime;
+        damage = newDamage;
+
         rb.velocity = transform.forward * speed;
+
+
+    }
+
+    public void SetSpeed(int newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public void SetLifeTime(int newLifeTime)
+    {
+        lifeTime = newLifeTime;
+    }
+
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
     }
 
     private void Update()
@@ -19,7 +53,7 @@ public class EnemyProjectileBasic : MonoBehaviour
         lifeTime -= Time.deltaTime;
         if (lifeTime < 0)
         {
-            Destroy(gameObject);
+            OnDisable?.Invoke(this);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -27,7 +61,7 @@ public class EnemyProjectileBasic : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerStatus.Instance.TakeDamage(damage);
-            Destroy(gameObject);
+            OnDisable?.Invoke(this);
         }
     }
 
