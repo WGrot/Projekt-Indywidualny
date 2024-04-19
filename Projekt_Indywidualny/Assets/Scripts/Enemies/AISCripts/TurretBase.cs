@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurretBase : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject shootPoint;
+    [SerializeField] private List<GameObject> shootPoint;
     [SerializeField] private float fireRate;
 
     [SerializeField] private float bulletSpeed;
@@ -29,7 +29,11 @@ public class TurretBase : MonoBehaviour
         yield return new WaitForSeconds(delayAfterSpawn);
         while (true)
         {
-            EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint.transform.position, transform.forward, bulletSpeed, bulletLifeTime, bulletDamage);
+            for (int i = 0; i < shootPoint.Count; i++)
+            {
+                EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint[i].transform.position, shootPoint[i].transform.forward, bulletSpeed, bulletLifeTime, bulletDamage);
+
+            }
             yield return new WaitForSeconds(fireRate);
         }
 
