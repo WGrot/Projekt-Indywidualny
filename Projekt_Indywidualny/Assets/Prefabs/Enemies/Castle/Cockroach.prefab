@@ -50,7 +50,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 15
+  m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 5000
   m_StoppingDistance: 0
@@ -75,11 +75,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   lookRadius: 20
-  stopRadius: 1
+  stopRadius: 2
   isAlwaysFollowing: 1
   attackSpeed: 1
   attackDamage: 5
-  attackRange: 2
+  attackRange: 3
   walkingSound: {fileID: 8300000, guid: 384ed4d4c7bd2ea40a22b9984fc326fb, type: 3}
   attackSound: {fileID: 8300000, guid: 56609265c601653429fdddaf219d8c24, type: 3}
   WalkingAnimation: {fileID: 7400000, guid: 9c885e26c6e7e924ba9955b9aaaaa8e8, type: 2}
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 20
+  enemyMainBody: {fileID: 0}
 --- !u!65 &1085042277493730025
 BoxCollider:
   m_ObjectHideFlags: 0

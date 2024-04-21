@@ -14,7 +14,7 @@ public class EnemyHpBase : MonoBehaviour, Ihp
     public static event EnemyDeathAction OnEnemyDeath;
 
 
-    private void Start()
+    public virtual void Start()
     {
         currentHp = maxHp;
     }

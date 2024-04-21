@@ -844,6 +844,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1479360541707303465, guid: 3bc96e6dc4bf32d4694e8e36e049faee,
+        type: 3}
+      propertyPath: walkingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f47258cca70d10741969d83469200cf2, type: 3}
     - target: {fileID: 6218317291790434047, guid: 3bc96e6dc4bf32d4694e8e36e049faee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3705,6 +3710,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cockroach
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201535575821833502, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: stopRadius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201535575821833502, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: attackRange
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4112852759929963164, guid: 59725d55f35af1e468fdf609de73aa0a,
         type: 3}
