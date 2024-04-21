@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1479360541707303465}
   - component: {fileID: 1641255851667315745}
   - component: {fileID: 4040242933542141592}
+  - component: {fileID: 2748130761689132540}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -81,7 +82,6 @@ MonoBehaviour:
   speed: 5
   lookRadius: 40
   stopRadius: 5
-  isAlwaysFollowing: 1
   attackSpeed: 1
   attackDamage: 5
   attackRange: 18
@@ -90,10 +90,10 @@ MonoBehaviour:
   bulletSpread: 0.5
   bulletsPerShoot: 4
   shootPoint: {fileID: 9091436531583231350}
-  walkingSound: {fileID: 0}
+  walkingSound: {fileID: 8300000, guid: f47258cca70d10741969d83469200cf2, type: 3}
   attackSound: {fileID: 8300000, guid: fd62b98642d88cb40aa0fdca44c4c476, type: 3}
-  WalkingAnimation: {fileID: 0}
-  IdleAnimation: {fileID: 0}
+  WalkingAnimation: {fileID: 7400000, guid: 3d80dc66e0a63bd44870fafab37f4db3, type: 2}
+  IdleAnimation: {fileID: 7400000, guid: da27a4086ff6ca34880cfaf30bce8b83, type: 2}
 --- !u!195 &1641255851667315745
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -212,6 +212,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2748130761689132540
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7404479780447843153}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b53db3541b11e249b62356c76df4511, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8174880574243593892
 GameObject:
   m_ObjectHideFlags: 0

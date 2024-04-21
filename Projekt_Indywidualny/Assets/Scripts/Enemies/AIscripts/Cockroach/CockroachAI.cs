@@ -10,7 +10,7 @@ public class CockroachAI : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lookRadius;
     [SerializeField] private float stopRadius;
-    [SerializeField] private bool isAlwaysFollowing = true;
+
 
     [Header("AttackConfiguration")]
     [SerializeField] private float attackSpeed;

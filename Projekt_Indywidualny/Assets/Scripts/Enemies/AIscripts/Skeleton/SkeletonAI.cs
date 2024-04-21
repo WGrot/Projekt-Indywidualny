@@ -12,7 +12,6 @@ public class SkeletonAI : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lookRadius;
     [SerializeField] private float stopRadius;
-    [SerializeField] private bool isAlwaysFollowing = true;
 
     [Header("AttackConfiguration")]
     [SerializeField] private float attackSpeed;
@@ -47,7 +46,7 @@ public class SkeletonAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         audioSource = GetComponent<AudioSource>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         agent.speed = speed;
         agent.stoppingDistance = stopRadius;
     }
@@ -59,6 +58,8 @@ public class SkeletonAI : MonoBehaviour
 
         if (distanceToPlayer > attackRange && distanceToPlayer < lookRadius)
         {
+            animator.SetBool("isAtacking", false);
+            animator.speed = 1;
             agent.speed = speed;
             agent.SetDestination(player.transform.position);
 
@@ -95,8 +96,10 @@ public class SkeletonAI : MonoBehaviour
     {
         isAttacking = true;
         agent.isStopped = true;
-        yield return new WaitForSeconds(attackSpeed);
+        animator.SetBool("isAtacking", true);
+        animator.speed = 1 / attackSpeed;
         Attack();
+        yield return new WaitForSeconds(attackSpeed);
         agent.isStopped = false;
         isAttacking = false;
     }
