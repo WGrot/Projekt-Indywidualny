@@ -17,7 +17,7 @@ public class EnemyHpBase : MonoBehaviour, Ihp
     {
         currentHp = maxHp;
     }
-    public void Die()
+    public virtual void Die()
     {
         gameObject.SetActive(false);
         if (OnEnemyDeath != null)
@@ -26,7 +26,7 @@ public class EnemyHpBase : MonoBehaviour, Ihp
         }
     }
 
-    public void Heal(float healAmount)
+    public virtual void Heal(float healAmount)
     {
         if (currentHp + healAmount <= maxHp)
         {
@@ -38,7 +38,7 @@ public class EnemyHpBase : MonoBehaviour, Ihp
         }
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         currentHp -= damage;
         Debug.Log("enemy took " + damage + " damage");

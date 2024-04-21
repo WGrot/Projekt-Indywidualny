@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -184,7 +184,7 @@ MonoBehaviour:
   - {fileID: 4054051608600762380, guid: b35511f1fba968d4b8fd2a7ae2938ffc, type: 3}
   CorridorSegments:
   - {fileID: 834140884430457025, guid: 25724499c5230f645a290d7197b97437, type: 3}
-  CorridorEntrance: {fileID: 834140884430457025, guid: 25724499c5230f645a290d7197b97437,
+  CorridorEntrance: {fileID: 834140884430457025, guid: 3d5ff4a8dba5d6d40a91e3b5ed5c1434,
     type: 3}
   line: {fileID: 1716791071}
 --- !u!1 &410087039

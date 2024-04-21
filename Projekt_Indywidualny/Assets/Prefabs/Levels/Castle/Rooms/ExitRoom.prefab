@@ -2343,8 +2343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doors:
-  - {fileID: 1332291544276487229}
-  - {fileID: 8406259847912611458}
+  - {fileID: 5442184023286866988, guid: c3044aac143a4ef4c8fa55d179daabc0, type: 3}
+  - {fileID: 5442184023286866988, guid: c3044aac143a4ef4c8fa55d179daabc0, type: 3}
   OnRoomActivated:
     m_PersistentCalls:
       m_Calls:

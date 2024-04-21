@@ -60,6 +60,7 @@ public class CockroachAI : MonoBehaviour
         }
         else if(isAttacking != true)
         {
+
             animator.SetBool("IsCrawling", false);
             StartCoroutine("AttackCoroutine");
         }
@@ -97,6 +98,9 @@ public class CockroachAI : MonoBehaviour
         if(distanceToPlayer <= attackRange)
         {
             PlayerStatus.Instance.TakeDamage(attackDamage);
+            audioSource.Stop();
+            audioSource.clip = attackSound;
+            audioSource.Play();
         }
     }
 

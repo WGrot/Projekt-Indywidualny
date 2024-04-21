@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomWall: {fileID: 213121412629463964, guid: 452408dc8d2b3b6468ba76c4134c35b7, type: 3}
-  roomDoors: {fileID: 6813541209483572387}
+  roomDoors: {fileID: 1243092014316232516}
 --- !u!1 &897402330121600675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,7 +2720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomWall: {fileID: 213121412629463964, guid: 452408dc8d2b3b6468ba76c4134c35b7, type: 3}
-  roomDoors: {fileID: 1243092014316232516}
+  roomDoors: {fileID: 6813541209483572387}
 --- !u!1001 &1515472443061375119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2729,6 +2729,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3709222907703470183}
     m_Modifications:
+    - target: {fileID: 563919324970531513, guid: c3044aac143a4ef4c8fa55d179daabc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2775231065962939980, guid: c3044aac143a4ef4c8fa55d179daabc0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2925,6 +2930,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3709222907703470183}
     m_Modifications:
+    - target: {fileID: 563919324970531513, guid: c3044aac143a4ef4c8fa55d179daabc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2775231065962939980, guid: c3044aac143a4ef4c8fa55d179daabc0,
         type: 3}
       propertyPath: m_LocalPosition.x
