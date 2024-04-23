@@ -92,8 +92,6 @@ MonoBehaviour:
   shootPoint: {fileID: 9091436531583231350}
   walkingSound: {fileID: 8300000, guid: f47258cca70d10741969d83469200cf2, type: 3}
   attackSound: {fileID: 8300000, guid: fd62b98642d88cb40aa0fdca44c4c476, type: 3}
-  WalkingAnimation: {fileID: 7400000, guid: 3d80dc66e0a63bd44870fafab37f4db3, type: 2}
-  IdleAnimation: {fileID: 7400000, guid: da27a4086ff6ca34880cfaf30bce8b83, type: 2}
 --- !u!195 &1641255851667315745
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -370,8 +368,8 @@ MonoBehaviour:
   maxHp: 50
   enemyMainBody: {fileID: 7404479780447843153}
   takeDamageSound: {fileID: 8300000, guid: bd115872e3c1e22409227c2dca4ae8c9, type: 3}
-  dieSound: {fileID: 0}
-  audioSource: {fileID: 0}
+  deathProp: {fileID: 4282854365934617034, guid: 6cf09b3a1807699488870cd02762ef8b,
+    type: 3}
 --- !u!82 &8273271629981954079
 AudioSource:
   m_ObjectHideFlags: 0

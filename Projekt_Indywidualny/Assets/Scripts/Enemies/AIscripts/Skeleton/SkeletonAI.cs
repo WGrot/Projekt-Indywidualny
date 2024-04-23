@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -29,13 +30,10 @@ public class SkeletonAI : MonoBehaviour
     [SerializeField] AudioClip walkingSound;
     [SerializeField] AudioClip attackSound;
 
-    [Header("AnimationsConfiguration")]
-    [SerializeField] AnimationClip WalkingAnimation;
-    [SerializeField] AnimationClip IdleAnimation;
-
-
+    [SerializeField] private LayerMask seeThrough;
     private bool isAttacking = false;
     private float distanceToPlayer;
+    private bool canSeePlayer = false;
     private GameObject player;
     private NavMeshAgent agent;
     private Animator animator;
@@ -64,7 +62,7 @@ public class SkeletonAI : MonoBehaviour
             agent.SetDestination(player.transform.position);
 
 
-        }else if (distanceToPlayer < attackRange)
+        }else if (distanceToPlayer < attackRange && canSeePlayer)
         {
             if (isAttacking != true)
             {
@@ -72,6 +70,10 @@ public class SkeletonAI : MonoBehaviour
             }
         }
 
+
+
+
+        ChackIfCanSeePlayer();
 
 
 
@@ -119,5 +121,23 @@ public class SkeletonAI : MonoBehaviour
         audioSource.Play();
     }
 
+    private void ChackIfCanSeePlayer()
+    {
+        Vector3 bulletDirection = player.transform.position - shootPoint.position;
+        Debug.DrawRay(shootPoint.position, bulletDirection, UnityEngine.Color.red, 0.0f);
+        if (Physics.Raycast(shootPoint.position, bulletDirection, out RaycastHit hit, Mathf.Infinity, seeThrough))
+        {
+            if (hit.transform.CompareTag("Player"))
+            {
 
+                canSeePlayer= true;
+            }
+            else
+            {
+
+                canSeePlayer = false;
+            }
+            Debug.Log(bulletDirection);
+        }
+    }
 }

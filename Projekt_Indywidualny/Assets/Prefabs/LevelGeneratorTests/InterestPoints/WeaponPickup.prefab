@@ -307,3 +307,6 @@ MonoBehaviour:
   pickupIcon: {fileID: 1014257315076652087}
   pickupIconLifeTime: 2
   isWeaponRandom: 1
+  isPrefixRandom: 1
+  weapon: {fileID: 0}
+  prefix: {fileID: 0}

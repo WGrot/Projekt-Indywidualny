@@ -844,6 +844,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1479360541707303465, guid: 3bc96e6dc4bf32d4694e8e36e049faee,
+        type: 3}
+      propertyPath: seeThrough.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129273282186872076, guid: 3bc96e6dc4bf32d4694e8e36e049faee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6218317291790434047, guid: 3bc96e6dc4bf32d4694e8e36e049faee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -898,6 +908,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404479780447843153, guid: 3bc96e6dc4bf32d4694e8e36e049faee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174880574243593892, guid: 3bc96e6dc4bf32d4694e8e36e049faee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

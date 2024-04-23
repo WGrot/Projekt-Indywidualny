@@ -48,7 +48,6 @@ public class WeaponSO : Item
     private float LastShootTime;
 
 
-
     public void OnPickup()
     {
         ResetActualValues();

@@ -5,15 +5,14 @@ using UnityEngine;
 public class SkeletonHP : EnemyHpBase
 {
     [SerializeField] AudioClip takeDamageSound;
-    [SerializeField] AudioClip dieSound;
-    [SerializeField] AudioSource audioSource;
+    AudioSource audioSource;
+
+    [Header("AnimationsConfiguration")]
+    [SerializeField] private GameObject deathProp;
 
     public override void Die()
     {
-        audioSource.Stop();
-        audioSource.clip = dieSound;
-        audioSource.Play();
-        
+        Instantiate(deathProp, transform.position, Quaternion.identity);
         base.Die();
     }
 

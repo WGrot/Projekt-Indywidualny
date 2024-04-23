@@ -61,7 +61,7 @@ public class PlayerStatus : MonoBehaviour
         }
         if (currentHp <= 0)
         {
-            Debug.Log("POlayerDead");
+
         }
     }
 
