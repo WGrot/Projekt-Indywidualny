@@ -9,6 +9,7 @@ public class PlayerStatus : MonoBehaviour
     PL_HealthStat hpStat;
     private float currentHp;
     private bool canTakeDamage = true;
+    private bool isPlayerDead = false;
 
     public static PlayerStatus Instance { get; private set; }
 
@@ -68,6 +69,7 @@ public class PlayerStatus : MonoBehaviour
     public void Die()
     {
         Debug.Log("PlayerIsDead");
+        isPlayerDead = true;
         if (OnPlayerDieCallback != null)
         {
             OnPlayerDieCallback();
@@ -106,7 +108,7 @@ public class PlayerStatus : MonoBehaviour
             OnPlayerTakeDamageCallback();
         }
         Debug.Log("PlayerTook " + damage + "damage");
-        if (currentHp <= 0)
+        if (currentHp <= 0 && !isPlayerDead)
         {
             Die();
         }

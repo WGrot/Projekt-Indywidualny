@@ -8,6 +8,7 @@ public class UIPanels : MonoBehaviour
 {
     [SerializeField] private List<GameObject> uiPanels;
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject InGameHUD;
     private int activePanel;
     private bool isPanelOpened = false;
@@ -25,7 +26,6 @@ public class UIPanels : MonoBehaviour
     private void Start()
     {
         rt = itemList.GetComponent<RectTransform>();
-
     }
     private void Awake()
     {
@@ -37,17 +37,26 @@ public class UIPanels : MonoBehaviour
     private void OnEnable()
     {
         Inventory.OnItemChangedCallback += SetInventoryDirty;
+        PlayerStatus.OnPlayerDieCallback += ShowEndScreen;
         inputActions.Enable();
     }
 
     private void OnDisable()
     {
         Inventory.OnItemChangedCallback -= SetInventoryDirty;
+        PlayerStatus.OnPlayerDieCallback -= ShowEndScreen;
         inputActions.Disable();
     }
-
+    public void ShowEndScreen()
+    {
+        deathScreen.SetActive(true);
+        InGameHUD.SetActive(false);
+        GameStateManager.Instance.PauseGame();
+        isGamePaused = true;
+    }
     public void OpenClosePauseMenu(InputAction.CallbackContext context)
     {
+
         if (isGamePaused)
         {
             GameStateManager.Instance.ResumeGame();
@@ -77,6 +86,8 @@ public class UIPanels : MonoBehaviour
         }
     }
 
+   
+
     public void QuitToMenu()
     {
         GameStateManager.Instance.ResumeGame();
@@ -90,6 +101,21 @@ public class UIPanels : MonoBehaviour
             Destroy(manager);
         }
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ReturnToNexus()
+    {
+        GameStateManager.Instance.ResumeGame();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+
+        GameObject manager = GameObject.FindGameObjectWithTag("GameManager");
+        if (manager != null)
+        {
+            Destroy(manager);
+        }
+        SceneManager.LoadScene("Nexus");
     }
 
     public void OpenCloseInventoryOnIPressed(InputAction.CallbackContext context)
@@ -120,6 +146,7 @@ public class UIPanels : MonoBehaviour
         {
             GameStateManager.Instance.ResumeGame();
             uiPanels[activePanel].SetActive(false);
+            InGameHUD.SetActive(true);
             isPanelOpened = false;
         }
     }

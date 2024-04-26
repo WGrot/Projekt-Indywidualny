@@ -847,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 1479360541707303465, guid: 3bc96e6dc4bf32d4694e8e36e049faee,
         type: 3}
       propertyPath: seeThrough.m_Bits
-      value: 128
+      value: 129
       objectReference: {fileID: 0}
     - target: {fileID: 3129273282186872076, guid: 3bc96e6dc4bf32d4694e8e36e049faee,
         type: 3}

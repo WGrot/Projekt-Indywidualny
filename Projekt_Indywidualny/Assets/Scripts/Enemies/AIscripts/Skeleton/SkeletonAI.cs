@@ -124,7 +124,7 @@ public class SkeletonAI : MonoBehaviour
     private void ChackIfCanSeePlayer()
     {
         Vector3 bulletDirection = player.transform.position - shootPoint.position;
-        Debug.DrawRay(shootPoint.position, bulletDirection, UnityEngine.Color.red, 0.0f);
+        //Debug.DrawRay(shootPoint.position, bulletDirection, UnityEngine.Color.red, 0.0f);
         if (Physics.Raycast(shootPoint.position, bulletDirection, out RaycastHit hit, Mathf.Infinity, seeThrough))
         {
             if (hit.transform.CompareTag("Player"))
@@ -137,7 +137,6 @@ public class SkeletonAI : MonoBehaviour
 
                 canSeePlayer = false;
             }
-            Debug.Log(bulletDirection);
         }
     }
 }

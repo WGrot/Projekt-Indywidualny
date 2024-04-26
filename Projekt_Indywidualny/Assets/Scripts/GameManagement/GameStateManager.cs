@@ -60,4 +60,9 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 1f;
         pauseState = PauseState.Running;
     }
+
+    private void Update()
+    {
+        Debug.Log(pauseState);
+    }
 }

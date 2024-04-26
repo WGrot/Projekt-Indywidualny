@@ -22,7 +22,7 @@ public class EnemyProjectileBasic : MonoBehaviour
     {
 
         transform.position = position;
-        transform.forward= direction;
+        transform.forward = direction;
         trailRenderer.Clear();
         speed = newSpeed;
         lifeTime = newLifeTime;
@@ -61,6 +61,10 @@ public class EnemyProjectileBasic : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerStatus.Instance.TakeDamage(damage);
+            OnDisable?.Invoke(this);
+        }
+        else
+        {
             OnDisable?.Invoke(this);
         }
     }
