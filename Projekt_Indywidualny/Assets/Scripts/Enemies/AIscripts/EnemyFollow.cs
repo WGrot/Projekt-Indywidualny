@@ -9,7 +9,7 @@ public class EnemyFollow : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lookRadius;
     [SerializeField] private float stopRadius;
-    [SerializeField] private bool isAlwaysFollowing = true;
+
     private float distanceToPlayer;
     private GameObject player;
     private NavMeshAgent agent;

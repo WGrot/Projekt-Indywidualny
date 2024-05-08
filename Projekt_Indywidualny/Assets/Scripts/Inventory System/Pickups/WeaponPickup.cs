@@ -16,9 +16,9 @@ public class WeaponPickup : ItemPickup
         {
             ChooseRandomWeapon();
             weapon = (WeaponSO)item;
-            ammoData = new AmmoData(((WeaponSO)item).ClipSize, ((WeaponSO)item).MaxAmmo, ((WeaponSO)item).MaxAmmo); ;
+            //ammoData = new AmmoData(((WeaponSO)item).ClipSize, ((WeaponSO)item).MaxAmmo, ((WeaponSO)item).MaxAmmo); 
         }
-
+        ammoData = new AmmoData(((WeaponSO)item).ClipSize, ((WeaponSO)item).MaxAmmo, ((WeaponSO)item).MaxAmmo);
         if (isPrefixRandom)
         {
             prefix = ChooseRandomPrefix();
