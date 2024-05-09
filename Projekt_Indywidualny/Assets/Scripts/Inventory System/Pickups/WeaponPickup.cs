@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WeaponPickup : ItemPickup
 {
@@ -9,6 +10,8 @@ public class WeaponPickup : ItemPickup
     [SerializeField] private WeaponSO weapon;
     [SerializeField] private WeaponPrefix prefix;
     [SerializeField] private AmmoData ammoData;
+
+    public UnityEvent OnWeaponPickup;
     public override void Start()
     {
 
@@ -53,6 +56,10 @@ public class WeaponPickup : ItemPickup
             Inventory.Instance.AddPrefix(prefix);   //Najpierw trzeba dodaæ prefix dopiero póŸniej broñ bo inaczej sypie nullPointerException
             Inventory.Instance.AddAmmo(ammoData);
             Inventory.Instance.AddWeapon((WeaponSO)item);
+            if(OnWeaponPickup != null)
+            {
+                OnWeaponPickup.Invoke();
+            }
 
         }
         else
