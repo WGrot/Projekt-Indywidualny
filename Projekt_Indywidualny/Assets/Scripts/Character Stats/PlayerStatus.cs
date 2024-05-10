@@ -114,5 +114,17 @@ public class PlayerStatus : MonoBehaviour
         }
     }
     
+    public float GetCharacterStatValueOfType(StatType type)
+    {
+        foreach(CharacterStat stat in stats)
+        {
+            if(stat.statType == type)
+            {
+                return stat.value;
+            }
+        }
+        Debug.Log("Coœ posz³o nie tak, chcesz dostaæ wartoœæ statystyki która nie istnieje");
+        return 1;
+    }
 
 }

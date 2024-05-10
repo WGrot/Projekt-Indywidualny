@@ -107,7 +107,7 @@ public class WeaponSO : Item
                 Ihp target = hit.transform.GetComponent<Ihp>();
                 if (target != null)
                 {
-                    target.TakeDamage(damage);
+                    target.TakeDamage(damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage));
                 }
             }
         }
