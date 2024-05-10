@@ -19,6 +19,7 @@ public class LevelGenerationV2 : MonoBehaviour
     [SerializeField] private GameObject spawnRoom;
     [SerializeField] private GameObject ExitRoom;
     [SerializeField] private GameObject[] normalRooms;
+    [SerializeField] private GameObject[] specialRooms;
 
 
     [Header("Assign Corridor Segments")]
@@ -47,12 +48,14 @@ public class LevelGenerationV2 : MonoBehaviour
 
         levelGrid = new LevelGrid(levelSize , buffour, gridScale);
         GenerateSpecialRoom(spawnRoom, levelSize / 2 + buffour, levelSize / 2 + buffour);
+        
         if (ExitRoom != null)
         {
-            GenerateSpecialRoom(ExitRoom, buffour / 2, buffour / 2);
+            int[] location = DetermineExitLocation();
+            GenerateSpecialRoom(ExitRoom, location[0], location[1]);
         }
-
-        GenerateRooms();
+        GenerateRooms(specialRooms, false);
+        GenerateRooms(normalRooms, true);
         GeneratePassages();
         yield return null; // new WaitForSeconds(0.1f);
         ScanGrid();
@@ -66,8 +69,6 @@ public class LevelGenerationV2 : MonoBehaviour
 
     private void GenerateSpecialRoom(GameObject room, int x, int z)
     {
-
-
         GameObject roomInstance = Instantiate(room, new Vector3((x ) * gridScale, 0, (z ) * gridScale), Quaternion.identity);
         Room currentRoomScript = roomInstance.GetComponent<Room>();
         RoomsInLevel.Add(roomInstance);
@@ -75,15 +76,19 @@ public class LevelGenerationV2 : MonoBehaviour
         roomCounter++;
     }
 
-    private void GenerateRooms()
+    private void GenerateRooms(GameObject[] RoomsToGenerate, bool ReloadListAtEmpty)
     {
-        List<GameObject> roomList = new List<GameObject>(normalRooms);
+        List<GameObject> roomList = new List<GameObject>(RoomsToGenerate);
 
         while (roomCounter < numberOfNormalRooms && trycounter > 0)
         {
             if (roomList.Count == 0)
             {
-                roomList = new List<GameObject>(normalRooms);
+                if(ReloadListAtEmpty == false)
+                {
+                    return;
+                }
+                roomList = new List<GameObject>(RoomsToGenerate);
             }
 
             int randomRoomId = Random.Range(0, roomList.Count);
@@ -127,7 +132,6 @@ public class LevelGenerationV2 : MonoBehaviour
 
         passageGraph = triangulator.TrianglesToGraph();
         passageGraph.GenerateTree(roomsEntrancesVertices[0], RoomsToVertices(), ChanceForEdgeToStay);
-        EdgePrinter();
     }
 
     private Vertex[] RoomsToVertices()
@@ -151,6 +155,36 @@ public class LevelGenerationV2 : MonoBehaviour
             }
         }
         return vertices.ToArray();
+    }
+
+    private int[] DetermineExitLocation()
+    {
+        int[] location = new int[2];
+        
+        int rand = Random.Range(0, 4);
+        Debug.Log(rand);
+
+        if(rand == 0)
+        {
+            location[0] = levelSize / 2 + buffour;
+            location[1] = levelSize + buffour + buffour/2;
+        }
+        else if (rand == 1)
+        {
+            location[0] = levelSize + buffour + buffour / 2;
+            location[1] = levelSize/2 +buffour;
+        }
+        else if (rand == 2)
+        {
+            location[0] = levelSize/2 + buffour;
+            location[1] = buffour/4;
+        }
+        else
+        {
+            location[0] = buffour/4;
+            location[1] = levelSize/2 + buffour;
+        }
+        return location;
     }
 
     private void EdgePrinter()
