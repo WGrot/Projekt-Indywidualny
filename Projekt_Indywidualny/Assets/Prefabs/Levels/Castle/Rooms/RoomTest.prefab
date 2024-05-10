@@ -2606,6 +2606,7 @@ Transform:
   - {fileID: 9056244796752049733}
   - {fileID: 2140513222327831562}
   - {fileID: 6270110128355913372}
+  - {fileID: 3968415710875201394}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8143596582236951596
@@ -2667,6 +2668,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &5758010549065436292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3968415710875201394}
+  - component: {fileID: 3853752109612084288}
+  m_Layer: 0
+  m_Name: DropSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3968415710875201394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758010549065436292}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8, y: 1.26, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3709222907703470183}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3853752109612084288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758010549065436292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d08dcac23aa6e4a80a1e3a2f757a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthDrop: {fileID: 5647725428510748, guid: 768b0aaaa3a51cc488acbd72f98356f5, type: 3}
+  ammoDrop: {fileID: 1105507058024402096, guid: 26b2546ea847f7b4c9cabe65b1afad92,
+    type: 3}
+  chanceForHealthDrop: 100
+  chanceForAmmoDrop: 100
 --- !u!1 &8554341387028153986
 GameObject:
   m_ObjectHideFlags: 0
@@ -3274,11 +3324,16 @@ PrefabInstance:
     - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
         type: 3}
       propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
         type: 3}
       propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
+        type: 3}
+      propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
@@ -3288,7 +3343,17 @@ PrefabInstance:
       objectReference: {fileID: 2087286998024813104}
     - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
         type: 3}
+      propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3853752109612084288}
+    - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
+        type: 3}
       propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
+        type: 3}
+      propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
@@ -3298,12 +3363,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
         type: 3}
+      propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DropStuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
+        type: 3}
       propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RoomManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
         type: 3}
+      propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DropSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
+        type: 3}
       propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736216153666486216, guid: b8416c8eeef1e824ab3ba4f541dd259b,
+        type: 3}
+      propertyPath: OnAllWavesDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []

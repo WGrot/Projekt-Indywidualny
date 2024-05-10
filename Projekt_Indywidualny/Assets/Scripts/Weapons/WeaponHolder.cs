@@ -300,7 +300,7 @@ public class WeaponHolder : MonoBehaviour
     {
         isReloading = true;
         Debug.Log("Started Reloading");
-        yield return new WaitForSeconds(activeWeapon.reloadTime);
+        yield return new WaitForSeconds(activeWeapon.reloadTime / PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.ReloadSpeed));
         Inventory.Instance.GetAmmoAtIndex(activeWeaponID).ReloadClip(activeWeapon.ClipSize);
         isReloading= false;
         Debug.Log("Stopped Reloading");

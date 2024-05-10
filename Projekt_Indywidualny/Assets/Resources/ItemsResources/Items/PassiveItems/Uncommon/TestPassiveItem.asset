@@ -24,3 +24,7 @@ MonoBehaviour:
     modType: 200
     value: 1
     order: 200
+  - statType: 3
+    modType: 300
+    value: 0.7
+    order: 200
