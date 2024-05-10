@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed2cb5c77035a3499f85abd3b91bbc0, type: 3}
+  m_Name: Makas stone
+  m_EditorClassIdentifier: 
+  itemName: Makas Stone
+  description: put description here
+  icon: {fileID: -1404936286, guid: fa91fd3bed5c52145a5f529e8a8442af, type: 3}
+  modifiers:
+  - statType: 0
+    modType: 100
+    value: 20
+    order: 0
