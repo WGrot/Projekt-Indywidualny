@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9091436531583231350}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,13 +44,13 @@ GameObject:
   - component: {fileID: 1641255851667315745}
   - component: {fileID: 4040242933542141592}
   - component: {fileID: 2748130761689132540}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6218317291790434047
 Transform:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   stopRadius: 5
   attackSpeed: 1
   attackDamage: 5
-  attackRange: 18
+  attackRange: 30
   bulletSpeed: 30
   bulletLifetime: 5
   bulletSpread: 0.5
@@ -92,6 +92,9 @@ MonoBehaviour:
   shootPoint: {fileID: 9091436531583231350}
   walkingSound: {fileID: 8300000, guid: f47258cca70d10741969d83469200cf2, type: 3}
   attackSound: {fileID: 8300000, guid: fd62b98642d88cb40aa0fdca44c4c476, type: 3}
+  seeThrough:
+    serializedVersion: 2
+    m_Bits: 129
 --- !u!195 &1641255851667315745
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -245,7 +248,7 @@ GameObject:
   - component: {fileID: 6591378961589988381}
   - component: {fileID: 9022668683667959440}
   - component: {fileID: 8273271629981954079}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4854651894195932931}
   - component: {fileID: 3112934567843942614}
   - component: {fileID: 3439575874952349483}
-  - component: {fileID: 7881476781626525178}
   m_Layer: 0
   m_Name: Ceiling
   m_TagString: Room
@@ -260,7 +259,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -299,37 +298,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &7881476781626525178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721499156736140271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: fc84e41d59b76bc4ca62f1f0598d43c7, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!1 &732730866097150393
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +393,7 @@ GameObject:
   - component: {fileID: 6674702738474957404}
   - component: {fileID: 7890970766022247603}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: TestRoomFloor
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -669,7 +637,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -737,7 +705,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: fc84e41d59b76bc4ca62f1f0598d43c7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5f64eb24f7fbab64f9896fb0bba3d28d, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1170436534593722041
 GameObject:

@@ -8,6 +8,7 @@ public class AmmoPickup : MonoBehaviour, I_Interactable
     [SerializeField] Sprite bigAmmoSprite;
     SpriteRenderer spriteRenderer;
     BoxCollider objectCollider;
+    AudioSource audiosource;
     [SerializeField] int amount;
 
 
@@ -19,6 +20,7 @@ public class AmmoPickup : MonoBehaviour, I_Interactable
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectCollider = GetComponent<BoxCollider>();
+        audiosource = GetComponent<AudioSource>();
         if (isAmmoAmountRandom)
         {
             int randInt = Random.Range(0, 100);
