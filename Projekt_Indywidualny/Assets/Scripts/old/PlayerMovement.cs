@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump Parameters")]
     [SerializeField] private float jumpPower;
+
     [SerializeField] private int jumpCount;
 
     [Header("Special Moves Parameters")]
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private Vector3 completeMoveVector;
     private Vector2 horizontalInput;
+
     private int jumpCountPriv;
     private float verticalVelocity;
 
@@ -60,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+
     }
 
     void Update()
@@ -67,9 +70,11 @@ public class PlayerMovement : MonoBehaviour
         #region handles CoyoteTime
         if (characterController.isGrounded != true)
         {
+
         }
         else
         {
+
             jumpCountPriv = jumpCount;
         }
         #endregion
@@ -100,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
         characterController.Move(completeMoveVector);
 
-        Debug.Log(jumpCountPriv);
+
 
     }
 
