@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump Parameters")]
     [SerializeField] private float jumpPower;
-    [SerializeField] private float coyoteTime = 0.5f;
     [SerializeField] private int jumpCount;
 
     [Header("Special Moves Parameters")]
@@ -34,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private Vector3 completeMoveVector;
     private Vector2 horizontalInput;
-    private float coyote;
     private int jumpCountPriv;
     private float verticalVelocity;
 
@@ -62,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        coyote = coyoteTime;
     }
 
     void Update()
@@ -70,19 +67,19 @@ public class PlayerMovement : MonoBehaviour
         #region handles CoyoteTime
         if (characterController.isGrounded != true)
         {
-            coyote -= Time.deltaTime;
         }
         else
         {
-            coyote = coyoteTime;
             jumpCountPriv = jumpCount;
         }
         #endregion
-
+        
+        
         #region applies gravity
         if (characterController.isGrounded && verticalVelocity < 0)
         {
             verticalVelocity = -2f;
+            
         }
         else if(verticalVelocity > -freeFallLimit)
         {
@@ -103,13 +100,15 @@ public class PlayerMovement : MonoBehaviour
         #endregion
         characterController.Move(completeMoveVector);
 
+        Debug.Log(jumpCountPriv);
+
     }
 
 
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (coyote > 0 && jumpCountPriv > 0)
+        if (jumpCountPriv > 0)
         {
             verticalVelocity = jumpPower;
             jumpCountPriv--;
@@ -143,6 +142,15 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    public void AddVelocity(float force, bool resetsJumps)
+    {
+        if (resetsJumps)
+        {
+            jumpCountPriv = jumpCount;
+        }
+        verticalVelocity = force;
     }
 
 }
