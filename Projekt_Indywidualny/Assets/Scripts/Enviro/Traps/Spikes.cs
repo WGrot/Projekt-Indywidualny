@@ -15,7 +15,11 @@ public class Spikes : MonoBehaviour
         {
             PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
             PlayerStatus.Instance.TakeDamage(damage);
+
             playerMovement.AddVelocity(force, true);
+
+            AudioSource audiosurce = GetComponent<AudioSource>();
+            audiosurce.Play();
         }
     }
 }
