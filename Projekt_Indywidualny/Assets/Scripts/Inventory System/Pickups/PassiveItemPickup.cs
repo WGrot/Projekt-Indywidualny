@@ -27,7 +27,6 @@ public class PassiveItemPickup : ItemPickup
 
         if (isItemRandom)
         {
-            Debug.Log("choosing random item");
             ChooseRandomPassiveItem();
         }
 
@@ -41,7 +40,6 @@ public class PassiveItemPickup : ItemPickup
     private void ChooseRandomPassiveItem()
     {
         int result = Random.Range(1, 100);
-        Debug.Log(result);
         if (result < 50) //50% chance for common weapon
         {
             Object[] ItemsSOs = Resources.LoadAll("ItemsResources/Items/PassiveItems/Common");

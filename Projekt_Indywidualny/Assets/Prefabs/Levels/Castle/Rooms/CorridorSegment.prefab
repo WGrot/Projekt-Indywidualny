@@ -353,6 +353,9 @@ MonoBehaviour:
   southWall: {fileID: 1771927746364064623}
   westWall: {fileID: 1352921818728095590}
   eastWall: {fileID: 7372982381212073772}
+  chanceForTrapToSpawn: 1
+  trap: {fileID: 3388211241769867008, guid: d8e10821c7f512643be7797693ac88c1, type: 3}
+  floor: {fileID: 7751627616449342661}
 --- !u!1 &1186028730117886039
 GameObject:
   m_ObjectHideFlags: 0

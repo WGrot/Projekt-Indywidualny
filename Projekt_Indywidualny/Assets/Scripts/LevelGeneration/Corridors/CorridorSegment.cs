@@ -14,6 +14,10 @@ public class CorridorSegment : MonoBehaviour
     [SerializeField] private GameObject westWall;
     [SerializeField] private GameObject eastWall;
 
+    [SerializeField] private int chanceForTrapToSpawn;
+    [SerializeField] private GameObject trap;
+    [SerializeField] private GameObject floor;
+
     private void Start()
     {
         DeterminePositionOnGrid();
@@ -32,6 +36,8 @@ public class CorridorSegment : MonoBehaviour
         {
             DeleteUnnecesaryRoomWalls();
         }
+
+        DetermineTrap();
     }
 
     private void DeterminePositionOnGrid()
@@ -93,6 +99,18 @@ public class CorridorSegment : MonoBehaviour
         if (eastFieldValue == ConstantValues.ROOM_FIELD_VALUE)
         {
             Destroy(eastWall);
+        }
+    }
+
+    private void DetermineTrap()
+    {
+        int randInt = Random.Range(0, 100);
+
+        if (randInt <= chanceForTrapToSpawn)
+        {
+            Instantiate(trap, floor.transform.position, Quaternion.identity);
+            Destroy(floor);
+            floor.SetActive(false);
         }
     }
 }
