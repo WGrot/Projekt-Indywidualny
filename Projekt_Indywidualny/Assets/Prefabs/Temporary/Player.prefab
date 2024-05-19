@@ -310,6 +310,7 @@ MonoBehaviour:
   weaponObject: {fileID: 8765904954025738861}
   weaponPickup: {fileID: 6984738914032359139, guid: 04095ab94e12e34478fe5a81d7bea0d9,
     type: 3}
+  changeWeaponSound: {fileID: 8300000, guid: 360350784fc9ebf4fb87fb27c0d1b625, type: 3}
 --- !u!82 &385987821888106267
 AudioSource:
   m_ObjectHideFlags: 0
@@ -743,6 +744,7 @@ GameObject:
   - component: {fileID: 481994529355839154}
   - component: {fileID: 3625231682324162082}
   - component: {fileID: 4547689626269592192}
+  - component: {fileID: 7867723565979860140}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -884,3 +886,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBody: {fileID: 453515429886628348}
   mouseSpeed: 70
+--- !u!114 &7867723565979860140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884522892020049318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d514b15d77dd1242ae37a3e3fd08fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsCam: {fileID: 4139173451007040911}

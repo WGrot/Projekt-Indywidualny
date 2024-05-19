@@ -6927,6 +6927,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelExit
       objectReference: {fileID: 0}
+    - target: {fileID: 7612130555776816672, guid: 90236b9e92761a446888055eadf244bb,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: CastleF2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

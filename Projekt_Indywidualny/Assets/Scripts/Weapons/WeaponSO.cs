@@ -18,6 +18,7 @@ public enum WeaponShootingStyle
 public class WeaponSO : Item
 {
     [Header("Weapon Stats")]
+    public ShootConfig shootConfiguration = null;
     public WeaponShootingStyle shootStyle;
     public float Damage;
     public float FireRate = 0.25f;
@@ -96,21 +97,27 @@ public class WeaponSO : Item
         Inventory.Instance.DecreaseAmmoAtIndex(activeWeaponId, AmmoUsePerShoot);
         for (int i = 0; i < bulletsPerShoot; i++)
         {
-
-
-            Vector3 direction = weaponHolder.transform.forward;
-            direction += new Vector3(
-                            UnityEngine.Random.Range(-spread.x, spread.x),
-                            UnityEngine.Random.Range(-spread.y, spread.y),
-                            UnityEngine.Random.Range(-spread.z, spread.z)
-                        );
-            if (Physics.Raycast(weaponHolder.transform.position + ShootOffset, direction, out RaycastHit hit))
+            if(shootConfiguration != null)
             {
-                Instantiate(ModelPrefab, hit.point + hit.normal * 0.05f, Quaternion.LookRotation(hit.normal));
-                Ihp target = hit.transform.GetComponent<Ihp>();
-                if (target != null)
+                //0_0 
+                shootConfiguration.Shoot(weaponHolder,activeWeaponId, damage, fireRate, LastShootTime, AmmoUsePerShoot, bulletsPerShoot, spread, ShootOffset, ModelPrefab);
+            }
+            else
+            {
+                Vector3 direction = weaponHolder.transform.forward;
+                direction += new Vector3(
+                                UnityEngine.Random.Range(-spread.x, spread.x),
+                                UnityEngine.Random.Range(-spread.y, spread.y),
+                                UnityEngine.Random.Range(-spread.z, spread.z)
+                            );
+                if (Physics.Raycast(weaponHolder.transform.position + ShootOffset, direction, out RaycastHit hit))
                 {
-                    target.TakeDamage(damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage));
+                    Debug.DrawLine(weaponHolder.transform.position + ShootOffset, hit.point, Color.green, 2.5f);
+                    Instantiate(ModelPrefab, hit.point + hit.normal * 0.05f, Quaternion.LookRotation(hit.normal));
+                    if (hit.transform.TryGetComponent<Ihp>(out var target))
+                    {
+                        target.TakeDamage(damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage));
+                    }
                 }
             }
         }

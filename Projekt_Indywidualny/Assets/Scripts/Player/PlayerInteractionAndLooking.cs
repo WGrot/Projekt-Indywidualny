@@ -14,6 +14,7 @@ public class PlayerInteractionAndLooking : MonoBehaviour
     {
         inputActions = new InputActions();
         inputActions.Player_base.Interact.performed += CastInteractionBeam;
+        
     }
     private void OnEnable()
     {

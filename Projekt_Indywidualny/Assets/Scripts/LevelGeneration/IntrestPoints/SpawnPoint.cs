@@ -19,6 +19,6 @@ public class SpawnPoint : MonoBehaviour
 
     void SpawnPlayer()
     {
-        Instantiate(player, transform.position, Quaternion.identity);
+        PlayerStatus.Instance.AssignPlayerBody(Instantiate(player, transform.position, Quaternion.identity));
     }
 }

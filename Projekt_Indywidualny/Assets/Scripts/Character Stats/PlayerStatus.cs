@@ -13,6 +13,8 @@ public class PlayerStatus : MonoBehaviour
 
     public static PlayerStatus Instance { get; private set; }
 
+    private GameObject playerBody;
+
     public delegate void OnPlayerTakeDamage();
     public static event OnPlayerTakeDamage OnPlayerTakeDamageCallback;
     public delegate void OnPlayerHeal();
@@ -42,6 +44,19 @@ public class PlayerStatus : MonoBehaviour
         return currentHp;
     }
 
+    public void AssignPlayerBody()
+    {
+        playerBody = GameObject.FindGameObjectWithTag("Player");
+    }
+    public void AssignPlayerBody(GameObject body)
+    {
+        playerBody = body;
+    }
+
+    public GameObject GetPlayerBody()
+    {
+        return playerBody;
+    }
 
     void Update()
     {

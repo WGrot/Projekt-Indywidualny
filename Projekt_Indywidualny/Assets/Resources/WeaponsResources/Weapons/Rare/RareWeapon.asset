@@ -17,7 +17,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 61a55822a000e484ab81e7c03a11bf44, type: 3}
   shootStyle: 1
   Damage: 4
-  FireRate: 0.25
+  FireRate: 0.5
   ChargeTime: 0
   ReloadTime: 1
   ClipSize: 7
@@ -32,3 +32,5 @@ MonoBehaviour:
   ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: 5f96caf9d9cddb345a13e40f0560dd5f, type: 3}
+  weaponReloadSound: {fileID: 0}

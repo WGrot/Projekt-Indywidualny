@@ -310,3 +310,7 @@ MonoBehaviour:
   isPrefixRandom: 1
   weapon: {fileID: 0}
   prefix: {fileID: 0}
+  shouldResetAmmo: 1
+  OnWeaponPickup:
+    m_PersistentCalls:
+      m_Calls: []

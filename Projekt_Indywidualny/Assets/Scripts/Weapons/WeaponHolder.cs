@@ -12,6 +12,7 @@ public class WeaponHolder : MonoBehaviour
     private SpriteRenderer weaponSprite;
     [SerializeField] private GameObject weaponPickup;
 
+    [SerializeField] private AudioClip changeWeaponSound;
 
     private List<WeaponSO> weapons;
     private List<WeaponPrefix> prefixes;
@@ -45,6 +46,9 @@ public class WeaponHolder : MonoBehaviour
         inputActions.Player_base.DropWeapon.performed += DropWeapon;
         inputActions.Player_base.Reload.performed += OnReloadCallback;
         Inventory.OnWeaponAddedCallback += EquipNewWeapon;
+        
+
+
     }
     public void OnDisable()
     {
@@ -66,6 +70,11 @@ public class WeaponHolder : MonoBehaviour
         weaponAudioSource = weaponObject.GetComponent<AudioSource>();
         selfAudioSource = GetComponent<AudioSource>();
 
+        if (weapons.Count > 0) //Dziêki tej linijce gracz nie spawnuje siê ze schowan¹ broni¹
+        {
+            OnStartSetupWeapon();
+        }
+
     }
 
     #region SwitchingWeapons
@@ -84,6 +93,9 @@ public class WeaponHolder : MonoBehaviour
         {
             SwitchToPreviousWeapon();
         }
+
+        selfAudioSource.clip = changeWeaponSound;
+        selfAudioSource.Play();
 
     }
 
@@ -129,6 +141,14 @@ public class WeaponHolder : MonoBehaviour
         }
     }
 
+    private void OnStartSetupWeapon()
+    {
+        Inventory.Instance.SetActiveWeaponID(activeWeaponID);
+        activeWeapon = weapons[activeWeaponID];
+        weapons[activeWeaponID].ApplyPrefix(prefixes[activeWeaponID]);
+        SetWeaponModel();
+    }
+
     private void SetWeaponModel()
     {
         weaponObject.transform.localPosition = transform.localPosition + activeWeapon.SpawnPoint;
@@ -150,6 +170,8 @@ public class WeaponHolder : MonoBehaviour
         {
             OnWeaponChangedCallback(activeWeaponID);
         }
+        selfAudioSource.clip = changeWeaponSound;
+        selfAudioSource.Play();
     }
     #endregion
 

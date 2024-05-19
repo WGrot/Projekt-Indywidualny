@@ -7,6 +7,7 @@ TagManager:
   - Room
   - GameManager
   - WeaponHolder
+  - Enemy
   layers:
   - Default
   - TransparentFX

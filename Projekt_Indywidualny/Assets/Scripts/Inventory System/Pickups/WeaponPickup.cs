@@ -10,6 +10,7 @@ public class WeaponPickup : ItemPickup
     [SerializeField] private WeaponSO weapon;
     [SerializeField] private WeaponPrefix prefix;
     [SerializeField] private AmmoData ammoData;
+    [SerializeField] private bool shouldResetAmmo;
 
     public UnityEvent OnWeaponPickup;
     public override void Start()
@@ -21,7 +22,11 @@ public class WeaponPickup : ItemPickup
             weapon = (WeaponSO)item;
             //ammoData = new AmmoData(((WeaponSO)item).ClipSize, ((WeaponSO)item).MaxAmmo, ((WeaponSO)item).MaxAmmo); 
         }
-        ammoData = new AmmoData(((WeaponSO)item).ClipSize, ((WeaponSO)item).MaxAmmo, ((WeaponSO)item).MaxAmmo);
+        if (shouldResetAmmo)
+        {
+            ammoData = new AmmoData(((WeaponSO)item).ClipSize, ((WeaponSO)item).MaxAmmo, ((WeaponSO)item).MaxAmmo);
+        }
+
         if (isPrefixRandom)
         {
             prefix = ChooseRandomPrefix();

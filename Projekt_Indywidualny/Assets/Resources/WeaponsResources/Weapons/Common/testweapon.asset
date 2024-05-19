@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Revolver
   description: put description here
   icon: {fileID: 21300000, guid: f5e13057f7b078841acc7637c04e5d36, type: 3}
+  shootConfiguration: {fileID: 11400000, guid: 19917f3457281f941a38964f3e0e3fa5, type: 2}
   shootStyle: 0
   Damage: 10
   FireRate: 0.25
@@ -24,11 +25,13 @@ MonoBehaviour:
   MaxAmmo: 100
   AmmoUsePerShoot: 1
   bulletsPerShoot: 1
-  Spread: {x: 0.089999996, y: 0.089999996, z: 0.089999996}
+  Spread: {x: 0.09, y: 0.09, z: 0.09}
   SpawnPoint: {x: 0.7, y: -0.2, z: -1}
   SpawnRotation: {x: 0, y: -80, z: 0}
   ModelScale: {x: 0.25, y: 0.25, z: 0.25}
-  ShootOffset: {x: 0, y: 0, z: 0}
+  ShootOffset: {x: 0.7, y: 0, z: 0}
   ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: 46294ecc91d44814cb841cb4ab982c4c, type: 3}
+  weaponReloadSound: {fileID: 8300000, guid: 0264eefed4ddbc849a3aaf16ecc1f2ff, type: 3}

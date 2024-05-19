@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8778392000517506086}
   m_Layer: 0
   m_Name: Cockroach
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,6 @@ MonoBehaviour:
   speed: 10
   lookRadius: 20
   stopRadius: 2
-  isAlwaysFollowing: 1
   attackSpeed: 1
   attackDamage: 5
   attackRange: 3

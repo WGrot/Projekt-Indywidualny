@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4034472168349281316}
   m_Layer: 0
   m_Name: ShootPoint1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7158689076984272821}
   m_Layer: 0
   m_Name: ShootPoint1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 2371471694451681301}
   m_Layer: 0
   m_Name: ShootPoint1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4412057212678068690}
   m_Layer: 0
   m_Name: ShootPoint1 (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 814124812116787461}
   m_Layer: 0
   m_Name: ShootPoint1 (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 7774637809085937026}
   m_Layer: 0
   m_Name: ShootPoint1 (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 8006128760681646847}
   m_Layer: 0
   m_Name: ShootPoint1 (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 5531893915815140918}
   m_Layer: 0
   m_Name: ShootPoint1 (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 6925923848412208269}
   m_Layer: 0
   m_Name: TurretSegment
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 1110722127596935045}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 1279329571099691653}
   m_Layer: 0
   m_Name: ShootPoint1 (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 3975068274207460496}
   m_Layer: 0
   m_Name: ShootPoint1 (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 1612775638277900092}
   m_Layer: 0
   m_Name: ShootPoint1 (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 8119732173288251677}
   m_Layer: 0
   m_Name: TurretSegment (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1261,7 +1261,7 @@ GameObject:
   - component: {fileID: 5552801915852086188}
   m_Layer: 0
   m_Name: TurretSegment (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1619,7 +1619,7 @@ GameObject:
   - component: {fileID: 4749295926061145209}
   m_Layer: 0
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1945,7 +1945,7 @@ GameObject:
   - component: {fileID: 9152698945378522504}
   m_Layer: 0
   m_Name: ShootPoint1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1976,7 +1976,7 @@ GameObject:
   - component: {fileID: 1360994218568678019}
   m_Layer: 0
   m_Name: ShootPoint1 (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2007,7 +2007,7 @@ GameObject:
   - component: {fileID: 8748931763306740546}
   m_Layer: 0
   m_Name: ShootingSegment
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2046,7 +2046,7 @@ GameObject:
   - component: {fileID: 2795390750500912714}
   m_Layer: 0
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2372,7 +2372,7 @@ GameObject:
   - component: {fileID: 2471797161002182853}
   m_Layer: 0
   m_Name: ShootPoint1 (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2408,7 +2408,7 @@ GameObject:
   - component: {fileID: 7806465136434091198}
   m_Layer: 0
   m_Name: TurretSegment (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2762,7 +2762,7 @@ GameObject:
   - component: {fileID: 499803591916256717}
   m_Layer: 0
   m_Name: ShootPoint1 (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2793,7 +2793,7 @@ GameObject:
   - component: {fileID: 5306760624106620408}
   m_Layer: 0
   m_Name: ShootPoint1 (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

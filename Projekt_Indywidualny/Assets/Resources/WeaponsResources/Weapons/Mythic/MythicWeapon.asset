@@ -32,3 +32,5 @@ MonoBehaviour:
   ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: 46294ecc91d44814cb841cb4ab982c4c, type: 3}
+  weaponReloadSound: {fileID: 0}
