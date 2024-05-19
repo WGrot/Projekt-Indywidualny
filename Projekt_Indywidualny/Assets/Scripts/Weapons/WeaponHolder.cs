@@ -21,6 +21,9 @@ public class WeaponHolder : MonoBehaviour
     private bool wasShootPressedThisFrame = false;
     private bool isReloading = false;
     private float chargeTime = 0f;
+    private AudioSource weaponAudioSource;
+    private AudioSource selfAudioSource;
+
 
     public delegate void OnWeaponChanged(int activeWeaponId);
     public static event OnWeaponChanged OnWeaponChangedCallback;
@@ -60,6 +63,8 @@ public class WeaponHolder : MonoBehaviour
         ammos = Inventory.Instance.GetAmmoList();
         
         weaponSprite = weaponObject.GetComponent<SpriteRenderer>();
+        weaponAudioSource = weaponObject.GetComponent<AudioSource>();
+        selfAudioSource = GetComponent<AudioSource>();
 
     }
 
@@ -176,6 +181,11 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
+        if (GameStateManager.Instance.isGamePaused())
+        {
+            return;
+        }
+
         if (ammos[activeWeaponID].ammoInClip <1 && ammos[activeWeaponID].ammoLeft > 0)
         {
             if (!isReloading)
@@ -187,7 +197,12 @@ public class WeaponHolder : MonoBehaviour
 
         if (activeWeapon.shootStyle == WeaponShootingStyle.FullAuto)
         {
-            activeWeapon.Shoot(gameObject, activeWeaponID);
+            bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID);
+            if (!shooted)
+            {
+                return;
+            }
+
         }
         else if (activeWeapon.shootStyle == WeaponShootingStyle.OneTap)
         {
@@ -195,9 +210,17 @@ public class WeaponHolder : MonoBehaviour
             {
                 return;
             }
-            activeWeapon.Shoot(gameObject, activeWeaponID);
+
+            bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID);
+            if (!shooted)
+            {
+                return;
+            }
+
         }
 
+        weaponAudioSource.clip = activeWeapon.weaponShootSound;
+        weaponAudioSource.Play();
         if (OnWeaponShootCallback != null)
         {
             OnWeaponShootCallback(activeWeaponID);
@@ -213,9 +236,26 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
+        if (ammos[activeWeaponID].ammoLeft < 1)
+        {
+            Debug.Log("koniec amunicji!! ~Bogdan");
+            return;
+        }
+
+        if (GameStateManager.Instance.isGamePaused())
+        {
+            return;
+        }
+
         if (activeWeapon.shootStyle == WeaponShootingStyle.Charge && activeWeapon.chargeTime < chargeTime)
         {
-            activeWeapon.Shoot(gameObject, activeWeaponID);
+            bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID);
+            if (!shooted)
+            {
+                return;
+            }
+            weaponAudioSource.clip = activeWeapon.weaponShootSound;
+            weaponAudioSource.Play();
             if (OnWeaponShootCallback != null)
             {
                 OnWeaponShootCallback(activeWeaponID);
@@ -299,6 +339,8 @@ public class WeaponHolder : MonoBehaviour
     public IEnumerator ReloadCoroutine()
     {
         isReloading = true;
+        selfAudioSource.clip = activeWeapon.weaponReloadSound;
+        selfAudioSource.Play();
         //Debug.Log("Started Reloading");
         yield return new WaitForSeconds(activeWeapon.reloadTime / PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.ReloadSpeed));
         Inventory.Instance.GetAmmoAtIndex(activeWeaponID).ReloadClip(activeWeapon.ClipSize);

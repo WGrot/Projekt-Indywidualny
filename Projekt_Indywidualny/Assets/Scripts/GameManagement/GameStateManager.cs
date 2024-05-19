@@ -35,6 +35,14 @@ public class GameStateManager : MonoBehaviour
         return pauseState;
     }
 
+    public bool isGamePaused()
+    {
+        if(pauseState == PauseState.Paused)
+        {
+            return true;
+        }
+        return false;
+    }
 
     public void PauseGame()
     {

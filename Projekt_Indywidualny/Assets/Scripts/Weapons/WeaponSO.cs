@@ -38,6 +38,9 @@ public class WeaponSO : Item
     public GameObject ModelPrefab;
     public Sprite idleImage;
 
+    [Header("Weapon Model Parameters")]
+    public AudioClip weaponShootSound;
+    public AudioClip weaponReloadSound;
 
     private float fireRate = 0.25f;
     private float damage;
@@ -83,11 +86,11 @@ public class WeaponSO : Item
     }
 
     
-    public void Shoot(GameObject weaponHolder, int activeWeaponId)
+    public bool Shoot(GameObject weaponHolder, int activeWeaponId)
     {
         if (Time.time < fireRate + LastShootTime)
         {
-            return;
+            return false;
         }
         LastShootTime = Time.time;
         Inventory.Instance.DecreaseAmmoAtIndex(activeWeaponId, AmmoUsePerShoot);
@@ -111,6 +114,7 @@ public class WeaponSO : Item
                 }
             }
         }
+        return true;
 
     }
 
