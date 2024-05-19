@@ -183,6 +183,7 @@ MonoBehaviour:
   - {fileID: 4054051608600762380, guid: fa9e50712d3891440891f9ae0c55f4ae, type: 3}
   - {fileID: 4054051608600762380, guid: 5a4a06dc25b7cc24fa7377fcf1ed9121, type: 3}
   - {fileID: 4054051608600762380, guid: caeda9de50c3641409d191a67c12a0f9, type: 3}
+  - {fileID: 4054051608600762380, guid: fe2db884dd50eb54c9eea8663ae3877b, type: 3}
   specialRooms:
   - {fileID: 4054051608600762380, guid: b35511f1fba968d4b8fd2a7ae2938ffc, type: 3}
   - {fileID: 4054051608600762380, guid: b116b803c21c3ff4087c06a3bd75bb44, type: 3}
