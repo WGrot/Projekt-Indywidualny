@@ -115,7 +115,7 @@ public class PlayerStatus : MonoBehaviour
             return;
         }
 
-        currentHp -= damage;
+        currentHp -= damage * (1 - (0.05f * stats[1].value / 10));
         if (OnPlayerTakeDamageCallback != null)
         {
             OnPlayerTakeDamageCallback();

@@ -61,16 +61,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
   - baseValue: 100
+    maxValue: 100000
+    minValue: 1
     statType: 0
   - baseValue: 0
+    maxValue: 100
+    minValue: -100
     statType: 4
   - baseValue: 1
+    maxValue: 4
+    minValue: 0.25
     statType: 5
   - baseValue: 1
+    maxValue: 1000
+    minValue: 0.1
     statType: 1
   - baseValue: 1
+    maxValue: 2.5
+    minValue: 0.25
     statType: 2
   - baseValue: 1
+    maxValue: 10
+    minValue: 0.1
     statType: 3
 --- !u!114 &6112019307272111357
 MonoBehaviour:

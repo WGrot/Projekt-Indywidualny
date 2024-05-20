@@ -7,6 +7,8 @@ using UnityEngine;
 public class CharacterStat
 {
     [SerializeField] private float baseValue;
+    [SerializeField] private float maxValue = 1000;
+    [SerializeField] private float minValue = 0;
     public StatType statType;
 
     public float value { get { return CalculateFinalValue(); } }    //Mo¿na coœ wymyœliæ ¿eby nie obliczaæ tego za ka¿dym razem
@@ -87,6 +89,16 @@ public class CharacterStat
             }
 
 
+        }
+
+        if (finalValue > maxValue)
+        {
+            finalValue = maxValue;
+        }
+
+        if(finalValue < minValue)
+        {
+            finalValue = minValue;
         }
 
         return (float)Math.Round(finalValue,4);

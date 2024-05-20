@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     private int jumpCountPriv;
     private float verticalVelocity;
 
+    private float speedStatvalue;
+    private float staminaStatvalue;
 
 
     private void Awake()
@@ -97,7 +99,8 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Vector3.Normalize(inputActions.Player_base.HorizontalMovement.ReadValue<Vector2>()) ;
         if (!isDashing)
         {
-            completeMoveVector = ((transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * moveSpeed + new Vector3(0, verticalVelocity, 0)) * Time.deltaTime;
+            speedStatvalue = PlayerStatus.Instance.stats[4].value;
+            completeMoveVector = ((transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * moveSpeed * speedStatvalue + new Vector3(0, verticalVelocity, 0)) * Time.deltaTime;
         }
 
 
@@ -139,13 +142,14 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator Dash()
     {
+        staminaStatvalue = PlayerStatus.Instance.stats[2].value;
         isDashing = true;
         canDash = false;
         completeMoveVector = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * moveSpeed * dashMultipier * Time.deltaTime;
         yield return new WaitForSeconds(dashTime);
         verticalVelocity = -2f;
         isDashing = false;
-        yield return new WaitForSeconds(dashCooldown);
+        yield return new WaitForSeconds(dashCooldown * 1/staminaStatvalue);
         canDash = true;
     }
 
