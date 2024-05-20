@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6696e18fcc71e98478448f3ac5129dbc, type: 3}
   m_Name: TestProjectileShoot
   m_EditorClassIdentifier: 
-  WeaponProjectile: {fileID: 6981112392691351298, guid: 22fe1a3199dba8743ac9db207064f4ae,
+  WeaponProjectile: {fileID: 5981424944062957057, guid: 77d640c31e08e094e960ce1f97298837,
     type: 3}
   shouldAccountPlayerSpeed: 1

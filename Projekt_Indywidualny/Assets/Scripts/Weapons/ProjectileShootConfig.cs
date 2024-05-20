@@ -18,14 +18,10 @@ public class ProjectileShootConfig : ShootConfig
                     );
         if (Physics.Raycast(weaponHolder.transform.position, direction, out RaycastHit hit))
         {
-            Debug.DrawLine(weaponHolder.transform.position + ShootOffset, hit.point, Color.green, 2.5f);
-            Debug.Log(hit.point);
-            Debug.Log(direction);
-            direction = (hit.point - (weaponHolder.transform.position + ShootOffset)).normalized;
-            Debug.Log(direction);
+            direction = (hit.point - (weaponHolder.transform.position/* + ShootOffset*/)).normalized;
         }
 
-        GameObject projectile = Instantiate(WeaponProjectile, weaponHolder.transform.position + weaponHolder.transform.rotation * ShootOffset, weaponHolder.transform.rotation);
+        GameObject projectile = Instantiate(WeaponProjectile, weaponHolder.transform.position /*+ weaponHolder.transform.rotation * ShootOffset*/, weaponHolder.transform.rotation);
         projectile.transform.forward = direction;
         if (shouldAccountPlayerSpeed)
         {
