@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ed2cb5c77035a3499f85abd3b91bbc0, type: 3}
-  m_Name: Fast_BOI_boots
+  m_Name: Nanomachines
   m_EditorClassIdentifier: 
-  itemName: Fast Boi Boots
-  description: Speedy boots <br>You will run faster than crysis on your PC in 2007
-    <br> (so not really fast)
-  icon: {fileID: 21300000, guid: 52eaceeaf2f2dba45b2f433eb8859624, type: 3}
+  itemName: Nanomachines
+  description: '"They harden in response to physical trauma"'
+  icon: {fileID: 21300000, guid: 61642d2462d274545a1b401947571d75, type: 3}
   modifiers:
-  - statType: 2
+  - statType: 4
     modType: 100
-    value: 0.1
+    value: 30
+    order: 100
+  - statType: 0
+    modType: 100
+    value: 40
     order: 100

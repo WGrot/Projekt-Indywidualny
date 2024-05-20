@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ed2cb5c77035a3499f85abd3b91bbc0, type: 3}
-  m_Name: Fast_BOI_boots
+  m_Name: SuspiciousEnergyDrink
   m_EditorClassIdentifier: 
-  itemName: Fast Boi Boots
-  description: Speedy boots <br>You will run faster than crysis on your PC in 2007
-    <br> (so not really fast)
-  icon: {fileID: 21300000, guid: 52eaceeaf2f2dba45b2f433eb8859624, type: 3}
+  itemName: Suspicious Energy Drink
+  description: Sleep is overrated. Once you drink this, you won't sleep for the rest
+    of your life.
+  icon: {fileID: 21300000, guid: 3b8172c5c33793941b6158d50fc552b6, type: 3}
   modifiers:
   - statType: 2
+    modType: 100
+    value: 0.1
+    order: 100
+  - statType: 5
     modType: 100
     value: 0.1
     order: 100

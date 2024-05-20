@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ed2cb5c77035a3499f85abd3b91bbc0, type: 3}
-  m_Name: Fast_BOI_boots
+  m_Name: AngryHampter
   m_EditorClassIdentifier: 
-  itemName: Fast Boi Boots
-  description: Speedy boots <br>You will run faster than crysis on your PC in 2007
-    <br> (so not really fast)
-  icon: {fileID: 21300000, guid: 52eaceeaf2f2dba45b2f433eb8859624, type: 3}
+  itemName: Angry Hampter
+  description: He looks really angry
+  icon: {fileID: 21300000, guid: 3e8df6159b99003459b2143510b9092c, type: 3}
   modifiers:
+  - statType: 1
+    modType: 100
+    value: 0.1
+    order: 100
   - statType: 2
     modType: 100
     value: 0.1

@@ -10,21 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ed2cb5c77035a3499f85abd3b91bbc0, type: 3}
-  m_Name: TestPassiveItem
+  m_Name: Steroids
   m_EditorClassIdentifier: 
-  itemName: TestPassiveItem
-  description: mam nadzieje ze zadziala
-  icon: {fileID: 21300000, guid: 3d69468267e9b544f94aebe780a713a0, type: 3}
+  itemName: Steroids
+  description: No one knows what's in that syringe. Just like it is unknown how it
+    affects firearm damage. The only thing that is certain about it is that the content
+    is not legal in any state
+  icon: {fileID: 21300000, guid: 45f957c9cfdee384d9ecd0040eb79469, type: 3}
   modifiers:
   - statType: 0
-    modType: 200
-    value: 0.2
-    order: 200
+    modType: 100
+    value: -40
+    order: 100
   - statType: 1
-    modType: 200
-    value: 1
-    order: 200
-  - statType: 3
-    modType: 300
-    value: 0.7
-    order: 200
+    modType: 100
+    value: 0.25
+    order: 100

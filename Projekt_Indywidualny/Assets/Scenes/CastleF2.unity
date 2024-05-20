@@ -187,6 +187,7 @@ MonoBehaviour:
   specialRooms:
   - {fileID: 4054051608600762380, guid: b35511f1fba968d4b8fd2a7ae2938ffc, type: 3}
   - {fileID: 4054051608600762380, guid: b116b803c21c3ff4087c06a3bd75bb44, type: 3}
+  - {fileID: 4054051608600762380, guid: b116b803c21c3ff4087c06a3bd75bb44, type: 3}
   CorridorSegments:
   - {fileID: 834140884430457025, guid: 25724499c5230f645a290d7197b97437, type: 3}
   CorridorEntrance: {fileID: 834140884430457025, guid: 3d5ff4a8dba5d6d40a91e3b5ed5c1434,

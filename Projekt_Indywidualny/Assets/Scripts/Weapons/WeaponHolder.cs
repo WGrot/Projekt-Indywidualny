@@ -81,7 +81,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void SwitchWeapon(InputAction.CallbackContext context)
     {
-        if (weapons.Count < 1)
+        if (weapons.Count < 2 || GameStateManager.Instance.isGamePaused())
         {
             return;
         }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1085042277493730025}
   - component: {fileID: 1540648649633754810}
   - component: {fileID: 8778392000517506086}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cockroach
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3123325105252733335}
   - component: {fileID: 5254462643121777714}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6887730084309702461}
   - component: {fileID: 8836741605670791805}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
