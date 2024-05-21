@@ -10,25 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51598764c5848614dbf708df1bceb5a7, type: 3}
-  m_Name: UncommonWeapon
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  itemName: UncommonWeapon
+  itemName: Shotgun
   description: put description here
-  icon: {fileID: 21300000, guid: caa1cfb5b28954f4cace113ed28aadf3, type: 3}
+  icon: {fileID: 21300000, guid: e26830b3f49fdff41a5ea0a193b4efb7, type: 3}
+  shootConfiguration: {fileID: 0}
   shootStyle: 1
-  Damage: 0
-  FireRate: 0.25
+  Damage: 4
+  FireRate: 0.4
   ChargeTime: 0
-  ReloadTime: 2
-  ClipSize: 12
-  MaxAmmo: 60
+  ReloadTime: 1
+  ClipSize: 7
+  MaxAmmo: 70
   AmmoUsePerShoot: 1
-  bulletsPerShoot: 1
+  bulletsPerShoot: 7
   Spread: {x: 0.1, y: 0.1, z: 0.4}
   SpawnPoint: {x: 0.7, y: -0.2, z: -1}
-  SpawnRotation: {x: 0, y: 0, z: 0}
-  ModelScale: {x: 1, y: 1, z: 1}
+  SpawnRotation: {x: 0, y: -90, z: 0}
+  ModelScale: {x: 0.6, y: 0.6, z: 0.6}
   ShootOffset: {x: 0, y: 0, z: 0}
   ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: 5f96caf9d9cddb345a13e40f0560dd5f, type: 3}
+  weaponReloadSound: {fileID: 0}

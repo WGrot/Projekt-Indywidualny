@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Revolver
   description: put description here
   icon: {fileID: 21300000, guid: f5e13057f7b078841acc7637c04e5d36, type: 3}
-  shootConfiguration: {fileID: 11400000, guid: 19917f3457281f941a38964f3e0e3fa5, type: 2}
+  shootConfiguration: {fileID: 0}
   shootStyle: 0
   Damage: 10
   FireRate: 0.25
