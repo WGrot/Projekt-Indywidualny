@@ -16,17 +16,6 @@ public class FlamethrowerFire : MonoBehaviour
         rb.velocity += transform.forward * speed;
     }
 
-    public void Shoot(Vector3 position, Vector3 direction, float newSpeed, float newLifeTime, float newDamage)
-    {
-        transform.position = position;
-        transform.forward = direction;
-        speed = newSpeed;
-        lifeTime = newLifeTime;
-        damage = newDamage;
-
-        rb.velocity += transform.forward * speed;
-    }
-
     private void Update()
     {
         lifeTime -= Time.deltaTime;

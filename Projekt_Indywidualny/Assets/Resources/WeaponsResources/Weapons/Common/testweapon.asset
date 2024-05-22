@@ -20,7 +20,7 @@ MonoBehaviour:
   Damage: 10
   FireRate: 0.25
   ChargeTime: 0
-  ReloadTime: 1
+  ReloadTime: 3
   ClipSize: 5
   MaxAmmo: 100
   AmmoUsePerShoot: 1
