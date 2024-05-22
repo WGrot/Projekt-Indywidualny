@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Hand-Gun
   m_EditorClassIdentifier: 
   itemName: Hand-Gun
-  description: put description here
+  description: The only chance to defeat someone with this weapon is to wait until
+    the opponent dies from laughter
   icon: {fileID: 21300000, guid: 80b263971b3166c48b6725337e03658d, type: 3}
   shootConfiguration: {fileID: 0}
   shootStyle: 1
   Damage: 5
-  FireRate: 0.2
+  FireRate: 0.3
   ChargeTime: 0
   ReloadTime: 1
   ClipSize: 5
@@ -33,5 +34,5 @@ MonoBehaviour:
   ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
-  weaponShootSound: {fileID: 0}
-  weaponReloadSound: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: 967d3243281d67848a82c7ae09427399, type: 3}
+  weaponReloadSound: {fileID: 8300000, guid: f871e1a0db5c08943bc60e8b20f403ca, type: 3}

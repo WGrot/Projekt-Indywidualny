@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51598764c5848614dbf708df1bceb5a7, type: 3}
-  m_Name: MythicWeapon
+  m_Name: Minigun
   m_EditorClassIdentifier: 
   itemName: Minigun
-  description: mythic rare weapon
+  description: '- Private, the enemy is coming from this direction! <br>- Roger that,
+    Captain, removing that direction'
   icon: {fileID: 21300000, guid: 4f8e90cc5abdebf498e0418a2c2c48da, type: 3}
   shootConfiguration: {fileID: 0}
   shootStyle: 1
