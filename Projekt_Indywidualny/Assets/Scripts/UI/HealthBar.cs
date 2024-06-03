@@ -8,6 +8,9 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] Image healthBarImage;
     [SerializeField] TextMeshProUGUI currentHealth;
+    [SerializeField] Image playerFace;
+    [SerializeField] private Sprite healtyFace;
+    [SerializeField] private Sprite beatenFace;
 
     private void OnEnable()
     {
@@ -31,6 +34,14 @@ public class HealthBar : MonoBehaviour
     {
         float currentHealthData = PlayerStatus.Instance.GetCurrentHp();
         float maxHpData = PlayerStatus.Instance.stats[0].value;
+        if(currentHealthData/maxHpData < 0.3)
+        {
+            playerFace.sprite= beatenFace;
+        }
+        else
+        {
+            playerFace.sprite= healtyFace;
+        }
         healthBarImage.fillAmount = currentHealthData / maxHpData;
         currentHealth.SetText(currentHealthData.ToString() + "/" + maxHpData);
     }

@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe00ef800f76124e8f4f16249e47acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 50
+  maxHp: 40
   enemyMainBody: {fileID: 7404479780447843153}
   takeDamageSound: {fileID: 8300000, guid: bd115872e3c1e22409227c2dca4ae8c9, type: 3}
   deathProp: {fileID: 4282854365934617034, guid: 6cf09b3a1807699488870cd02762ef8b,

@@ -2335,7 +2335,7 @@ PrefabInstance:
         type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 7b462ff97886e6640ba7edac88721d24,
+      objectReference: {fileID: 11400000, guid: adf80ace4fc24be47ae1246516d847f6,
         type: 2}
     - target: {fileID: 6340040780913654478, guid: b35511f1fba968d4b8fd2a7ae2938ffc,
         type: 3}
@@ -2347,7 +2347,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weapon
       value: 
-      objectReference: {fileID: 11400000, guid: 7b462ff97886e6640ba7edac88721d24,
+      objectReference: {fileID: 11400000, guid: adf80ace4fc24be47ae1246516d847f6,
         type: 2}
     - target: {fileID: 6340040780913654478, guid: b35511f1fba968d4b8fd2a7ae2938ffc,
         type: 3}

@@ -2163,6 +2163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarImage: {fileID: 1084375348256824552}
   currentHealth: {fileID: 2894181480383558517}
+  playerFace: {fileID: 4730192410520682370}
+  healtyFace: {fileID: 21300000, guid: cc181a9566d1e4147bdb92e8420905b8, type: 3}
+  beatenFace: {fileID: 21300000, guid: e88e516b28cf964418a06fb118a0af95, type: 3}
 --- !u!1 &2799563840114943466
 GameObject:
   m_ObjectHideFlags: 0
