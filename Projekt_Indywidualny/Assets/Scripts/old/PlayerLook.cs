@@ -7,6 +7,8 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private Transform playerBody;
     [SerializeField] private float mouseSpeed;
 
+    private float savedMouseSpeed;
+
     private InputActions inputActions;
     private float mouseX;
     private float mouseY;
@@ -20,6 +22,7 @@ public class PlayerLook : MonoBehaviour
     private void OnEnable()
     {
         inputActions.Enable();
+        savedMouseSpeed = PlayerPrefs.GetFloat("M_Sensitivity");
     }
 
     private void OnDisable()
@@ -35,8 +38,8 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
-        mouseX = inputActions.Player_base.CameraRotation.ReadValue<Vector2>().x * mouseSpeed * Time.deltaTime;
-        mouseY = inputActions.Player_base.CameraRotation.ReadValue<Vector2>().y * mouseSpeed * Time.deltaTime;
+        mouseX = inputActions.Player_base.CameraRotation.ReadValue<Vector2>().x * mouseSpeed * (savedMouseSpeed/100) * Time.deltaTime;
+        mouseY = inputActions.Player_base.CameraRotation.ReadValue<Vector2>().y * mouseSpeed * (savedMouseSpeed/100) * Time.deltaTime;
 
         playerBody.Rotate(Vector3.up * mouseX);
 
