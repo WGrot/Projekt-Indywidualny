@@ -97,7 +97,7 @@ public class CockroachAI : MonoBehaviour
     {
         if(distanceToPlayer <= attackRange)
         {
-            PlayerStatus.Instance.TakeDamage(attackDamage);
+            PlayerStatus.Instance.TakeDamage(attackDamage * DungeonDepth.Instance.DifficultyModifier);
             audioSource.Stop();
             audioSource.clip = attackSound;
             audioSource.Play();

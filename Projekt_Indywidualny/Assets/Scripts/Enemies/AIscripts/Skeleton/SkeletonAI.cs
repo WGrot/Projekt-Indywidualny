@@ -115,7 +115,7 @@ public class SkeletonAI : MonoBehaviour
                                 UnityEngine.Random.Range(-bulletSpread, bulletSpread),
                                 UnityEngine.Random.Range(-bulletSpread, bulletSpread)
                             );
-            EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint.position, bulletDirection, bulletSpeed, bulletLifetime, attackDamage);
+            EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint.position, bulletDirection, bulletSpeed, bulletLifetime, attackDamage * DungeonDepth.Instance.DifficultyModifier);
         }
         audioSource.clip = attackSound;
         audioSource.Play();

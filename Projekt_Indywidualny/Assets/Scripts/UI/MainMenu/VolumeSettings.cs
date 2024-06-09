@@ -14,10 +14,6 @@ public class VolumeSettings : MonoBehaviour
         
     }
 
-    public void SliderTest(int chuj)
-    {
-
-    }
 
     // Update is called once per frame
     void Update()

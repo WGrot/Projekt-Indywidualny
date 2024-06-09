@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Makas stone
   m_EditorClassIdentifier: 
   itemName: Makas Stone
-  description: put description here
+  description: Sharp stone frozen in time. Slightly increses HP
   icon: {fileID: -1404936286, guid: fa91fd3bed5c52145a5f529e8a8442af, type: 3}
   modifiers:
   - statType: 0

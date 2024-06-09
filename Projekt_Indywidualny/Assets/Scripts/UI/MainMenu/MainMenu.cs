@@ -40,6 +40,8 @@ public class MainMenu : MonoBehaviour
     private IEnumerator LoadMenu()
     {
         insertDiskText.text = ">Reading Disk<";
+        PlayerPrefs.SetFloat("M_Sensitivity", 100);
+        PlayerPrefs.Save();
         menuAudioSource.clip= loadDiskSound;
         menuAudioSource.Play();
         yield return new WaitForSeconds(menuAudioSource.clip.length);

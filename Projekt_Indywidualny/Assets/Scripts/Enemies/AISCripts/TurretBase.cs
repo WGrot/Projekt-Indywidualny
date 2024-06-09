@@ -31,7 +31,7 @@ public class TurretBase : MonoBehaviour
         {
             for (int i = 0; i < shootPoint.Count; i++)
             {
-                EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint[i].transform.position, shootPoint[i].transform.forward, bulletSpeed, bulletLifeTime, bulletDamage);
+                EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint[i].transform.position, shootPoint[i].transform.forward, bulletSpeed, bulletLifeTime, bulletDamage * DungeonDepth.Instance.DifficultyModifier);
 
             }
             yield return new WaitForSeconds(fireRate);
