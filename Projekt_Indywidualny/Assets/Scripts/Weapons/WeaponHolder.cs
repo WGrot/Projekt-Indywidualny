@@ -355,6 +355,10 @@ public class WeaponHolder : MonoBehaviour
         {
             return;
         }
+        if (isReloading)
+        {
+            return;
+        }
         IEnumerator coroutine = ReloadCoroutine();
         StartCoroutine(coroutine);
     }

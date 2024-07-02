@@ -162,7 +162,6 @@ public class LevelGenerationV2 : MonoBehaviour
         int[] location = new int[2];
         
         int rand = Random.Range(0, 4);
-        Debug.Log(rand);
 
         if(rand == 0)
         {
