@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelGenerationV2 : MonoBehaviour
 {
+
     [Header("Grid Parameters")]
     [SerializeField] private int levelSize = 50;
     [SerializeField] private int buffour = 20;
@@ -60,6 +61,7 @@ public class LevelGenerationV2 : MonoBehaviour
         yield return null; // new WaitForSeconds(0.1f);
         ScanGrid();
         InstantiateCorridors();
+        MiniMapGenerator.Instance.GenerateMiniMap();
         if (OnLevelGenerated != null)
         {
             OnLevelGenerated();

@@ -20,5 +20,5 @@ public class PlayerSTatsPanel : MonoBehaviour
         }
         valueTextBox.SetText(sb.ToString());
     }
-
+    
 }

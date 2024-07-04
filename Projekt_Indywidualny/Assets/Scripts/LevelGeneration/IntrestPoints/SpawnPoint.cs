@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnPoint : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-
+    /*
     private void OnEnable()
     {
         LevelGenerationV2.OnLevelGenerated += SpawnPlayer;
@@ -15,7 +15,12 @@ public class SpawnPoint : MonoBehaviour
     {
         LevelGenerationV2.OnLevelGenerated -= SpawnPlayer;
     }
+    */
 
+    private void Start()
+    {
+        SpawnPlayer();
+    }
 
     void SpawnPlayer()
     {

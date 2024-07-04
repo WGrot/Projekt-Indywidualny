@@ -1,0 +1,72 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MiniMapGenerator : MonoBehaviour
+{
+    Texture2D miniMapSprite;
+    public Texture2D MiniMapSprite { get => miniMapSprite; set => miniMapSprite = value; }
+
+    #region Singleton
+    public static MiniMapGenerator Instance { get; private set; }
+
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError("More than one MiniMapGenerator instance found!");
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    #endregion
+    /*
+    private void OnEnable()
+    {
+        LevelGenerationV2.OnLevelGenerated += GenerateMiniMap;
+    }
+
+    private void OnDisable()
+    {
+        LevelGenerationV2.OnLevelGenerated += GenerateMiniMap;
+    }
+
+    */
+
+    public void GenerateMiniMap()
+    {
+        int size = LevelGrid.Instance.GetSize();
+        miniMapSprite = new Texture2D(size,size);
+
+        for(int i = 0; i < size; i++)
+        {
+            for(int j = 0; j< size; j++)
+            {
+                miniMapSprite.SetPixel(i, j, Color.red);
+                int fieldValue = LevelGrid.Instance.GetFieldValue(i, j);
+                if (fieldValue == 0)
+                {
+                    miniMapSprite.SetPixel(i, j, Color.black);
+                }
+                if (fieldValue == 1)
+                {
+                    miniMapSprite.SetPixel(i, j, Color.red);
+                }
+                if (fieldValue == 5 || fieldValue == 6)
+                {
+                    miniMapSprite.SetPixel(i, j, Color.white);
+                }
+            }
+
+
+        }
+        MiniMapSprite.filterMode= FilterMode.Point;
+        MiniMapSprite.Apply();
+        Debug.Log("Generated Minimap");
+    }
+
+}
