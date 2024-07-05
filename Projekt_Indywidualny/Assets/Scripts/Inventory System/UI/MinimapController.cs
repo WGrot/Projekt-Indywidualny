@@ -5,12 +5,20 @@ using UnityEngine.UI;
 
 public class MinimapController : MonoBehaviour
 {
+    [Header("Referances")]
     [SerializeField] private RawImage mapImage;
+    [SerializeField] private GameObject playerMarker;
     [SerializeField] private RectTransform mapPivot;
     [SerializeField] private Texture2D emptyMapTexture;
+
+    [Header("Parameters")]
     [SerializeField] private float minimapScale;
+    
     private GameObject player;
     Vector3 playerStartPos = new Vector3(0,0,0);
+
+    private float gridsize = 80;
+    private float gridScale = 4;
 
     private void OnEnable()
     {
@@ -30,12 +38,15 @@ public class MinimapController : MonoBehaviour
             mapImage.texture = newMinimap;
             mapImage.gameObject.transform.localScale = new Vector3(minimapScale, minimapScale, minimapScale);
             player = GameObject.FindGameObjectWithTag("Player");
-            playerStartPos = player.transform.position; 
+            playerStartPos = player.transform.position;
+            playerMarker.SetActive(true);
+            gridsize = LevelGrid.Instance.GetSize();
+            gridScale = LevelGrid.Instance.GetScale();
         }
         else
         {
-            Debug.Log("Map generator not found");
             mapImage.texture = emptyMapTexture;
+            playerMarker.SetActive(false);
         }
     }
 
@@ -43,11 +54,8 @@ public class MinimapController : MonoBehaviour
     {
         if (player != null)
         {
-            float gridsize = LevelGrid.Instance.GetSize();
-            float gridScale = LevelGrid.Instance.GetScale();
-
             mapPivot.gameObject.transform.rotation =  new Quaternion(0, 0, player.transform.rotation.y, player.transform.rotation.w);
-            mapImage.gameObject.transform.localPosition = - new Vector3(player.transform.position.x - playerStartPos.x + 8 , player.transform.position.z - playerStartPos.z + 8, 0) * minimapScale * 135/(gridsize * gridScale);
+            mapImage.gameObject.transform.localPosition = 135 * minimapScale * -new Vector3(player.transform.position.x - playerStartPos.x + 8, player.transform.position.z - playerStartPos.z + 8, 0) / (gridsize * gridScale);
 
         }
 

@@ -48,15 +48,15 @@ public class MiniMapGenerator : MonoBehaviour
             {
                 miniMapSprite.SetPixel(i, j, Color.red);
                 int fieldValue = LevelGrid.Instance.GetFieldValue(i, j);
-                if (fieldValue == 0)
+                if (fieldValue == ConstantValues.EMPTY_FIELD_VALUE)
                 {
                     miniMapSprite.SetPixel(i, j, Color.black);
                 }
-                if (fieldValue == 1)
+                if (fieldValue == ConstantValues.ROOM_FIELD_VALUE)
                 {
                     miniMapSprite.SetPixel(i, j, Color.red);
                 }
-                if (fieldValue == 5 || fieldValue == 6)
+                if (fieldValue == ConstantValues.CORRIDOR_FIELD_VALUE || fieldValue == ConstantValues.ENTRANCE_FIELD_VALUE)
                 {
                     miniMapSprite.SetPixel(i, j, Color.white);
                 }
