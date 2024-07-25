@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +32,10 @@ public class UIPanels : MonoBehaviour
     {
         inputActions = new InputActions();
         inputActions.UI.OpenInventory.performed += OpenCloseInventoryOnIPressed;
+        inputActions.UI.OpenMapMenu.performed += OpenMapOnTabPressed;
         inputActions.UI.OpenPauseMenu.performed+= OpenClosePauseMenu;
+        inputActions.UI.SwitchToNextPanel.performed += _ => SwitchToNextPanel();
+        inputActions.UI.SwitchToPreviousPanel.performed += _ => SwitchToPreviousPanel();
     }
 
     private void OnEnable()
@@ -53,26 +57,6 @@ public class UIPanels : MonoBehaviour
         InGameHUD.SetActive(false);
         GameStateManager.Instance.PauseGame();
         isGamePaused = true;
-    }
-    public void OpenClosePauseMenu(InputAction.CallbackContext context)
-    {
-
-        if (isGamePaused)
-        {
-            GameStateManager.Instance.ResumeGame();
-            pauseScreen.SetActive(false);
-            InGameHUD.SetActive(true);
-            isGamePaused = false;
-        }
-        else
-        {
-
-            pauseScreen.SetActive(true);
-            InGameHUD.SetActive(false);
-            ClosePanels();
-            GameStateManager.Instance.PauseGame();
-            isGamePaused = true;
-        }
     }
 
     public void ResumeGame() //Nie usuwaæ
@@ -118,6 +102,30 @@ public class UIPanels : MonoBehaviour
         SceneManager.LoadScene("Nexus");
     }
 
+    #region Opening Panels
+    public void OpenClosePauseMenu(InputAction.CallbackContext context)
+    {
+
+        if (isGamePaused)
+        {
+            GameStateManager.Instance.ResumeGame();
+            pauseScreen.SetActive(false);
+            isGamePaused = false;
+            InGameHUD.SetActive(true);
+
+
+
+        }
+        else
+        {
+
+            pauseScreen.SetActive(true);
+            InGameHUD.SetActive(false);
+            ClosePanels(false);
+            GameStateManager.Instance.PauseGame();
+            isGamePaused = true;
+        }
+    }
     public void OpenCloseInventoryOnIPressed(InputAction.CallbackContext context)
     {
         if (isPanelOpened)
@@ -127,7 +135,7 @@ public class UIPanels : MonoBehaviour
             InGameHUD.SetActive(true);
             isPanelOpened = false;
         }
-        else
+        else if(GameStateManager.Instance.GetPauseState() == PauseState.Running)
         {
 
             uiPanels[0].SetActive(true);
@@ -140,6 +148,41 @@ public class UIPanels : MonoBehaviour
 
     }
 
+    public void OpenMapOnTabPressed(InputAction.CallbackContext context)
+    {
+        if (isPanelOpened)
+        {
+            GameStateManager.Instance.ResumeGame();
+            uiPanels[activePanel].SetActive(false);
+            InGameHUD.SetActive(true);
+            isPanelOpened = false;
+        }
+        else if (GameStateManager.Instance.GetPauseState() == PauseState.Running)
+        {
+
+            uiPanels[3].SetActive(true);
+            InGameHUD.SetActive(false);
+            activePanel = 3;
+            GameStateManager.Instance.PauseGame();
+            isPanelOpened = true;
+        }
+
+    }
+    #endregion
+
+    #region Closing Panels
+
+    public void ClosePanels(bool showHud)
+    {
+        if (isPanelOpened)
+        {
+            GameStateManager.Instance.ResumeGame();
+            uiPanels[activePanel].SetActive(false);
+            InGameHUD.SetActive(showHud);
+            isPanelOpened = false;
+        }
+    }
+
     public void ClosePanels()
     {
         if (isPanelOpened)
@@ -150,9 +193,15 @@ public class UIPanels : MonoBehaviour
             isPanelOpened = false;
         }
     }
+    #endregion
 
+    #region Switching Panels
     public void SwitchToNextPanel()
     {
+        if (!isPanelOpened)
+        {
+            return;
+        }
         uiPanels[activePanel].SetActive(false);
         if (activePanel + 1 < uiPanels.Count)
         {
@@ -167,6 +216,10 @@ public class UIPanels : MonoBehaviour
     }
     public void SwitchToPreviousPanel()
     {
+        if (!isPanelOpened)
+        {
+            return;
+        }
         uiPanels[activePanel].SetActive(false);
         if (activePanel -1 >= 0)
         {
@@ -179,7 +232,7 @@ public class UIPanels : MonoBehaviour
             activePanel = uiPanels.Count - 1;
         }
     }
-
+    #endregion
 
     #region passiveitemsPanel
     private void SetInventoryDirty()

@@ -327,6 +327,33 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Open Map Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e19318b-f3cc-4307-9f81-381a44845ba1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchToNextPanel"",
+                    ""type"": ""Button"",
+                    ""id"": ""174a19ec-80a9-49ad-b5cd-f5f189cc56ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchToPreviousPanel"",
+                    ""type"": ""Button"",
+                    ""id"": ""82486b32-fdaa-472d-944b-b793761a1b75"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -384,6 +411,61 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98e756d8-2005-476d-a231-e8215b720ce6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open Map Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c117f376-d0a5-4710-8eb2-085c7e31bc10"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchToNextPanel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5111d091-6a31-4b93-b860-4358f41e99e4"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchToNextPanel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9798747-bb4c-46bb-adc1-e92c6ae3d6bf"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchToPreviousPanel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f22a5872-73e8-4d58-86d4-1de79c364f52"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchToPreviousPanel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -407,6 +489,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_UI_OpenInventory = m_UI.FindAction("Open Inventory", throwIfNotFound: true);
         m_UI_OpenPauseMenu = m_UI.FindAction("OpenPauseMenu", throwIfNotFound: true);
         m_UI_Scroll = m_UI.FindAction("Scroll", throwIfNotFound: true);
+        m_UI_OpenMapMenu = m_UI.FindAction("Open Map Menu", throwIfNotFound: true);
+        m_UI_SwitchToNextPanel = m_UI.FindAction("SwitchToNextPanel", throwIfNotFound: true);
+        m_UI_SwitchToPreviousPanel = m_UI.FindAction("SwitchToPreviousPanel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -589,6 +674,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_OpenInventory;
     private readonly InputAction m_UI_OpenPauseMenu;
     private readonly InputAction m_UI_Scroll;
+    private readonly InputAction m_UI_OpenMapMenu;
+    private readonly InputAction m_UI_SwitchToNextPanel;
+    private readonly InputAction m_UI_SwitchToPreviousPanel;
     public struct UIActions
     {
         private @InputActions m_Wrapper;
@@ -596,6 +684,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @OpenInventory => m_Wrapper.m_UI_OpenInventory;
         public InputAction @OpenPauseMenu => m_Wrapper.m_UI_OpenPauseMenu;
         public InputAction @Scroll => m_Wrapper.m_UI_Scroll;
+        public InputAction @OpenMapMenu => m_Wrapper.m_UI_OpenMapMenu;
+        public InputAction @SwitchToNextPanel => m_Wrapper.m_UI_SwitchToNextPanel;
+        public InputAction @SwitchToPreviousPanel => m_Wrapper.m_UI_SwitchToPreviousPanel;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -614,6 +705,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Scroll.started += instance.OnScroll;
             @Scroll.performed += instance.OnScroll;
             @Scroll.canceled += instance.OnScroll;
+            @OpenMapMenu.started += instance.OnOpenMapMenu;
+            @OpenMapMenu.performed += instance.OnOpenMapMenu;
+            @OpenMapMenu.canceled += instance.OnOpenMapMenu;
+            @SwitchToNextPanel.started += instance.OnSwitchToNextPanel;
+            @SwitchToNextPanel.performed += instance.OnSwitchToNextPanel;
+            @SwitchToNextPanel.canceled += instance.OnSwitchToNextPanel;
+            @SwitchToPreviousPanel.started += instance.OnSwitchToPreviousPanel;
+            @SwitchToPreviousPanel.performed += instance.OnSwitchToPreviousPanel;
+            @SwitchToPreviousPanel.canceled += instance.OnSwitchToPreviousPanel;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -627,6 +727,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Scroll.started -= instance.OnScroll;
             @Scroll.performed -= instance.OnScroll;
             @Scroll.canceled -= instance.OnScroll;
+            @OpenMapMenu.started -= instance.OnOpenMapMenu;
+            @OpenMapMenu.performed -= instance.OnOpenMapMenu;
+            @OpenMapMenu.canceled -= instance.OnOpenMapMenu;
+            @SwitchToNextPanel.started -= instance.OnSwitchToNextPanel;
+            @SwitchToNextPanel.performed -= instance.OnSwitchToNextPanel;
+            @SwitchToNextPanel.canceled -= instance.OnSwitchToNextPanel;
+            @SwitchToPreviousPanel.started -= instance.OnSwitchToPreviousPanel;
+            @SwitchToPreviousPanel.performed -= instance.OnSwitchToPreviousPanel;
+            @SwitchToPreviousPanel.canceled -= instance.OnSwitchToPreviousPanel;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -662,5 +771,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnOpenInventory(InputAction.CallbackContext context);
         void OnOpenPauseMenu(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
+        void OnOpenMapMenu(InputAction.CallbackContext context);
+        void OnSwitchToNextPanel(InputAction.CallbackContext context);
+        void OnSwitchToPreviousPanel(InputAction.CallbackContext context);
     }
 }
