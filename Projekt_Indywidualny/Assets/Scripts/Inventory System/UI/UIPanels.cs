@@ -11,6 +11,11 @@ public class UIPanels : MonoBehaviour
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject InGameHUD;
+
+    [SerializeField] private AudioSource panelSwapAS;
+    [SerializeField] private AudioSource panelOpenAS;
+    [SerializeField] private AudioSource panelCloseAS;
+
     private int activePanel;
     private bool isPanelOpened = false;
     private bool isGamePaused = false;
@@ -105,20 +110,24 @@ public class UIPanels : MonoBehaviour
     #region Opening Panels
     public void OpenClosePauseMenu(InputAction.CallbackContext context)
     {
+        if (PlayerStatus.Instance.IsPlayerDead)
+        {
+            return;
+        }
 
         if (isGamePaused)
         {
+            ClosePanels();
+            /*
             GameStateManager.Instance.ResumeGame();
             pauseScreen.SetActive(false);
             isGamePaused = false;
             InGameHUD.SetActive(true);
-
-
-
+            */
         }
         else
         {
-
+            panelOpenAS.Play();
             pauseScreen.SetActive(true);
             InGameHUD.SetActive(false);
             ClosePanels(false);
@@ -130,14 +139,17 @@ public class UIPanels : MonoBehaviour
     {
         if (isPanelOpened)
         {
+            ClosePanels();
+            /*
             GameStateManager.Instance.ResumeGame();
             uiPanels[activePanel].SetActive(false);
             InGameHUD.SetActive(true);
             isPanelOpened = false;
+            */
         }
         else if(GameStateManager.Instance.GetPauseState() == PauseState.Running)
         {
-
+            panelOpenAS.Play();
             uiPanels[0].SetActive(true);
             InGameHUD.SetActive(false);
             activePanel = 0;
@@ -152,14 +164,17 @@ public class UIPanels : MonoBehaviour
     {
         if (isPanelOpened)
         {
+            ClosePanels();
+            /*
             GameStateManager.Instance.ResumeGame();
             uiPanels[activePanel].SetActive(false);
             InGameHUD.SetActive(true);
             isPanelOpened = false;
+            */
         }
         else if (GameStateManager.Instance.GetPauseState() == PauseState.Running)
         {
-
+            panelOpenAS.Play();
             uiPanels[3].SetActive(true);
             InGameHUD.SetActive(false);
             activePanel = 3;
@@ -176,6 +191,7 @@ public class UIPanels : MonoBehaviour
     {
         if (isPanelOpened)
         {
+            panelCloseAS.Play();
             GameStateManager.Instance.ResumeGame();
             uiPanels[activePanel].SetActive(false);
             InGameHUD.SetActive(showHud);
@@ -187,6 +203,7 @@ public class UIPanels : MonoBehaviour
     {
         if (isPanelOpened)
         {
+            panelCloseAS.Play();
             GameStateManager.Instance.ResumeGame();
             uiPanels[activePanel].SetActive(false);
             InGameHUD.SetActive(true);
@@ -213,6 +230,7 @@ public class UIPanels : MonoBehaviour
             uiPanels[0].SetActive(true);
             activePanel = 0;
         }
+        panelSwapAS.Play();
     }
     public void SwitchToPreviousPanel()
     {
@@ -231,6 +249,7 @@ public class UIPanels : MonoBehaviour
             uiPanels[uiPanels.Count -1].SetActive(true);
             activePanel = uiPanels.Count - 1;
         }
+        panelSwapAS.Play();
     }
     #endregion
 

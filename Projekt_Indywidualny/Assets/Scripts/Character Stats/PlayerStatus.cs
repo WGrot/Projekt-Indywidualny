@@ -12,6 +12,7 @@ public class PlayerStatus : MonoBehaviour
     private bool isPlayerDead = false;
 
     public static PlayerStatus Instance { get; private set; }
+    public bool IsPlayerDead { get => isPlayerDead; private set => isPlayerDead = value; }
 
     private GameObject playerBody;
 
@@ -58,6 +59,16 @@ public class PlayerStatus : MonoBehaviour
         return playerBody;
     }
 
+    public Vector3 GetPlayerPosition()
+    {
+        return playerBody.transform.position;   
+    }
+
+    public Quaternion GetPlayerRotation()
+    {
+        return playerBody.transform.rotation;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -84,7 +95,7 @@ public class PlayerStatus : MonoBehaviour
     public void Die()
     {
         Debug.Log("PlayerIsDead");
-        isPlayerDead = true;
+        IsPlayerDead = true;
         if (OnPlayerDieCallback != null)
         {
             OnPlayerDieCallback();
@@ -120,7 +131,7 @@ public class PlayerStatus : MonoBehaviour
         {
             OnPlayerTakeDamageCallback();
         }
-        if (currentHp <= 0 && !isPlayerDead)
+        if (currentHp <= 0 && !IsPlayerDead)
         {
             Die();
         }
