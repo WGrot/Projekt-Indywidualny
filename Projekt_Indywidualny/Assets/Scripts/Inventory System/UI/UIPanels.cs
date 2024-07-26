@@ -117,13 +117,12 @@ public class UIPanels : MonoBehaviour
 
         if (isGamePaused)
         {
-            ClosePanels();
-            /*
+            panelCloseAS.Play();
             GameStateManager.Instance.ResumeGame();
             pauseScreen.SetActive(false);
             isGamePaused = false;
             InGameHUD.SetActive(true);
-            */
+            
         }
         else
         {
