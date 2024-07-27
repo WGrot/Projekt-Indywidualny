@@ -24,18 +24,6 @@ public class MiniMapGenerator : MonoBehaviour
         }
     }
     #endregion
-    /*
-    private void OnEnable()
-    {
-        LevelGenerationV2.OnLevelGenerated += GenerateMiniMap;
-    }
-
-    private void OnDisable()
-    {
-        LevelGenerationV2.OnLevelGenerated += GenerateMiniMap;
-    }
-
-    */
 
     public void GenerateMiniMap()
     {

@@ -8,4 +8,22 @@ public class Item : ScriptableObject
     public string itemName = "New Item";
     public string description = "put description here";
     public Sprite icon = null;
+    public ItemBehaviour itemBehaviour;
+
+    public void AddBehavioursToManager()
+    {
+        if (itemBehaviour == null)
+        {
+            return;
+        }
+        Inventory.Instance.ItemBehaviourManager.AddFuncToOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
+    }
+
+    public void RemoveBehavioursFromManager()
+    {
+        if (itemBehaviour == null)
+        {
+            return;
+        }
+    }
 }

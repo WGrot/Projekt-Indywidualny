@@ -63,7 +63,6 @@ public class MapPanel : MonoBehaviour
     {
         int gridsize = LevelGrid.Instance.GetSize();
         int gridScale = LevelGrid.Instance.GetScale();
-        //       mapPivot.gameObject.transform.rotation = new Quaternion(0, 0, player.transform.rotation.y, player.transform.rotation.w);
         Vector3 result = new Vector3(posInGame.x, posInGame.z, 0) * 400/(gridScale*gridsize); 
         return result;
     }

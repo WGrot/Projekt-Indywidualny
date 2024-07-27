@@ -30,7 +30,10 @@ public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
 
     }
 
-    public virtual void InteractWithPlayer(){}
+    public virtual void InteractWithPlayer()
+    {
+        item.AddBehavioursToManager();
+    }
 
     IEnumerator ShowPickupIcon()
     {

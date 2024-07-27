@@ -16,6 +16,7 @@ MonoBehaviour:
   description: Speedy boots <br>You will run faster than crysis on your PC in 2007
     <br> (so not really fast)
   icon: {fileID: 21300000, guid: 52eaceeaf2f2dba45b2f433eb8859624, type: 3}
+  itemBehaviour: {fileID: 11400000, guid: ba585623002e65544a20d81fff857372, type: 2}
   modifiers:
   - statType: 2
     modType: 100

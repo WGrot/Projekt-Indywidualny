@@ -12,6 +12,7 @@ public class PassiveItemPickup : ItemPickup
         if (item is PassiveItem)
         {
             Inventory.Instance.AddPassiveItem((PassiveItem)item);
+            base.InteractWithPlayer();
         }
         else
         {

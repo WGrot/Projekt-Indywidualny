@@ -35,6 +35,8 @@ public class Inventory : MonoBehaviour
 
     private int activeWeaponID = 0;
 
+    public ItemBehaviourManager ItemBehaviourManager { get; private set; } = new ItemBehaviourManager();
+
     public void SetActiveWeaponID(int id)
     {
         activeWeaponID = id;
@@ -68,13 +70,13 @@ public class Inventory : MonoBehaviour
     public void AddPassiveItem(PassiveItem item)
     {
         passiveItems.Add(item);
-        item.OnPickUp();
+        item.ApplyModifiersOnPickUp();
         OnItemChangedCallback?.Invoke();
     }
 
     public bool RemovePassiveItem(PassiveItem item)
     {
-        item.OnDrop();
+        item.RemoveModifiersOnDrop();
         OnItemChangedCallback?.Invoke();
         return passiveItems.Remove(item);
     }

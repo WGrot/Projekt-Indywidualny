@@ -20,7 +20,6 @@ public class WeaponPickup : ItemPickup
         {
             ChooseRandomWeapon();
             weapon = (WeaponSO)item;
-            //ammoData = new AmmoData(((WeaponSO)item).ClipSize, ((WeaponSO)item).MaxAmmo, ((WeaponSO)item).MaxAmmo); 
         }
         if (shouldResetAmmo)
         {
@@ -65,6 +64,8 @@ public class WeaponPickup : ItemPickup
             {
                 OnWeaponPickup.Invoke();
             }
+
+            base.InteractWithPlayer();
 
         }
         else

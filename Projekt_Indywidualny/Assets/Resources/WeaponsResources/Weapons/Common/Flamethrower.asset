@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Flamethrower
   description: I'm a street walking cheetah with a heart full of napalm
   icon: {fileID: 21300000, guid: 40b9333debf6609459ce7f79b134d0cc, type: 3}
+  itemBehaviour: {fileID: 11400000, guid: ba585623002e65544a20d81fff857372, type: 2}
   shootConfiguration: {fileID: 11400000, guid: 13d0f8d50c2312143b744a7e637a059d, type: 2}
   shootStyle: 1
   Damage: 0
