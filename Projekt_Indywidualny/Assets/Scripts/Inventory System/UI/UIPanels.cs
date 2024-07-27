@@ -36,11 +36,7 @@ public class UIPanels : MonoBehaviour
     private void Awake()
     {
         inputActions = new InputActions();
-        inputActions.UI.OpenInventory.performed += OpenCloseInventoryOnIPressed;
-        inputActions.UI.OpenMapMenu.performed += OpenMapOnTabPressed;
-        inputActions.UI.OpenPauseMenu.performed+= OpenClosePauseMenu;
-        inputActions.UI.SwitchToNextPanel.performed += _ => SwitchToNextPanel();
-        inputActions.UI.SwitchToPreviousPanel.performed += _ => SwitchToPreviousPanel();
+
     }
 
     private void OnEnable()
@@ -48,12 +44,23 @@ public class UIPanels : MonoBehaviour
         Inventory.OnItemChangedCallback += SetInventoryDirty;
         PlayerStatus.OnPlayerDieCallback += ShowEndScreen;
         inputActions.Enable();
+        inputActions.UI.OpenInventory.performed += OpenCloseInventoryOnIPressed;
+        inputActions.UI.OpenMapMenu.performed += OpenMapOnTabPressed;
+        inputActions.UI.OpenPauseMenu.performed += OpenClosePauseMenu;
+        inputActions.UI.SwitchToNextPanel.performed += _ => SwitchToNextPanel();
+        inputActions.UI.SwitchToPreviousPanel.performed += _ => SwitchToPreviousPanel();
+
     }
 
     private void OnDisable()
     {
         Inventory.OnItemChangedCallback -= SetInventoryDirty;
         PlayerStatus.OnPlayerDieCallback -= ShowEndScreen;
+        inputActions.UI.OpenInventory.performed -= OpenCloseInventoryOnIPressed;
+        inputActions.UI.OpenMapMenu.performed -= OpenMapOnTabPressed;
+        inputActions.UI.OpenPauseMenu.performed -= OpenClosePauseMenu;
+        inputActions.UI.SwitchToNextPanel.performed -= _ => SwitchToNextPanel();
+        inputActions.UI.SwitchToPreviousPanel.performed -= _ => SwitchToPreviousPanel();
         inputActions.Disable();
     }
     public void ShowEndScreen()
@@ -139,12 +146,6 @@ public class UIPanels : MonoBehaviour
         if (isPanelOpened)
         {
             ClosePanels();
-            /*
-            GameStateManager.Instance.ResumeGame();
-            uiPanels[activePanel].SetActive(false);
-            InGameHUD.SetActive(true);
-            isPanelOpened = false;
-            */
         }
         else if(GameStateManager.Instance.GetPauseState() == PauseState.Running)
         {
@@ -164,12 +165,6 @@ public class UIPanels : MonoBehaviour
         if (isPanelOpened)
         {
             ClosePanels();
-            /*
-            GameStateManager.Instance.ResumeGame();
-            uiPanels[activePanel].SetActive(false);
-            InGameHUD.SetActive(true);
-            isPanelOpened = false;
-            */
         }
         else if (GameStateManager.Instance.GetPauseState() == PauseState.Running)
         {
