@@ -7,13 +7,42 @@ public class ItemBehaviourManager
 {
     private List<Action> onPickupBH;
     private List<Action> onDropBH;
+
     private List<Action> onPlayerTakeDamageBH;
+    private List<Action> onEnemyDeathBH;
     public ItemBehaviourManager()
     {
         onDropBH = new List<Action>();
         onPickupBH = new List<Action>();
+
         onPlayerTakeDamageBH= new List<Action>();
+        onEnemyDeathBH= new List<Action>();
         SubToAllEvents();
+    }
+
+    private void SubToAllEvents()
+    {
+        PlayerStatus.OnPlayerTakeDamageCallback += OnPlayerTakeDamage;
+        EnemyHpBase.OnEnemyDeath += OnEnemyDeath;
+    }
+
+    private void UnSubToAllEvents()
+    {
+        PlayerStatus.OnPlayerTakeDamageCallback -= OnPlayerTakeDamage;
+        EnemyHpBase.OnEnemyDeath -= OnEnemyDeath;
+    }
+    private void DoActions(List<Action> functions)
+    {
+        foreach (Action func in functions)
+        {
+            func();
+        }
+    }
+
+    #region OnPlayerTakeDamage list methods
+    private void OnPlayerTakeDamage()
+    {
+        DoActions(onPlayerTakeDamageBH);
     }
 
     public void AddFuncToOnPlayerTakeDamageBH(Action func)
@@ -21,28 +50,29 @@ public class ItemBehaviourManager
         onPlayerTakeDamageBH.Add(func);
 
     }
-
-    private void SubToAllEvents()
+    public void RemoveFuncFromOnPlayerTakeDamageBH(Action func)
     {
-        PlayerStatus.OnPlayerTakeDamageCallback += OnPlayerTakeDamage;
-    }
-
-    private void UnSubToAllEvents()
-    {
+        onPlayerTakeDamageBH.Remove(func);
 
     }
+    #endregion
 
-    private void OnPlayerTakeDamage()
+    #region OnEnemyDeath list methods
+    private void OnEnemyDeath()
     {
-        DoActions(onPlayerTakeDamageBH);
+        DoActions(onEnemyDeathBH);
     }
 
-
-    private void DoActions(List<Action> functions)
+    public void AddFuncToOnEnemyDeath(Action func)
     {
-        foreach(Action func in functions)
-        {
-            func();
-        }
+        onEnemyDeathBH.Add(func);
+
     }
+    public void RemoveFuncFromOnEnemyDeath(Action func)
+    {
+        onEnemyDeathBH.Remove(func);
+
+    }
+    #endregion
+
 }

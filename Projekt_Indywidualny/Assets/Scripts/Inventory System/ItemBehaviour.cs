@@ -15,6 +15,9 @@ public class ItemBehaviour : ScriptableObject
         Debug.Log("dziala?");
     
     }
-    public virtual void OnEnemyDeath() { }
+    public virtual void OnEnemyDeath(){
+
+        Debug.Log("dobrze vi tak skowyrsynie");
+    }
 
 }

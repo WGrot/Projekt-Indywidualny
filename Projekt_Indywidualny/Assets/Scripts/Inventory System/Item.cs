@@ -17,6 +17,7 @@ public class Item : ScriptableObject
             return;
         }
         Inventory.Instance.ItemBehaviourManager.AddFuncToOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
+        Inventory.Instance.ItemBehaviourManager.AddFuncToOnEnemyDeath(itemBehaviour.OnEnemyDeath);
     }
 
     public void RemoveBehavioursFromManager()
@@ -25,5 +26,7 @@ public class Item : ScriptableObject
         {
             return;
         }
+        Inventory.Instance.ItemBehaviourManager.RemoveFuncFromOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
+        Inventory.Instance.ItemBehaviourManager.RemoveFuncFromOnEnemyDeath(itemBehaviour.OnEnemyDeath);
     }
 }

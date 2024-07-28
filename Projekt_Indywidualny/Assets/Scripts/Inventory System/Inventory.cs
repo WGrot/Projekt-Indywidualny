@@ -71,12 +71,14 @@ public class Inventory : MonoBehaviour
     {
         passiveItems.Add(item);
         item.ApplyModifiersOnPickUp();
+        item.AddBehavioursToManager();
         OnItemChangedCallback?.Invoke();
     }
 
     public bool RemovePassiveItem(PassiveItem item)
     {
         item.RemoveModifiersOnDrop();
+        item.RemoveBehavioursFromManager();
         OnItemChangedCallback?.Invoke();
         return passiveItems.Remove(item);
     }
@@ -98,16 +100,19 @@ public class Inventory : MonoBehaviour
     {
         weapons.Add(weapon);
         weapon.OnPickup();
+        weapon.AddBehavioursToManager();
         OnWeaponAddedCallback?.Invoke();
     }
 
     public bool RemoveWeapon(WeaponSO weapon)
     {
+        weapon.RemoveBehavioursFromManager();
         return weapons.Remove(weapon);
     }
 
     public void RemoveWeaponAtIndex(int index)
     {
+        weapons[index].RemoveBehavioursFromManager();
         weapons.RemoveAt(index);
     }
 
