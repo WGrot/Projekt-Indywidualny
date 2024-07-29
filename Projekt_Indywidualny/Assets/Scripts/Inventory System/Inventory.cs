@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -79,6 +80,10 @@ public class Inventory : MonoBehaviour
     {
         item.RemoveModifiersOnDrop();
         item.RemoveBehavioursFromManager();
+        if(item.itemBehaviour != null)
+        {
+            item.itemBehaviour.OnDrop();
+        }
         OnItemChangedCallback?.Invoke();
         return passiveItems.Remove(item);
     }
@@ -107,12 +112,20 @@ public class Inventory : MonoBehaviour
     public bool RemoveWeapon(WeaponSO weapon)
     {
         weapon.RemoveBehavioursFromManager();
+        if (weapon.itemBehaviour != null)
+        {
+            weapon.itemBehaviour.OnDrop();
+        }
         return weapons.Remove(weapon);
     }
 
     public void RemoveWeaponAtIndex(int index)
     {
         weapons[index].RemoveBehavioursFromManager();
+        if (weapons[index].itemBehaviour != null)
+        {
+            weapons[index].itemBehaviour.OnDrop();
+        }
         weapons.RemoveAt(index);
     }
 

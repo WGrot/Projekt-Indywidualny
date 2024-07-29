@@ -94,6 +94,11 @@ public class WeaponHolder : MonoBehaviour
             SwitchToPreviousWeapon();
         }
 
+        if (activeWeapon.WeaponBehaviour != null)
+        {
+            activeWeapon.WeaponBehaviour.OnEquip();
+        }
+
         selfAudioSource.clip = changeWeaponSound;
         selfAudioSource.Play();
 
@@ -162,13 +167,19 @@ public class WeaponHolder : MonoBehaviour
         activeWeaponID = weapons.Count - 1;
         Inventory.Instance.SetActiveWeaponID(activeWeaponID);
         activeWeapon = weapons[activeWeaponID];
-        activeWeapon.OnEquip();
+        activeWeapon.OnFirstEquip();
         activeWeapon.ApplyPrefix(prefixes[activeWeaponID]);
         activeWeapon = weapons[activeWeaponID];
         SetWeaponModel();
+        
         if (OnWeaponChangedCallback != null)
         {
             OnWeaponChangedCallback(activeWeaponID);
+        }
+
+        if (activeWeapon.WeaponBehaviour != null)
+        {
+            activeWeapon.WeaponBehaviour.OnEquip();
         }
         selfAudioSource.clip = changeWeaponSound;
         selfAudioSource.Play();
@@ -367,6 +378,12 @@ public class WeaponHolder : MonoBehaviour
         isReloading = true;
         selfAudioSource.clip = activeWeapon.weaponReloadSound;
         selfAudioSource.Play();
+
+        if(activeWeapon.WeaponBehaviour != null)
+        {
+            activeWeapon.WeaponBehaviour.OnReload();
+        }
+
 
         yield return new WaitForSeconds(activeWeapon.reloadTime / PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.ReloadSpeed));
         Inventory.Instance.GetAmmoAtIndex(activeWeaponID).ReloadClip(activeWeapon.ClipSize);

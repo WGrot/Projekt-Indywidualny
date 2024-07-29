@@ -14,15 +14,17 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerStatus.OnPlayerHealCallback += ShowHealthData;
-        PlayerStatus.OnPlayerTakeDamageCallback += ShowHealthData;
+        //PlayerStatus.OnPlayerHealCallback += ShowHealthData;
+        //PlayerStatus.OnPlayerTakeDamageCallback += ShowHealthData;
+        PlayerStatus.OnPlayersHealthChangedCallback += ShowHealthData;
         PL_HealthStat.OnHealthModifierAddedCallback+= ShowHealthData;
     }
 
     private void OnDisable()
     {
-        PlayerStatus.OnPlayerHealCallback -= ShowHealthData;
-        PlayerStatus.OnPlayerTakeDamageCallback -= ShowHealthData;
+        //PlayerStatus.OnPlayerHealCallback -= ShowHealthData;
+        //PlayerStatus.OnPlayerTakeDamageCallback -= ShowHealthData;
+        PlayerStatus.OnPlayersHealthChangedCallback += ShowHealthData;
         PL_HealthStat.OnHealthModifierAddedCallback -= ShowHealthData;
     }
     private void Start()

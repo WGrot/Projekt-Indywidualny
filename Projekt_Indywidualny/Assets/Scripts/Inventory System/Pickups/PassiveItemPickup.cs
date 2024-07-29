@@ -8,7 +8,6 @@ public class PassiveItemPickup : ItemPickup
 
     public override void InteractWithPlayer()
     {
-        Debug.Log("interacted");
         if (item is PassiveItem)
         {
             Inventory.Instance.AddPassiveItem((PassiveItem)item);

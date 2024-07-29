@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static PlayerStatus;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class PlayerStatus : MonoBehaviour
 
     private GameObject playerBody;
 
+
+    public delegate void OnPlayersHealthChanged();
+    public static event OnPlayersHealthChanged OnPlayersHealthChangedCallback;
     public delegate void OnPlayerTakeDamage();
     public static event OnPlayerTakeDamage OnPlayerTakeDamageCallback;
     public delegate void OnPlayerHeal();
@@ -112,9 +116,16 @@ public class PlayerStatus : MonoBehaviour
         {
             currentHp = stats[0].value;
         }
+
         if (OnPlayerHealCallback != null)
         {
             OnPlayerHealCallback();
+
+        }
+
+        if(OnPlayersHealthChangedCallback != null)
+        {
+            OnPlayersHealthChangedCallback();
         }
 
     }
@@ -127,13 +138,52 @@ public class PlayerStatus : MonoBehaviour
         }
 
         currentHp -= damage * (1 - (0.05f * stats[1].value / 10));
+        
         if (OnPlayerTakeDamageCallback != null)
         {
             OnPlayerTakeDamageCallback();
         }
+
+        if (OnPlayersHealthChangedCallback != null)
+        {
+            OnPlayersHealthChangedCallback();
+        }
+
         if (currentHp <= 0 && !IsPlayerDead)
         {
             Die();
+        }
+    }
+
+    public void ReduceCurrentPlayerHP(float amount)
+    {
+        currentHp -= amount;
+        
+        if (OnPlayersHealthChangedCallback != null)
+        {
+            OnPlayersHealthChangedCallback();
+        }
+
+        if (currentHp <= 0 && !IsPlayerDead)
+        {
+            Die();
+        }
+    }
+
+    public void IncreaseCurrentPlayerHP(float amount)
+    {
+        if (currentHp + amount <= stats[0].value)
+        {
+            currentHp += amount;
+        }
+        else
+        {
+            currentHp = stats[0].value;
+        }
+
+        if (OnPlayersHealthChangedCallback != null)
+        {
+            OnPlayersHealthChangedCallback();
         }
     }
     

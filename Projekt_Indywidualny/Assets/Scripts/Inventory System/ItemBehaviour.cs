@@ -8,8 +8,16 @@ public class ItemBehaviour : ScriptableObject
 {
     public Action action;
     public int inter;
-    public virtual void OnPickup(){}
-    public virtual void OnDrop(){}
+    public virtual void OnPickup()
+    {
+        Debug.Log("Funkcja OnPickup dziala");
+        PlayerStatus.Instance.ReduceCurrentPlayerHP(10);
+    }
+    public virtual void OnDrop()
+    {
+    Debug.Log("Funkcja OnDrop dziala");
+    PlayerStatus.Instance.IncreaseCurrentPlayerHP(10);
+    }
     public virtual void OnPlayerTakeDamage()
     {
         Debug.Log("dziala?");

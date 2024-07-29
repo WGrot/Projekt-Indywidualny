@@ -30,6 +30,7 @@ public class WeaponSO : Item
     public int bulletsPerShoot = 1;
     public Vector3 Spread = new Vector3(0.1f, 0.1f, 0.4f);
 
+    private WeaponBehaviour weaponBehaviour;
 
     [Header("Weapon Model Parameters")]
     public Vector3 SpawnPoint;
@@ -47,6 +48,8 @@ public class WeaponSO : Item
     private float damage;
     public float chargeTime { get; private set; }
     public float reloadTime { get; private set; }
+    public WeaponBehaviour WeaponBehaviour { get => weaponBehaviour; private set => weaponBehaviour = value; }
+
     private Vector3 spread;
 
     private float LastShootTime;
@@ -56,9 +59,13 @@ public class WeaponSO : Item
     {
         ResetActualValues();
         LastShootTime = Time.time;
+        if(itemBehaviour != null && itemBehaviour is WeaponBehaviour)
+        {
+            weaponBehaviour= (WeaponBehaviour)itemBehaviour;
+        }
     }
 
-    public void OnEquip()
+    public void OnFirstEquip()
     {
         ResetActualValues();
     }
@@ -121,6 +128,12 @@ public class WeaponSO : Item
                 }
             }
         }
+
+        if (weaponBehaviour != null)
+        {
+            weaponBehaviour.OnShoot();
+        }
+
         return true;
 
     }
