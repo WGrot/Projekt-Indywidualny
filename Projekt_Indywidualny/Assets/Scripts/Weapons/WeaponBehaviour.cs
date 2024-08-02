@@ -8,7 +8,7 @@ public class WeaponBehaviour : ItemBehaviour
     public virtual void OnShoot()
     {
         Debug.Log("OnShoot behaviour works");
-        PlayerStatus.Instance.ReduceCurrentPlayerHP(1);
+
     }
     public virtual void OnReload()
     {

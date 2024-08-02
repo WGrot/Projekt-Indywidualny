@@ -6,17 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item Behaviour")]
 public class ItemBehaviour : ScriptableObject
 {
-    public Action action;
-    public int inter;
     public virtual void OnPickup()
     {
         Debug.Log("Funkcja OnPickup dziala");
-        PlayerStatus.Instance.ReduceCurrentPlayerHP(10);
     }
     public virtual void OnDrop()
     {
     Debug.Log("Funkcja OnDrop dziala");
-    PlayerStatus.Instance.IncreaseCurrentPlayerHP(10);
     }
     public virtual void OnPlayerTakeDamage()
     {
