@@ -24,7 +24,7 @@ public class HealthBar : MonoBehaviour
     {
         //PlayerStatus.OnPlayerHealCallback -= ShowHealthData;
         //PlayerStatus.OnPlayerTakeDamageCallback -= ShowHealthData;
-        PlayerStatus.OnPlayersHealthChangedCallback += ShowHealthData;
+        PlayerStatus.OnPlayersHealthChangedCallback -= ShowHealthData;
         PL_HealthStat.OnHealthModifierAddedCallback -= ShowHealthData;
     }
     private void Start()

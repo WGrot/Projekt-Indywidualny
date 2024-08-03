@@ -10,32 +10,23 @@ public class BloodGodBlessingBH : ItemBehaviour
     private float BuffTime = 2f;
     private bool isEffectActive = false;
     private StatModifier statModifier = new StatModifier(DamageIncrease, StatModType.Flat, 100);
+    Buff bloodGodBlessingBuff;
 
     public override void OnPlayerTakeDamage()
     {
-        if (!isEffectActive)
-        {
-            isEffectActive = true;
-            CharacterStat stat = PlayerStatus.Instance.stats[3];
-            stat.AddModifier(statModifier);
-
-        }
+        bloodGodBlessingBuff = new Buff(BuffTime, DamageIncrease, StatType.Damage, this, StatModType.Flat, Time.time);
+        BuffManager.Instance.AddBuff(bloodGodBlessingBuff);
     }
 
     public override void OnDrop()
     {
-        if (isEffectActive)
-        {
-            CharacterStat stat = PlayerStatus.Instance.stats[3];
-            stat.RemoveModifier(statModifier);
-            isEffectActive = false;
-        }
+
         PlayerStatus.Instance.ReduceCurrentPlayerHP(20);
 
     }
     private void OnEnable()
     {
-        isEffectActive= false;
+        isEffectActive = false;
     }
     public override void OnPickup()
     {

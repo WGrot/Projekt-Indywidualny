@@ -9,7 +9,7 @@ public class BloodBanePistolBH : WeaponBehaviour
     public float healForKillAmount = 5;
     public override void OnShoot()
     {
-        PlayerStatus.Instance.ReduceCurrentPlayerHP(2);
+        PlayerStatus.Instance.TakeDamage(2);
     }
 
     public override void OnEnemyDeath()

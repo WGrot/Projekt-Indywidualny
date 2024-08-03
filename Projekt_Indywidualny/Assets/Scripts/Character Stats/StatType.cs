@@ -5,9 +5,9 @@ using UnityEngine;
 public enum StatType
 {
     Hp,
+    Armor,
+    Stamina,
     Damage,
     MoveSpeed,
-    ReloadSpeed,
-    Armor,
-    Stamina
+    ReloadSpeed
 }
