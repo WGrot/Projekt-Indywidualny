@@ -27,7 +27,7 @@ public class PassiveItemPickup : ItemPickup
 
         if (isItemRandom)
         {
-            ChooseRandomPassiveItem();
+            //ChooseRandomPassiveItem();
         }
 
         if (base.item != null)

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8108635487332653129}
   - component: {fileID: 9072345096292561366}
   - component: {fileID: -2200282708187270881}
+  - component: {fileID: 7939661220250160651}
+  - component: {fileID: 6126721424844610279}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -136,3 +138,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenChecks: 0.1
+--- !u!114 &7939661220250160651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858914614453123430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d769c57c2abcdad4685fcc49353fe41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolAll: []
+  PoolTreasureRoom: []
+--- !u!114 &6126721424844610279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858914614453123430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babd2a0fcd4997c43b4a673171e5150c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

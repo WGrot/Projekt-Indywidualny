@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Passive Item")]
 public class PassiveItem : Item
 {
+    public int PassiveItemID;
+
     public List<StatModifier> modifiers;
 
     public void ApplyModifiersOnPickUp()
@@ -41,6 +44,5 @@ public class PassiveItem : Item
             }
         }
     }
-
 
 }
