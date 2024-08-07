@@ -52,8 +52,9 @@ public class SaveManager : MonoBehaviour
 
     public void InitiateItemPools()
     {
-        ItemPoolsManager.Instance.LoadPools();
+        ItemPoolsManager.Instance.LoadPassiveItems();
         ItemPoolsManager.Instance.DeleteLockedItems(saveData.UnlockedPassiveItemsData);
+        ItemPoolsManager.Instance.AssignItemToPools();
     }
 
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SaveData {
 
-    public bool[] UnlockedPassiveItemsData = new bool[ItemPoolsManager.Instance.PoolAll.Count];
-    public bool[] UnlockedWeaponsData = new bool[ItemPoolsManager.Instance.PoolAll.Count];
+    public bool[] UnlockedPassiveItemsData = new bool[10];
+    public bool[] UnlockedWeaponsData = new bool[10];
 
 
     public void UnlockItem(int id)

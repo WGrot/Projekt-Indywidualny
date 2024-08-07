@@ -15,7 +15,11 @@ MonoBehaviour:
   itemName: Suspicious Energy Drink
   description: Sleep is overrated. Once you drink this, you won't sleep for the rest
     of your life.
+  Pools: 00000000
+  Rarity: 0
   icon: {fileID: 21300000, guid: 3b8172c5c33793941b6158d50fc552b6, type: 3}
+  itemBehaviour: {fileID: 0}
+  PassiveItemID: 9
   modifiers:
   - statType: 2
     modType: 100

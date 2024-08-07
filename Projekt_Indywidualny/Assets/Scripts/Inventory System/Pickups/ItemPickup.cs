@@ -8,6 +8,7 @@ public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
     [SerializeField] protected SpriteRenderer itemSprite;
     [SerializeField] private GameObject pickupIcon;
     [SerializeField] private float pickupIconLifeTime;
+    [SerializeField] protected ItemPools pool;
 
     bool isIconActive = false;
 

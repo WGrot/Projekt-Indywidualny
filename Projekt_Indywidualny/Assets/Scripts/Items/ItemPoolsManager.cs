@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ItemPoolsManager : MonoBehaviour
 {
-    public List<PassiveItem> PoolAll = new List<PassiveItem>();
-    public List<PassiveItem> PoolTreasureRoom = new List<PassiveItem>();
+    private List<PassiveItem> PoolAll = new List<PassiveItem>();
+    private ItemPool AllItems = new ItemPool();
+    private ItemPool TreasureRoomItems= new ItemPool();
+
 
     #region Singleton
     public static ItemPoolsManager Instance { get; private set; }
@@ -25,23 +28,28 @@ public class ItemPoolsManager : MonoBehaviour
         }
     }
     #endregion
-    public void LoadPools()
+    public void LoadPassiveItems()
     {
         UnityEngine.Object[] loadedItems = Resources.LoadAll("ItemsResources/Items/PassiveItems");
         PassiveItem[] PoolAllTMP = new PassiveItem[loadedItems.Length];
         loadedItems.CopyTo(PoolAllTMP, 0);
         Array.Sort(PoolAllTMP, new PassiveItemComparer());
         PoolAll = PoolAllTMP.ToList();
+    }
 
-
-        foreach (PassiveItem item in PoolAllTMP)
+    public void AssignItemToPools()
+    {
+        foreach (PassiveItem item in PoolAll)
         {
             foreach (ItemPools pool in item.Pools)
             {
                 switch (pool)
                 {
+                    case ItemPools.All:
+                        AllItems.AddItemToCorrectListList(item);
+                        break;
                     case ItemPools.TreasureRoom:
-                        PoolTreasureRoom.Add(item);
+                        TreasureRoomItems.AddItemToCorrectListList(item);
                         break;
                 }
             }
@@ -57,5 +65,20 @@ public class ItemPoolsManager : MonoBehaviour
                 PoolAll.RemoveAt(i);
             }
         }
+    }
+
+    public PassiveItem GetRandomPassiveItemFromPool(ItemPools pool)
+    {
+        PassiveItem result = null;
+        switch (pool)
+        {
+            case ItemPools.All:
+                result = AllItems.GetRandomPassiveItem();
+                break;
+            case ItemPools.TreasureRoom:
+                result = TreasureRoomItems.GetRandomPassiveItem();
+                break;
+        }
+        return result;
     }
 }

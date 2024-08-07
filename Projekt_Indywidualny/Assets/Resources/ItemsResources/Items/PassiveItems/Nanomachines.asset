@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Nanomachines
   description: '"They harden in response to physical trauma"'
+  Pools: 00000000
+  Rarity: 1
   icon: {fileID: 21300000, guid: 61642d2462d274545a1b401947571d75, type: 3}
+  itemBehaviour: {fileID: 0}
+  PassiveItemID: 7
   modifiers:
   - statType: 4
     modType: 100

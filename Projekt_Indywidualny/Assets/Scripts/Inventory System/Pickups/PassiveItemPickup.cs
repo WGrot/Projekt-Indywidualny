@@ -27,16 +27,22 @@ public class PassiveItemPickup : ItemPickup
 
         if (isItemRandom)
         {
-            //ChooseRandomPassiveItem();
+            PassiveItem item = ItemPoolsManager.Instance.GetRandomPassiveItemFromPool(base.pool);
+            if(item != null)
+            {
+                base.item = item;
+            }
         }
 
-        if (base.item != null)
+        if (item != null)
         {
+            Debug.Log("choj");
             itemSprite.sprite = item.icon;
         }
 
     }
 
+    /*
     private void ChooseRandomPassiveItem()
     {
         int result = Random.Range(1, 100);
@@ -74,4 +80,5 @@ public class PassiveItemPickup : ItemPickup
             base.item = mythicItems[Random.Range(0, ItemsSOs.Length)];
         }
     }
+    */
 }
