@@ -7,9 +7,12 @@ using static UnityEditor.Progress;
 
 public class ItemPoolsManager : MonoBehaviour
 {
-    private List<PassiveItem> PoolAll = new List<PassiveItem>();
+    private List<PassiveItem> AllItemsList = new List<PassiveItem>();
+    private List<WeaponSO> AllWeaponsList = new List<WeaponSO>();
     private ItemPool AllItems = new ItemPool();
     private ItemPool TreasureRoomItems= new ItemPool();
+
+
 
 
     #region Singleton
@@ -34,38 +37,79 @@ public class ItemPoolsManager : MonoBehaviour
         PassiveItem[] PoolAllTMP = new PassiveItem[loadedItems.Length];
         loadedItems.CopyTo(PoolAllTMP, 0);
         Array.Sort(PoolAllTMP, new PassiveItemComparer());
-        PoolAll = PoolAllTMP.ToList();
+        AllItemsList = PoolAllTMP.ToList();
+    }
+
+    public void LoadWeapons()
+    {
+        UnityEngine.Object[] loadedWeapons = Resources.LoadAll("WeaponsResources/Weapons");
+        WeaponSO[] PoolAllTMP = new WeaponSO[loadedWeapons.Length];
+        loadedWeapons.CopyTo(PoolAllTMP, 0);
+        Array.Sort(PoolAllTMP, new WeaponComparer());
+        AllWeaponsList = PoolAllTMP.ToList();
     }
 
     public void AssignItemToPools()
     {
-        foreach (PassiveItem item in PoolAll)
+        foreach (PassiveItem item in AllItemsList)
         {
             foreach (ItemPools pool in item.Pools)
             {
                 switch (pool)
                 {
                     case ItemPools.All:
-                        AllItems.AddItemToCorrectListList(item);
+                        AllItems.AddItemToCorrectList(item);
                         break;
                     case ItemPools.TreasureRoom:
-                        TreasureRoomItems.AddItemToCorrectListList(item);
+                        TreasureRoomItems.AddItemToCorrectList(item);
                         break;
                 }
             }
         }
     }
 
-    public void DeleteLockedItems(bool[] unlockedPassiveItems)
+    public void AssignWeaponsToPools()
     {
-        for (int i = PoolAll.Count - 1; i >= 0; i--)
+        foreach (WeaponSO weapon in AllWeaponsList)
         {
-            if (!unlockedPassiveItems[i])
+            foreach (ItemPools pool in weapon.Pools)
             {
-                PoolAll.RemoveAt(i);
+                switch (pool)
+                {
+                    case ItemPools.All:
+                        AllItems.AddItemToCorrectList(weapon);
+                        break;
+                    case ItemPools.TreasureRoom:
+                        TreasureRoomItems.AddItemToCorrectList(weapon);
+                        break;
+                }
             }
         }
     }
+
+
+    public void DeleteLockedItems(bool[] unlockedPassiveItems)
+    {
+        for (int i = AllItemsList.Count - 1; i >= 0; i--)
+        {
+            if (!unlockedPassiveItems[i])
+            {
+                AllItemsList.RemoveAt(i);
+            }
+        }
+    }
+
+    public void DeleteLockedWeapons(bool[] unlockedWeapons)
+    {
+        for (int i = AllItemsList.Count - 1; i >= 0; i--)
+        {
+            if (!unlockedWeapons[i])
+            {
+                AllWeaponsList.RemoveAt(i);
+            }
+        }
+    }
+
 
     public PassiveItem GetRandomPassiveItemFromPool(ItemPools pool)
     {
@@ -77,6 +121,22 @@ public class ItemPoolsManager : MonoBehaviour
                 break;
             case ItemPools.TreasureRoom:
                 result = TreasureRoomItems.GetRandomPassiveItem();
+                break;
+        }
+        return result;
+    }
+
+
+    public WeaponSO GetRandomWeaponFromPool(ItemPools pool)
+    {
+        WeaponSO result = null;
+        switch (pool)
+        {
+            case ItemPools.All:
+                result = AllItems.GetRandomWeapon();
+                break;
+            case ItemPools.TreasureRoom:
+                result = TreasureRoomItems.GetRandomWeapon();
                 break;
         }
         return result;

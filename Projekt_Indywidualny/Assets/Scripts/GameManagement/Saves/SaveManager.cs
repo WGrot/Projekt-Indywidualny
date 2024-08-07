@@ -55,6 +55,10 @@ public class SaveManager : MonoBehaviour
         ItemPoolsManager.Instance.LoadPassiveItems();
         ItemPoolsManager.Instance.DeleteLockedItems(saveData.UnlockedPassiveItemsData);
         ItemPoolsManager.Instance.AssignItemToPools();
+
+        ItemPoolsManager.Instance.LoadWeapons();
+        ItemPoolsManager.Instance.DeleteLockedWeapons(saveData.UnlockedWeaponsData);
+        ItemPoolsManager.Instance.AssignWeaponsToPools();
     }
 
 

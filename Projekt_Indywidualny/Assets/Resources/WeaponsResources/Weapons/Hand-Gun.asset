@@ -15,7 +15,11 @@ MonoBehaviour:
   itemName: Hand-Gun
   description: The only chance to defeat someone with this weapon is to wait until
     the opponent dies from laughter
+  Pools: 00000000
+  Rarity: 0
   icon: {fileID: 21300000, guid: 80b263971b3166c48b6725337e03658d, type: 3}
+  itemBehaviour: {fileID: 0}
+  WeaponID: 3
   shootConfiguration: {fileID: 0}
   shootStyle: 1
   Damage: 5

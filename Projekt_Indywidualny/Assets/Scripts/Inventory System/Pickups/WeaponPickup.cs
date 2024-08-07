@@ -18,7 +18,8 @@ public class WeaponPickup : ItemPickup
 
         if (isWeaponRandom)
         {
-            ChooseRandomWeapon();
+            //ChooseRandomWeapon();
+            base.item = ItemPoolsManager.Instance.GetRandomWeaponFromPool(base.pool);
             weapon = (WeaponSO)item;
         }
         if (shouldResetAmmo)

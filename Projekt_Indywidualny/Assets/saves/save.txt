@@ -1,1 +1,1 @@
-{"UnlockedPassiveItemsData":[true,true,true,true,true,true,true,true,true,true],"UnlockedWeaponsData":[false,false,false,false,false,false,false,false,false,false]}
+{"UnlockedPassiveItemsData":[true,true,true,true,true,true,true,true,true,true],"UnlockedWeaponsData":[true,true,true,true,true,true,true,true,true,true]}

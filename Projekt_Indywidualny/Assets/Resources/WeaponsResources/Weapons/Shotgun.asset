@@ -10,29 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51598764c5848614dbf708df1bceb5a7, type: 3}
-  m_Name: Minigun
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  itemName: Minigun
-  description: '- Private, the enemy is coming from this direction! <br>- Roger that,
-    Captain, removing that direction'
-  icon: {fileID: 21300000, guid: 4f8e90cc5abdebf498e0418a2c2c48da, type: 3}
+  itemName: Shotgun
+  description: Its a shotgun, just as advertised
+  Pools: 00000000
+  Rarity: 2
+  icon: {fileID: 21300000, guid: e26830b3f49fdff41a5ea0a193b4efb7, type: 3}
+  itemBehaviour: {fileID: 0}
+  WeaponID: 1
   shootConfiguration: {fileID: 0}
   shootStyle: 1
-  Damage: 5
-  FireRate: 0.05
+  Damage: 4
+  FireRate: 0.4
   ChargeTime: 0
   ReloadTime: 1
-  ClipSize: 400
-  MaxAmmo: 400
+  ClipSize: 7
+  MaxAmmo: 70
   AmmoUsePerShoot: 1
-  bulletsPerShoot: 1
-  Spread: {x: 0.08, y: 0.08, z: 0.08}
-  SpawnPoint: {x: 0.7, y: -0.3, z: -1}
-  SpawnRotation: {x: 0, y: -85, z: 0}
-  ModelScale: {x: 0.5, y: 0.5, z: 0.5}
+  bulletsPerShoot: 7
+  Spread: {x: 0.1, y: 0.1, z: 0.4}
+  SpawnPoint: {x: 0.7, y: -0.2, z: -1}
+  SpawnRotation: {x: 0, y: -90, z: 0}
+  ModelScale: {x: 0.6, y: 0.6, z: 0.6}
   ShootOffset: {x: 0, y: 0, z: 0}
   ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
-  weaponShootSound: {fileID: 8300000, guid: 46294ecc91d44814cb841cb4ab982c4c, type: 3}
+  weaponShootSound: {fileID: 8300000, guid: 5f96caf9d9cddb345a13e40f0560dd5f, type: 3}
   weaponReloadSound: {fileID: 0}

@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Grenade Launcher
   description: C'mon catch!
+  Pools: 00000000
+  Rarity: 1
   icon: {fileID: 21300000, guid: 8dcd89ee5d3a4924b94d61bedc430813, type: 3}
+  itemBehaviour: {fileID: 0}
+  WeaponID: 4
   shootConfiguration: {fileID: 11400000, guid: 19917f3457281f941a38964f3e0e3fa5, type: 2}
   shootStyle: 0
   Damage: 10

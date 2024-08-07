@@ -18,12 +18,17 @@ public class ItemPool
     List<WeaponSO> MythicWeapons = new List<WeaponSO>();
     List<WeaponSO> SpecialWeapons = new List<WeaponSO>();
 
-    int mythicChance = 50;
-    int rareChance = 150;
-    int uncommonChance = 300;
-    int commonChance = 500;
+    int mythicItemChance = 50;
+    int rareItemChance = 150;
+    int uncommonItemChance = 300;
+    int commonItemChance = 500;
 
-    public void AddItemToCorrectListList(Item item)
+    int mythicWeaponChance = 50;
+    int rareWeaponChance = 150;
+    int uncommonWeaponChance = 300;
+    int commonWeaponChance = 500;
+
+    public void AddItemToCorrectList(Item item)
     {
         if (item is PassiveItem)
         {
@@ -72,27 +77,24 @@ public class ItemPool
     public PassiveItem GetRandomPassiveItem()
     {
         PassiveItem result;
-        bool foundItem = false;
         CheckForItemsInRarities();
 
-        int rareChanceCombined = commonChance + uncommonChance + rareChance;
-        int uncommonChanceCombined = commonChance + uncommonChance;
-        int fullPool = commonChance + uncommonChance + rareChance + mythicChance;
+        int rareChanceCombined = commonItemChance + uncommonItemChance + rareItemChance;
+        int uncommonChanceCombined = commonItemChance + uncommonItemChance;
+        int fullPool = commonItemChance + uncommonItemChance + rareItemChance + mythicItemChance;
 
 
         int randInt = Random.Range(1, fullPool);
-        if (randInt < commonChance) //5% chance for Mythic Item
+        if (randInt < commonItemChance) //5% chance for Mythic Item
         {
             int rand = Random.Range(0, CommonItems.Count - 1);
-            Debug.Log("Hit CommonItem" + CommonItems.Count + "   " + rand);
             result = CommonItems[rand];
             CommonItems.RemoveAt(rand);
 
         }
-        else if (randInt >= commonChance && randInt < uncommonChanceCombined) // 15% chance for RareItem
+        else if (randInt >= commonItemChance && randInt < uncommonChanceCombined) // 15% chance for RareItem
         {
             int rand = Random.Range(0, UncommonItems.Count - 1);
-            Debug.Log("Hit UnCommonItem" + UncommonItems.Count + "   " + rand);
             result = UncommonItems[rand];
             UncommonItems.RemoveAt(rand);
 
@@ -100,7 +102,6 @@ public class ItemPool
         else if (randInt >= uncommonChanceCombined && randInt < rareChanceCombined) // 30% chance for Uncommon Item
         {
             int rand = Random.Range(0, RareItems.Count - 1);
-            Debug.Log("Hit RareItem" + RareItems.Count + "   " + rand);
             result = RareItems[rand];
             RareItems.RemoveAt(rand);
 
@@ -108,7 +109,6 @@ public class ItemPool
         else if (MythicItems.Count > 0)// 50% Chance for commonItem
         {
             int rand = Random.Range(0, MythicItems.Count - 1);
-            Debug.Log("Hit MythicItem" + MythicItems.Count + "   " + rand);
             result = MythicItems[rand];
             MythicItems.RemoveAt(rand);
 
@@ -116,7 +116,50 @@ public class ItemPool
         else
         {
             result = null;
-            Debug.Log("Sharted");
+        }
+        return result;
+    }
+
+
+
+
+    public WeaponSO GetRandomWeapon()
+    {
+        WeaponSO result;
+
+        int rareChanceCombined = commonWeaponChance + uncommonWeaponChance + rareWeaponChance;
+        int uncommonChanceCombined = commonWeaponChance + uncommonWeaponChance;
+        int fullPool = commonWeaponChance + uncommonWeaponChance + rareWeaponChance + mythicWeaponChance;
+
+
+        int randInt = Random.Range(1, fullPool);
+        if (randInt < commonWeaponChance)
+        {
+            int rand = Random.Range(0, CommonWeapons.Count - 1);
+            result = CommonWeapons[rand];
+
+
+        }
+        else if (randInt >= commonWeaponChance && randInt < uncommonChanceCombined)
+        {
+            int rand = Random.Range(0, UncommonWeapons.Count - 1);
+            result = UncommonWeapons[rand];
+
+
+        }
+        else if (randInt >= uncommonChanceCombined && randInt < rareChanceCombined)
+        {
+            int rand = Random.Range(0, RareWeapons.Count - 1);
+            result = RareWeapons[rand];
+
+
+        }
+        else// 50% Chance for commonItem
+        {
+            int rand = Random.Range(0, MythicWeapons.Count - 1);
+            result = MythicWeapons[rand];
+
+             
         }
         return result;
     }
@@ -125,30 +168,27 @@ public class ItemPool
     {
         if (CommonItems.Count < 1)
         {
-            commonChance = 0;
+            commonItemChance = 0;
         }
 
         if (UncommonItems.Count < 1)
         {
 
-            uncommonChance = 0;
+            uncommonItemChance = 0;
         }
 
         if (RareItems.Count < 1)
         {
 
-            rareChance = 0;
+            rareItemChance = 0;
         }
 
         if (MythicItems.Count < 1)
         {
 
-            mythicChance = 0;
+            mythicItemChance = 0;
         }
-
-
-
-
     }
+
 
 }

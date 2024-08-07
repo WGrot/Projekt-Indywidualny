@@ -17,6 +17,7 @@ public enum WeaponShootingStyle
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Weapons/Weapon")]
 public class WeaponSO : Item
 {
+    public int WeaponID = 0;
     [Header("Weapon Stats")]
     public ShootConfig shootConfiguration = null;
     public WeaponShootingStyle shootStyle;

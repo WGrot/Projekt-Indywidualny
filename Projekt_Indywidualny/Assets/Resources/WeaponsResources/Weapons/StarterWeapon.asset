@@ -16,8 +16,11 @@ MonoBehaviour:
   description: Simple revolver, You better find something with greater firepower.
     At least some black magic of gamedevelopment makes this weapon have infinite
     ammunition.
+  Pools: 00000000
+  Rarity: 4
   icon: {fileID: 21300000, guid: f5e13057f7b078841acc7637c04e5d36, type: 3}
   itemBehaviour: {fileID: 11400000, guid: ba585623002e65544a20d81fff857372, type: 2}
+  WeaponID: 0
   shootConfiguration: {fileID: 0}
   shootStyle: 0
   Damage: 10
