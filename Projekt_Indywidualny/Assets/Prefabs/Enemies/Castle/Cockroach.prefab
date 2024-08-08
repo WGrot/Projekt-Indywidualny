@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1085042277493730025}
   - component: {fileID: 1540648649633754810}
   - component: {fileID: 8778392000517506086}
+  - component: {fileID: 6457596801001444538}
   m_Layer: 10
   m_Name: Cockroach
   m_TagString: Enemy
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 10
   enemyMainBody: {fileID: 0}
+  enemyDrop: {fileID: 6457596801001444538}
 --- !u!65 &1085042277493730025
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -236,6 +238,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6457596801001444538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2201088130301803277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3857c2ea4cce2294d89492a01c6f2cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chanceForCoins: 100
+  minCoinAmount: 1
+  maxCoinAmount: 5
+  CoinPrefab: {fileID: 5425034988097838731, guid: c9c13cb5bafd52d45af3a76d383e6094,
+    type: 3}
 --- !u!1 &4465880723264763495
 GameObject:
   m_ObjectHideFlags: 0

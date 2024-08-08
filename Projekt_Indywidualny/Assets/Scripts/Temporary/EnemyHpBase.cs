@@ -7,7 +7,9 @@ public class EnemyHpBase : MonoBehaviour, Ihp
 
     [SerializeField] float maxHp;
     [SerializeField] GameObject enemyMainBody;
+    [SerializeField] private EnemyDrop enemyDrop;
     private float currentHp;
+
 
     //Event który triggeruje siê gdy przeciwnik umiera
     public delegate void EnemyDeathAction();
@@ -28,6 +30,12 @@ public class EnemyHpBase : MonoBehaviour, Ihp
         {
             gameObject.SetActive(false);
         }
+
+        if (enemyDrop!= null)
+        {
+            enemyDrop.Drop();
+        }
+
         if (OnEnemyDeath != null)
         {
             OnEnemyDeath();

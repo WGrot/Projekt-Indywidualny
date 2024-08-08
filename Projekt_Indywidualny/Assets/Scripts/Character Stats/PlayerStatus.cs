@@ -9,11 +9,13 @@ public class PlayerStatus : MonoBehaviour
     public List<CharacterStat> stats = new List<CharacterStat>();
     PL_HealthStat hpStat;
     private float currentHp;
+    private int coins = 0;
     private bool canTakeDamage = true;
     private bool isPlayerDead = false;
 
     public static PlayerStatus Instance { get; private set; }
     public bool IsPlayerDead { get => isPlayerDead; private set => isPlayerDead = value; }
+    public int Coins { get => coins; private set => coins = value; }
 
     private GameObject playerBody;
 
@@ -26,6 +28,8 @@ public class PlayerStatus : MonoBehaviour
     public static event OnPlayerHeal OnPlayerHealCallback;
     public delegate void OnPlayerDie();
     public static event OnPlayerDie OnPlayerDieCallback;
+    public delegate void OnCoinsAmountChange();
+    public static event OnCoinsAmountChange OnCoinsAmountChangeCallback;
 
     private void Awake()
     {
@@ -198,6 +202,26 @@ public class PlayerStatus : MonoBehaviour
         }
         Debug.Log("Coœ posz³o nie tak, chcesz dostaæ wartoœæ statystyki która nie istnieje");
         return 1;
+    }
+
+
+    public void AddCoins(int amount)
+    {
+        coins += amount;
+        if (OnCoinsAmountChangeCallback != null)
+        {
+            OnCoinsAmountChangeCallback();
+        }
+    }
+    
+    public bool RemoveCoins(int amount)
+    {
+        if(coins >= amount)
+        {
+            coins -= amount;
+            return true;
+        }
+        return false;
     }
 
 }
