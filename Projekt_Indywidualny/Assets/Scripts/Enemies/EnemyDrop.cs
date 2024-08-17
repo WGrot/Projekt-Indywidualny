@@ -9,20 +9,47 @@ public class EnemyDrop : MonoBehaviour
     [SerializeField] private int maxCoinAmount = 5;
 
     [SerializeField] private GameObject CoinPrefab;
+
     
 
     public void Drop()
     {
-        DropCoins();
+        int rand = Random.Range(0, 100);
+        if (rand < chanceForCoins)
+        {
+            DropCoins();
+        }
+
     }
-    
+
     public void DropCoins()
     {
-        GameObject coin = Instantiate(CoinPrefab, transform.position + new Vector3(0,1,0), Quaternion.identity);
-        CoinPickup coinScript = coin.GetComponentInChildren<CoinPickup>();
-
         int amount = Random.Range(minCoinAmount, maxCoinAmount);
 
-        coinScript.SetCoinAmount(amount);
+        for (int i = 0; i < 100; i++)
+        {
+            Debug.Log("spawning some coin");
+            int coinValueIndex = Random.Range(0, CoinPickup.PossibleCoinValues.Length);
+            if (CoinPickup.PossibleCoinValues[coinValueIndex] > amount)
+            {
+                coinValueIndex = 0;
+            }
+
+            Vector3 coinOffset = new Vector3(Random.Range(-1f, 1f), 1, Random.Range(-1f, 1f));
+
+            GameObject coin = Instantiate(CoinPrefab, transform.position + coinOffset, Quaternion.identity);
+            CoinPickup coinScript = coin.GetComponentInChildren<CoinPickup>();
+            coinScript.SetCoinAmount(CoinPickup.PossibleCoinValues[coinValueIndex]);
+
+            amount -= CoinPickup.PossibleCoinValues[coinValueIndex];
+
+            if (amount <= 0)
+            {
+                break;
+            }
+
+
+        }
+
     }
 }

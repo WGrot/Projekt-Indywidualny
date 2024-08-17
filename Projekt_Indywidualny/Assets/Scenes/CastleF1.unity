@@ -897,6 +897,12 @@ PrefabInstance:
       propertyPath: numberOfNormalRooms
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 325366652631158528, guid: f73ad504ce16f204381f1d8a3af496d5,
+        type: 3}
+      propertyPath: specialRooms.Array.data[3]
+      value: 
+      objectReference: {fileID: 4054051608600762380, guid: 641aae3a687e3e4419bd60a4b80b891a,
+        type: 3}
     - target: {fileID: 5278654370094239273, guid: f73ad504ce16f204381f1d8a3af496d5,
         type: 3}
       propertyPath: m_Name

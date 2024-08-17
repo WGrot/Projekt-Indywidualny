@@ -8,8 +8,6 @@ public class BloodGodBlessingBH : ItemBehaviour
 {
     private static float DamageIncrease = 0.25f;
     private float BuffTime = 2f;
-    private bool isEffectActive = false;
-    private StatModifier statModifier = new StatModifier(DamageIncrease, StatModType.Flat, 100);
     Buff bloodGodBlessingBuff;
 
     public override void OnPlayerTakeDamage()
@@ -23,10 +21,6 @@ public class BloodGodBlessingBH : ItemBehaviour
 
         PlayerStatus.Instance.ReduceCurrentPlayerHP(20);
 
-    }
-    private void OnEnable()
-    {
-        isEffectActive = false;
     }
     public override void OnPickup()
     {

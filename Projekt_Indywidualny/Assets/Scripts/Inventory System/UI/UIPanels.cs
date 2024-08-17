@@ -90,12 +90,13 @@ public class UIPanels : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-
+        
         GameObject manager = GameObject.FindGameObjectWithTag("GameManager");
         if (manager != null)
         {
             Destroy(manager);
         }
+        
         SceneManager.LoadScene("MainMenu");
     }
 

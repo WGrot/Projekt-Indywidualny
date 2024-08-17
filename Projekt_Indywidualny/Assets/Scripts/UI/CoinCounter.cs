@@ -10,11 +10,13 @@ public class CoinCounter : MonoBehaviour
     private void OnEnable()
     {
         PlayerStatus.OnCoinsAmountChangeCallback += ChangeCoinCounter;
+        LevelGenerationV2.OnLevelGenerated += ChangeCoinCounter;
     }
 
     private void OnDisable()
     {
         PlayerStatus.OnCoinsAmountChangeCallback -= ChangeCoinCounter;
+        LevelGenerationV2.OnLevelGenerated -= ChangeCoinCounter;
     }
 
 

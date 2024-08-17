@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private AudioSource menuAudioSource;
     [SerializeField] private AudioClip loadDiskSound;
     [SerializeField] private AudioClip mainMenuMusic;
-    private bool isMenuLoaded = false;
+    private bool isMenuLoading = false;
     public void StartGame()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -29,16 +29,24 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKey && !isMenuLoaded)
+        if (Input.anyKeyDown && !isMenuLoading)
         {
-            isMenuLoaded= true;
-            StartCoroutine("LoadMenu");
+
+            StartCoroutine("LoadMenuFirstTime");
+        }
+
+        if (Input.anyKeyDown && isMenuLoading)
+        {
+            StopAllCoroutines();
+            SkipLoading();
         }
 
     }
 
-    private IEnumerator LoadMenu()
+    private IEnumerator LoadMenuFirstTime()
     {
+        yield return null;
+        isMenuLoading = true;
         insertDiskText.text = ">Reading Disk<";
         PlayerPrefs.SetFloat("M_Sensitivity", 100);
         PlayerPrefs.Save();
@@ -49,6 +57,18 @@ public class MainMenu : MonoBehaviour
         insertDiskScreen.SetActive(false);
         menuAudioSource.clip = mainMenuMusic;
         menuAudioSource.loop=true;
+        menuAudioSource.Play();
+    }
+
+    private void SkipLoading()
+    {
+        Debug.Log("skipped");
+        PlayerPrefs.SetFloat("M_Sensitivity", 100);
+        PlayerPrefs.Save();
+        mainMenuScreen.SetActive(true);
+        insertDiskScreen.SetActive(false);
+        menuAudioSource.clip = mainMenuMusic;
+        menuAudioSource.loop = true;
         menuAudioSource.Play();
     }
 

@@ -250,9 +250,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3857c2ea4cce2294d89492a01c6f2cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chanceForCoins: 100
+  chanceForCoins: 50
   minCoinAmount: 1
-  maxCoinAmount: 5
+  maxCoinAmount: 1
   CoinPrefab: {fileID: 5425034988097838731, guid: c9c13cb5bafd52d45af3a76d383e6094,
     type: 3}
 --- !u!1 &4465880723264763495
