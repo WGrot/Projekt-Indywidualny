@@ -18,7 +18,6 @@ public class WeaponPickup : ItemPickup
 
         if (isWeaponRandom)
         {
-            //ChooseRandomWeapon();
             base.item = ItemPoolsManager.Instance.GetRandomWeaponFromPool(base.pool);
             weapon = (WeaponSO)item;
         }
@@ -67,51 +66,14 @@ public class WeaponPickup : ItemPickup
             }
 
             base.InteractWithPlayer();
+            Destroy(gameObject);
 
         }
         else
         {
             Debug.LogError("You configured something wrong, you used weapon pickup with item that is not a weapon");
         }
-        Destroy(gameObject);
-    }
 
-    private void ChooseRandomWeapon()
-    {
-        int result = Random.Range(1, 100);
-        if (result < 50) //50% chance for common weapon
-        {
-            Object[] weaponObjects = Resources.LoadAll("WeaponsResources/Weapons/Common");
-            WeaponSO[] commonWeapons = new WeaponSO[weaponObjects.Length];
-            weaponObjects.CopyTo(commonWeapons, 0);
-
-            base.item = commonWeapons[Random.Range(0, weaponObjects.Length)];
-
-        }
-        else if (result >= 50 && result < 80) // 30% chance for uncommon weapon
-        {
-            Object[] weaponObjects = Resources.LoadAll("WeaponsResources/Weapons/Uncommon");
-            WeaponSO[] uncommonWeapons = new WeaponSO[weaponObjects.Length];
-            weaponObjects.CopyTo(uncommonWeapons, 0);
-
-            base.item = uncommonWeapons[Random.Range(0, weaponObjects.Length)];
-        }
-        else if (result >= 80 && result < 95) // 15% chance for rare weapon
-        {
-            Object[] weaponObjects = Resources.LoadAll("WeaponsResources/Weapons/Rare");
-            WeaponSO[] rareWeapons = new WeaponSO[weaponObjects.Length];
-            weaponObjects.CopyTo(rareWeapons, 0);
-
-            base.item = rareWeapons[Random.Range(0, weaponObjects.Length)];
-        }
-        else // Last 5% chance for Mythic weapon
-        {
-            Object[] weaponObjects = Resources.LoadAll("WeaponsResources/Weapons/Mythic");
-            WeaponSO[] mythicWeapons = new WeaponSO[weaponObjects.Length];
-            weaponObjects.CopyTo(mythicWeapons, 0);
-
-            base.item = mythicWeapons[Random.Range(0, weaponObjects.Length)];
-        }
     }
 
     private WeaponPrefix ChooseRandomPrefix()
