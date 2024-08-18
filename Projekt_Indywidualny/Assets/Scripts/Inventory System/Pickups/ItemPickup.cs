@@ -6,11 +6,11 @@ public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
 {
     [SerializeField] public Item item;
     [SerializeField] protected SpriteRenderer itemSprite;
-    [SerializeField] private GameObject pickupIcon;
-    [SerializeField] private float pickupIconLifeTime;
+    [SerializeField] protected GameObject pickupIcon;
+    [SerializeField] protected float pickupIconLifeTime;
     [SerializeField] protected ItemPools pool;
 
-    bool isIconActive = false;
+    protected bool isIconActive = false;
 
     public virtual void Start()
     {
@@ -22,7 +22,7 @@ public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
         itemSprite.sprite = item.icon;
     }
 
-    public void DoWhenLookedAt()
+    public virtual void DoWhenLookedAt()
     {
         if (!isIconActive)
         {

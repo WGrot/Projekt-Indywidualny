@@ -620,6 +620,7 @@ GameObject:
   - component: {fileID: 6116508116498003804}
   - component: {fileID: 2843346358550695675}
   - component: {fileID: 1110722127596935045}
+  - component: {fileID: 7139653083795769374}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Enemy
@@ -773,6 +774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 50
   enemyMainBody: {fileID: 0}
+  enemyDrop: {fileID: 7139653083795769374}
 --- !u!65 &1110722127596935045
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -794,6 +796,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1, y: 3.1, z: 1.1}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &7139653083795769374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3326724539426101011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3857c2ea4cce2294d89492a01c6f2cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chanceForCoins: 50
+  minCoinAmount: 1
+  maxCoinAmount: 10
+  CoinPrefab: {fileID: 5425034988097838731, guid: c9c13cb5bafd52d45af3a76d383e6094,
+    type: 3}
 --- !u!1 &3392361358918089393
 GameObject:
   m_ObjectHideFlags: 0

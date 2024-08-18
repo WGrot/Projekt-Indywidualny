@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private AudioClip loadDiskSound;
     [SerializeField] private AudioClip mainMenuMusic;
     private bool isMenuLoading = false;
+    private bool loaded = false;
     public void StartGame()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -35,7 +36,7 @@ public class MainMenu : MonoBehaviour
             StartCoroutine("LoadMenuFirstTime");
         }
 
-        if (Input.anyKeyDown && isMenuLoading)
+        if (Input.anyKeyDown && isMenuLoading && !loaded)
         {
             StopAllCoroutines();
             SkipLoading();
@@ -58,6 +59,7 @@ public class MainMenu : MonoBehaviour
         menuAudioSource.clip = mainMenuMusic;
         menuAudioSource.loop=true;
         menuAudioSource.Play();
+        loaded =true;
     }
 
     private void SkipLoading()
@@ -70,6 +72,7 @@ public class MainMenu : MonoBehaviour
         menuAudioSource.clip = mainMenuMusic;
         menuAudioSource.loop = true;
         menuAudioSource.Play();
+        loaded = true;
     }
 
 }
