@@ -216,9 +216,14 @@ public class PlayerStatus : MonoBehaviour
     
     public bool RemoveCoins(int amount)
     {
-        if(coins >= amount)
+
+        if (coins >= amount)
         {
             coins -= amount;
+            if (OnCoinsAmountChangeCallback != null)
+            {
+                OnCoinsAmountChangeCallback();
+            }
             return true;
         }
         return false;
