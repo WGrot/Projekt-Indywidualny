@@ -46,6 +46,12 @@ public class GambleSlot : MonoBehaviour
             case GambleRewards.Coins:
                 spriteRenderer.sprite = sprites[1];
                 break;
+            case GambleRewards.Item:
+                spriteRenderer.sprite = sprites[2];
+                break;
+            case GambleRewards.Weapon:
+                spriteRenderer.sprite = sprites[3];
+                break;
 
         }
     }

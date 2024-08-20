@@ -7,23 +7,36 @@ using UnityEngine;
 public enum GambleRewards
 {
     None,
-    Coins
+    Coins,
+    Item,
+    Weapon
 }
 
 public class GambleTerminal : MonoBehaviour
 {
-    private int bid = 1;
+
     [SerializeField] private TextMeshPro bidCounter;
     [SerializeField] private GambleSlot slot1;
     [SerializeField] private GambleSlot slot2;
     [SerializeField] private GambleSlot slot3;
-    [SerializeField] private int chanceForWin = 25;
-    GambleRewards reward = GambleRewards.None;
-    private AudioSource audioSource;
+
+
+    [SerializeField] private int chanceForCoins = 25;
+    [SerializeField] private int chanceForGoodReward = 10;
+    [SerializeField] private int chanceForItem = 75;
+    [SerializeField] private int chanceForWeapon = 25;
+    [SerializeField] private GameObject weaponPickupPrefab;
+    [SerializeField] private GameObject itemPickupPrefab;
+    [SerializeField] private GameObject itemSpawnPoint;
+
     [SerializeField] AudioClip loseSound;
     [SerializeField] AudioClip winSound;
+    [SerializeField] AudioClip gambleDeniedSound;
     [SerializeField] AudioClip InsertCoinSound;
 
+    GambleRewards reward = GambleRewards.None;
+    private AudioSource audioSource;
+    private int bid = 1;
     private bool isGamblin = false;
 
     private void Start()
@@ -44,55 +57,99 @@ public class GambleTerminal : MonoBehaviour
         }
         else
         {
+            audioSource.clip = gambleDeniedSound;
+            audioSource.Play();
             return;
         }
 
         isGamblin = true;
-        Debug.Log("Lets go gambling");
         audioSource.clip = InsertCoinSound;
         audioSource.Play();
+
+
+
+
         int rand = Random.Range(0, 100);
         Debug.Log(rand);
-        if (rand < chanceForWin)
+
+
+        chanceForGoodReward = bid;
+         
+        if (rand < chanceForCoins)
         {
             reward = GambleRewards.Coins;
-            Debug.Log("yopu win");
-            slot1.Animate(reward);
-            slot2.Animate(reward);
-            slot3.Animate(reward);
-            StartCoroutine("PlayWinSound");
+            AnimateSlots(reward);
+            StartCoroutine("WinCoins");
 
+        }
+        else if (rand > 100 - chanceForGoodReward)
+        {
+
+            int chance = Random.Range(0, 100);
+
+            if (chance < chanceForWeapon)
+            {
+                reward = GambleRewards.Weapon;
+            }
+            else
+            {
+                reward= GambleRewards.Item;
+            }
+
+            AnimateSlots(reward);
+            StartCoroutine("WinSpecial");
         }
         else
         {
             reward = GambleRewards.None;
-            Debug.Log("yo lose");
-
-            slot1.Animate(reward);
-            slot2.Animate(reward);
-            slot3.Animate(reward);
-            StartCoroutine("PlayLoseSound");
+            AnimateSlots(reward);
+            StartCoroutine("Lose");
 
         }
-
+        
     }
 
-
-    IEnumerator PlayWinSound()
+    private void AnimateSlots(GambleRewards reward)
+    {
+        slot1.Animate(reward);
+        slot2.Animate(reward);
+        slot3.Animate(reward);
+    }
+    IEnumerator WinCoins()
     {
         yield return new WaitForSeconds(1.25f);
         audioSource.clip = winSound;
         audioSource.Play();
         isGamblin= false;
+        PlayerStatus.Instance.AddCoins(2 * bid);
     }
 
-    IEnumerator PlayLoseSound()
+    IEnumerator Lose()
     {
         yield return new WaitForSeconds(1.25f);
         audioSource.clip = loseSound;
         audioSource.Play();
         isGamblin= false;
     }
+
+    IEnumerator WinSpecial()
+    {
+        yield return new WaitForSeconds(1.25f);
+        audioSource.clip = winSound;
+        audioSource.Play();
+        if(reward == GambleRewards.Item)
+        {
+            Instantiate(itemPickupPrefab, itemSpawnPoint.transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(weaponPickupPrefab, itemSpawnPoint.transform.position, Quaternion.identity);
+        }
+        isGamblin = false;
+        
+    }
+   
+    
 
     public void IncreaseBid()
     {
