@@ -29,13 +29,16 @@ public class GameStateManager : MonoBehaviour
     }
     #endregion
 
+    public delegate void GameStateChangeAction(PauseState state);
+    public static event GameStateChangeAction GameStateChangeCallback;
+
     private PauseState pauseState = PauseState.Running;
     public PauseState GetPauseState()
     {
         return pauseState;
     }
 
-    public bool isGamePaused()
+    public bool IsGamePaused()
     {
         if(pauseState == PauseState.Paused)
         {
@@ -54,7 +57,10 @@ public class GameStateManager : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 0f;
         pauseState = PauseState.Paused;
-
+        if (GameStateChangeCallback != null)
+        {
+            GameStateChangeCallback(pauseState);
+        }
     }
 
     public void ResumeGame()
@@ -67,10 +73,10 @@ public class GameStateManager : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1f;
         pauseState = PauseState.Running;
+        if (GameStateChangeCallback != null)
+        {
+            GameStateChangeCallback(pauseState);
+        }
     }
 
-    private void Update()
-    {
-
-    }
 }

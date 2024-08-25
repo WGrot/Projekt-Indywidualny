@@ -35,6 +35,11 @@ public class PlayerInteractionAndLooking : MonoBehaviour
 
     private void CastInteractionBeam(InputAction.CallbackContext context)
     {
+        if (GameStateManager.Instance.GetPauseState() == PauseState.Paused)
+        {
+            return;
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, maxInteractionDistance))
         {

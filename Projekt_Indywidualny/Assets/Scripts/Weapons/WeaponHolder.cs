@@ -81,7 +81,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void SwitchWeapon(InputAction.CallbackContext context)
     {
-        if (weapons.Count < 2 || GameStateManager.Instance.isGamePaused())
+        if (weapons.Count < 2 || GameStateManager.Instance.IsGamePaused())
         {
             return;
         }
@@ -214,7 +214,7 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
-        if (GameStateManager.Instance.isGamePaused())
+        if (GameStateManager.Instance.IsGamePaused())
         {
             return;
         }
@@ -275,7 +275,7 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
-        if (GameStateManager.Instance.isGamePaused())
+        if (GameStateManager.Instance.IsGamePaused())
         {
             return;
         }
