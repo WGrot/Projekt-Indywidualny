@@ -11,6 +11,7 @@ public class Item : ScriptableObject
     public Rarities Rarity = Rarities.Common;
     public Sprite icon = null;
     public ItemBehaviour itemBehaviour;
+    public bool UnlockedAtStart = true;
 
     public void AddBehavioursToManager()
     {

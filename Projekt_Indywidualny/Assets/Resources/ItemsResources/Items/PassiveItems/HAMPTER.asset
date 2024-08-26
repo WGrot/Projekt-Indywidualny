@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: HAMPTER [delete later]
   description: 'Hampter <br> spawn of hell destined to destroy mortal world '
-  Pools: 00000000
+  Pools: 000000000100000002000000
   Rarity: 4
   icon: {fileID: 21300000, guid: 137c5f5c44abd3743bfc2ce7f7b61391, type: 3}
   itemBehaviour: {fileID: 0}
+  UnlockedAtStart: 0
   PassiveItemID: 5
   modifiers:
   - statType: 2

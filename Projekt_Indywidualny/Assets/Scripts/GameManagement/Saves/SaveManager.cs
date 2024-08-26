@@ -7,7 +7,7 @@ public class SaveManager : MonoBehaviour
 {
     SaveData saveData;
     private static readonly string SAVE_FOLDER = Application.dataPath + "/saves/";
-
+    [SerializeField] bool isPreparingPools = true;
     #region Singleton
     public static SaveManager Instance { get; private set; }
     public SaveData SaveData { get => saveData; set => saveData = value; }
@@ -25,6 +25,8 @@ public class SaveManager : MonoBehaviour
             Init();
             LoadSavedData();
             InitiateItemPools();
+            
+
         }
     }
     #endregion
@@ -52,6 +54,7 @@ public class SaveManager : MonoBehaviour
 
     public void InitiateItemPools()
     {
+        gameObject.AddComponent<ItemPoolsManager>();
         ItemPoolsManager.Instance.LoadPassiveItems();
         ItemPoolsManager.Instance.DeleteLockedItems(saveData.UnlockedPassiveItemsData);
         ItemPoolsManager.Instance.AssignItemToPools();

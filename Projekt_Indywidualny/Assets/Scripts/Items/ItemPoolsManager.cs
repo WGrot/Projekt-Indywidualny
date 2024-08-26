@@ -7,8 +7,8 @@ using static UnityEditor.Progress;
 
 public class ItemPoolsManager : MonoBehaviour
 {
-    private List<PassiveItem> AllItemsList = new List<PassiveItem>();
-    private List<WeaponSO> AllWeaponsList = new List<WeaponSO>();
+    private List<PassiveItem> allItemsList = new List<PassiveItem>();
+    private List<WeaponSO> allWeaponsList = new List<WeaponSO>();
     private ItemPool AllItems = new ItemPool();
     private ItemPool TreasureRoomItems= new ItemPool();
 
@@ -17,6 +17,8 @@ public class ItemPoolsManager : MonoBehaviour
 
     #region Singleton
     public static ItemPoolsManager Instance { get; private set; }
+    public List<WeaponSO> AllWeaponsList1 { get => allWeaponsList; set => allWeaponsList = value; }
+    public List<PassiveItem> AllItemsList1 { get => allItemsList; set => allItemsList = value; }
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class ItemPoolsManager : MonoBehaviour
         PassiveItem[] PoolAllTMP = new PassiveItem[loadedItems.Length];
         loadedItems.CopyTo(PoolAllTMP, 0);
         Array.Sort(PoolAllTMP, new PassiveItemComparer());
-        AllItemsList = PoolAllTMP.ToList();
+        allItemsList = PoolAllTMP.ToList();
     }
 
     public void LoadWeapons()
@@ -46,12 +48,12 @@ public class ItemPoolsManager : MonoBehaviour
         WeaponSO[] PoolAllTMP = new WeaponSO[loadedWeapons.Length];
         loadedWeapons.CopyTo(PoolAllTMP, 0);
         Array.Sort(PoolAllTMP, new WeaponComparer());
-        AllWeaponsList = PoolAllTMP.ToList();
+        allWeaponsList = PoolAllTMP.ToList();
     }
 
     public void AssignItemToPools()
     {
-        foreach (PassiveItem item in AllItemsList)
+        foreach (PassiveItem item in allItemsList)
         {
             foreach (ItemPools pool in item.Pools)
             {
@@ -70,7 +72,7 @@ public class ItemPoolsManager : MonoBehaviour
 
     public void AssignWeaponsToPools()
     {
-        foreach (WeaponSO weapon in AllWeaponsList)
+        foreach (WeaponSO weapon in allWeaponsList)
         {
             foreach (ItemPools pool in weapon.Pools)
             {
@@ -90,22 +92,22 @@ public class ItemPoolsManager : MonoBehaviour
 
     public void DeleteLockedItems(bool[] unlockedPassiveItems)
     {
-        for (int i = AllItemsList.Count - 1; i >= 0; i--)
+        for (int i = allItemsList.Count - 1; i >= 0; i--)
         {
             if (!unlockedPassiveItems[i])
             {
-                AllItemsList.RemoveAt(i);
+                allItemsList.RemoveAt(i);
             }
         }
     }
 
     public void DeleteLockedWeapons(bool[] unlockedWeapons)
     {
-        for (int i = AllItemsList.Count - 1; i >= 0; i--)
+        for (int i = allItemsList.Count - 1; i >= 0; i--)
         {
             if (!unlockedWeapons[i])
             {
-                AllWeaponsList.RemoveAt(i);
+                allWeaponsList.RemoveAt(i);
             }
         }
     }
