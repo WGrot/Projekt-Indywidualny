@@ -9,6 +9,9 @@ public class ItemPoolsManager : MonoBehaviour
 {
     private List<PassiveItem> allItemsList = new List<PassiveItem>();
     private List<WeaponSO> allWeaponsList = new List<WeaponSO>();
+    private List<PassiveItem> unlockedItemsList = new List<PassiveItem>();
+    private List<WeaponSO> unlockedWeaponsList = new List<WeaponSO>();
+
     private ItemPool AllItems = new ItemPool();
     private ItemPool TreasureRoomItems= new ItemPool();
 
@@ -17,8 +20,8 @@ public class ItemPoolsManager : MonoBehaviour
 
     #region Singleton
     public static ItemPoolsManager Instance { get; private set; }
-    public List<WeaponSO> AllWeaponsList1 { get => allWeaponsList; set => allWeaponsList = value; }
-    public List<PassiveItem> AllItemsList1 { get => allItemsList; set => allItemsList = value; }
+    public List<WeaponSO> AllWeaponsList { get => allWeaponsList; set => allWeaponsList = value; }
+    public List<PassiveItem> AllItemsList { get => allItemsList; set => allItemsList = value; }
 
     private void Awake()
     {
@@ -53,7 +56,7 @@ public class ItemPoolsManager : MonoBehaviour
 
     public void AssignItemToPools()
     {
-        foreach (PassiveItem item in allItemsList)
+        foreach (PassiveItem item in unlockedItemsList)
         {
             foreach (ItemPools pool in item.Pools)
             {
@@ -72,7 +75,7 @@ public class ItemPoolsManager : MonoBehaviour
 
     public void AssignWeaponsToPools()
     {
-        foreach (WeaponSO weapon in allWeaponsList)
+        foreach (WeaponSO weapon in unlockedWeaponsList)
         {
             foreach (ItemPools pool in weapon.Pools)
             {
@@ -92,22 +95,24 @@ public class ItemPoolsManager : MonoBehaviour
 
     public void DeleteLockedItems(bool[] unlockedPassiveItems)
     {
+        unlockedItemsList = new List<PassiveItem>(allItemsList);
         for (int i = allItemsList.Count - 1; i >= 0; i--)
         {
             if (!unlockedPassiveItems[i])
             {
-                allItemsList.RemoveAt(i);
+                unlockedItemsList.RemoveAt(i);
             }
         }
     }
 
     public void DeleteLockedWeapons(bool[] unlockedWeapons)
     {
-        for (int i = allItemsList.Count - 1; i >= 0; i--)
+        unlockedWeaponsList = new List<WeaponSO>(allWeaponsList);
+        for (int i = allWeaponsList.Count - 1; i >= 0; i--)
         {
             if (!unlockedWeapons[i])
             {
-                allWeaponsList.RemoveAt(i);
+                unlockedWeaponsList.RemoveAt(i);
             }
         }
     }

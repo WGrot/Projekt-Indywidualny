@@ -28,6 +28,7 @@ public class Itementry : MonoBehaviour
     private List<PoollContainer> poolContainers = new List<PoollContainer>();
 
     PassiveItem itemCopy;
+    WeaponSO weaponCopy;
     public void LoadItem(Item item)
     {
         this.item = item;
@@ -49,6 +50,12 @@ public class Itementry : MonoBehaviour
             newIdField.text = id.text;
         }
 
+        if (item is WeaponSO)
+        {
+            weaponCopy = (WeaponSO)item;
+            id.text = weaponCopy.WeaponID.ToString();
+            newIdField.text = id.text;
+        }
 
     }
 
@@ -56,11 +63,17 @@ public class Itementry : MonoBehaviour
     {
         item.Rarity = (Rarities)RarityDropDown.value;
         item.UnlockedAtStart = unlockedAtStart.isOn;
-        if(newIdField.text != id.text && item is PassiveItem)
+
+        if (newIdField.text != id.text && item is PassiveItem)
         {
             itemCopy.PassiveItemID = int.Parse(newIdField.text);
-            Debug.Log(int.Parse(newIdField.text));
         }
+
+        if (newIdField.text != id.text && item is WeaponSO)
+        {
+            weaponCopy.WeaponID = int.Parse(newIdField.text);
+        }
+
     }
 
     public void LoadPoolsToBox()
@@ -90,7 +103,7 @@ public class Itementry : MonoBehaviour
     public void SaveChangedPools()
     {
         List<ItemPools> chosenPools = new List<ItemPools>();
-        for (int i = 0; i< poolContainers.Count; i++ )
+        for (int i = 0; i < poolContainers.Count; i++)
         {
 
             PoollContainer poolContainer = poolContainers[i];

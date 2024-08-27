@@ -8,6 +8,7 @@ public class SaveManager : MonoBehaviour
     SaveData saveData;
     private static readonly string SAVE_FOLDER = Application.dataPath + "/saves/";
     [SerializeField] bool isPreparingPools = true;
+
     #region Singleton
     public static SaveManager Instance { get; private set; }
     public SaveData SaveData { get => saveData; set => saveData = value; }
@@ -31,12 +32,33 @@ public class SaveManager : MonoBehaviour
     }
     #endregion
 
+    #region UnlockedAtStart class
+    protected class UnlockAtStartData
+    {
+        public bool[] unlockedItems;
+        public bool[] unlockedWeapons;
 
+        public UnlockAtStartData(bool[] unlockedItems, bool[] unlockedWeapons)
+        {
+            this.unlockedItems = unlockedItems;
+            this.unlockedWeapons = unlockedWeapons;
+        }
+    }
+    #endregion
     public void Init()
     {
         if (!Directory.Exists(SAVE_FOLDER))
         {
             Directory.CreateDirectory(SAVE_FOLDER);
+        }
+
+        if(!File.Exists(SAVE_FOLDER+ "/unlockAtStartData.txt"))
+        {
+            Debug.Log("nie istnieje");
+        }
+        else
+        {
+            Debug.Log("istnieje");
         }
     }
 
@@ -50,6 +72,21 @@ public class SaveManager : MonoBehaviour
     {
         string saveString = File.ReadAllText(Application.dataPath + "/saves/save.txt");
         saveData = JsonUtility.FromJson<SaveData>(saveString);
+    }
+
+    public void CreateUnlockAtStartFile(bool[] unlockedItems, bool[] unlockedWeapons)
+    {
+        UnlockAtStartData unlockData = new UnlockAtStartData(unlockedItems, unlockedWeapons);
+        string json = JsonUtility.ToJson(unlockData);
+        File.WriteAllText(Application.dataPath + "/saves/unlockAtStartData.txt", json);
+    }
+
+    public void ResetSave()
+    {
+        string recoveryString = File.ReadAllText(Application.dataPath + "/saves/unlockAtStartData.txt");
+        UnlockAtStartData unlockData = JsonUtility.FromJson<UnlockAtStartData>(recoveryString);
+        saveData = new SaveData(unlockData.unlockedItems, unlockData.unlockedWeapons);
+        SaveSavedData();
     }
 
     public void InitiateItemPools()
@@ -66,3 +103,5 @@ public class SaveManager : MonoBehaviour
 
 
 }
+
+
