@@ -5,10 +5,16 @@ using UnityEngine;
 public class BuffManager : MonoBehaviour
 {
     List<Buff> buffs= new List<Buff>();
+    List<Buff> buffsWithIcons = new List<Buff>();
     float lastCheckTime;
     [SerializeField] float timeBetweenChecks = 0.1f;
 
     public static BuffManager Instance { get; private set; }
+    public List<Buff> BuffsWithIcons { get => buffsWithIcons; set => buffsWithIcons = value; }
+
+    public delegate void BuffsUpdatedAction();
+    public static event BuffsUpdatedAction OnBuffsUpdatedCallback;
+
 
     private void Awake()
     {
@@ -41,15 +47,26 @@ public class BuffManager : MonoBehaviour
         {
             buffs[i].RemoveEffects();
             buffs.RemoveAt(i);
+            buffsWithIcons.RemoveAt(i);
         }
 
         buffs.Add(buff);
+
+        if (buff.BuffIcon is not null)
+        {
+            buffsWithIcons.Add(buff);
+        }
+
         buff.ApplyEffects();
     }
 
     public void RemoveBuff(Buff buff)
     {
         buffs.Remove(buff);
+        if (buff.BuffIcon != null)
+        {
+            buffsWithIcons.Remove(buff);
+        }
         buff.RemoveEffects();
     }
 
@@ -64,6 +81,11 @@ public class BuffManager : MonoBehaviour
             {
                 RemoveBuff(buff);
             }
+        }
+
+        if (OnBuffsUpdatedCallback != null)
+        {
+            OnBuffsUpdatedCallback();
         }
     }
 
@@ -80,4 +102,9 @@ public class BuffManager : MonoBehaviour
         return -1;
     }
 
+
+    public List<Buff> GetBuffList()
+    {
+        return buffs;
+    }
 }
