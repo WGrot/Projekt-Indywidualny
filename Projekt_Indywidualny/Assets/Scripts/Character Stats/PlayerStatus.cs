@@ -19,17 +19,24 @@ public class PlayerStatus : MonoBehaviour
 
     private GameObject playerBody;
 
+    #region events
 
     public delegate void OnPlayersHealthChanged();
     public static event OnPlayersHealthChanged OnPlayersHealthChangedCallback;
+
     public delegate void OnPlayerTakeDamage();
     public static event OnPlayerTakeDamage OnPlayerTakeDamageCallback;
+
     public delegate void OnPlayerHeal();
     public static event OnPlayerHeal OnPlayerHealCallback;
+
     public delegate void OnPlayerDie();
     public static event OnPlayerDie OnPlayerDieCallback;
+
     public delegate void OnCoinsAmountChange();
     public static event OnCoinsAmountChange OnCoinsAmountChangeCallback;
+
+    #endregion
 
     private void Awake()
     {
@@ -161,8 +168,9 @@ public class PlayerStatus : MonoBehaviour
 
     public void ReduceCurrentPlayerHP(float amount)
     {
+        Debug.Log(currentHp);
         currentHp -= amount;
-        
+        Debug.Log(currentHp);
         if (OnPlayersHealthChangedCallback != null)
         {
             OnPlayersHealthChangedCallback();

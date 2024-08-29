@@ -17,13 +17,10 @@ MonoBehaviour:
   Pools: 00000000
   Rarity: 1
   icon: {fileID: 21300000, guid: 61642d2462d274545a1b401947571d75, type: 3}
-  itemBehaviour: {fileID: 0}
+  itemBehaviour: {fileID: 11400000, guid: f05a13aad1dd26c4cb96b0daf387309f, type: 2}
+  UnlockedAtStart: 1
   PassiveItemID: 7
   modifiers:
-  - statType: 4
-    modType: 100
-    value: 30
-    order: 100
   - statType: 0
     modType: 100
     value: 40

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,16 +15,12 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        //PlayerStatus.OnPlayerHealCallback += ShowHealthData;
-        //PlayerStatus.OnPlayerTakeDamageCallback += ShowHealthData;
         PlayerStatus.OnPlayersHealthChangedCallback += ShowHealthData;
         PL_HealthStat.OnHealthModifierAddedCallback+= ShowHealthData;
     }
 
     private void OnDisable()
     {
-        //PlayerStatus.OnPlayerHealCallback -= ShowHealthData;
-        //PlayerStatus.OnPlayerTakeDamageCallback -= ShowHealthData;
         PlayerStatus.OnPlayersHealthChangedCallback -= ShowHealthData;
         PL_HealthStat.OnHealthModifierAddedCallback -= ShowHealthData;
     }
@@ -45,6 +42,6 @@ public class HealthBar : MonoBehaviour
             playerFace.sprite= healtyFace;
         }
         healthBarImage.fillAmount = currentHealthData / maxHpData;
-        currentHealth.SetText(currentHealthData.ToString() + "/" + maxHpData);
+        currentHealth.SetText(Math.Round(currentHealthData, 1).ToString() + "/" + maxHpData);
     }
 }

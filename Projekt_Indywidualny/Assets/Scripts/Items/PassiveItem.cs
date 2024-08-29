@@ -15,15 +15,8 @@ public class PassiveItem : Item
         for (int i = 0; i < modifiers.Count; i++)
         {
             StatModifier modifier = modifiers[i];
-            int numberOfStats = PlayerStatus.Instance.stats.Count;
-            for (int j = 0; j < numberOfStats; j++)
-            {
-                CharacterStat stat = PlayerStatus.Instance.stats[j];
-                if (modifier.statType == stat.statType)
-                {
-                    stat.AddModifier(modifier);
-                }
-            }
+            CharacterStat stat = PlayerStatus.Instance.stats[(int)modifier.statType];
+            stat.AddModifier(modifier);
         }
        
     }
@@ -33,15 +26,8 @@ public class PassiveItem : Item
         for (int i = 0; i < modifiers.Count; i++)
         {
             StatModifier modifier = modifiers[i];
-            int numberOfStats = PlayerStatus.Instance.stats.Count;
-            for (int j = 0; j < numberOfStats; j++)
-            {
-                CharacterStat stat = PlayerStatus.Instance.stats[j];
-                if (modifier.statType == stat.statType)
-                {
-                    stat.RemoveModifier(modifier);
-                }
-            }
+            CharacterStat stat = PlayerStatus.Instance.stats[(int)modifier.statType];
+            stat.RemoveModifier(modifier);
         }
     }
 

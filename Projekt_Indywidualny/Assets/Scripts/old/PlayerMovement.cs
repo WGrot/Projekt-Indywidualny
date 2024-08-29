@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Vector3.Normalize(inputActions.Player_base.HorizontalMovement.ReadValue<Vector2>()) ;
         if (!isDashing)
         {
-            speedStatvalue = PlayerStatus.Instance.stats[4].value;
+            speedStatvalue = PlayerStatus.Instance.stats[(int)StatType.MoveSpeed].value;
             completeMoveVector = ((transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * moveSpeed * speedStatvalue + new Vector3(0, verticalVelocity, 0)) * Time.deltaTime;
         }
 
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator Dash()
     {
-        staminaStatvalue = PlayerStatus.Instance.stats[2].value;
+        staminaStatvalue = PlayerStatus.Instance.stats[(int)StatType.Stamina].value;
         isDashing = true;
         canDash = false;
         completeMoveVector = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * moveSpeed * dashMultipier * Time.deltaTime;

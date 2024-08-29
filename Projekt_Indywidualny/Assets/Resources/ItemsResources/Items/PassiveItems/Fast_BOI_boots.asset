@@ -19,9 +19,10 @@ MonoBehaviour:
   Rarity: 0
   icon: {fileID: 21300000, guid: 52eaceeaf2f2dba45b2f433eb8859624, type: 3}
   itemBehaviour: {fileID: 11400000, guid: ba585623002e65544a20d81fff857372, type: 2}
+  UnlockedAtStart: 1
   PassiveItemID: 3
   modifiers:
-  - statType: 2
+  - statType: 4
     modType: 100
     value: 0.1
     order: 100
