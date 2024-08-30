@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51598764c5848614dbf708df1bceb5a7, type: 3}
+  m_Name: RocketLauncher
+  m_EditorClassIdentifier: 
+  itemName: RocketLauncher
+  description: put description here
+  Pools: 00000000
+  Rarity: 0
+  icon: {fileID: 21300000, guid: 9ec9827d09ec00c4ab04ede7a8f81cb5, type: 3}
+  itemBehaviour: {fileID: 0}
+  UnlockedAtStart: 1
+  WeaponID: 7
+  shootConfiguration: {fileID: 11400000, guid: 9fd22c70e7709974f900dc5b646de5b4, type: 2}
+  shootStyle: 0
+  Damage: 0
+  FireRate: 0.25
+  ChargeTime: 0
+  ReloadTime: 2
+  ClipSize: 1
+  MaxAmmo: 20
+  AmmoUsePerShoot: 1
+  bulletsPerShoot: 5
+  Spread: {x: 0.1, y: 0.1, z: 0.1}
+  SpawnPoint: {x: 0.7, y: -0.3, z: -1}
+  SpawnRotation: {x: 0, y: -85, z: 0}
+  ModelScale: {x: 1, y: 1, z: 1}
+  ShootOffset: {x: 0, y: 0, z: 0}
+  ModelPrefab: {fileID: 0}
+  idleImage: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: 471d80b7cf6b0ff488c57071995087a2, type: 3}
+  weaponReloadSound: {fileID: 8300000, guid: 602a16cdecfd21641b35832cca60770c, type: 3}

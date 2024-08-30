@@ -1,28 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Grenade : Explosive
+public class Rocket : Explosive
 {
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
+    [SerializeField] private AudioClip explosionSound;
+    private float startingLifeTime;
 
     private Rigidbody rb;
     private bool exploded = false;
 
-    
     public override void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity += transform.forward * speed;
+        startingLifeTime = lifeTime;
         base.explosionParticles = GetComponent<ParticleSystem>();
         base.audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
     }
 
     private void Update()
     {
         lifeTime -= Time.deltaTime;
+        Debug.Log(Mathf.Pow(startingLifeTime - lifeTime, 2));
+        rb.velocity = transform.forward * Mathf.Clamp(Mathf.Pow(startingLifeTime - lifeTime,2), 0, speed) * speed;
         if (lifeTime < 0 && !exploded)
         {
             exploded = true;
@@ -32,7 +36,7 @@ public class Grenade : Explosive
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.transform.TryGetComponent<Ihp>(out var enemyHp) && collision.gameObject.CompareTag("Enemy") && !exploded)
+        if (!exploded)
         {
             exploded = true;
             StartCoroutine(Explode());
@@ -42,7 +46,8 @@ public class Grenade : Explosive
     public override IEnumerator Explode()
     {
         explosionParticles.Play();
-        audioSource.Play();
+        base.audioSource.clip = explosionSound;
+        base.audioSource.Play();
         DisableVisuals();
         Collider[] objectsInRange = Physics.OverlapSphere(transform.position, base.explosionRange);
         List<GameObject> damagedObjects = new List<GameObject>();
@@ -57,14 +62,20 @@ public class Grenade : Explosive
                 damagedObjects.Add(col.gameObject);
             }
         }
-        yield return new WaitForSeconds(audioSource.clip.length);
+        yield return new WaitForSeconds(explosionSound.length);
+
         Destroy(gameObject);
+
     }
 
     private void DisableVisuals()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.enabled = false;
+        }
         GetComponent<TrailRenderer>().enabled = false;
     }
-    
+
 }
