@@ -105,7 +105,7 @@ public class Inventory : MonoBehaviour
     {
         weapons.Add(weapon);
         weapon.OnPickup();
-        weapon.AddBehavioursToManager();
+        //weapon.AddBehavioursToManager();
         OnWeaponAddedCallback?.Invoke();
     }
 

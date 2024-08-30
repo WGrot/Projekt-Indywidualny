@@ -62,7 +62,7 @@ public class WeaponSO : Item
         LastShootTime = Time.time;
         if(itemBehaviour != null && itemBehaviour is WeaponBehaviour)
         {
-            weaponBehaviour= (WeaponBehaviour)itemBehaviour;
+            weaponBehaviour = (WeaponBehaviour)itemBehaviour;
         }
     }
 

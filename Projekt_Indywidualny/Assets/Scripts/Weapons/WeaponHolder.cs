@@ -28,8 +28,10 @@ public class WeaponHolder : MonoBehaviour
 
     public delegate void OnWeaponChanged(int activeWeaponId);
     public static event OnWeaponChanged OnWeaponChangedCallback;
+
     public delegate void OnWeaponShoot(int activeWeaponId);
     public static event OnWeaponShoot OnWeaponShootCallback;
+
     public delegate void OnWeaponReload(int activeWeaponId);
     public static event OnWeaponReload OnWeaponReloadCallback;
 
@@ -96,6 +98,7 @@ public class WeaponHolder : MonoBehaviour
 
         if (activeWeapon.WeaponBehaviour != null)
         {
+            activeWeapon.AddBehavioursToManager(); //Dodajemy behaviour broni do managera za ka¿dym razem gdy equip'ujemy broñ
             activeWeapon.WeaponBehaviour.OnEquip();
         }
 
@@ -115,10 +118,14 @@ public class WeaponHolder : MonoBehaviour
         {
             activeWeaponID += 1;
         }
+
+        activeWeapon.RemoveBehavioursFromManager(); // Usuwamy behaviour broni z managera za ka¿dym razem gdy j¹ zmieniamy, zapobiega to aktywacji BH przez inne bronie
+
         Inventory.Instance.SetActiveWeaponID(activeWeaponID);
         activeWeapon = weapons[activeWeaponID];
         weapons[activeWeaponID].ApplyPrefix(prefixes[activeWeaponID]);
         SetWeaponModel();
+
         if (OnWeaponChangedCallback != null)
         {
             OnWeaponChangedCallback(activeWeaponID);
@@ -136,10 +143,14 @@ public class WeaponHolder : MonoBehaviour
         {
             activeWeaponID -= 1;
         }
+
+        activeWeapon.RemoveBehavioursFromManager(); // Usuwamy behaviour broni z managera za ka¿dym razem gdy j¹ zmieniamy, zapobiega to aktywacji BH przez inne bronie
+
         Inventory.Instance.SetActiveWeaponID(activeWeaponID);
         activeWeapon = weapons[activeWeaponID];
         weapons[activeWeaponID].ApplyPrefix(prefixes[activeWeaponID]);
         SetWeaponModel();
+
         if (OnWeaponChangedCallback != null)
         {
             OnWeaponChangedCallback(activeWeaponID);
@@ -164,10 +175,16 @@ public class WeaponHolder : MonoBehaviour
 
     private void EquipNewWeapon()
     {
+        if (activeWeapon != null && activeWeapon.WeaponBehaviour != null)   // Usuwanie BH poprzedniej trzymanej broni z managera, inaczej siê dubluj¹
+        {
+            activeWeapon.RemoveBehavioursFromManager();
+        }
+
         activeWeaponID = weapons.Count - 1;
         Inventory.Instance.SetActiveWeaponID(activeWeaponID);
         activeWeapon = weapons[activeWeaponID];
         activeWeapon.OnFirstEquip();
+        activeWeapon.AddBehavioursToManager();
         activeWeapon.ApplyPrefix(prefixes[activeWeaponID]);
         activeWeapon = weapons[activeWeaponID];
         SetWeaponModel();
@@ -307,7 +324,7 @@ public class WeaponHolder : MonoBehaviour
         Inventory.Instance.RemoveWeapon(activeWeapon);
         GameObject pickupInstance = Instantiate(weaponPickup, transform.position, Quaternion.identity);
         pickupInstance.GetComponent<WeaponPickup>().SetWeaponAndPrefixAndAmmo(activeWeapon, prefixes[activeWeaponID], ammos[activeWeaponID]);
-        activeWeapon = null;
+        //activeWeapon = null;
         Inventory.Instance.RemovePrefix(prefixes[activeWeaponID]);
         Inventory.Instance.RemoveAmmo(ammos[activeWeaponID]);
         if (weapons.Count > 0)
@@ -340,10 +357,12 @@ public class WeaponHolder : MonoBehaviour
         Inventory.Instance.RemoveWeaponAtIndex(index);
         Inventory.Instance.RemovePrefixAtIndex(index);
         Inventory.Instance.RemoveAmmoAtIndex(index);
-        if (activeWeaponID == index)
+
+        /*if (activeWeaponID == index)
         {
             activeWeapon = null;
         }
+        */
         if (weapons.Count > 0)
         {
             SwitchToPreviousWeapon();
