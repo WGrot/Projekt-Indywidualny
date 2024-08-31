@@ -108,7 +108,7 @@ public class WeaponSO : Item
             if(shootConfiguration != null)
             {
                 //0_0 
-                shootConfiguration.Shoot(weaponHolder,activeWeaponId, damage, fireRate, LastShootTime, AmmoUsePerShoot, bulletsPerShoot, spread, ShootOffset, ModelPrefab);
+                shootConfiguration.Shoot(weaponHolder,activeWeaponId, damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage), fireRate, LastShootTime, AmmoUsePerShoot, bulletsPerShoot, spread, ShootOffset, ModelPrefab);
             }
             else
             {

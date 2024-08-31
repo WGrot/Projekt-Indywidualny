@@ -23,8 +23,7 @@ public class GambleTerminal : MonoBehaviour
 
     [SerializeField] private int chanceForCoins = 25;
     [SerializeField] private int chanceForGoodReward = 10;
-    [SerializeField] private int chanceForItem = 75;
-    [SerializeField] private int chanceForWeapon = 25;
+    [SerializeField] private int chanceForWeapon = 25; // chance for item is 100 - chance for weapon
     [SerializeField] private GameObject weaponPickupPrefab;
     [SerializeField] private GameObject itemPickupPrefab;
     [SerializeField] private GameObject itemSpawnPoint;

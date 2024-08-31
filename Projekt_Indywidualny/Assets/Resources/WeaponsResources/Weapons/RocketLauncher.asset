@@ -22,15 +22,15 @@ MonoBehaviour:
   WeaponID: 7
   shootConfiguration: {fileID: 11400000, guid: 9fd22c70e7709974f900dc5b646de5b4, type: 2}
   shootStyle: 0
-  Damage: 0
+  Damage: 30
   FireRate: 0.25
   ChargeTime: 0
   ReloadTime: 2
   ClipSize: 1
   MaxAmmo: 20
   AmmoUsePerShoot: 1
-  bulletsPerShoot: 5
-  Spread: {x: 0.1, y: 0.1, z: 0.1}
+  bulletsPerShoot: 1
+  Spread: {x: 0, y: 0, z: 0}
   SpawnPoint: {x: 0.7, y: -0.3, z: -1}
   SpawnRotation: {x: 0, y: -85, z: 0}
   ModelScale: {x: 1, y: 1, z: 1}

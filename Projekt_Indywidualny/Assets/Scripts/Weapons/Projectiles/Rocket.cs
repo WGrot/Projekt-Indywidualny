@@ -1,31 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
-public class Rocket : Explosive
+public class Rocket : Projectile
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float lifeTime;
     [SerializeField] private AudioClip explosionSound;
+    [SerializeField] protected float explosionRange;
+    protected ParticleSystem explosionParticles;
+    protected AudioSource audioSource;
+
+
     private float startingLifeTime;
 
-    private Rigidbody rb;
     private bool exploded = false;
 
-    public override void Start()
+    public void Start()
     {
         rb = GetComponent<Rigidbody>();
         startingLifeTime = lifeTime;
-        base.explosionParticles = GetComponent<ParticleSystem>();
-        base.audioSource = GetComponent<AudioSource>();
+        explosionParticles = GetComponent<ParticleSystem>();
+        audioSource = GetComponent<AudioSource>();
         audioSource.Play();
     }
 
     private void Update()
     {
         lifeTime -= Time.deltaTime;
-        Debug.Log(Mathf.Pow(startingLifeTime - lifeTime, 2));
         rb.velocity = transform.forward * Mathf.Clamp(Mathf.Pow(startingLifeTime - lifeTime,2), 0, speed) * speed;
         if (lifeTime < 0 && !exploded)
         {
@@ -43,13 +43,13 @@ public class Rocket : Explosive
         }
     }
 
-    public override IEnumerator Explode()
+    public IEnumerator Explode()
     {
         explosionParticles.Play();
-        base.audioSource.clip = explosionSound;
-        base.audioSource.Play();
+        audioSource.clip = explosionSound;
+        audioSource.Play();
         DisableVisuals();
-        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, base.explosionRange);
+        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, explosionRange);
         List<GameObject> damagedObjects = new List<GameObject>();
 
         foreach (Collider col in objectsInRange)
@@ -58,7 +58,7 @@ public class Rocket : Explosive
             Ihp target = col.GetComponent<Ihp>();
             if (target != null && !damagedObjects.Contains(col.gameObject))
             {
-                target.TakeDamage(base.explosionDamage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage));
+                target.TakeDamage(damage);
                 damagedObjects.Add(col.gameObject);
             }
         }

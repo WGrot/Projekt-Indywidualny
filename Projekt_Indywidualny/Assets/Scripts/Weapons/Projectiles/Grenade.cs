@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Grenade : Explosive
+public class Grenade : Projectile
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float lifeTime;
-
-    private Rigidbody rb;
     private bool exploded = false;
+    protected ParticleSystem explosionParticles;
+    protected AudioSource audioSource;
+    [SerializeField] protected float explosionRange;
 
-    
-    public override void Start()
+    public void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity += transform.forward * speed;
-        base.explosionParticles = GetComponent<ParticleSystem>();
-        base.audioSource = GetComponent<AudioSource>();
+        explosionParticles = GetComponent<ParticleSystem>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -39,12 +37,12 @@ public class Grenade : Explosive
         }
     }
 
-    public override IEnumerator Explode()
+    public IEnumerator Explode()
     {
         explosionParticles.Play();
         audioSource.Play();
         DisableVisuals();
-        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, base.explosionRange);
+        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, explosionRange);
         List<GameObject> damagedObjects = new List<GameObject>();
 
         foreach (Collider col in objectsInRange)
@@ -53,7 +51,7 @@ public class Grenade : Explosive
             Ihp target = col.GetComponent<Ihp>();
             if (target != null && !damagedObjects.Contains(col.gameObject))
             {
-                target.TakeDamage(base.explosionDamage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage));
+                target.TakeDamage(damage);
                 damagedObjects.Add(col.gameObject);
             }
         }

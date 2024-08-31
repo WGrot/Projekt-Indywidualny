@@ -23,6 +23,13 @@ public class ProjectileShootConfig : ShootConfig
 
         GameObject projectile = Instantiate(WeaponProjectile, weaponHolder.transform.position /*+ weaponHolder.transform.rotation * ShootOffset*/, weaponHolder.transform.rotation);
         projectile.transform.forward = direction;
+
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
+        if (projectileScript != null )
+        {
+            projectileScript.SetDamage(damage);
+        }
+
         if (shouldAccountPlayerSpeed)
         {
             Vector3 playerVelocity = PlayerStatus.Instance.GetPlayerBody().GetComponent<CharacterController>().velocity;

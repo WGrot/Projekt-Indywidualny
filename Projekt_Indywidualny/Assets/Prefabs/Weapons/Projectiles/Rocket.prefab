@@ -5374,8 +5374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055c244ba488a9d498e97627a4d4d5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRange: 4
-  explosionDamage: 30
+  damage: 30
   speed: 40
   lifeTime: 3
   explosionSound: {fileID: 8300000, guid: 25a3aa8524227754dbef615c8c95fc53, type: 3}
+  explosionRange: 4

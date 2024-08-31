@@ -2,14 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlamethrowerFire : MonoBehaviour
+public class FlamethrowerFire : Projectile
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float lifeTime;
-    [SerializeField] private float damage;
-    private Rigidbody rb;
-
-
     public void Start()
     {
         rb = GetComponent<Rigidbody>();

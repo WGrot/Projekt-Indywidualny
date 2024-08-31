@@ -96,6 +96,9 @@ public class WeaponHolder : MonoBehaviour
             SwitchToPreviousWeapon();
         }
 
+        StopAllCoroutines();
+        isReloading = false;
+
         if (activeWeapon.WeaponBehaviour != null)
         {
             activeWeapon.AddBehavioursToManager(); //Dodajemy behaviour broni do managera za ka¿dym razem gdy equip'ujemy broñ

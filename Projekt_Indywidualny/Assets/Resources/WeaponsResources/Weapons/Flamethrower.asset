@@ -22,7 +22,7 @@ MonoBehaviour:
   WeaponID: 5
   shootConfiguration: {fileID: 11400000, guid: 13d0f8d50c2312143b744a7e637a059d, type: 2}
   shootStyle: 1
-  Damage: 0
+  Damage: 10
   FireRate: 0.15
   ChargeTime: 0
   ReloadTime: 2.5

@@ -6,8 +6,7 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     SaveData saveData;
-    private static readonly string SAVE_FOLDER = Application.dataPath + "/saves/";
-    [SerializeField] bool isPreparingPools = true;
+    private static string SAVE_FOLDER;
 
     #region Singleton
     public static SaveManager Instance { get; private set; }
@@ -15,6 +14,8 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
+        SAVE_FOLDER = Application.persistentDataPath + "/saves/";
+        Debug.Log(Application.persistentDataPath);
         if (Instance != null && Instance != this)
         {
             Debug.LogError("More than one ItemPoolManager instance found!");
@@ -65,12 +66,13 @@ public class SaveManager : MonoBehaviour
     public void SaveSavedData()
     {
         string json = JsonUtility.ToJson(saveData);
-        File.WriteAllText(Application.dataPath + "/saves/save.txt", json);
+        File.WriteAllText(Application.persistentDataPath + "/saves/save.txt", json);
+        File.WriteAllText(Application.persistentDataPath + "/saves/unlockAtStartData.txt", json);
     }
 
     public void LoadSavedData()
     {
-        string saveString = File.ReadAllText(Application.dataPath + "/saves/save.txt");
+        string saveString = File.ReadAllText(Application.persistentDataPath + "/saves/save.txt");
         saveData = JsonUtility.FromJson<SaveData>(saveString);
     }
 
@@ -79,6 +81,7 @@ public class SaveManager : MonoBehaviour
         UnlockAtStartData unlockData = new UnlockAtStartData(unlockedItems, unlockedWeapons);
         string json = JsonUtility.ToJson(unlockData);
         File.WriteAllText(Application.dataPath + "/saves/unlockAtStartData.txt", json);
+        File.WriteAllText(Application.persistentDataPath + "/saves/unlockAtStartData.txt", json);
     }
 
     public void ResetSave()
