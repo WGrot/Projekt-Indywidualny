@@ -10,6 +10,7 @@ public class ItemBehaviourManager
 
     private List<Action> onPlayerTakeDamageBH;
     private List<Action> onEnemyDeathBH;
+    private List<Action> onCoinAmountChangeBH;
     public ItemBehaviourManager()
     {
         onDropBH = new List<Action>();
@@ -17,6 +18,8 @@ public class ItemBehaviourManager
 
         onPlayerTakeDamageBH= new List<Action>();
         onEnemyDeathBH= new List<Action>();
+        onCoinAmountChangeBH= new List<Action>();
+
         SubToAllEvents();
     }
 
@@ -24,12 +27,14 @@ public class ItemBehaviourManager
     {
         PlayerStatus.OnPlayerTakeDamageCallback += OnPlayerTakeDamage;
         EnemyHpBase.OnEnemyDeath += OnEnemyDeath;
+        PlayerStatus.OnCoinsAmountChangeCallback += OnCoinAmountChange;
     }
 
     private void UnSubToAllEvents()
     {
         PlayerStatus.OnPlayerTakeDamageCallback -= OnPlayerTakeDamage;
         EnemyHpBase.OnEnemyDeath -= OnEnemyDeath;
+        PlayerStatus.OnCoinsAmountChangeCallback -= OnCoinAmountChange;
     }
     private void DoActions(List<Action> functions)
     {
@@ -71,6 +76,24 @@ public class ItemBehaviourManager
     public void RemoveFuncFromOnEnemyDeath(Action func)
     {
         onEnemyDeathBH.Remove(func);
+
+    }
+    #endregion
+
+    #region OnCoinAmountChange list methods
+    private void OnCoinAmountChange(int amount)
+    {
+        DoActions(onCoinAmountChangeBH);
+    }
+
+    public void AddFuncToOnCoinAmountChange(Action func)
+    {
+        onCoinAmountChangeBH.Add(func);
+
+    }
+    public void RemoveFuncFromOnCoinAmountChange(Action func)
+    {
+        onCoinAmountChangeBH.Remove(func);
 
     }
     #endregion

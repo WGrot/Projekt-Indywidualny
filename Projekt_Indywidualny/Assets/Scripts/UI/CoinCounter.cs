@@ -20,6 +20,11 @@ public class CoinCounter : MonoBehaviour
     }
 
 
+    public void ChangeCoinCounter(int amount)
+    {
+        text.text = PlayerStatus.Instance.Coins.ToString();
+    }
+
     public void ChangeCoinCounter()
     {
         text.text = PlayerStatus.Instance.Coins.ToString();

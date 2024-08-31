@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f4f4361f054f14d86349afe9c431cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainAudioMixer: {fileID: 24100000, guid: 5b7017ac790fea64482c4855f76f0cff, type: 2}
 --- !u!114 &8108635487332653129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,4 +150,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babd2a0fcd4997c43b4a673171e5150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPreparingPools: 1

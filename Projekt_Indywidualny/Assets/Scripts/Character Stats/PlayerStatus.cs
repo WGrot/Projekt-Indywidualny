@@ -33,7 +33,7 @@ public class PlayerStatus : MonoBehaviour
     public delegate void OnPlayerDie();
     public static event OnPlayerDie OnPlayerDieCallback;
 
-    public delegate void OnCoinsAmountChange();
+    public delegate void OnCoinsAmountChange(int amount);
     public static event OnCoinsAmountChange OnCoinsAmountChangeCallback;
 
     #endregion
@@ -88,12 +88,16 @@ public class PlayerStatus : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            Debug.Log("painkiller");
+            GameStateManager.Instance.StartSlowTime(0.25F, 4);
+            /*
             TakeDamage(10);
             for (int i = 0; i< stats.Count; i++) {
                 Debug.Log(stats[i].value);
 
             }
             Debug.Log("PlayerHP = " + currentHp);
+            */
         }
 
         if (Input.GetKeyDown(KeyCode.O))
@@ -218,7 +222,7 @@ public class PlayerStatus : MonoBehaviour
         coins += amount;
         if (OnCoinsAmountChangeCallback != null)
         {
-            OnCoinsAmountChangeCallback();
+            OnCoinsAmountChangeCallback(amount);
         }
     }
     
@@ -230,7 +234,7 @@ public class PlayerStatus : MonoBehaviour
             coins -= amount;
             if (OnCoinsAmountChangeCallback != null)
             {
-                OnCoinsAmountChangeCallback();
+                OnCoinsAmountChangeCallback(-amount);
             }
             return true;
         }

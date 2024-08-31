@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babd2a0fcd4997c43b4a673171e5150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPreparingPools: 1
+  shouldDeleteLockedItems: 1
 --- !u!4 &956549198
 Transform:
   m_ObjectHideFlags: 0

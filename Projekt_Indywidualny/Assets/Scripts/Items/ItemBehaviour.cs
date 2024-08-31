@@ -24,4 +24,10 @@ public class ItemBehaviour : ScriptableObject
         Debug.Log("dobrze vi tak skowyrsynie");
     }
 
+    public virtual void OnCoinAmountChange()
+    {
+
+        Debug.Log("dmy moni");
+    }
+
 }

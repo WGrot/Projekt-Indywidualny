@@ -110,6 +110,7 @@ public class ItemPoolsManager : MonoBehaviour
         unlockedWeaponsList = new List<WeaponSO>(allWeaponsList);
         for (int i = allWeaponsList.Count - 1; i >= 0; i--)
         {
+
             if (!unlockedWeapons[i])
             {
                 unlockedWeaponsList.RemoveAt(i);

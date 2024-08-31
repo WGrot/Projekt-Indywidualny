@@ -22,6 +22,7 @@ public class Item : ScriptableObject
         Debug.Log("Added Behaviours from " + name);
         Inventory.Instance.ItemBehaviourManager.AddFuncToOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
         Inventory.Instance.ItemBehaviourManager.AddFuncToOnEnemyDeath(itemBehaviour.OnEnemyDeath);
+        Inventory.Instance.ItemBehaviourManager.AddFuncToOnCoinAmountChange(itemBehaviour.OnCoinAmountChange);
     }
 
     public void RemoveBehavioursFromManager()

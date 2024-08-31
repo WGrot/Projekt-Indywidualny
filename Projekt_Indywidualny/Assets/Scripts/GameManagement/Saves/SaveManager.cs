@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
     SaveData saveData;
     private static string SAVE_FOLDER;
+    [SerializeField] bool shouldDeleteLockedItems = true;
 
     #region Singleton
     public static SaveManager Instance { get; private set; }
@@ -96,11 +98,17 @@ public class SaveManager : MonoBehaviour
     {
         gameObject.AddComponent<ItemPoolsManager>();
         ItemPoolsManager.Instance.LoadPassiveItems();
-        ItemPoolsManager.Instance.DeleteLockedItems(saveData.UnlockedPassiveItemsData);
+        if (shouldDeleteLockedItems)
+        {
+            ItemPoolsManager.Instance.DeleteLockedItems(saveData.UnlockedPassiveItemsData);
+        }
         ItemPoolsManager.Instance.AssignItemToPools();
 
         ItemPoolsManager.Instance.LoadWeapons();
-        ItemPoolsManager.Instance.DeleteLockedWeapons(saveData.UnlockedWeaponsData);
+        if (shouldDeleteLockedItems)
+        {
+            ItemPoolsManager.Instance.DeleteLockedWeapons(saveData.UnlockedWeaponsData);
+        }
         ItemPoolsManager.Instance.AssignWeaponsToPools();
     }
 

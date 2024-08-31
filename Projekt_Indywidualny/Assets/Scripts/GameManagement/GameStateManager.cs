@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public enum PauseState
 {
@@ -29,6 +30,7 @@ public class GameStateManager : MonoBehaviour
     }
     #endregion
 
+    [SerializeField] AudioMixer mainAudioMixer;
     public delegate void GameStateChangeAction(PauseState state);
     public static event GameStateChangeAction GameStateChangeCallback;
 
@@ -79,4 +81,21 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+
+    public void StartSlowTime(float slowRate, float time)
+    {
+        StartCoroutine(SlowTime(slowRate, time));
+    }
+
+    public IEnumerator SlowTime(float slowRate, float time)
+    {
+        Time.timeScale = slowRate;
+        mainAudioMixer.SetFloat("MasterPitch", slowRate);
+        yield return new WaitForSeconds(slowRate*time);
+        Time.timeScale = 1f;
+        mainAudioMixer.SetFloat("MasterPitch", 1);
+    }
+
+
+    
 }
