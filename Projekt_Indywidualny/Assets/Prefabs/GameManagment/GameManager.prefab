@@ -68,8 +68,8 @@ MonoBehaviour:
     minValue: 1
     statType: 0
   - baseValue: 0
-    maxValue: 1000
-    minValue: 0.1
+    maxValue: 100
+    minValue: 0
     statType: 1
   - baseValue: 1
     maxValue: 2.5
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainAudioMixer: {fileID: 24100000, guid: 5b7017ac790fea64482c4855f76f0cff, type: 2}
+  slowedTimeBuffIcon: {fileID: 21300000, guid: 3e8df6159b99003459b2143510b9092c, type: 3}
 --- !u!114 &8108635487332653129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,3 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babd2a0fcd4997c43b4a673171e5150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldDeleteLockedItems: 1

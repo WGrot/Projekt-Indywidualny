@@ -10,7 +10,7 @@ public class ItemBehaviourManager
 
     private List<Action> onPlayerTakeDamageBH;
     private List<Action> onEnemyDeathBH;
-    private List<Action> onCoinAmountChangeBH;
+    private List<Action<int>> onCoinAmountChangeBH;
     public ItemBehaviourManager()
     {
         onDropBH = new List<Action>();
@@ -18,7 +18,7 @@ public class ItemBehaviourManager
 
         onPlayerTakeDamageBH= new List<Action>();
         onEnemyDeathBH= new List<Action>();
-        onCoinAmountChangeBH= new List<Action>();
+        onCoinAmountChangeBH= new List<Action<int>>();
 
         SubToAllEvents();
     }
@@ -41,6 +41,14 @@ public class ItemBehaviourManager
         foreach (Action func in functions)
         {
             func();
+        }
+    }
+
+    private void DoCoinActions(List<Action<int>> functions, int amount)
+    {
+        foreach (Action<int> func in functions)
+        {
+            func(amount);
         }
     }
 
@@ -83,15 +91,15 @@ public class ItemBehaviourManager
     #region OnCoinAmountChange list methods
     private void OnCoinAmountChange(int amount)
     {
-        DoActions(onCoinAmountChangeBH);
+        DoCoinActions(onCoinAmountChangeBH, amount);
     }
 
-    public void AddFuncToOnCoinAmountChange(Action func)
+    public void AddFuncToOnCoinAmountChange(Action<int> func)
     {
         onCoinAmountChangeBH.Add(func);
 
     }
-    public void RemoveFuncFromOnCoinAmountChange(Action func)
+    public void RemoveFuncFromOnCoinAmountChange(Action<int> func)
     {
         onCoinAmountChangeBH.Remove(func);
 

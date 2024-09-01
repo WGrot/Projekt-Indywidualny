@@ -31,6 +31,7 @@ public class GameStateManager : MonoBehaviour
     #endregion
 
     [SerializeField] AudioMixer mainAudioMixer;
+    [SerializeField] Sprite slowedTimeBuffIcon;
     public delegate void GameStateChangeAction(PauseState state);
     public static event GameStateChangeAction GameStateChangeCallback;
 
@@ -89,6 +90,11 @@ public class GameStateManager : MonoBehaviour
 
     public IEnumerator SlowTime(float slowRate, float time)
     {
+        //Dodajemy pustego buffa aby by³o widaæ ¿e czas jest spowolniony
+        Buff timeStopBuff = new Buff(slowRate * time, this, Time.time, slowedTimeBuffIcon);
+        BuffManager.Instance.AddBuff(timeStopBuff);
+
+        //Spowolniamy czas
         Time.timeScale = slowRate;
         mainAudioMixer.SetFloat("MasterPitch", slowRate);
         yield return new WaitForSeconds(slowRate*time);

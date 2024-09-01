@@ -34,5 +34,6 @@ public class Item : ScriptableObject
         Debug.Log("Removed Behaviours from " + name);
         Inventory.Instance.ItemBehaviourManager.RemoveFuncFromOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
         Inventory.Instance.ItemBehaviourManager.RemoveFuncFromOnEnemyDeath(itemBehaviour.OnEnemyDeath);
+        Inventory.Instance.ItemBehaviourManager.RemoveFuncFromOnCoinAmountChange(itemBehaviour.OnCoinAmountChange);
     }
 }
