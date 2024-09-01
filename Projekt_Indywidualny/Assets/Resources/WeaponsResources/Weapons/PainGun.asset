@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51598764c5848614dbf708df1bceb5a7, type: 3}
+  m_Name: PainGun
+  m_EditorClassIdentifier: 
+  itemName: PainGun
+  description: put description here
+  Pools: 00000000
+  Rarity: 0
+  icon: {fileID: 21300000, guid: a71f601f02d78a14aa428333e8b7ee48, type: 3}
+  itemBehaviour: {fileID: 11400000, guid: caea6efc173e0054fad84fdd069799be, type: 2}
+  UnlockedAtStart: 1
+  WeaponID: 9
+  shootConfiguration: {fileID: 0}
+  shootStyle: 0
+  Damage: 6
+  FireRate: 0.2
+  ChargeTime: 0
+  ReloadTime: 1
+  ClipSize: 10
+  MaxAmmo: 100
+  AmmoUsePerShoot: 1
+  bulletsPerShoot: 1
+  Spread: {x: 0.05, y: 0.05, z: 0.05}
+  SpawnPoint: {x: 0.7, y: -0.2, z: -1}
+  SpawnRotation: {x: 0, y: -80, z: 0}
+  ModelScale: {x: 0.7, y: 0.7, z: 0.7}
+  ShootOffset: {x: 0, y: 0, z: 0}
+  ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
+    type: 3}
+  idleImage: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: 5f96caf9d9cddb345a13e40f0560dd5f, type: 3}
+  weaponReloadSound: {fileID: 0}

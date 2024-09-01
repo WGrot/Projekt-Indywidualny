@@ -35,6 +35,10 @@ public class GameStateManager : MonoBehaviour
     public delegate void GameStateChangeAction(PauseState state);
     public static event GameStateChangeAction GameStateChangeCallback;
 
+    private float slowedTimeDuration = 0;
+    private bool isTimeSlowed = false;
+
+
     private PauseState pauseState = PauseState.Running;
     public PauseState GetPauseState()
     {
@@ -83,6 +87,38 @@ public class GameStateManager : MonoBehaviour
     }
 
 
+    public void Update()
+    {
+        if (slowedTimeDuration > 0)
+        {
+            slowedTimeDuration -= Time.deltaTime;
+
+        }else if (isTimeSlowed)
+        {
+            isTimeSlowed= false;
+            Time.timeScale = 1f;
+            mainAudioMixer.SetFloat("MasterPitch", 1);
+        }
+    }
+
+    public void StartSlowTime(float slowRate, float time)
+    {
+
+        Buff timeStopBuff = new Buff(slowRate * time, this, Time.time, slowedTimeBuffIcon);
+        BuffManager.Instance.AddBuff(timeStopBuff);
+        isTimeSlowed = true;
+        slowedTimeDuration = slowRate * time;
+        Time.timeScale = slowRate;
+        mainAudioMixer.SetFloat("MasterPitch", slowRate);
+    }
+
+
+
+    /*
+     * STARA WERSJA SPOWALNIANIA CZASU
+     * 
+     * 
+     * 
     public void StartSlowTime(float slowRate, float time)
     {
         StartCoroutine(SlowTime(slowRate, time));
@@ -101,7 +137,7 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 1f;
         mainAudioMixer.SetFloat("MasterPitch", 1);
     }
+    */
 
 
-    
 }
