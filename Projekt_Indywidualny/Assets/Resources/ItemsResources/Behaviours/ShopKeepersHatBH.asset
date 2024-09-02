@@ -9,6 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1cacbbe315cdf4da0a97bd579b4afa, type: 3}
-  m_Name: InsuranceBH
+  m_Script: {fileID: 11500000, guid: f88657b6eb9c3444daba2ba8c0d99f6d, type: 3}
+  m_Name: ShopKeepersHatBH
   m_EditorClassIdentifier: 
+  wasPickedUpBefore: 0
+  shopkeepersHatMainSO: {fileID: 11400000, guid: 383d7025169634b42a9118034c0ae0c2,
+    type: 2}
+  isWorking: 1

@@ -6,8 +6,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item Behaviour")]
 public class ItemBehaviour : ScriptableObject
 {
+    [SerializeField] protected bool wasPickedUpBefore = false;
+
+    public virtual void ResetBehaviour()
+    {
+        wasPickedUpBefore = false;
+    }
     public virtual void OnPickup()
     {
+        wasPickedUpBefore = true;
         Debug.Log("Funkcja OnPickup dziala");
     }
     public virtual void OnDrop()
@@ -28,6 +35,11 @@ public class ItemBehaviour : ScriptableObject
     {
 
         Debug.Log("dmy moni");
+    }
+
+    public virtual void OnLevelGenerated()
+    {
+        Debug.Log("behaviour on level generated");
     }
 
 }

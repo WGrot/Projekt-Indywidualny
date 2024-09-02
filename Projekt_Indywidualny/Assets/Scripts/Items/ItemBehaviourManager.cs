@@ -10,15 +10,17 @@ public class ItemBehaviourManager
 
     private List<Action> onPlayerTakeDamageBH;
     private List<Action> onEnemyDeathBH;
+    private List<Action> onLevelGeneratedBH;
     private List<Action<int>> onCoinAmountChangeBH;
     public ItemBehaviourManager()
     {
         onDropBH = new List<Action>();
         onPickupBH = new List<Action>();
 
-        onPlayerTakeDamageBH= new List<Action>();
-        onEnemyDeathBH= new List<Action>();
-        onCoinAmountChangeBH= new List<Action<int>>();
+        onPlayerTakeDamageBH = new List<Action>();
+        onEnemyDeathBH = new List<Action>();
+        onLevelGeneratedBH = new List<Action>();
+        onCoinAmountChangeBH = new List<Action<int>>();
 
         SubToAllEvents();
     }
@@ -28,6 +30,7 @@ public class ItemBehaviourManager
         PlayerStatus.OnPlayerTakeDamageCallback += OnPlayerTakeDamage;
         EnemyHpBase.OnEnemyDeath += OnEnemyDeath;
         PlayerStatus.OnCoinsAmountChangeCallback += OnCoinAmountChange;
+        LevelGenerationV2.OnLevelGenerated += OnLevelGenerated;
     }
 
     private void UnSubToAllEvents()
@@ -35,7 +38,33 @@ public class ItemBehaviourManager
         PlayerStatus.OnPlayerTakeDamageCallback -= OnPlayerTakeDamage;
         EnemyHpBase.OnEnemyDeath -= OnEnemyDeath;
         PlayerStatus.OnCoinsAmountChangeCallback -= OnCoinAmountChange;
+        LevelGenerationV2.OnLevelGenerated -= OnLevelGenerated;
     }
+
+    public static void ResetAllBehaviours()
+    {
+        //Reseting item behaviours
+        UnityEngine.Object[] behaviourObjects = Resources.LoadAll("ItemsResources/Behaviours");
+        ItemBehaviour[] allItemBehaviours = new ItemBehaviour[behaviourObjects.Length];
+        behaviourObjects.CopyTo(allItemBehaviours, 0);
+
+        foreach(ItemBehaviour behaviour in allItemBehaviours)
+        {
+            behaviour.ResetBehaviour();
+        }
+
+        //Reseting item weapon behaviours
+        UnityEngine.Object[] weaponBehaviourObjects = Resources.LoadAll("WeaponsResources/Behaviours");
+        ItemBehaviour[] allWeaponBehaviours = new ItemBehaviour[weaponBehaviourObjects.Length];
+        weaponBehaviourObjects.CopyTo(allWeaponBehaviours, 0);
+
+        foreach (ItemBehaviour behaviour in allWeaponBehaviours)
+        {
+            behaviour.ResetBehaviour();
+        }
+    }
+
+
     private void DoActions(List<Action> functions)
     {
         foreach (Action func in functions)
@@ -84,6 +113,24 @@ public class ItemBehaviourManager
     public void RemoveFuncFromOnEnemyDeath(Action func)
     {
         onEnemyDeathBH.Remove(func);
+
+    }
+    #endregion
+
+    #region OnEnemyDeath list methods
+    private void OnLevelGenerated()
+    {
+        DoActions(onLevelGeneratedBH);
+    }
+
+    public void AddFuncToOnLevelGenrated(Action func)
+    {
+        onLevelGeneratedBH.Add(func);
+
+    }
+    public void RemoveFuncFromOnLevelGenerated(Action func)
+    {
+        onLevelGeneratedBH.Remove(func);
 
     }
     #endregion

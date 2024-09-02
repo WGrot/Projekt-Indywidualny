@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
         else
         {
             Instance = this;
+
         }
     }
     #endregion
@@ -36,13 +37,17 @@ public class Inventory : MonoBehaviour
 
     private int activeWeaponID = 0;
 
-    public ItemBehaviourManager ItemBehaviourManager { get; private set; } = new ItemBehaviourManager();
+    public ItemBehaviourManager itemBehaviourManager { get; private set; } = new ItemBehaviourManager();
 
     public void SetActiveWeaponID(int id)
     {
         activeWeaponID = id;
     }
 
+    public void Start()
+    {
+        ItemBehaviourManager.ResetAllBehaviours();
+    }
     public int GetActiveWeaponID()
     {
         return activeWeaponID;
@@ -79,11 +84,11 @@ public class Inventory : MonoBehaviour
     public bool RemovePassiveItem(PassiveItem item)
     {
         item.RemoveModifiersOnDrop();
-        item.RemoveBehavioursFromManager();
         if(item.itemBehaviour != null)
         {
             item.itemBehaviour.OnDrop();
         }
+        item.RemoveBehavioursFromManager();
         OnItemChangedCallback?.Invoke();
         return passiveItems.Remove(item);
     }

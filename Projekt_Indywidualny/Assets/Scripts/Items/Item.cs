@@ -20,9 +20,10 @@ public class Item : ScriptableObject
             return;
         }
         Debug.Log("Added Behaviours from " + name);
-        Inventory.Instance.ItemBehaviourManager.AddFuncToOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
-        Inventory.Instance.ItemBehaviourManager.AddFuncToOnEnemyDeath(itemBehaviour.OnEnemyDeath);
-        Inventory.Instance.ItemBehaviourManager.AddFuncToOnCoinAmountChange(itemBehaviour.OnCoinAmountChange);
+        Inventory.Instance.itemBehaviourManager.AddFuncToOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
+        Inventory.Instance.itemBehaviourManager.AddFuncToOnEnemyDeath(itemBehaviour.OnEnemyDeath);
+        Inventory.Instance.itemBehaviourManager.AddFuncToOnCoinAmountChange(itemBehaviour.OnCoinAmountChange);
+        Inventory.Instance.itemBehaviourManager.AddFuncToOnLevelGenrated(itemBehaviour.OnLevelGenerated);
     }
 
     public void RemoveBehavioursFromManager()
@@ -32,8 +33,9 @@ public class Item : ScriptableObject
             return;
         }
         Debug.Log("Removed Behaviours from " + name);
-        Inventory.Instance.ItemBehaviourManager.RemoveFuncFromOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
-        Inventory.Instance.ItemBehaviourManager.RemoveFuncFromOnEnemyDeath(itemBehaviour.OnEnemyDeath);
-        Inventory.Instance.ItemBehaviourManager.RemoveFuncFromOnCoinAmountChange(itemBehaviour.OnCoinAmountChange);
+        Inventory.Instance.itemBehaviourManager.RemoveFuncFromOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
+        Inventory.Instance.itemBehaviourManager.RemoveFuncFromOnEnemyDeath(itemBehaviour.OnEnemyDeath);
+        Inventory.Instance.itemBehaviourManager.RemoveFuncFromOnCoinAmountChange(itemBehaviour.OnCoinAmountChange);
+        Inventory.Instance.itemBehaviourManager.RemoveFuncFromOnLevelGenerated(itemBehaviour.OnLevelGenerated);
     }
 }
