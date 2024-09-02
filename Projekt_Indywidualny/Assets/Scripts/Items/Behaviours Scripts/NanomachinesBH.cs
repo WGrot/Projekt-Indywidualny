@@ -18,13 +18,13 @@ public class NanomachinesBH : ItemBehaviour
     
     public override void OnPickup()
     {
-        PlayerStatus.Instance.IncreaseCurrentPlayerHP(40);
+        if (!wasPickedUpBefore)
+        {
+            PlayerStatus.Instance.IncreaseCurrentPlayerHP(40);
+        }
+        base.OnPickup();
+
     }
     
-
-    public override void OnDrop()
-    {
-        PlayerStatus.Instance.ReduceCurrentPlayerHP(40);
-    }
     
 }

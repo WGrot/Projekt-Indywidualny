@@ -9,5 +9,8 @@ public enum StatType
     Stamina,
     Damage,
     MoveSpeed,
-    ReloadSpeed
+    ReloadSpeed,
+    Luck,
+    Spread,
+
 }

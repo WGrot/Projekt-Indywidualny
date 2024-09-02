@@ -8,11 +8,12 @@ public class LifeStoneBH : ItemBehaviour
     [SerializeField] private float lifeGain;
     public override void OnPickup()
     {
-        PlayerStatus.Instance.IncreaseCurrentPlayerHP(lifeGain);
+        if (!wasPickedUpBefore)
+        {
+            PlayerStatus.Instance.IncreaseCurrentPlayerHP(lifeGain);
+        }
+        base.OnPickup();
     }
 
-    public override void OnDrop()
-    {
-        PlayerStatus.Instance.ReduceCurrentPlayerHP(lifeGain);
-    }
+
 }

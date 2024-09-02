@@ -102,21 +102,22 @@ public class WeaponSO : Item
             return false;
         }
         LastShootTime = Time.time;
+        Vector3 finalSpread = spread * (1 + PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Spread) / 100);
         Inventory.Instance.DecreaseAmmoAtIndex(activeWeaponId, AmmoUsePerShoot);
         for (int i = 0; i < bulletsPerShoot; i++)
         {
             if(shootConfiguration != null)
             {
                 //0_0 
-                shootConfiguration.Shoot(weaponHolder,activeWeaponId, damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage), fireRate, LastShootTime, AmmoUsePerShoot, bulletsPerShoot, spread, ShootOffset, ModelPrefab);
+                shootConfiguration.Shoot(weaponHolder,activeWeaponId, damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage), fireRate, LastShootTime, AmmoUsePerShoot, bulletsPerShoot, finalSpread, ShootOffset, ModelPrefab);
             }
             else
             {
                 Vector3 direction = weaponHolder.transform.forward;
                 direction += new Vector3(
-                                UnityEngine.Random.Range(-spread.x, spread.x),
-                                UnityEngine.Random.Range(-spread.y, spread.y),
-                                UnityEngine.Random.Range(-spread.z, spread.z)
+                                UnityEngine.Random.Range(-finalSpread.x, finalSpread.x),
+                                UnityEngine.Random.Range(-finalSpread.y, finalSpread.y),
+                                UnityEngine.Random.Range(-finalSpread.z, finalSpread.z)
                             );
                 if (Physics.Raycast(weaponHolder.transform.position + ShootOffset, direction, out RaycastHit hit))
                 {

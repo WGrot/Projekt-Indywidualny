@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51f3c9c0d9ab8248bfeb3886135b6a5, type: 3}
   m_Name: PainGunBH
   m_EditorClassIdentifier: 
-  slowTimeDuration: 1
+  wasPickedUpBefore: 1
+  slowTimeDuration: 1.5
   slowTimePower: 0.25

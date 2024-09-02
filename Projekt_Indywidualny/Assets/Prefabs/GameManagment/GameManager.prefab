@@ -87,6 +87,14 @@ MonoBehaviour:
     maxValue: 4
     minValue: 0.25
     statType: 5
+  - baseValue: 0
+    maxValue: 100
+    minValue: -100
+    statType: 6
+  - baseValue: 0
+    maxValue: 100
+    minValue: -100
+    statType: 7
 --- !u!114 &6112019307272111357
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,14 +17,12 @@ public class BloodGodBlessingBH : ItemBehaviour
         BuffManager.Instance.AddBuff(bloodGodBlessingBuff);
     }
 
-    public override void OnDrop()
-    {
-
-        PlayerStatus.Instance.ReduceCurrentPlayerHP(20);
-
-    }
     public override void OnPickup()
     {
-        PlayerStatus.Instance.IncreaseCurrentPlayerHP(20);
+        if (!wasPickedUpBefore)
+        {
+            PlayerStatus.Instance.IncreaseCurrentPlayerHP(20);
+        }
+        base.OnPickup();
     }
 }

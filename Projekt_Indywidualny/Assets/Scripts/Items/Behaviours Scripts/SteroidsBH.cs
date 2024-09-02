@@ -9,7 +9,12 @@ public class SteroidsBH : ItemBehaviour
 
     public override void OnPickup()
     {
-        PlayerStatus.Instance.ReduceCurrentPlayerHP(LifeDecrease);
+        
+        if (!wasPickedUpBefore)
+        {
+            PlayerStatus.Instance.ReduceCurrentPlayerHP(LifeDecrease);
+        }
+        base.OnPickup();
     }
 
 }

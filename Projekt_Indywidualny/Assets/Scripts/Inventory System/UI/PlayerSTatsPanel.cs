@@ -8,15 +8,17 @@ using System.Text;
 public class PlayerSTatsPanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI valueTextBox;
-
+    [SerializeField] private int importantStats = 6;
 
     private void OnEnable()
     {
         StringBuilder sb = new StringBuilder();
-        foreach(CharacterStat stat in PlayerStatus.Instance.stats)
+        for (int i = 0; i< importantStats; i++ )
         {
+            CharacterStat stat = PlayerStatus.Instance.stats[i];
             sb.Append(stat.value);
             sb.Append("<br>");
+
         }
         valueTextBox.SetText(sb.ToString());
     }
