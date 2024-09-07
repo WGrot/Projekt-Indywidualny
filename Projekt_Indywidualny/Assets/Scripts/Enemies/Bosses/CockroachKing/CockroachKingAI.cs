@@ -9,31 +9,27 @@ public enum CockroachKingState
     Move
 }
 
-public class CockroachKingAI : MonoBehaviour
+public class CockroachKingAI : MonoBehaviour, Ihp
 {
     private CockroachKingState currentState = CockroachKingState.Idle;
 
-    [SerializeField] private List<GameObject> SummonAttackEnemies;
+    [Header("Basic Configuration")]
+    [SerializeField] private float maxHp = 1000;
+    [SerializeField] private float idleTime = 1f;
 
+    [Header("Jump Configuration")]
     [SerializeField] private GameObject landingDetectionPoint;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private float landingDetectionRange;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float maxDistanceToPlayer;
 
-    [SerializeField] private float idleTime = 1f;
-    private float idleTimeLeft;
+    [Header("Summon Attack Configuration")]
+    [SerializeField] private List<GameObject> SummonAttackEnemies;
+    [SerializeField] private int minNumberOfSummons;
 
-    private bool isLanding = false;
-
-    private GameObject player;
-    private Animator animator;
-    private Rigidbody rb;
-
-    [SerializeField] private int summonAttackTreshold;
+    [Header("Projectile Attack Configuration")]
     [SerializeField] private float projectileAttackTreshold;
-
-
-    [Header("ProjectileAttackConfiguration")]
     [SerializeField] private Transform shootPoint;
     [SerializeField] private int projectileAmount = 5;
     [SerializeField] private float delayBetweenProjectiles = 0.1f;
@@ -42,12 +38,23 @@ public class CockroachKingAI : MonoBehaviour
     [SerializeField] private float bulletSpread;
     [SerializeField] private float attackDamage;
 
+    private float currentHp;
+    private float idleTimeLeft;
+    private bool isLanding = false;
+
+    private GameObject player;
+    private Animator animator;
+    private Rigidbody rb;
+
+    private float[] lastTimeAttackWasPerformed = { };
+
     private void Start()
     {
         player = PlayerStatus.Instance.GetPlayerBody();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         idleTimeLeft = idleTime;
+        currentHp = maxHp;
     }
     public void CheckIfLanding()
     {
@@ -100,17 +107,29 @@ public class CockroachKingAI : MonoBehaviour
 
     public void DetermineAttack()
     {
-        Debug.Log("determinimng atack");
         int activeSummons = CountSpawnedEnemies();
+        float distanceToPlayer = (player.transform.position - transform.position).magnitude;
+
         currentState = CockroachKingState.Attack;
-        if (activeSummons < 3)
+
+        if (activeSummons < minNumberOfSummons)
         {
             StartCoroutine(SummonAttack());
         }
         else
         {
-            StartCoroutine(ProjectileAttack());
+            int rand = Random.Range(0, 2);
+            if (rand == 0)
+            {
+                Jump();
+            }
+            else
+            {
+                StartCoroutine(ProjectileAttack());
+            }
+
         }
+
 
         currentState = CockroachKingState.Idle;
         idleTimeLeft = idleTime;
@@ -159,5 +178,30 @@ public class CockroachKingAI : MonoBehaviour
             }
         }
         return result;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHp -= damage;
+        Debug.Log(currentHp);
+        if(currentHp <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Heal(float healAmount)
+    {
+        currentHp += healAmount;
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Cockroach King defeted");
+        Destroy(gameObject);
     }
 }

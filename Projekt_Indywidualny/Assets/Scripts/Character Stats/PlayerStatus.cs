@@ -12,7 +12,6 @@ public class PlayerStatus : MonoBehaviour
     private int coins = 0;
     private bool canTakeDamage = true;
     private bool isPlayerDead = false;
-
     public static PlayerStatus Instance { get; private set; }
     public bool IsPlayerDead { get => isPlayerDead; private set => isPlayerDead = value; }
     public int Coins { get => coins; private set => coins = value; }
@@ -100,15 +99,6 @@ public class PlayerStatus : MonoBehaviour
             */
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Heal(10);
-
-        }
-        if (currentHp <= 0)
-        {
-
-        }
     }
 
     public void Die()
