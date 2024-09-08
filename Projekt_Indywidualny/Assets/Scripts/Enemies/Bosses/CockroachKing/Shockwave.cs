@@ -17,6 +17,16 @@ public class Shockwave : MonoBehaviour
         float scaleFactor = Mathf.Pow(shockwaveEffect.time / shockwaveEffect.main.startLifetime.constant, 0.5f) * shockwaveEffect.main.startSize.constant / 6f;
         colliders.transform.localScale = new Vector3(scaleFactor, colliders.transform.localScale.y, scaleFactor);
         currentTimeBuffour -= Time.deltaTime;
+        if (shockwaveEffect.isStopped)
+        {
+            gameObject.SetActive(false);
+        }
+        
+    }
+
+    private void OnEnable()
+    {
+        shockwaveEffect.Play();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,6 +47,20 @@ public class Shockwave : MonoBehaviour
         }
     }
 
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
+    }
+
+    public void SetUpwardForce(float force)
+    {
+        this.force = force;
+    }
+
+    public void SetSize(float size)
+    {
+       
+    }
 
 
 }

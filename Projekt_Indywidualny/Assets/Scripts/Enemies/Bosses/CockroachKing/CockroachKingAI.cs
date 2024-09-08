@@ -9,20 +9,22 @@ public enum CockroachKingState
     Move
 }
 
-public class CockroachKingAI : MonoBehaviour, Ihp
+public class CockroachKingAI : EnemyHpBase
 {
     private CockroachKingState currentState = CockroachKingState.Idle;
 
     [Header("Basic Configuration")]
-    [SerializeField] private float maxHp = 1000;
     [SerializeField] private float idleTime = 1f;
 
     [Header("Jump Configuration")]
     [SerializeField] private GameObject landingDetectionPoint;
+    [SerializeField] private GameObject shockwaveSpawnPoint;
+    [SerializeField] private GameObject landingShockwave;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private float landingDetectionRange;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxDistanceToPlayer;
+    
 
     [Header("Summon Attack Configuration")]
     [SerializeField] private List<GameObject> SummonAttackEnemies;
@@ -38,33 +40,37 @@ public class CockroachKingAI : MonoBehaviour, Ihp
     [SerializeField] private float bulletSpread;
     [SerializeField] private float attackDamage;
 
-    private float currentHp;
     private float idleTimeLeft;
     private bool isLanding = false;
 
     private GameObject player;
     private Animator animator;
     private Rigidbody rb;
+    private bool shockwaveSpawned;
 
     private float[] lastTimeAttackWasPerformed = { };
 
-    private void Start()
+    public override void Start()
     {
         player = PlayerStatus.Instance.GetPlayerBody();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         idleTimeLeft = idleTime;
-        currentHp = maxHp;
+        base.currentHp = base.maxHp;
     }
     public void CheckIfLanding()
     {
         if (Physics.Raycast(landingDetectionPoint.transform.position, Vector3.down, landingDetectionRange, whatIsGround) && !isLanding)
         {
+            shockwaveSpawned = false;
             isLanding = true;
             animator.SetBool("isLanding", true);
             animator.SetBool("isJumping", false);
             currentState = CockroachKingState.Idle;
+
         }
+
+        
 
     }
 
@@ -81,19 +87,33 @@ public class CockroachKingAI : MonoBehaviour, Ihp
             DetermineAttack();
         }
 
-
         if (rb.velocity.y < -6)
         {
             CheckIfLanding();
         }
 
+        if (isLanding)
+        {
+            TryToSpawnShockwave();
+        }
 
+    }
+
+    public void TryToSpawnShockwave()
+    {
+        if (Physics.Raycast(shockwaveSpawnPoint.transform.position, Vector3.down, 0.25f, whatIsGround) && !shockwaveSpawned)
+        {
+            shockwaveSpawned = true;
+            landingShockwave.transform.position = shockwaveSpawnPoint.transform.position;
+            landingShockwave.SetActive(true);
+        }
     }
 
     public void Jump()
     {
-        idleTimeLeft = idleTime;
         currentState = CockroachKingState.Move;
+        isLanding = false;
+        shockwaveSpawned = false;
 
         animator.SetBool("isLanding", false);
         animator.SetBool("isJumping", true);
@@ -101,7 +121,7 @@ public class CockroachKingAI : MonoBehaviour, Ihp
         Vector3 jumpVector = new Vector3(0, 25, 0) + moveSpeed * (player.transform.position - transform.position);
 
         rb.velocity = jumpVector;
-        isLanding = false;
+
 
     }
 
@@ -132,7 +152,7 @@ public class CockroachKingAI : MonoBehaviour, Ihp
 
 
         currentState = CockroachKingState.Idle;
-        idleTimeLeft = idleTime;
+        idleTimeLeft = idleTime - (1f * (maxHp - currentHp) / maxHp);
 
     }
 
@@ -180,28 +200,4 @@ public class CockroachKingAI : MonoBehaviour, Ihp
         return result;
     }
 
-    public void TakeDamage(float damage)
-    {
-        currentHp -= damage;
-        Debug.Log(currentHp);
-        if(currentHp <= 0)
-        {
-            Die();
-        }
-    }
-
-    public void Heal(float healAmount)
-    {
-        currentHp += healAmount;
-        if (currentHp > maxHp)
-        {
-            currentHp = maxHp;
-        }
-    }
-
-    public void Die()
-    {
-        Debug.Log("Cockroach King defeted");
-        Destroy(gameObject);
-    }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyHpBase : MonoBehaviour, Ihp
 {
 
-    [SerializeField] float maxHp;
+    [SerializeField] protected float maxHp;
     [SerializeField] GameObject enemyMainBody;
     [SerializeField] private EnemyDrop enemyDrop;
-    private float currentHp;
+    protected float currentHp;
 
 
     //Event który triggeruje siê gdy przeciwnik umiera

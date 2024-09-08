@@ -2654,7 +2654,7 @@ GameObject:
   - component: {fileID: 8143596582236951596}
   - component: {fileID: 2087286998024813104}
   m_Layer: 0
-  m_Name: BigRoomWithColumns
+  m_Name: BigRoomWithStairs
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
