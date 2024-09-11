@@ -2591,6 +2591,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomSizeX: 4
   roomSizeZ: 4
+  originalRoomSizeX: 4
+  originalRoomSizeZ: 4
   roomEntrances:
   - {fileID: 8554341387028153986}
   - {fileID: 732730866097150393}

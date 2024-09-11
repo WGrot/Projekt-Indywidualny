@@ -109,15 +109,14 @@ public class LevelGenerationV2 : MonoBehaviour
             Room currentRoomScript = currentRoom.GetComponent<Room>();
 
 
-            int x = Random.Range(0, levelSize) + buffour;
-            int z = Random.Range(0, levelSize) + buffour;
+
 
 
             int chosenRotation = Random.Range(0, 4);
             int[] rotatedSizes = currentRoomScript.GetRotatedSizes(chosenRotation);
 
-            // trzeba naprawiæ metodê ChoseRandomRotaation: currentRoomScript.ChooseRandomRotation();
-
+            int x = Random.Range(0, levelSize) + buffour;
+            int z = Random.Range(0, levelSize) + buffour;
 
             int roomSizeX = rotatedSizes[0];
             int roomSizeZ = rotatedSizes[1];
@@ -128,6 +127,7 @@ public class LevelGenerationV2 : MonoBehaviour
                 roomCounter++;
                 roomList.RemoveAt(randomRoomId);
                 GameObject roomInstance = Instantiate(currentRoom, new Vector3((x) * gridScale, 0, (z ) * gridScale), Quaternion.identity);
+                
                 roomInstance.GetComponent<Room>().ApplyRotation(chosenRotation);
                 RoomsInLevel.Add(roomInstance);
             }

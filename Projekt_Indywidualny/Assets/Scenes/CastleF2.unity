@@ -503,6 +503,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 325366652631158528, guid: f73ad504ce16f204381f1d8a3af496d5,
         type: 3}
+      propertyPath: ExitRoom
+      value: 
+      objectReference: {fileID: 4054051608600762380, guid: 5a4a06dc25b7cc24fa7377fcf1ed9121,
+        type: 3}
+    - target: {fileID: 325366652631158528, guid: f73ad504ce16f204381f1d8a3af496d5,
+        type: 3}
       propertyPath: normalRooms.Array.size
       value: 4
       objectReference: {fileID: 0}

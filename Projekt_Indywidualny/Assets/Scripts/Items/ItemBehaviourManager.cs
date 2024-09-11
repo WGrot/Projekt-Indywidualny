@@ -33,12 +33,20 @@ public class ItemBehaviourManager
         LevelGenerationV2.OnLevelGenerated += OnLevelGenerated;
     }
 
-    private void UnSubToAllEvents()
+    public void UnSubToAllEvents()
     {
         PlayerStatus.OnPlayerTakeDamageCallback -= OnPlayerTakeDamage;
         EnemyHpBase.OnEnemyDeath -= OnEnemyDeath;
         PlayerStatus.OnCoinsAmountChangeCallback -= OnCoinAmountChange;
         LevelGenerationV2.OnLevelGenerated -= OnLevelGenerated;
+    }
+
+    public void ClearAllBehaviours()
+    {
+        onPlayerTakeDamageBH.Clear();
+        onLevelGeneratedBH.Clear();
+        onCoinAmountChangeBH.Clear();
+        onEnemyDeathBH.Clear();
     }
 
     public static void ResetAllBehaviours()

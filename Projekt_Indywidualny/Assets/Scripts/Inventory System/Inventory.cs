@@ -46,7 +46,14 @@ public class Inventory : MonoBehaviour
 
     public void Start()
     {
+        itemBehaviourManager.ClearAllBehaviours();
         ItemBehaviourManager.ResetAllBehaviours();
+    }
+
+    private void OnDisable()
+    {
+        itemBehaviourManager.ClearAllBehaviours();
+        itemBehaviourManager.UnSubToAllEvents();
     }
     public int GetActiveWeaponID()
     {

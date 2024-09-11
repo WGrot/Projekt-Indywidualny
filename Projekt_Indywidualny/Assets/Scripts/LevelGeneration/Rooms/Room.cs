@@ -11,7 +11,6 @@ public class Room : MonoBehaviour
 
     [SerializeField] private GameObject[] roomEntrances;
 
-
     public void ApplyRotation(int chosenRotation)
     {
         /* 0 - domyœlna rotacja
