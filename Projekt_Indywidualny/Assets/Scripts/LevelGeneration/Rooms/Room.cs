@@ -10,7 +10,7 @@ public class Room : MonoBehaviour
     [SerializeField] private int roomSizeZ;
 
     [SerializeField] private GameObject[] roomEntrances;
-    private int rotation = 0;
+
 
     public void ChooseRandomRotation()
     {
@@ -19,21 +19,15 @@ public class Room : MonoBehaviour
         * 2 - 180 stopni w prawo
         * 3 - 270stopni w prawo
         */
-        rotation = 2;//= Random.Range(0, 4);
-        for (int i = 0; i < rotation; i++)
+        int chosenRotation = Random.Range(0, 4);
+        for (int i = 0; i < chosenRotation; i++)
         {
+
             RotateSizes();
-        }
-    }
-
-    public void ApplyRandomRotation()
-    {
-        for (int i = 0; i < rotation; i++)
-        {
             transform.Rotate(0, 90, 0);
-            Debug.Log(transform.rotation);
-
         }
+
+
     }
 
     void RotateSizes()
