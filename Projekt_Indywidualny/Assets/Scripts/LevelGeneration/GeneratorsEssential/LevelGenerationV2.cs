@@ -48,12 +48,13 @@ public class LevelGenerationV2 : MonoBehaviour
     {
 
         levelGrid = new LevelGrid(levelSize , buffour, gridScale);
+
         GenerateSpecialRoom(spawnRoom, levelSize / 2 + buffour, levelSize / 2 + buffour);
         
         if (ExitRoom != null)
         {
-            int[] location = DetermineExitLocation();
-            GenerateSpecialRoom(ExitRoom, location[0], location[1]);
+            int[] location = DetermineExitLocationAndRotation();
+            GenerateSpecialRoom(ExitRoom, location[0], location[1], location[2]);
         }
         GenerateRooms(specialRooms, false);
         GenerateRooms(normalRooms, true);
@@ -75,6 +76,16 @@ public class LevelGenerationV2 : MonoBehaviour
         Room currentRoomScript = roomInstance.GetComponent<Room>();
         RoomsInLevel.Add(roomInstance);
         levelGrid.MarkOccupiedSpace(x , z , currentRoomScript.GetRoomSizeX(), currentRoomScript.GetRoomSizeZ());
+        roomCounter++;
+    }
+
+    private void GenerateSpecialRoom(GameObject room, int x, int z, int chosenRotation)
+    {
+        GameObject roomInstance = Instantiate(room, new Vector3((x) * gridScale, 0, (z) * gridScale), Quaternion.identity);
+        Room currentRoomScript = roomInstance.GetComponent<Room>();
+        currentRoomScript.ApplyRotation(chosenRotation);
+        RoomsInLevel.Add(roomInstance);
+        levelGrid.MarkOccupiedSpace(x, z, currentRoomScript.GetRoomSizeX(), currentRoomScript.GetRoomSizeZ());
         roomCounter++;
     }
 
@@ -102,13 +113,14 @@ public class LevelGenerationV2 : MonoBehaviour
             int z = Random.Range(0, levelSize) + buffour;
 
 
-
+            int chosenRotation = Random.Range(0, 4);
+            int[] rotatedSizes = currentRoomScript.GetRotatedSizes(chosenRotation);
 
             // trzeba naprawiæ metodê ChoseRandomRotaation: currentRoomScript.ChooseRandomRotation();
 
 
-            int roomSizeX = currentRoomScript.GetRoomSizeX();
-            int roomSizeZ = currentRoomScript.GetRoomSizeZ();
+            int roomSizeX = rotatedSizes[0];
+            int roomSizeZ = rotatedSizes[1];
 
             if (levelGrid.IsSpaceFree(x, z, roomSizeX, roomSizeZ))
             {
@@ -116,6 +128,7 @@ public class LevelGenerationV2 : MonoBehaviour
                 roomCounter++;
                 roomList.RemoveAt(randomRoomId);
                 GameObject roomInstance = Instantiate(currentRoom, new Vector3((x) * gridScale, 0, (z ) * gridScale), Quaternion.identity);
+                roomInstance.GetComponent<Room>().ApplyRotation(chosenRotation);
                 RoomsInLevel.Add(roomInstance);
             }
 
@@ -159,33 +172,35 @@ public class LevelGenerationV2 : MonoBehaviour
         return vertices.ToArray();
     }
 
-    private int[] DetermineExitLocation()
+    private int[] DetermineExitLocationAndRotation()
     {
-        int[] location = new int[2];
+        int[] location = new int[3];
         
         int rand = Random.Range(0, 4);
-
+        location[2] = rand;
         if(rand == 0)
         {
             location[0] = levelSize / 2 + buffour;
-            location[1] = levelSize + buffour + buffour/2;
+            location[1] = levelSize + buffour;// + buffour/2;
         }
         else if (rand == 1)
         {
-            location[0] = levelSize + buffour + buffour / 2;
+            location[0] = levelSize + buffour;// + buffour / 2;
             location[1] = levelSize/2 +buffour;
         }
         else if (rand == 2)
         {
             location[0] = levelSize/2 + buffour;
-            location[1] = buffour/4;
+            location[1] = buffour; //4;
         }
         else
         {
-            location[0] = buffour/4;
+            location[0] = buffour; //4;
             location[1] = levelSize/2 + buffour;
         }
+        Debug.Log(location[0] + " " + location[1] +" " + location[2] +" ");
         return location;
+
     }
 
     private void EdgePrinter()
