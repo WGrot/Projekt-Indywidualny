@@ -49,7 +49,6 @@ public class LevelGenerationV2 : MonoBehaviour
 
         levelGrid = new LevelGrid(levelSize , buffour, gridScale);
         GenerateSpecialRoom(spawnRoom, levelSize / 2 + buffour, levelSize / 2 + buffour);
-        
         if (ExitRoom != null)
         {
             int[] location = DetermineExitLocation();
@@ -101,11 +100,9 @@ public class LevelGenerationV2 : MonoBehaviour
             int x = Random.Range(0, levelSize) + buffour;
             int z = Random.Range(0, levelSize) + buffour;
 
-
-
-
             // trzeba naprawiæ metodê ChoseRandomRotaation: currentRoomScript.ChooseRandomRotation();
 
+            currentRoomScript.ChooseRandomRotation();
 
             int roomSizeX = currentRoomScript.GetRoomSizeX();
             int roomSizeZ = currentRoomScript.GetRoomSizeZ();
@@ -116,6 +113,7 @@ public class LevelGenerationV2 : MonoBehaviour
                 roomCounter++;
                 roomList.RemoveAt(randomRoomId);
                 GameObject roomInstance = Instantiate(currentRoom, new Vector3((x) * gridScale, 0, (z ) * gridScale), Quaternion.identity);
+                Debug.Log(currentRoomScript.GetRoomSizeX() + " " + roomInstance.GetComponent<Room>().GetRoomSizeX());
                 RoomsInLevel.Add(roomInstance);
             }
 

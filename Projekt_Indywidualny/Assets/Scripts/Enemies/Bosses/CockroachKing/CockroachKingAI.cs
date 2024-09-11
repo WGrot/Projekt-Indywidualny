@@ -40,6 +40,8 @@ public class CockroachKingAI : EnemyHpBase
     [SerializeField] private float bulletSpread;
     [SerializeField] private float attackDamage;
 
+
+    [Header("Summon Attack Configuration")]
     private float idleTimeLeft;
     private bool isLanding = false;
 
