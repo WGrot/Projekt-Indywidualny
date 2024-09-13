@@ -7,30 +7,63 @@ public class EnemyProjectileBasic : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
     [SerializeField] private float damage;
+    private SpriteRenderer spriteRenderer;
     private Rigidbody rb;
     private TrailRenderer trailRenderer;
 
     public delegate void OnDisableCallback(EnemyProjectileBasic instance);
-    public event OnDisableCallback OnDisable;
+    public event OnDisableCallback OnDisableAction;
+
 
     public void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
     }
+
+    /*
+    private void OnEnable()
+    {
+        Invoke("ActivateVisuals", 0.05f);
+    }
+    */
+    private void ActivateVisuals()
+    {
+        trailRenderer.enabled = true;
+        spriteRenderer.enabled = true;
+
+    }
+
+    public void DisableVisuals()
+    {
+        trailRenderer.enabled = false;
+        spriteRenderer.enabled = false;
+
+    }
+
+    private void OnDisable()
+    {
+        trailRenderer.enabled = false;
+        spriteRenderer.enabled = false;
+        rb.isKinematic = true;
+    }
+
     public void Shoot(Vector3 position, Vector3 direction, float newSpeed, float newLifeTime, float newDamage)
     {
-
-        transform.position = position;
         transform.forward = direction;
+        rb.isKinematic = false;
+        rb.MovePosition(position);
+
+        
+
         trailRenderer.Clear();
         speed = newSpeed;
         lifeTime = newLifeTime;
         damage = newDamage;
 
         rb.velocity = transform.forward * speed;
-
-
+        Invoke("ActivateVisuals", 0.05f);
     }
 
     public void SetSpeed(int newSpeed)
@@ -53,19 +86,20 @@ public class EnemyProjectileBasic : MonoBehaviour
         lifeTime -= Time.deltaTime;
         if (lifeTime < 0)
         {
-            OnDisable?.Invoke(this);
+            OnDisableAction?.Invoke(this);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerStatus.Instance.TakeDamage(damage);
-            OnDisable?.Invoke(this);
+            OnDisableAction?.Invoke(this);
         }
         else
         {
-            OnDisable?.Invoke(this);
+            OnDisableAction?.Invoke(this);
         }
     }
 

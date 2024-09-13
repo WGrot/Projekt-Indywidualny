@@ -877,7 +877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6959038934075443720
 Transform:
   m_ObjectHideFlags: 0
@@ -964,6 +964,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 300
+  enemyMainBody: {fileID: 0}
+  enemyDrop: {fileID: 0}
   idleTime: 2.5
   landingDetectionPoint: {fileID: 845536691937984953}
   shockwaveSpawnPoint: {fileID: 5457199012455116819}

@@ -175,7 +175,6 @@ public class CockroachKingAI : EnemyHpBase
         for (int i = 0; i < projectileAmount; i++)
         {
             Vector3 bulletDirection = player.transform.position + new Vector3(0, 0.25f, 0) - shootPoint.position;
-            Debug.Log("should shoot");
             bulletDirection += new Vector3(
                                 UnityEngine.Random.Range(-bulletSpread, bulletSpread),
                                 UnityEngine.Random.Range(-bulletSpread, bulletSpread),

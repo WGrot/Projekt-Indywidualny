@@ -7,6 +7,7 @@ public class EnemyProjectileObjectPool : MonoBehaviour
 {
     [SerializeField] EnemyProjectileBasic Prefab;
 
+    [SerializeField] int amountCreatedOnSpawn = 20;
     public static EnemyProjectileObjectPool Instance { get; private set; }
 
     private ObjectPool<EnemyProjectileBasic> projectilePool;
@@ -22,13 +23,14 @@ public class EnemyProjectileObjectPool : MonoBehaviour
             Instance = this;
         }
 
-        projectilePool = new ObjectPool<EnemyProjectileBasic>(CreatePooledObject, OnTakeFromPool, OnReturnToPool, OnDestroyObject, false, 200, 1000);
+        projectilePool = new ObjectPool<EnemyProjectileBasic>(CreatePooledObject, OnTakeFromPool, OnReturnToPool, OnDestroyObject, false, 100, 1000);
+
     }
 
     private EnemyProjectileBasic CreatePooledObject()
     {
         EnemyProjectileBasic instance = Instantiate(Prefab, Vector3.zero, Quaternion.identity);
-        instance.OnDisable += ReturnObjectToPool;
+        instance.OnDisableAction += ReturnObjectToPool;
         instance.gameObject.SetActive(false);
 
         return instance;
@@ -53,6 +55,7 @@ public class EnemyProjectileObjectPool : MonoBehaviour
     private void OnDestroyObject(EnemyProjectileBasic instance)
     {
         Destroy(instance.gameObject);
+        instance.OnDisableAction -= ReturnObjectToPool;
     }
 
 
