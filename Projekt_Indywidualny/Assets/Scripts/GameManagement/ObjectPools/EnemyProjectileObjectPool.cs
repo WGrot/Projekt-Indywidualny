@@ -6,8 +6,6 @@ using UnityEngine.Pool;
 public class EnemyProjectileObjectPool : MonoBehaviour
 {
     [SerializeField] EnemyProjectileBasic Prefab;
-
-    [SerializeField] int amountCreatedOnSpawn = 20;
     public static EnemyProjectileObjectPool Instance { get; private set; }
 
     private ObjectPool<EnemyProjectileBasic> projectilePool;
@@ -32,7 +30,7 @@ public class EnemyProjectileObjectPool : MonoBehaviour
         EnemyProjectileBasic instance = Instantiate(Prefab, Vector3.zero, Quaternion.identity);
         instance.OnDisableAction += ReturnObjectToPool;
         instance.gameObject.SetActive(false);
-
+ 
         return instance;
     }
 

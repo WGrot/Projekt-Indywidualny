@@ -8,7 +8,7 @@ public class EnemyProjectileBasic : MonoBehaviour
     [SerializeField] private float lifeTime;
     [SerializeField] private float damage;
     private SpriteRenderer spriteRenderer;
-    private Rigidbody rb;
+    //private Rigidbody rb;
     private TrailRenderer trailRenderer;
 
     public delegate void OnDisableCallback(EnemyProjectileBasic instance);
@@ -18,7 +18,7 @@ public class EnemyProjectileBasic : MonoBehaviour
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
     }
 
@@ -46,14 +46,12 @@ public class EnemyProjectileBasic : MonoBehaviour
     {
         trailRenderer.enabled = false;
         spriteRenderer.enabled = false;
-        rb.isKinematic = true;
     }
 
     public void Shoot(Vector3 position, Vector3 direction, float newSpeed, float newLifeTime, float newDamage)
     {
         transform.forward = direction;
-        rb.isKinematic = false;
-        rb.MovePosition(position);
+        transform.position = position;
 
         
 
@@ -62,7 +60,7 @@ public class EnemyProjectileBasic : MonoBehaviour
         lifeTime = newLifeTime;
         damage = newDamage;
 
-        rb.velocity = transform.forward * speed;
+        //rb.velocity = transform.forward * speed;
         Invoke("ActivateVisuals", 0.05f);
     }
 
@@ -83,6 +81,7 @@ public class EnemyProjectileBasic : MonoBehaviour
 
     private void Update()
     {
+        transform.position = transform.position + (transform.forward * speed * Time.deltaTime);
         lifeTime -= Time.deltaTime;
         if (lifeTime < 0)
         {

@@ -24,11 +24,14 @@ public class CockroachKingAI : EnemyHpBase
     [SerializeField] private float landingDetectionRange;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxDistanceToPlayer;
-    
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip landingSound;
+
 
     [Header("Summon Attack Configuration")]
     [SerializeField] private List<GameObject> SummonAttackEnemies;
     [SerializeField] private int minNumberOfSummons;
+    [SerializeField] AudioClip summonAttackSound;
 
     [Header("Projectile Attack Configuration")]
     [SerializeField] private float projectileAttackTreshold;
@@ -39,6 +42,7 @@ public class CockroachKingAI : EnemyHpBase
     [SerializeField] private float bulletLifetime;
     [SerializeField] private float bulletSpread;
     [SerializeField] private float attackDamage;
+    [SerializeField] AudioClip projectileSound;
 
     private float idleTimeLeft;
     private bool isLanding = false;
@@ -47,14 +51,14 @@ public class CockroachKingAI : EnemyHpBase
     private Animator animator;
     private Rigidbody rb;
     private bool shockwaveSpawned;
-
-    private float[] lastTimeAttackWasPerformed = { };
+    private AudioSource audioSource;
 
     public override void Start()
     {
         player = PlayerStatus.Instance.GetPlayerBody();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
         idleTimeLeft = idleTime;
         base.currentHp = base.maxHp;
     }
@@ -70,7 +74,7 @@ public class CockroachKingAI : EnemyHpBase
 
         }
 
-        
+
 
     }
 
@@ -106,6 +110,8 @@ public class CockroachKingAI : EnemyHpBase
             shockwaveSpawned = true;
             landingShockwave.transform.position = shockwaveSpawnPoint.transform.position;
             landingShockwave.SetActive(true);
+            audioSource.clip = landingSound;
+            audioSource.Play();
         }
     }
 
@@ -121,6 +127,8 @@ public class CockroachKingAI : EnemyHpBase
         Vector3 jumpVector = new Vector3(0, 25, 0) + moveSpeed * (player.transform.position - transform.position);
 
         rb.velocity = jumpVector;
+        audioSource.clip = jumpSound;
+        audioSource.Play();
 
 
     }
@@ -128,7 +136,6 @@ public class CockroachKingAI : EnemyHpBase
     public void DetermineAttack()
     {
         int activeSummons = CountSpawnedEnemies();
-        float distanceToPlayer = (player.transform.position - transform.position).magnitude;
 
         currentState = CockroachKingState.Attack;
 
@@ -160,6 +167,8 @@ public class CockroachKingAI : EnemyHpBase
     public IEnumerator SummonAttack()
     {
         animator.SetBool("isSummoning", true);
+        audioSource.clip = summonAttackSound; 
+        audioSource.Play();
         foreach (GameObject enemy in SummonAttackEnemies)
         {
             enemy.SetActive(true);
@@ -172,6 +181,7 @@ public class CockroachKingAI : EnemyHpBase
     public IEnumerator ProjectileAttack()
     {
         animator.SetBool("isSummoning", true);
+        audioSource.clip = projectileSound;
         for (int i = 0; i < projectileAmount; i++)
         {
             Vector3 bulletDirection = player.transform.position + new Vector3(0, 0.25f, 0) - shootPoint.position;
@@ -181,6 +191,7 @@ public class CockroachKingAI : EnemyHpBase
                                 UnityEngine.Random.Range(-bulletSpread, bulletSpread)
                             );
             EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint.position, bulletDirection, bulletSpeed, bulletLifetime, attackDamage);
+            audioSource.Play();
             yield return new WaitForSeconds(delayBetweenProjectiles);
         }
         animator.SetBool("isSummoning", false);

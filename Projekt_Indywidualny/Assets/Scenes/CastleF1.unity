@@ -819,6 +819,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManagerSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5024442112746082391, guid: 7f59fb05090666f438367085c3b0cb96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7540697215836414231, guid: 7f59fb05090666f438367085c3b0cb96,
         type: 3}
       propertyPath: m_LocalPosition.x

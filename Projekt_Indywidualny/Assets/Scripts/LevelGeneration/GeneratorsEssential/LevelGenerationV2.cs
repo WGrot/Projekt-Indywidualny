@@ -46,7 +46,7 @@ public class LevelGenerationV2 : MonoBehaviour
 
     IEnumerator Start()
     {
-
+        yield return null; // czekamy jedn¹ klatkê a¿stary levelgrid siê zniszczy. Trzeba to jakoœ inaczej rozwi¹zaæ póŸniej
         levelGrid = new LevelGrid(levelSize , buffour, gridScale);
 
         GenerateSpecialRoom(spawnRoom, levelSize / 2 + buffour, levelSize / 2 + buffour);
@@ -59,7 +59,7 @@ public class LevelGenerationV2 : MonoBehaviour
         GenerateRooms(specialRooms, false);
         GenerateRooms(normalRooms, true);
         GeneratePassages();
-        yield return null; // new WaitForSeconds(0.1f);
+        yield return null; // czekamy jedn¹ klatkê a¿ instancje pokoi siê pojawi¹ ¿ebu je zeskanowaæ
         ScanGrid();
         InstantiateCorridors();
         MiniMapGenerator.Instance.GenerateMiniMap();
