@@ -968,6 +968,7 @@ MonoBehaviour:
   enemyMainBody: {fileID: 0}
   enemyDrop: {fileID: 0}
   idleTime: 2.5
+  bossTheme: {fileID: 8300000, guid: ef2997b8932b5664abff4ee420788d10, type: 3}
   landingDetectionPoint: {fileID: 845536691937984953}
   shockwaveSpawnPoint: {fileID: 5457199012455116819}
   landingShockwave: {fileID: 5104514737281655022}

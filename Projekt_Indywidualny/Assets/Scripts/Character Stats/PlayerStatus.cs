@@ -87,8 +87,11 @@ public class PlayerStatus : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("painkiller");
-            GameStateManager.Instance.StartSlowTime(0.25F, 4);
+            MusicManager.Instance.PlayFightMusic();
+            
+            
+            //Debug.Log("painkiller");
+            //GameStateManager.Instance.StartSlowTime(0.25F, 4);
             /*
             TakeDamage(10);
             for (int i = 0; i< stats.Count; i++) {

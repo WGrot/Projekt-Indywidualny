@@ -15,6 +15,7 @@ public class CockroachKingAI : EnemyHpBase
 
     [Header("Basic Configuration")]
     [SerializeField] private float idleTime = 1f;
+    [SerializeField] AudioClip bossTheme;
 
     [Header("Jump Configuration")]
     [SerializeField] private GameObject landingDetectionPoint;
@@ -61,6 +62,12 @@ public class CockroachKingAI : EnemyHpBase
         audioSource = GetComponent<AudioSource>();
         idleTimeLeft = idleTime;
         base.currentHp = base.maxHp;
+        MusicManager.Instance.PlaySpecialMusic(bossTheme);
+    }
+
+    private void OnDisable()
+    {
+        MusicManager.Instance.PlayDefaultMusic();
     }
     public void CheckIfLanding()
     {
