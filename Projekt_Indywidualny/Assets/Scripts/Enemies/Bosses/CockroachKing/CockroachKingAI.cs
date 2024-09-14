@@ -9,13 +9,14 @@ public enum CockroachKingState
     Move
 }
 
-public class CockroachKingAI : EnemyHpBase
+public class CockroachKingAI : BossHpBase
 {
     private CockroachKingState currentState = CockroachKingState.Idle;
 
     [Header("Basic Configuration")]
     [SerializeField] private float idleTime = 1f;
     [SerializeField] AudioClip bossTheme;
+    [SerializeField] Sprite bossIcon;
 
     [Header("Jump Configuration")]
     [SerializeField] private GameObject landingDetectionPoint;
@@ -63,12 +64,33 @@ public class CockroachKingAI : EnemyHpBase
         idleTimeLeft = idleTime;
         base.currentHp = base.maxHp;
         MusicManager.Instance.PlaySpecialMusic(bossTheme);
+        base.CallOnBossFightStarted(bossIcon);
     }
 
     private void OnDisable()
     {
         MusicManager.Instance.PlayDefaultMusic();
     }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        CallOnBossHpChanged(currentHp, maxHp);
+    }
+
+    public override void Die()
+    {
+        CallOnBossFightEnded();
+        base.Die();
+
+    }
+
+    public override void Heal(float healAmount)
+    {
+        base.Heal(healAmount);
+        CallOnBossHpChanged(currentHp, maxHp);
+    }
+
     public void CheckIfLanding()
     {
         if (Physics.Raycast(landingDetectionPoint.transform.position, Vector3.down, landingDetectionRange, whatIsGround) && !isLanding)

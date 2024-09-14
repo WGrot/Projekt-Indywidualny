@@ -968,7 +968,8 @@ MonoBehaviour:
   enemyMainBody: {fileID: 0}
   enemyDrop: {fileID: 0}
   idleTime: 2.5
-  bossTheme: {fileID: 8300000, guid: ef2997b8932b5664abff4ee420788d10, type: 3}
+  bossTheme: {fileID: 8300000, guid: d7fe5a84f5d589e4c987aba1eb66332e, type: 3}
+  bossIcon: {fileID: 1703588052, guid: ae0d2ee23722b304384114edd2a9ebee, type: 3}
   landingDetectionPoint: {fileID: 845536691937984953}
   shockwaveSpawnPoint: {fileID: 5457199012455116819}
   landingShockwave: {fileID: 5104514737281655022}
@@ -2044,7 +2045,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9141747274216491364, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: enemyDrop
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6457596801001444538, guid: 59725d55f35af1e468fdf609de73aa0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2129,7 +2136,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9141747274216491364, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: enemyDrop
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6457596801001444538, guid: 59725d55f35af1e468fdf609de73aa0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2214,7 +2227,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9141747274216491364, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: enemyDrop
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6457596801001444538, guid: 59725d55f35af1e468fdf609de73aa0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2389,7 +2408,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9141747274216491364, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: enemyDrop
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6457596801001444538, guid: 59725d55f35af1e468fdf609de73aa0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2474,7 +2499,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9141747274216491364, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: enemyDrop
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6457596801001444538, guid: 59725d55f35af1e468fdf609de73aa0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2559,7 +2590,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9141747274216491364, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: enemyDrop
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6457596801001444538, guid: 59725d55f35af1e468fdf609de73aa0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2644,7 +2681,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9141747274216491364, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: enemyDrop
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6457596801001444538, guid: 59725d55f35af1e468fdf609de73aa0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2729,7 +2772,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9141747274216491364, guid: 59725d55f35af1e468fdf609de73aa0a,
+        type: 3}
+      propertyPath: enemyDrop
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6457596801001444538, guid: 59725d55f35af1e468fdf609de73aa0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
