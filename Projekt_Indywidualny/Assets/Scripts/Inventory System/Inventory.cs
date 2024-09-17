@@ -23,8 +23,10 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
-    public delegate void OnItemChanged();
-    public static event OnItemChanged OnItemChangedCallback;
+    public delegate void OnItemAdded(Item item);
+    public static event OnItemAdded OnItemAddedCallback;
+    //public delegate void OnItemRemoved(Item item);
+    //public static event OnItemRemoved OnItemRemovedCallback;
     public delegate void OnItemWeapon();
     public static event OnItemWeapon OnWeaponAddedCallback;
     public delegate void OnAmmoRefiled(int activeweaponID);
@@ -85,7 +87,7 @@ public class Inventory : MonoBehaviour
         passiveItems.Add(item);
         item.ApplyModifiersOnPickUp();
         item.AddBehavioursToManager();
-        OnItemChangedCallback?.Invoke();
+        OnItemAddedCallback?.Invoke(item);
     }
 
     public bool RemovePassiveItem(PassiveItem item)
@@ -96,7 +98,6 @@ public class Inventory : MonoBehaviour
             item.itemBehaviour.OnDrop();
         }
         item.RemoveBehavioursFromManager();
-        OnItemChangedCallback?.Invoke();
         return passiveItems.Remove(item);
     }
     #endregion

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: MyrmidomsRitual
   m_EditorClassIdentifier: 
   itemName: Myrmidom's Ritual
-  description: put description here
+  description: Ritual performed by Myrmidom in the final act of betraying Zanzibart.
+    <br> powerful damage up
+  shortDescription: damage up
   Pools: 00000000
   Rarity: 0
   icon: {fileID: 21300000, guid: d697f902a6fe84644860379167d0b003, type: 3}

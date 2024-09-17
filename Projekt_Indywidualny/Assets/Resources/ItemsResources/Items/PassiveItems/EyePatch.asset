@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: EyePatch
   m_EditorClassIdentifier: 
   itemName: Eye Patch
-  description: put description here
+  description: Pirates are known for their cruelty, not their sight. Damage up and
+    accuracy down
+  shortDescription: damage up accuracy down
   Pools: 00000000
   Rarity: 0
   icon: {fileID: 21300000, guid: f8aa735613c42c5438a09f41f5f2b933, type: 3}

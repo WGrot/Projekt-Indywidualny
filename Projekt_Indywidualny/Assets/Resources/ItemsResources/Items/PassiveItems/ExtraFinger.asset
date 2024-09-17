@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: ExtraFinger
   m_EditorClassIdentifier: 
   itemName: Extra Finger
-  description: with this beauty on the palm of your hand, you can reload faster
+  description: Just think about all posibilities where you can stick it up! Increases
+    reload speed
+  shortDescription: faster reload
   Pools: 00000000
   Rarity: 0
   icon: {fileID: 21300000, guid: aa8d7c6980115f74190d87cd8016c2df, type: 3}

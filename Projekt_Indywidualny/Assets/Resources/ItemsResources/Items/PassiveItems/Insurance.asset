@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Insurance
   m_EditorClassIdentifier: 
   itemName: Reverse Insurance Scam
-  description: This time you are not the one getting scamed.
+  description: This time you are not the one getting scamed.<br>When heals you when
+    picking up coins
+  shortDescription: Healing coins
   Pools: 00000000
   Rarity: 0
   icon: {fileID: 21300000, guid: 6ef7e2c4cf8cc8b4d9232bcd9575b932, type: 3}

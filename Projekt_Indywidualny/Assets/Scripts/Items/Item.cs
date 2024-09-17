@@ -7,6 +7,7 @@ public class Item : ScriptableObject
 {
     public string itemName = "New Item";
     public string description = "put description here";
+    public string shortDescription = "";
     public ItemPools[] Pools = {ItemPools.All};
     public Rarities Rarity = Rarities.Common;
     public Sprite icon = null;

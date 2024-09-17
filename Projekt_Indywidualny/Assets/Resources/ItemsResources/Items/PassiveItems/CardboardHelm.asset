@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cardboard Helm
   description: It is useless when it comes to personal defense. But there are legends
-    saying that it helps sneak between guards.
+    saying that it helps sneak between guards. Small armor up
+  shortDescription: armor up
   Pools: 00000000
   Rarity: 0
   icon: {fileID: 21300000, guid: 0f50769e5110d794fbdcc34944bf48de, type: 3}

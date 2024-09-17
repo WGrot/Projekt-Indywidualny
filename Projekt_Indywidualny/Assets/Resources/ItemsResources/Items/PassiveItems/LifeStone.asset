@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: LifeStone
   m_EditorClassIdentifier: 
   itemName: LifeStone
-  description: put description here
+  description: This bad boy can fit so much life in it. <br> hp up
+  shortDescription: hp up
   Pools: 00000000
   Rarity: 0
   icon: {fileID: 21300000, guid: ccf148869d428944b854439dc5d8e763, type: 3}

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ShopKeepersHat
   m_EditorClassIdentifier: 
   itemName: Shopkeeper's Hat
-  description: put description here
+  description: Now your coins can multiply, just dont spend any of them
+  shortDescription: dont spend money
   Pools: 00000000
   Rarity: 0
   icon: {fileID: 21300000, guid: 8556ae15c5e29a442a7d2c2f42c29da4, type: 3}

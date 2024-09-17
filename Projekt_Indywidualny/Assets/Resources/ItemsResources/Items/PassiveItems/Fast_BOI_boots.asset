@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Fast Boi Boots
   description: Speedy boots <br>You will run faster than crysis on your PC in 2007
-    <br> (so not really fast)
+    <br> (so not really fast) <br> speed up
+  shortDescription: speed up
   Pools: 00000000
   Rarity: 0
   icon: {fileID: 21300000, guid: 52eaceeaf2f2dba45b2f433eb8859624, type: 3}

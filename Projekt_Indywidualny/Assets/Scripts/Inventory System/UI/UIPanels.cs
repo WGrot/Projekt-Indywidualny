@@ -41,7 +41,6 @@ public class UIPanels : MonoBehaviour
 
     private void OnEnable()
     {
-        Inventory.OnItemChangedCallback += SetInventoryDirty;
         PlayerStatus.OnPlayerDieCallback += ShowEndScreen;
         inputActions.Enable();
         inputActions.UI.OpenInventory.performed += OpenCloseInventoryOnIPressed;
@@ -54,7 +53,6 @@ public class UIPanels : MonoBehaviour
 
     private void OnDisable()
     {
-        Inventory.OnItemChangedCallback -= SetInventoryDirty;
         PlayerStatus.OnPlayerDieCallback -= ShowEndScreen;
         inputActions.UI.OpenInventory.performed -= OpenCloseInventoryOnIPressed;
         inputActions.UI.OpenMapMenu.performed -= OpenMapOnTabPressed;
