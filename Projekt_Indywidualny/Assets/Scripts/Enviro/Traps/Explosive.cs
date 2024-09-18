@@ -6,6 +6,7 @@ public class Explosive : MonoBehaviour
 {
     [SerializeField] protected float explosionRange;
     [SerializeField] protected float explosionDamage;
+    [SerializeField] protected Collider explosiveCollider;
     protected ParticleSystem explosionParticles;
     protected AudioSource audioSource;
 
@@ -25,8 +26,10 @@ public class Explosive : MonoBehaviour
     {
         explosionParticles.Play();
         audioSource.Play();
-        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, explosionRange);
+        DisableVisuals();
+        explosiveCollider.enabled= false;
 
+        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, explosionRange);
         List<GameObject> damagedObjects = new List<GameObject>();
 
         foreach (Collider col in objectsInRange)
@@ -41,5 +44,9 @@ public class Explosive : MonoBehaviour
         }
         yield return new WaitForSeconds(audioSource.clip.length);
         Destroy(gameObject);
+    }
+
+    protected virtual void DisableVisuals()
+    {
     }
 }

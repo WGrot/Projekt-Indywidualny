@@ -5,21 +5,27 @@ using UnityEngine.AI;
 
 public class DiggerAI : MonoBehaviour
 {
-    //[SerializeField] private GameObject projectile;
-    [SerializeField] private float damage;
+    [Header("Basic Configuration")]
+    [SerializeField] private float bulletDamage;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float bulletLifeTime;
     [SerializeField] private float waitTimeAfterShot;
     [SerializeField] private float burrowTime;
 
+    [Header("Audio Configuration")]
     [SerializeField] private AudioClip burrowSound;
     [SerializeField] private AudioClip unBurrowSound;
     [SerializeField] private AudioClip attackSound;
 
-    private AudioSource audioSource;
+    [Header("References")]
+    [SerializeField] private ParticleSystem burrowParticles;
+    [SerializeField] private Transform shootPoint;
 
+    private AudioSource audioSource;
     private bool isPerformingAction = false;
     private Animator animator;
     private GameObject player;
-    [SerializeField] private Transform shootPoint;
+
     public void Start()
     {
         player = PlayerStatus.Instance.GetPlayerBody();
@@ -41,12 +47,14 @@ public class DiggerAI : MonoBehaviour
     {
         //Burrowing
         animator.SetBool("isBurrowing", true);
+        burrowParticles.Play();
         audioSource.clip = burrowSound;
         audioSource.Play();
         yield return new WaitForSeconds(burrowTime);
         Vector3 destination = GetRandomPositionInRoom(transform.position, 8f);
         transform.position = destination;
         animator.SetBool("isBurrowing", false);
+        burrowParticles.Play();
         audioSource.clip = unBurrowSound;
         audioSource.Play();
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
@@ -57,7 +65,7 @@ public class DiggerAI : MonoBehaviour
         audioSource.clip = attackSound;
         audioSource.Play();
         Vector3 bulletDirection = player.transform.position + new Vector3(0, 0.25f, 0) - shootPoint.position;
-        EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint.position, bulletDirection, 1, 10, 1);
+        EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint.position, bulletDirection, bulletSpeed, bulletLifeTime, bulletDamage);
         yield return null;
         animator.SetBool("isAttacking", false);
         yield return new WaitForSeconds(waitTimeAfterShot);

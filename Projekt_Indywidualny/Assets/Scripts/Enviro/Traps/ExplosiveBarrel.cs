@@ -4,31 +4,34 @@ using UnityEngine;
 
 public class ExplosiveBarrel : Explosive, Ihp
 {
-    [SerializeField] private float barrelHp;
+    [SerializeField] private float startBarrelHp;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private float currentBarrelHp;
     public void Die()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(Explode());
     }
 
-    public void Heal(float healAmount)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void Heal(float healAmount){ }
+    
 
     public void TakeDamage(float damage)
     {
-        throw new System.NotImplementedException();
+        currentBarrelHp -= damage;
+        if(currentBarrelHp < 0)
+        {
+            Die();
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
+        currentBarrelHp = startBarrelHp;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void DisableVisuals()
     {
-        
+        spriteRenderer.enabled = false;
     }
 }
