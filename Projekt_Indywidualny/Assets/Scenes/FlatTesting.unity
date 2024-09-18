@@ -493,27 +493,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 649634557}
-  - component: {fileID: 649634556}
   - component: {fileID: 649634558}
+  - component: {fileID: 649634559}
+  - component: {fileID: 649634560}
+  - component: {fileID: 649634561}
   m_Layer: 0
   m_Name: Digger
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &649634556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649634555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 013e341ae153a0c4db5c9ab5f8b917eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_IsActive: 1
 --- !u!4 &649634557
 Transform:
   m_ObjectHideFlags: 0
@@ -542,14 +532,142 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0319ec1fe1e84fe468fbfe51a4a9a298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  enemyMainBody: {fileID: 0}
-  enemyDrop: {fileID: 0}
-  projectile: {fileID: 0}
   damage: 0
-  waitTimeAfterShot: 0
-  burrowTime: 0
+  waitTimeAfterShot: 3
+  burrowTime: 3
+  burrowSound: {fileID: 8300000, guid: cd4c65c1ca041e94eb4ccd1b9821c1d3, type: 3}
+  unBurrowSound: {fileID: 8300000, guid: 1188aba970342c34cba1c27d5ddc84fd, type: 3}
+  attackSound: {fileID: 8300000, guid: 9910c35b55e2d544484ecb1c965e710e, type: 3}
   shootPoint: {fileID: 1019970944}
+--- !u!95 &649634559
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649634555}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a8cbd1671856b944f9799e2ffac9768e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &649634560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649634555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013e341ae153a0c4db5c9ab5f8b917eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &649634561
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649634555}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 100
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &674516739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1401,7 @@ Transform:
   m_GameObject: {fileID: 1345807618}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.453, z: -0.022}
+  m_LocalPosition: {x: 0, y: 0.549, z: -0.022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2210,6 +2328,7 @@ GameObject:
   - component: {fileID: 1597882293}
   - component: {fileID: 1597882294}
   - component: {fileID: 1597882295}
+  - component: {fileID: 1597882296}
   m_Layer: 0
   m_Name: DiggerBody
   m_TagString: Untagged
@@ -2307,6 +2426,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.75, y: 1.2, z: 0.2}
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!114 &1597882296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597882292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b9a61011937a546a9d27b197c29c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  enemyMainBody: {fileID: 649634555}
+  enemyDrop: {fileID: 0}
 --- !u!1001 &1625105605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3996,6 +4130,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MusicManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454680371468681866, guid: 6736cf6e1fb6bf64b9eb8f71704209a2,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4217758321640186857, guid: 6736cf6e1fb6bf64b9eb8f71704209a2,
         type: 3}
