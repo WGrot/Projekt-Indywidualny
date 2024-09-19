@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CockroachAI : MonoBehaviour
+public class BabushkaAI : MonoBehaviour
 {
-
-    [Header( "CockroachMovement")]
+    [Header("CockroachMovement")]
     [SerializeField] private float speed;
-    [SerializeField] private float lookRadius;
-    [SerializeField] private float stopRadius;
+    [SerializeField] private float attackRange;
 
 
     [Header("AttackConfiguration")]
     [SerializeField] private float attackSpeed;
     [SerializeField] private float attackDamage;
-    [SerializeField] private float attackRange;
+    [SerializeField] private GameObject attackPoint;
 
     [Header("AudioConfiguration")]
     [SerializeField] AudioClip walkingSound;
     [SerializeField] AudioClip attackSound;
+    [SerializeField] AudioClip deathSound;
 
-    [Header("AnimationsConfiguration")]
-    [SerializeField] AnimationClip WalkingAnimation;
-    [SerializeField] AnimationClip IdleAnimation;
 
 
     private bool isAttacking = false;
@@ -33,76 +29,58 @@ public class CockroachAI : MonoBehaviour
     private Animator animator;
     private AudioSource audioSource;
 
-    void Start()
+    public void Start()
     {
         player = PlayerStatus.Instance.GetPlayerBody();
         agent = GetComponent<NavMeshAgent>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         agent.speed = speed;
-        agent.stoppingDistance = stopRadius;
+
     }
 
 
     void Update()
     {
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-        if (distanceToPlayer > attackRange && distanceToPlayer < lookRadius)
+        if (distanceToPlayer > attackRange)
         {
             agent.SetDestination(player.transform.position);
-            animator.SetBool("IsCrawling", true);
-
+            animator.SetBool("isWalking", true);
             if (!audioSource.isPlaying)
             {
                 audioSource.clip = walkingSound;
                 audioSource.Play();
             }
         }
-        else if(isAttacking != true)
+        else if (isAttacking != true)
         {
-
-            animator.SetBool("IsCrawling", false);
             StartCoroutine("AttackCoroutine");
         }
-
-
 
     }
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, stopRadius);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
-
-    public float GetDistanceToPlayer()
-    {
-        return distanceToPlayer;
     }
 
 
     private IEnumerator AttackCoroutine()
     {
-        isAttacking= true;
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isAttacking", true);
+        isAttacking = true;
         agent.isStopped = true;
+        audioSource.Stop();
+        audioSource.clip = attackSound;
+        audioSource.Play();
+
         yield return new WaitForSeconds(attackSpeed);
-        Attack();
+
         agent.isStopped = false;
         isAttacking = false;
+        animator.SetBool("isAttacking", false);
+        yield return null;
     }
-    private void Attack()
-    {
-        if(distanceToPlayer <= attackRange)
-        {
-            PlayerStatus.Instance.TakeDamage(attackDamage * DungeonDepth.Instance.DifficultyModifier);
-            audioSource.Stop();
-            audioSource.clip = attackSound;
-            audioSource.Play();
-        }
-    }
-
-
 }

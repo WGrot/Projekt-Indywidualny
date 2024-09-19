@@ -35,7 +35,6 @@ public class AppInit : MonoBehaviour
         if (!File.Exists(SAVE_FOLDER + "/save.txt"))
         {
             Debug.Log("save nie istnieje tworzymy");
-            //string recoveryString = File.ReadAllText(Application.dataPath + "/saves/unlockAtStartData.txt");
             UnlockAtStartData unlockData = JsonUtility.FromJson<UnlockAtStartData>(loadedUnlockFile.text);
             SaveData saveData = new SaveData(unlockData.unlockedItems, unlockData.unlockedWeapons);
 

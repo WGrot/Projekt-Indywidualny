@@ -35,8 +35,7 @@ Transform:
   m_LocalPosition: {x: 15.88, y: 0.765, z: 1.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7462780607477039173}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -27.76, z: 0}
 --- !u!65 &1896795643514486916
@@ -4950,7 +4949,8 @@ AudioSource:
   m_GameObject: {fileID: 6036937386174773737}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -43356973049885684, guid: 5b7017ac790fea64482c4855f76f0cff,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 25a3aa8524227754dbef615c8c95fc53, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -5101,34 +5101,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013e341ae153a0c4db5c9ab5f8b917eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6728458378855804062
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7462780607477039173}
-  m_Layer: 10
-  m_Name: ShootPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7462780607477039173
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6728458378855804062}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.592}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 381355177597080240}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
