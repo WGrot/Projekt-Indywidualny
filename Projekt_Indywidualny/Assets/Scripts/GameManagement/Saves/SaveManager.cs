@@ -33,7 +33,7 @@ public class SaveManager : MonoBehaviour
         }
     }
     #endregion
-
+    /*
     #region UnlockedAtStart class
     protected class UnlockAtStartData
     {
@@ -47,6 +47,7 @@ public class SaveManager : MonoBehaviour
         }
     }
     #endregion
+    */
     public void Init()
     {
         if (!Directory.Exists(SAVE_FOLDER))
@@ -57,6 +58,7 @@ public class SaveManager : MonoBehaviour
         if(!File.Exists(SAVE_FOLDER+ "/unlockAtStartData.txt"))
         {
             Debug.Log("nie istnieje");
+            
         }
         else
         {
@@ -68,7 +70,7 @@ public class SaveManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(saveData);
         File.WriteAllText(Application.persistentDataPath + "/saves/save.txt", json);
-        File.WriteAllText(Application.persistentDataPath + "/saves/unlockAtStartData.txt", json);
+        //File.WriteAllText(Application.persistentDataPath + "/saves/unlockAtStartData.txt", json);
     }
 
     public void LoadSavedData()
