@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FlipTheEnemy",
+                    "type": "Button",
+                    "id": "540c49f6-14ed-4a15-b1e1-d1fc2b8f76d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -270,6 +279,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f650b42b-38c9-4650-a76a-c5694ba5e295",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlipTheEnemy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -11,6 +11,8 @@ public class DiggerAI : MonoBehaviour
     [SerializeField] private float bulletLifeTime;
     [SerializeField] private float waitTimeAfterShot;
     [SerializeField] private float burrowTime;
+    [SerializeField] private float timeOffset = 0;
+
 
     [Header("Audio Configuration")]
     [SerializeField] private AudioClip burrowSound;
@@ -22,7 +24,7 @@ public class DiggerAI : MonoBehaviour
     [SerializeField] private Transform shootPoint;
 
     private AudioSource audioSource;
-    private bool isPerformingAction = false;
+    private bool isPerformingAction = true;
     private Animator animator;
     private GameObject player;
 
@@ -31,7 +33,12 @@ public class DiggerAI : MonoBehaviour
         player = PlayerStatus.Instance.GetPlayerBody();
         animator = GetComponent<Animator>();
         audioSource= GetComponent<AudioSource>();
+        Invoke("ApplyOffset", timeOffset);
+    }
 
+    void ApplyOffset()
+    {
+        isPerformingAction = false;
     }
 
     private void Update()
