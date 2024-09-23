@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal.Internal;
 
-public class EnemyProjectileBasic : Projectile
+public class ParriedProjectileBasic : Projectile
 {
     private SpriteRenderer spriteRenderer;
     private TrailRenderer trailRenderer;
 
-    public delegate void OnDisableCallback(EnemyProjectileBasic instance);
+    public delegate void OnDisableCallback(ParriedProjectileBasic instance);
     public event OnDisableCallback OnDisableAction;
 
 
@@ -44,14 +43,14 @@ public class EnemyProjectileBasic : Projectile
         transform.forward = direction;
         transform.position = position;
 
-        
+
 
         trailRenderer.Clear();
         speed = newSpeed;
         lifeTime = newLifeTime;
         damage = newDamage;
-
-        Invoke("ActivateVisuals", 0.05f);
+        ActivateVisuals();
+       // Invoke("ActivateVisuals", 0.05f);
     }
 
     public void SetSpeed(int newSpeed)
@@ -71,7 +70,7 @@ public class EnemyProjectileBasic : Projectile
 
     private void Update()
     {
-        transform.position = transform.position + (transform.forward * speed * Time.deltaTime);
+        transform.position = transform.position + (speed * Time.deltaTime * transform.forward);
         lifeTime -= Time.deltaTime;
         if (lifeTime < 0)
         {
@@ -80,9 +79,11 @@ public class EnemyProjectileBasic : Projectile
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        Debug.Log("collided with something");
+        if (other.transform.TryGetComponent<Ihp>(out var enemyHp) && other.CompareTag("Enemy"))
         {
-            PlayerStatus.Instance.TakeDamage(damage);
+            Debug.Log("TouchedEnemy");
+            enemyHp.TakeDamage(damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage));
             OnDisableAction?.Invoke(this);
         }
         else
@@ -91,13 +92,5 @@ public class EnemyProjectileBasic : Projectile
         }
     }
 
-    public override void Parry()
-    {
-        base.Parry();
-        Vector3 direction = PlayerReferences.Instance.LookPoint.transform.forward;
-        float parriedSpeed = ConstantValues.PARRIED_PROJECTILE_SPEED;
-        ParriedProjectilesObjectPool.Instance.ShootBullet(transform.position, direction, parriedSpeed, lifeTime, damage);
-        OnDisableAction?.Invoke(this);
-    }
-
+    public override void Parry(){}
 }

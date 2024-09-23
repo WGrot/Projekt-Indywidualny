@@ -13,4 +13,8 @@ public static class ConstantValues
     public static int RARE_ITEM_COST = 70;
     public static int MYTHIC_ITEM_COST = 100;
 
+
+
+    public static float PARRIED_PROJECTILE_SPEED = 30f;
+
 }

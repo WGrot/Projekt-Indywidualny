@@ -5,9 +5,14 @@ using UnityEngine;
 public class PlayerReferences : MonoBehaviour
 {
     [SerializeField] private GameObject flipPoint;
+    [SerializeField] private GameObject lookPoint;
 
     public GameObject FlipPoint { get => flipPoint; private set => flipPoint = value; }
+
+
     public static PlayerReferences Instance { get; private set; }
+    public GameObject LookPoint { get => lookPoint; set => lookPoint = value; }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
