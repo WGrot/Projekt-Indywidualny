@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class FlipHitbox : MonoBehaviour
 {
-    [SerializeField] private Transform hitbox;
+    [SerializeField] private Transform flipHitbox;
+    [SerializeField] private Transform parryHitbox;
     [SerializeField] private float hitboxLifeTime;
     [SerializeField] float damage;
     [SerializeField] private float cooldown;
@@ -13,6 +14,7 @@ public class FlipHitbox : MonoBehaviour
     [SerializeField] Vector3 parryHalfExtents;
     private float timeSinceLastFlip;
     private AudioSource audioSource;
+    [SerializeField] private AudioSource successfulParryAudioSource;
     private InputActions inputActions;
 
 
@@ -75,7 +77,7 @@ public class FlipHitbox : MonoBehaviour
 
     void DoTheFlippin()
     {
-        Collider[] objectsInRange = Physics.OverlapBox(hitbox.position, flipHalfExtents, hitbox.rotation);
+        Collider[] objectsInRange = Physics.OverlapBox(flipHitbox.position, flipHalfExtents, flipHitbox.rotation);
         List<GameObject> damagedObjects = new List<GameObject>();
         foreach (Collider col in objectsInRange)
         {
@@ -91,7 +93,7 @@ public class FlipHitbox : MonoBehaviour
 
     void DoTheParryin()
     {
-        Collider[] objectsInRange = Physics.OverlapBox(hitbox.position, parryHalfExtents, hitbox.rotation);
+        Collider[] objectsInRange = Physics.OverlapBox(parryHitbox.position, parryHalfExtents, parryHitbox.rotation);
         bool isParrySuccessful = false;
 
         foreach (Collider col in objectsInRange)
@@ -100,21 +102,24 @@ public class FlipHitbox : MonoBehaviour
             I_Parryable target = col.GetComponent<I_Parryable>();
             if (target != null)
             {
-                target.Parry();
-                isParrySuccessful = true;
+                isParrySuccessful = target.Parry();
 
             }
         }
 
-        if (isParrySuccessful && OnSuccessfulParryActionCallback != null)
+        if (isParrySuccessful)
         {
+            successfulParryAudioSource.Play();
+            if(OnSuccessfulParryActionCallback != null)
+            {
+                OnSuccessfulParryActionCallback();
+            }
 
-            OnSuccessfulParryActionCallback();
         }
     }
     private void OnDrawGizmosSelected()
     {
-        Gizmos.matrix = Matrix4x4.TRS(hitbox.position, hitbox.rotation, flipHalfExtents * 2);
+        Gizmos.matrix = Matrix4x4.TRS(flipHitbox.position, flipHitbox.rotation, flipHalfExtents * 2);
         Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
     }
 }

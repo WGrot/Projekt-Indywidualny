@@ -78,4 +78,9 @@ public class Rocket : Projectile
         GetComponent<TrailRenderer>().enabled = false;
     }
 
+    public override bool Parry()
+    {
+        return false;
+    }
+
 }

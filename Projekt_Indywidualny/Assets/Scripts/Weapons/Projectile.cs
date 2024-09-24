@@ -9,9 +9,10 @@ public class Projectile : MonoBehaviour, I_Parryable
     [SerializeField] protected float lifeTime;
     protected Rigidbody rb;
 
-    public virtual void Parry()
+    public virtual bool Parry()
     {
         GameStateManager.Instance.StartSlowTime(0.1f, 0.2f);
+        return true;
     }
 
     public void SetDamage(float realDamage)

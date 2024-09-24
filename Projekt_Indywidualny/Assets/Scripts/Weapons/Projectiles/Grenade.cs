@@ -64,5 +64,9 @@ public class Grenade : Projectile
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<TrailRenderer>().enabled = false;
     }
-    
+
+    public override bool Parry()
+    {
+        return false;
+    }
 }

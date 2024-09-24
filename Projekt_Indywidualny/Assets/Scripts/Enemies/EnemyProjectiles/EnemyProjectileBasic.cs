@@ -91,13 +91,14 @@ public class EnemyProjectileBasic : Projectile
         }
     }
 
-    public override void Parry()
+    public override bool Parry()
     {
-        base.Parry();
         Vector3 direction = PlayerReferences.Instance.LookPoint.transform.forward;
         float parriedSpeed = ConstantValues.PARRIED_PROJECTILE_SPEED;
         ParriedProjectilesObjectPool.Instance.ShootBullet(transform.position, direction, parriedSpeed, lifeTime, damage);
         OnDisableAction?.Invoke(this);
+        base.Parry();
+        return true;
     }
 
 }

@@ -25,4 +25,8 @@ public class FlamethrowerFire : Projectile
             enemyHp.TakeDamage(damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage));
         }
     }
+    public override bool Parry()
+    {
+        return false;
+    }
 }

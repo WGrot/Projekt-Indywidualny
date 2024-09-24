@@ -6,15 +6,19 @@ public class ParriedProjectileBasic : Projectile
 {
     private SpriteRenderer spriteRenderer;
     private TrailRenderer trailRenderer;
+    [SerializeField] private float explosionRange;
 
     public delegate void OnDisableCallback(ParriedProjectileBasic instance);
     public event OnDisableCallback OnDisableAction;
-
+    protected ParticleSystem explosionParticles;
+    protected AudioSource audioSource;
 
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
+        explosionParticles = GetComponent<ParticleSystem>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -50,7 +54,7 @@ public class ParriedProjectileBasic : Projectile
         lifeTime = newLifeTime;
         damage = newDamage;
         ActivateVisuals();
-       // Invoke("ActivateVisuals", 0.05f);
+
     }
 
     public void SetSpeed(int newSpeed)
@@ -79,18 +83,41 @@ public class ParriedProjectileBasic : Projectile
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collided with something");
+        StartCoroutine(Explode());
+        /*
         if (other.transform.TryGetComponent<Ihp>(out var enemyHp) && other.CompareTag("Enemy"))
         {
-            Debug.Log("TouchedEnemy");
-            enemyHp.TakeDamage(damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage));
-            OnDisableAction?.Invoke(this);
+            //enemyHp.TakeDamage(damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage));
+            //OnDisableAction?.Invoke(this);
         }
         else
         {
             OnDisableAction?.Invoke(this);
-        }
+        }*/
     }
 
-    public override void Parry(){}
+
+    public IEnumerator Explode()
+    {
+        explosionParticles.Play();
+        audioSource.Play();
+        DisableVisuals();
+        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, explosionRange);
+
+        foreach (Collider col in objectsInRange)
+        {
+            Ihp target = col.GetComponent<Ihp>();
+            if (target != null && !col.CompareTag("Player"))
+            {
+                target.TakeDamage(damage);
+            }
+        }
+        yield return new WaitForSeconds(audioSource.clip.length);
+        OnDisableAction?.Invoke(this);
+    }
+
+
+    public override bool Parry(){
+        return false;
+    }
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface I_Parryable
 {
-    void Parry();
+    bool Parry();
 }
