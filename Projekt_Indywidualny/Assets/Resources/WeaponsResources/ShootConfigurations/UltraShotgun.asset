@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6696e18fcc71e98478448f3ac5129dbc, type: 3}
+  m_Name: UltraShotgun
+  m_EditorClassIdentifier: 
+  WeaponProjectile: {fileID: 281376363930829682, guid: 602123348a77b864f838d3b61716a748,
+    type: 3}
+  shouldAccountPlayerSpeed: 0
