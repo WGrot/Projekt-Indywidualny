@@ -15,6 +15,8 @@ public class BloodGodBlessingBH : ItemBehaviour
     {
         bloodGodBlessingBuff = new Buff(BuffTime, DamageIncrease, StatType.Damage, this, StatModType.Flat, Time.time, buffIcon);
         BuffManager.Instance.AddBuff(bloodGodBlessingBuff);
+        //int clipSize = Inventory.Instance.GetActiveWeapon().ClipSize; 
+        //Inventory.Instance.GetAmmoOfActiveWeapon().ReloadClip(clipSize);
     }
 
     public override void OnPickup()

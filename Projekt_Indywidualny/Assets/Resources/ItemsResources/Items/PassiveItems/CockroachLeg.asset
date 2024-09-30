@@ -10,24 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ed2cb5c77035a3499f85abd3b91bbc0, type: 3}
-  m_Name: FastMagazine
+  m_Name: CockroachLeg
   m_EditorClassIdentifier: 
-  itemName: Fast Mag
-  description: Magazine from a gun used at the cinema. It is completely covered with
-    popcorn butter, which makes it faster to reload
-  shortDescription: faster reload
+  itemName: Cockroach Leg
+  description: Leg ripped from corpse of giant Cockroach<br>Increases speed
+  shortDescription: speed up
   Pools: 00000000
   Rarity: 0
-  icon: {fileID: 21300000, guid: 6b978deac5714064f946e99cbb89ed81, type: 3}
+  icon: {fileID: 21300000, guid: 9f37257bb9d46824eb64dc3b8f8d1474, type: 3}
   itemBehaviour: {fileID: 0}
   UnlockedAtStart: 1
-  PassiveItemID: 4
+  PassiveItemID: 20
   modifiers:
-  - statType: 5
+  - statType: 4
     modType: 100
-    value: 0.1
-    order: 100
-  - statType: 3
-    modType: 100
-    value: -0.05
+    value: 0.2
     order: 100

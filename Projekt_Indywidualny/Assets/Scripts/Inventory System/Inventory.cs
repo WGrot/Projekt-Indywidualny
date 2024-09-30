@@ -114,6 +114,11 @@ public class Inventory : MonoBehaviour
         return weapons[index];
     }
 
+    public WeaponSO GetActiveWeapon()
+    {
+        return weapons[activeWeaponID];
+    }
+
     public void AddWeapon(WeaponSO weapon)
     {
         weapons.Add(weapon);
@@ -205,6 +210,11 @@ public class Inventory : MonoBehaviour
     public AmmoData GetAmmoAtIndex(int index)
     {
         return ammos[index];
+    }
+
+    public AmmoData GetAmmoOfActiveWeapon()
+    {
+        return ammos[activeWeaponID];
     }
     public void DecreaseAmmoAtIndex(int index, int amount)
     {

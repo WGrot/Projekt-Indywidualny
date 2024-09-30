@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ed2cb5c77035a3499f85abd3b91bbc0, type: 3}
-  m_Name: FastMagazine
+  m_Name: CockroachShell
   m_EditorClassIdentifier: 
-  itemName: Fast Mag
-  description: Magazine from a gun used at the cinema. It is completely covered with
-    popcorn butter, which makes it faster to reload
-  shortDescription: faster reload
+  itemName: Cockroach Shell
+  description: Shell of a huge Cockroach, it can be wore as armor
+  shortDescription: armor up
   Pools: 00000000
   Rarity: 0
-  icon: {fileID: 21300000, guid: 6b978deac5714064f946e99cbb89ed81, type: 3}
+  icon: {fileID: 21300000, guid: 8d05e911358b2234a8535bdd23ff6e3e, type: 3}
   itemBehaviour: {fileID: 0}
   UnlockedAtStart: 1
-  PassiveItemID: 4
+  PassiveItemID: 21
   modifiers:
-  - statType: 5
+  - statType: 1
     modType: 100
-    value: 0.1
+    value: 15
     order: 100
-  - statType: 3
+  - statType: 0
     modType: 100
-    value: -0.05
+    value: 20
     order: 100

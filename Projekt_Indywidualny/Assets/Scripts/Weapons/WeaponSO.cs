@@ -24,6 +24,7 @@ public class WeaponSO : Item
     public float Damage;
     public float FireRate = 0.25f;
     public float ChargeTime = 0f;
+    public float ChargeThreshold = 1f;
     public float ReloadTime = 2f;
     public int ClipSize = 10;
     public int MaxAmmo = 100;
@@ -44,6 +45,8 @@ public class WeaponSO : Item
     [Header("Weapon Model Parameters")]
     public AudioClip weaponShootSound;
     public AudioClip weaponReloadSound;
+    public AudioClip chargeSound;
+    public AudioClip fullyChargeSound;
 
     private float fireRate = 0.25f;
     private float damage;
@@ -95,12 +98,18 @@ public class WeaponSO : Item
     }
 
     
-    public bool Shoot(GameObject weaponHolder, int activeWeaponId)
+    public bool Shoot(GameObject weaponHolder, int activeWeaponId, float timeChargingShoot)
     {
         if (Time.time < fireRate + LastShootTime)
         {
             return false;
         }
+
+        if (shootStyle == WeaponShootingStyle.Charge && timeChargingShoot/chargeTime < ChargeThreshold)
+        {
+            return false;
+        }
+
         LastShootTime = Time.time;
         Vector3 finalSpread = spread * (1 + PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Spread) / 100);
         Inventory.Instance.DecreaseAmmoAtIndex(activeWeaponId, AmmoUsePerShoot);
@@ -109,7 +118,7 @@ public class WeaponSO : Item
             if(shootConfiguration != null)
             {
                 //0_0 
-                shootConfiguration.Shoot(weaponHolder,activeWeaponId, damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage), fireRate, LastShootTime, AmmoUsePerShoot, bulletsPerShoot, finalSpread, ShootOffset, ModelPrefab);
+                shootConfiguration.Shoot(weaponHolder,activeWeaponId, damage * PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.Damage), fireRate, LastShootTime, AmmoUsePerShoot, bulletsPerShoot, finalSpread, ShootOffset, ModelPrefab, timeChargingShoot/this.chargeTime);
             }
             else
             {

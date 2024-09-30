@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Weapons/ProjectileShootConfiguration")]
-public class ProjectileShootConfig : ShootConfig
+[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Weapons/ChargedProjectileShootConfiguration")]
+public class ChrgedShootConfig : ShootConfig
 {
     public GameObject WeaponProjectile;
     public bool shouldAccountPlayerSpeed;
-    public override void Shoot(GameObject weaponHolder, int activeWeaponId, float damage, float fireRate, float LastShootTime, int AmmoUsePerShoot, int bulletsPerShoot, Vector3 spread, Vector3 ShootOffset, GameObject ModelPrefab, float chargeTime)
+    public override void Shoot(GameObject weaponHolder, int activeWeaponId, float damage, float fireRate, float LastShootTime, int AmmoUsePerShoot, int bulletsPerShoot, Vector3 spread, Vector3 ShootOffset, GameObject ModelPrefab, float chargePower)
     {
         Vector3 direction = weaponHolder.transform.forward;
         direction += new Vector3(
@@ -24,10 +23,11 @@ public class ProjectileShootConfig : ShootConfig
         GameObject projectile = Instantiate(WeaponProjectile, weaponHolder.transform.position /*+ weaponHolder.transform.rotation * ShootOffset*/, weaponHolder.transform.rotation);
         projectile.transform.forward = direction;
 
-        Projectile projectileScript = projectile.GetComponent<Projectile>();
-        if (projectileScript != null )
+        ChargedProjectile projectileScript = projectile.GetComponent<ChargedProjectile>();
+        if (projectileScript != null)
         {
             projectileScript.SetDamage(damage);
+            projectileScript.ChargePower = chargePower;
         }
 
         if (shouldAccountPlayerSpeed)

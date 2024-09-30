@@ -22,6 +22,8 @@ public class WeaponHolder : MonoBehaviour
     private bool wasShootPressedThisFrame = false;
     private bool isReloading = false;
     private float chargeTime = 0f;
+    private bool isCharging = false;
+    private bool isFullyCharged = false;
     private AudioSource weaponAudioSource;
     private AudioSource selfAudioSource;
 
@@ -48,7 +50,7 @@ public class WeaponHolder : MonoBehaviour
         inputActions.Player_base.DropWeapon.performed += DropWeapon;
         inputActions.Player_base.Reload.performed += OnReloadCallback;
         Inventory.OnWeaponAddedCallback += EquipNewWeapon;
-        
+
 
 
     }
@@ -67,7 +69,7 @@ public class WeaponHolder : MonoBehaviour
         weapons = Inventory.Instance.GetWeaponsList();
         prefixes = Inventory.Instance.GetPrefixList();
         ammos = Inventory.Instance.GetAmmoList();
-        
+
         weaponSprite = weaponObject.GetComponent<SpriteRenderer>();
         weaponAudioSource = weaponObject.GetComponent<AudioSource>();
         selfAudioSource = GetComponent<AudioSource>();
@@ -191,7 +193,7 @@ public class WeaponHolder : MonoBehaviour
         activeWeapon.ApplyPrefix(prefixes[activeWeaponID]);
         activeWeapon = weapons[activeWeaponID];
         SetWeaponModel();
-        
+
         if (OnWeaponChangedCallback != null)
         {
             OnWeaponChangedCallback(activeWeaponID);
@@ -208,16 +210,41 @@ public class WeaponHolder : MonoBehaviour
 
     private void Update()
     {
-        if (inputActions.Player_base.Shoot.IsPressed() && !isReloading)
+        if (inputActions.Player_base.Shoot.IsPressed() && !isReloading && activeWeapon != null)
         {
             TryToShootClassic();
             wasShootPressedThisFrame = true;
-            chargeTime += Time.deltaTime;
+            if (activeWeapon.shootStyle == WeaponShootingStyle.Charge)
+            {
+                chargeTime += Time.deltaTime;
+                if (!isCharging)
+                {
+                    weaponAudioSource.clip = activeWeapon.chargeSound;
+                    weaponAudioSource.Play();
+                    isCharging = true;
+                    Debug.Log("chuj");
+                }
+
+                if (!isFullyCharged && chargeTime > activeWeapon.chargeTime)
+                {
+                    isFullyCharged = true;
+                    weaponAudioSource.clip = activeWeapon.fullyChargeSound;
+                    weaponAudioSource.loop = true;
+                    weaponAudioSource.Play();
+                }
+
+            }
+            else
+            {
+                weaponAudioSource.loop = false;
+            }
+
         }
         else
         {
             wasShootPressedThisFrame = false;
             chargeTime = 0;
+
         }
     }
 
@@ -226,6 +253,12 @@ public class WeaponHolder : MonoBehaviour
         if (activeWeapon == null)
         {
             return;
+        }
+        if (activeWeapon.shootStyle == WeaponShootingStyle.Charge)
+        {
+            return;
+
+
         }
 
         if (ammos[activeWeaponID].ammoLeft < 1)
@@ -239,7 +272,7 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
-        if (ammos[activeWeaponID].ammoInClip <1 && ammos[activeWeaponID].ammoLeft > 0)
+        if (ammos[activeWeaponID].ammoInClip < 1 && ammos[activeWeaponID].ammoLeft > 0)
         {
             if (!isReloading)
             {
@@ -250,7 +283,7 @@ public class WeaponHolder : MonoBehaviour
 
         if (activeWeapon.shootStyle == WeaponShootingStyle.FullAuto)
         {
-            bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID);
+            bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID, 0);
             if (!shooted)
             {
                 return;
@@ -264,7 +297,7 @@ public class WeaponHolder : MonoBehaviour
                 return;
             }
 
-            bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID);
+            bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID, 0);
             if (!shooted)
             {
                 return;
@@ -284,6 +317,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void TryToShootCharge(InputAction.CallbackContext context)
     {
+        isCharging = false;
         if (activeWeapon == null)
         {
             return;
@@ -300,9 +334,9 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
-        if (activeWeapon.shootStyle == WeaponShootingStyle.Charge && activeWeapon.chargeTime < chargeTime)
+        if (activeWeapon.shootStyle == WeaponShootingStyle.Charge)
         {
-            bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID);
+            bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID, chargeTime);
             if (!shooted)
             {
                 return;
@@ -348,7 +382,7 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
-        if (index > weapons.Count -1)
+        if (index > weapons.Count - 1)
         {
             Debug.LogError("You tried to delete weapon at index that excedes number of weapons");
             return;
@@ -401,7 +435,7 @@ public class WeaponHolder : MonoBehaviour
         selfAudioSource.clip = activeWeapon.weaponReloadSound;
         selfAudioSource.Play();
 
-        if(activeWeapon.WeaponBehaviour != null)
+        if (activeWeapon.WeaponBehaviour != null)
         {
             activeWeapon.WeaponBehaviour.OnReload();
         }
@@ -409,7 +443,7 @@ public class WeaponHolder : MonoBehaviour
 
         yield return new WaitForSeconds(activeWeapon.reloadTime / PlayerStatus.Instance.GetCharacterStatValueOfType(StatType.ReloadSpeed));
         Inventory.Instance.GetAmmoAtIndex(activeWeaponID).ReloadClip(activeWeapon.ClipSize);
-        isReloading= false;
+        isReloading = false;
 
         if (OnWeaponReloadCallback != null)
         {
