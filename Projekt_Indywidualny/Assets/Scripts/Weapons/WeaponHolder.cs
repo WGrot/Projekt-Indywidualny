@@ -210,7 +210,7 @@ public class WeaponHolder : MonoBehaviour
 
     private void Update()
     {
-        if (inputActions.Player_base.Shoot.IsPressed() && !isReloading && activeWeapon != null)
+        if (inputActions.Player_base.Shoot.IsPressed() && !isReloading && activeWeapon != null && !GameStateManager.Instance.IsGamePaused())
         {
             TryToShootClassic();
             wasShootPressedThisFrame = true;
@@ -325,6 +325,11 @@ public class WeaponHolder : MonoBehaviour
         isCharging = false;
         isFullyCharged = false;
 
+        if (GameStateManager.Instance.IsGamePaused())
+        {
+            return;
+        }
+
         if (activeWeapon == null)
         {
             return;
@@ -336,16 +341,11 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
-        if (GameStateManager.Instance.IsGamePaused())
-        {
-            return;
-        }
-
         if (activeWeapon.shootStyle != WeaponShootingStyle.Charge)
         {
             return;
         }
-
+        weaponAudioSource.loop = false;
         weaponAudioSource.Stop();
         if (activeWeapon.shootStyle == WeaponShootingStyle.Charge)
         {

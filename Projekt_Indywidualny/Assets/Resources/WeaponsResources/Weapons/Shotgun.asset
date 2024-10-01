@@ -14,22 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Shotgun
   description: Its a shotgun, just as advertised
+  shortDescription: 
   Pools: 00000000
   Rarity: 2
   icon: {fileID: 21300000, guid: e26830b3f49fdff41a5ea0a193b4efb7, type: 3}
   itemBehaviour: {fileID: 0}
+  UnlockedAtStart: 1
   WeaponID: 1
   shootConfiguration: {fileID: 0}
   shootStyle: 1
   Damage: 4
   FireRate: 0.4
   ChargeTime: 0
+  ChargeThreshold: 1
   ReloadTime: 1
   ClipSize: 7
   MaxAmmo: 70
   AmmoUsePerShoot: 1
   bulletsPerShoot: 7
   Spread: {x: 0.1, y: 0.1, z: 0.4}
+  ScreenShakeTime: 0.1
+  ScreenShakeIntesivity: 0.2
   SpawnPoint: {x: 0.7, y: -0.2, z: -1}
   SpawnRotation: {x: 0, y: -90, z: 0}
   ModelScale: {x: 0.6, y: 0.6, z: 0.6}
@@ -39,3 +44,5 @@ MonoBehaviour:
   idleImage: {fileID: 0}
   weaponShootSound: {fileID: 8300000, guid: 5f96caf9d9cddb345a13e40f0560dd5f, type: 3}
   weaponReloadSound: {fileID: 0}
+  chargeSound: {fileID: 0}
+  fullyChargeSound: {fileID: 0}

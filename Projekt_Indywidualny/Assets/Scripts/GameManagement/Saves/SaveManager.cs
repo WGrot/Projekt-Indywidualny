@@ -33,21 +33,7 @@ public class SaveManager : MonoBehaviour
         }
     }
     #endregion
-    /*
-    #region UnlockedAtStart class
-    protected class UnlockAtStartData
-    {
-        public bool[] unlockedItems;
-        public bool[] unlockedWeapons;
 
-        public UnlockAtStartData(bool[] unlockedItems, bool[] unlockedWeapons)
-        {
-            this.unlockedItems = unlockedItems;
-            this.unlockedWeapons = unlockedWeapons;
-        }
-    }
-    #endregion
-    */
     public void Init()
     {
         if (!Directory.Exists(SAVE_FOLDER))
@@ -113,6 +99,17 @@ public class SaveManager : MonoBehaviour
         ItemPoolsManager.Instance.AssignWeaponsToPools();
     }
 
+    public void UnlockItem(int id)
+    {
+        saveData.UnlockItem(id);
+        SaveSavedData();
+    }
+
+    public void UnlockWeapon(int id)
+    {
+        saveData.UnlockWeapon(id);
+        SaveSavedData();
+    }
 
 }
 

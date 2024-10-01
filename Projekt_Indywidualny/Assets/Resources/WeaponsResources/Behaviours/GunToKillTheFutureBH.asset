@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GunToKillTheFutureBH
   m_EditorClassIdentifier: 
   wasPickedUpBefore: 0
+  ShakeIntesivityDuringCharging: 0.2
+  ShakeTimeDuringCharging: 0.1
