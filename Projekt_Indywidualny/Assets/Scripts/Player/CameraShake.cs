@@ -9,10 +9,28 @@ public class CameraShake : MonoBehaviour
     private float startingShakeTime;
     Vector3 startingPos;
 
+    #region Singleton
+    public static CameraShake Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError("More than one CameraShake instance found!");
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+
+        }
+    }
+    #endregion
+
 
     public void OnEnable()
     {
-        WeaponHolder.OnWeaponShootCallback += ShakeCameraDefaultValues;
+        WeaponHolder.OnWeaponShootCallback += ShakeCameraByWeapon;
     }
 
 
@@ -29,12 +47,12 @@ public class CameraShake : MonoBehaviour
         shakeForce = intensity;
     }
 
-    public void ShakeCameraDefaultValues(int activeWeaponId)
+    public void ShakeCameraByWeapon(int activeWeaponId)
     {
         isShaking = true;
-        timer = 0.1f;
-        startingShakeTime = 0.1f;
-        shakeForce = 0.05f;
+        timer = Inventory.Instance.GetActiveWeapon().ScreenShakeTime;
+        startingShakeTime = timer;
+        shakeForce = Inventory.Instance.GetActiveWeapon().ScreenShakeIntesivity;
     }
 
     void FixedUpdate()

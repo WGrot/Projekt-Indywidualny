@@ -31,6 +31,9 @@ public class WeaponSO : Item
     public int AmmoUsePerShoot = 1;
     public int bulletsPerShoot = 1;
     public Vector3 Spread = new Vector3(0.1f, 0.1f, 0.4f);
+    public float ScreenShakeTime = 0.05f;
+    public float ScreenShakeIntesivity = 0.1f;
+
 
     private WeaponBehaviour weaponBehaviour;
 
@@ -42,7 +45,7 @@ public class WeaponSO : Item
     public GameObject ModelPrefab;
     public Sprite idleImage;
 
-    [Header("Weapon Model Parameters")]
+    [Header("Audio Configuration")]
     public AudioClip weaponShootSound;
     public AudioClip weaponReloadSound;
     public AudioClip chargeSound;

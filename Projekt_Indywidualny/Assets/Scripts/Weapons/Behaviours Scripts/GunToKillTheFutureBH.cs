@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/OneTimeUse/GunToKillTHeFUtureBH")]
 
-public class GunToKillTheFutureBH : WeaponBehaviour
+public class GunToKillTheFutureBH : ChargedWeaponBehaviour
 {
     public override void OnShoot()
     {

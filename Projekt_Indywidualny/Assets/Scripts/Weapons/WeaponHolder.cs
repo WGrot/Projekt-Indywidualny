@@ -214,6 +214,7 @@ public class WeaponHolder : MonoBehaviour
         {
             TryToShootClassic();
             wasShootPressedThisFrame = true;
+
             if (activeWeapon.shootStyle == WeaponShootingStyle.Charge)
             {
                 chargeTime += Time.deltaTime;
@@ -222,7 +223,6 @@ public class WeaponHolder : MonoBehaviour
                     weaponAudioSource.clip = activeWeapon.chargeSound;
                     weaponAudioSource.Play();
                     isCharging = true;
-                    Debug.Log("chuj");
                 }
 
                 if (!isFullyCharged && chargeTime > activeWeapon.chargeTime)
@@ -244,7 +244,12 @@ public class WeaponHolder : MonoBehaviour
         {
             wasShootPressedThisFrame = false;
             chargeTime = 0;
+        }
 
+        if (isCharging && activeWeapon.WeaponBehaviour is ChargedWeaponBehaviour)
+        {
+            ChargedWeaponBehaviour behaviour = (ChargedWeaponBehaviour)activeWeapon.WeaponBehaviour;
+            behaviour.OnCharging(chargeTime, activeWeapon.chargeTime);
         }
     }
 
@@ -318,6 +323,8 @@ public class WeaponHolder : MonoBehaviour
     public void TryToShootCharge(InputAction.CallbackContext context)
     {
         isCharging = false;
+        isFullyCharged = false;
+
         if (activeWeapon == null)
         {
             return;
@@ -334,6 +341,12 @@ public class WeaponHolder : MonoBehaviour
             return;
         }
 
+        if (activeWeapon.shootStyle != WeaponShootingStyle.Charge)
+        {
+            return;
+        }
+
+        weaponAudioSource.Stop();
         if (activeWeapon.shootStyle == WeaponShootingStyle.Charge)
         {
             bool shooted = activeWeapon.Shoot(gameObject, activeWeaponID, chargeTime);

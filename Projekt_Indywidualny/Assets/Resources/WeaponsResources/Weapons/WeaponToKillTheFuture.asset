@@ -37,12 +37,12 @@ MonoBehaviour:
   Spread: {x: 0, y: 0, z: 0}
   SpawnPoint: {x: 0.7, y: -0.2, z: -1}
   SpawnRotation: {x: 0, y: -80, z: 0}
-  ModelScale: {x: 1, y: 1, z: 1}
+  ModelScale: {x: 0.75, y: 0.75, z: 0.75}
   ShootOffset: {x: 0, y: 0, z: 0}
   ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
-  weaponShootSound: {fileID: 8300000, guid: 25a3aa8524227754dbef615c8c95fc53, type: 3}
+  weaponShootSound: {fileID: 8300000, guid: dd85c9172e491884aae7b6601fd86b92, type: 3}
   weaponReloadSound: {fileID: 0}
-  chargeSound: {fileID: 8300000, guid: e13210b28bdfde04c8e2bf5f410c1562, type: 3}
-  fullyChargeSound: {fileID: 8300000, guid: 419dab5b6e4e869408c0d91e5ff86b57, type: 3}
+  chargeSound: {fileID: 8300000, guid: 961b1873ba094ad45a7d4cb2d625a64b, type: 3}
+  fullyChargeSound: {fileID: 8300000, guid: 298c20bcc34435b49986cf19edf28302, type: 3}
