@@ -9,6 +9,12 @@ public class SaveManager : MonoBehaviour
     private static string SAVE_FOLDER;
     [SerializeField] bool shouldDeleteLockedItems = true;
 
+    public delegate void OnItemUnlocked(Item item);
+    public static event OnItemUnlocked OnItemUnlockedCallback;
+
+    public delegate void OnWeaponUnlocked(int weaponId);
+    public static event OnWeaponUnlocked OnWeaponUnlockedCallback;
+
     #region Singleton
     public static SaveManager Instance { get; private set; }
     public SaveData SaveData { get => saveData; set => saveData = value; }
@@ -99,16 +105,32 @@ public class SaveManager : MonoBehaviour
         ItemPoolsManager.Instance.AssignWeaponsToPools();
     }
 
-    public void UnlockItem(int id)
+    public void UnlockItem(int itemId)
     {
-        saveData.UnlockItem(id);
+        if (saveData.CheckIfItemUnlocked(itemId))
+        {
+            return;
+        }
+        saveData.UnlockItem(itemId);
         SaveSavedData();
+        if (OnItemUnlockedCallback != null)
+        {
+            OnItemUnlockedCallback(ItemPoolsManager.Instance.GetItemWithID(itemId));
+        }
     }
 
-    public void UnlockWeapon(int id)
+    public void UnlockWeapon(int weaponId)
     {
-        saveData.UnlockWeapon(id);
+        if (saveData.CheckIfWeaponUnlocked(weaponId))
+        {
+            return;
+        }
+        saveData.UnlockWeapon(weaponId);
         SaveSavedData();
+        if (OnWeaponUnlockedCallback!= null)
+        {
+            OnWeaponUnlockedCallback(weaponId);
+        }
     }
 
 }

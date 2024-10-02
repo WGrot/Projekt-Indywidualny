@@ -149,4 +149,14 @@ public class ItemPoolsManager : MonoBehaviour
         }
         return result;
     }
+
+    public PassiveItem GetItemWithID(int id)
+    {
+        return allItemsList[id];
+    }
+
+    public WeaponSO GetWeaponWithID(int id)
+    {
+        return allWeaponsList[id];
+    }
 }

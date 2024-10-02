@@ -20,6 +20,16 @@ public class SaveData {
 
     public void UnlockWeapon(int id)
     {
-        UnlockedPassiveItemsData[id] = true;
+        UnlockedWeaponsData[id] = true;
+    }
+
+    public bool CheckIfItemUnlocked(int id)
+    {
+        return UnlockedPassiveItemsData[id];
+    }
+
+    public bool CheckIfWeaponUnlocked(int id)
+    {
+        return UnlockedWeaponsData[id];
     }
 }

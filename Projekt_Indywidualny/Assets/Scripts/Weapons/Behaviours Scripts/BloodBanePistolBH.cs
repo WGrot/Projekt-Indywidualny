@@ -10,6 +10,7 @@ public class BloodBanePistolBH : WeaponBehaviour
     public override void OnShoot()
     {
         PlayerStatus.Instance.TakeDamage(2);
+        SaveManager.Instance.UnlockItem(1);
     }
 
     public override void OnEnemyDeath()
