@@ -3228,12 +3228,12 @@ PrefabInstance:
         type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 644269d9775a0524ea7729f03673b006,
+      objectReference: {fileID: 11400000, guid: aa441edaeeae28742a171b8d8b149fdb,
         type: 2}
     - target: {fileID: 1485490556589499615, guid: f114e4dc7b27efa4d98e21f51f80612e,
         type: 3}
       propertyPath: isItemRandom
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1996415445194266352, guid: f114e4dc7b27efa4d98e21f51f80612e,
         type: 3}

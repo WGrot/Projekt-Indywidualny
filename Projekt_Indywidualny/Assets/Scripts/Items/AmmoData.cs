@@ -8,7 +8,6 @@ public class AmmoData
 
     public int ammoInClip { get; private set; }
     public int ammoLeft { get; private set; }
-
     public int ammoMax { get; private set; }
     public AmmoData(int ammoInClip, int ammoLeft, int ammoMax)
     {
@@ -16,6 +15,9 @@ public class AmmoData
         this.ammoLeft = ammoLeft;
         this.ammoMax = ammoMax;
     }
+
+    public delegate void OnAmmoDataChanged();
+    public static event OnAmmoDataChanged OnAmmoDataChangedCallback;
 
     public void DecreaseAmmo(int amount)
     {
@@ -29,6 +31,11 @@ public class AmmoData
         {
             ammoLeft=0;
         }
+
+        if (OnAmmoDataChangedCallback!= null)
+        {
+            OnAmmoDataChangedCallback();
+        }
     }
     
     public void ReloadClip(int clipSize)
@@ -40,6 +47,11 @@ public class AmmoData
         {
             ammoInClip = clipSize;
         }
+
+        if (OnAmmoDataChangedCallback != null)
+        {
+            OnAmmoDataChangedCallback();
+        }
     }
 
     public void RefillByPercent(int percent)
@@ -50,5 +62,11 @@ public class AmmoData
         {
             ammoLeft = ammoMax;
         }
+
+        if (OnAmmoDataChangedCallback != null)
+        {
+            OnAmmoDataChangedCallback();
+        }
     }
+
 }

@@ -11,6 +11,8 @@ public class ItemBehaviourManager
     private List<Action> onPlayerTakeDamageBH;
     private List<Action> onEnemyDeathBH;
     private List<Action> onLevelGeneratedBH;
+    private List<Action> onPlayerDeathBH;
+    private List<Action> SuccessfulParryBH;
     private List<Action<int>> onCoinAmountChangeBH;
     public ItemBehaviourManager()
     {
@@ -20,6 +22,8 @@ public class ItemBehaviourManager
         onPlayerTakeDamageBH = new List<Action>();
         onEnemyDeathBH = new List<Action>();
         onLevelGeneratedBH = new List<Action>();
+        onPlayerDeathBH = new List<Action>();
+        SuccessfulParryBH = new List<Action>();
         onCoinAmountChangeBH = new List<Action<int>>();
 
         SubToAllEvents();
@@ -30,7 +34,9 @@ public class ItemBehaviourManager
         PlayerStatus.OnPlayerTakeDamageCallback += OnPlayerTakeDamage;
         EnemyHpBase.OnEnemyDeath += OnEnemyDeath;
         PlayerStatus.OnCoinsAmountChangeCallback += OnCoinAmountChange;
+        PlayerStatus.OnPlayerDieCallback += OnPlayerDeath;
         LevelGenerationV2.OnLevelGenerated += OnLevelGenerated;
+        FlipHitbox.OnSuccessfulParryActionCallback += OnSuccessfulParry;
     }
 
     public void UnSubToAllEvents()
@@ -38,7 +44,9 @@ public class ItemBehaviourManager
         PlayerStatus.OnPlayerTakeDamageCallback -= OnPlayerTakeDamage;
         EnemyHpBase.OnEnemyDeath -= OnEnemyDeath;
         PlayerStatus.OnCoinsAmountChangeCallback -= OnCoinAmountChange;
+        PlayerStatus.OnPlayerDieCallback -= OnPlayerDeath;
         LevelGenerationV2.OnLevelGenerated -= OnLevelGenerated;
+        FlipHitbox.OnSuccessfulParryActionCallback -= OnSuccessfulParry;
     }
 
     public void ClearAllBehaviours()
@@ -47,6 +55,7 @@ public class ItemBehaviourManager
         onLevelGeneratedBH.Clear();
         onCoinAmountChangeBH.Clear();
         onEnemyDeathBH.Clear();
+        onPlayerDeathBH.Clear();
     }
 
     public static void ResetAllBehaviours()
@@ -125,7 +134,7 @@ public class ItemBehaviourManager
     }
     #endregion
 
-    #region OnEnemyDeath list methods
+    #region OnLevelGenerated list methods
     private void OnLevelGenerated()
     {
         DoActions(onLevelGeneratedBH);
@@ -139,6 +148,42 @@ public class ItemBehaviourManager
     public void RemoveFuncFromOnLevelGenerated(Action func)
     {
         onLevelGeneratedBH.Remove(func);
+
+    }
+    #endregion
+
+    #region OnPlayerDeath list methods
+    private void OnPlayerDeath()
+    {
+        DoActions(onPlayerDeathBH);
+    }
+
+    public void AddFuncToOnPlayerDeath(Action func)
+    {
+        onPlayerDeathBH.Add(func);
+
+    }
+    public void RemoveFuncFromOnPlayerDeath(Action func)
+    {
+        onPlayerDeathBH.Remove(func);
+
+    }
+    #endregion
+
+    #region OnSuccessfulParry list methods
+    private void OnSuccessfulParry()
+    {
+        DoActions(onPlayerDeathBH);
+    }
+
+    public void AddFuncToOnSuccessfulParry(Action func)
+    {
+        onPlayerDeathBH.Add(func);
+
+    }
+    public void RemoveFuncFromOnSuccessfulParry(Action func)
+    {
+        onPlayerDeathBH.Remove(func);
 
     }
     #endregion

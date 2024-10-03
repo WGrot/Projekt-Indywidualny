@@ -10,6 +10,7 @@ public class PlayerStatus : MonoBehaviour
     PL_HealthStat hpStat;
     private float currentHp;
     private int coins = 0;
+    private int revivals = 0;
     private bool canTakeDamage = true;
     private bool isPlayerDead = false;
     public static PlayerStatus Instance { get; private set; }
@@ -31,6 +32,9 @@ public class PlayerStatus : MonoBehaviour
 
     public delegate void OnPlayerDie();
     public static event OnPlayerDie OnPlayerDieCallback;
+
+    public delegate void OnPlayerRevive();
+    public static event OnPlayerRevive OnPlayerReviveCallback;
 
     public delegate void OnCoinsAmountChange(int amount);
     public static event OnCoinsAmountChange OnCoinsAmountChangeCallback;
@@ -106,11 +110,30 @@ public class PlayerStatus : MonoBehaviour
 
     public void Die()
     {
+        if(revivals > 0)
+        {
+            revivals--;
+            Revive();
+            return;
+        }
+
         Debug.Log("PlayerIsDead");
         IsPlayerDead = true;
         if (OnPlayerDieCallback != null)
         {
             OnPlayerDieCallback();
+        }
+    }
+
+    public void Revive()
+    {
+        Debug.Log("PlayerIsNotDead");
+        IsPlayerDead = false;
+        Heal(stats[0].value);
+
+        if (OnPlayerReviveCallback!= null)
+        {
+            OnPlayerReviveCallback();
         }
     }
 
@@ -136,6 +159,12 @@ public class PlayerStatus : MonoBehaviour
             OnPlayersHealthChangedCallback();
         }
 
+    }
+
+    public void HealByPercent(int amount)
+    {
+        float healAmount = ((float)amount / 100) * stats[0].value;
+        Heal(healAmount);
     }
 
     public void TakeDamage(float damage)
@@ -232,6 +261,11 @@ public class PlayerStatus : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void IncrementRevivals()
+    {
+        revivals++;
     }
 
 }

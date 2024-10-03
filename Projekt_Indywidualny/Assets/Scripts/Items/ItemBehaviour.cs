@@ -42,4 +42,13 @@ public class ItemBehaviour : ScriptableObject
         Debug.Log("behaviour on level generated");
     }
 
+    public virtual void OnPlayerDeath()
+    {
+        Debug.Log("behaviour on PlayerDeath");
+    }
+
+    public virtual void OnSuccessfulParry()
+    {
+        Debug.Log("behaviour on SuccessfulParry");
+    }
 }

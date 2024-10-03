@@ -11,22 +11,29 @@ public class AmmoCorner : MonoBehaviour
 
     private void OnEnable()
     {
-        WeaponHolder.OnWeaponShootCallback += ShowAmmoData;
         WeaponHolder.OnWeaponChangedCallback += ShowAmmoData;
-        WeaponHolder.OnWeaponReloadCallback += ShowAmmoData;
-        Inventory.OnAmmoRefiledCallback += ShowAmmoData;
+        AmmoData.OnAmmoDataChangedCallback += ShowAmmoData;
     }
 
     private void OnDisable()
     {
-        WeaponHolder.OnWeaponShootCallback -= ShowAmmoData;
         WeaponHolder.OnWeaponChangedCallback -= ShowAmmoData;
-        WeaponHolder.OnWeaponReloadCallback -= ShowAmmoData;
-        Inventory.OnAmmoRefiledCallback -= ShowAmmoData;
+        AmmoData.OnAmmoDataChangedCallback -= ShowAmmoData;
     }
+
 
     private void ShowAmmoData(int activeWeaponId)
     {
+        string ammoLeft = Inventory.Instance.GetAmmoAtIndex(activeWeaponId).ammoLeft.ToString();
+        string maxAmmo = Inventory.Instance.GetWeaponAtIndex(activeWeaponId).MaxAmmo.ToString();
+        string ammoinClipString = Inventory.Instance.GetAmmoAtIndex(activeWeaponId).ammoInClip.ToString();
+        string ammoCombined = ammoLeft + "/" + maxAmmo;
+        totalAmmoData.SetText(ammoCombined);
+        ammoInClipText.SetText(ammoinClipString);
+    }
+    private void ShowAmmoData()
+    {
+        int activeWeaponId = Inventory.Instance.GetActiveWeaponID();
         string ammoLeft = Inventory.Instance.GetAmmoAtIndex(activeWeaponId).ammoLeft.ToString();
         string maxAmmo = Inventory.Instance.GetWeaponAtIndex(activeWeaponId).MaxAmmo.ToString();
         string ammoinClipString = Inventory.Instance.GetAmmoAtIndex(activeWeaponId).ammoInClip.ToString(); 
