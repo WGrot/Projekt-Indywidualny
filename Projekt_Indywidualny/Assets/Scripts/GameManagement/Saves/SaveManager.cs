@@ -133,6 +133,16 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public bool CheckIfItemUnlocked(int passiveItemId)
+    {
+        return saveData.CheckIfItemUnlocked(passiveItemId);
+    }
+
+    public bool CheckIfWeaponUnlocked(int weaponId)
+    {
+        return saveData.CheckIfWeaponUnlocked(weaponId);
+    }
+
 }
 
 

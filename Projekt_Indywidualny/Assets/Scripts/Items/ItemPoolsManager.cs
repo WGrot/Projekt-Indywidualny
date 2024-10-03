@@ -12,6 +12,8 @@ public class ItemPoolsManager : MonoBehaviour
     private List<PassiveItem> unlockedItemsList = new List<PassiveItem>();
     private List<WeaponSO> unlockedWeaponsList = new List<WeaponSO>();
 
+    private List<Item> lockedItems = new List<Item>(); // Potrzebne do termianlu z unlockami
+
     private ItemPool AllItems = new ItemPool();
     private ItemPool TreasureRoomItems= new ItemPool();
 
@@ -100,7 +102,9 @@ public class ItemPoolsManager : MonoBehaviour
         {
             if (!unlockedPassiveItems[i])
             {
+                lockedItems.Add(unlockedItemsList[i]);
                 unlockedItemsList.RemoveAt(i);
+
             }
         }
     }
@@ -113,6 +117,7 @@ public class ItemPoolsManager : MonoBehaviour
 
             if (!unlockedWeapons[i])
             {
+                lockedItems.Add(unlockedWeaponsList[i]);
                 unlockedWeaponsList.RemoveAt(i);
             }
         }
@@ -158,5 +163,10 @@ public class ItemPoolsManager : MonoBehaviour
     public WeaponSO GetWeaponWithID(int id)
     {
         return allWeaponsList[id];
+    }
+
+    public List<Item> GetLockedItems()
+    {
+        return lockedItems;
     }
 }

@@ -13,6 +13,7 @@ public class Item : ScriptableObject
     public Sprite icon = null;
     public ItemBehaviour itemBehaviour;
     public bool UnlockedAtStart = true;
+    public int UnlockCost = 0;
 
     #region BehaviourStuff
     public void AddBehavioursToManager()

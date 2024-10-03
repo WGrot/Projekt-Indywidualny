@@ -14,23 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PainGun
   description: put description here
+  shortDescription: 
   Pools: 00000000
   Rarity: 0
   icon: {fileID: 21300000, guid: a71f601f02d78a14aa428333e8b7ee48, type: 3}
   itemBehaviour: {fileID: 11400000, guid: caea6efc173e0054fad84fdd069799be, type: 2}
-  UnlockedAtStart: 1
+  UnlockedAtStart: 0
+  UnlockCost: 0
   WeaponID: 9
   shootConfiguration: {fileID: 0}
   shootStyle: 0
   Damage: 6
   FireRate: 0.2
   ChargeTime: 0
+  ChargeThreshold: 1
   ReloadTime: 1
   ClipSize: 10
   MaxAmmo: 100
   AmmoUsePerShoot: 1
   bulletsPerShoot: 1
   Spread: {x: 0.05, y: 0.05, z: 0.05}
+  ScreenShakeTime: 0.05
+  ScreenShakeIntesivity: 0.1
   SpawnPoint: {x: 0.7, y: -0.2, z: -1}
   SpawnRotation: {x: 0, y: -80, z: 0}
   ModelScale: {x: 0.7, y: 0.7, z: 0.7}
@@ -40,3 +45,5 @@ MonoBehaviour:
   idleImage: {fileID: 0}
   weaponShootSound: {fileID: 8300000, guid: 5f96caf9d9cddb345a13e40f0560dd5f, type: 3}
   weaponReloadSound: {fileID: 0}
+  chargeSound: {fileID: 0}
+  fullyChargeSound: {fileID: 0}

@@ -20,6 +20,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ccf148869d428944b854439dc5d8e763, type: 3}
   itemBehaviour: {fileID: 11400000, guid: 1dd596c4ba540cd40a7e085a6e607da4, type: 2}
   UnlockedAtStart: 1
+  UnlockCost: 0
   PassiveItemID: 13
   modifiers:
   - statType: 0

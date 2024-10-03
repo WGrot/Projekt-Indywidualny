@@ -9,6 +9,6 @@ public class GunToKillTheFutureBH : ChargedWeaponBehaviour
     public override void OnShoot()
     {
         PlayerStatus.Instance.Die();
-        SaveManager.Instance.UnlockItem(0);
+        SaveManager.Instance.UnlockItem(22);
     }
 }
