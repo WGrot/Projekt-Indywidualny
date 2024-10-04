@@ -15,6 +15,7 @@ public class UnlockTerminal : MonoBehaviour
     private int displayedItemIndex;
 
     [SerializeField] TextMeshPro costText;
+    [SerializeField] TextMeshPro itemNameText;
     [SerializeField] SpriteRenderer itemSprite;
     [SerializeField] Sprite buyOutSprite;
 
@@ -58,11 +59,13 @@ public class UnlockTerminal : MonoBehaviour
         {
             itemSprite.sprite = displayedItem.icon;
             costText.text = displayedItem.UnlockCost.ToString();
+            itemNameText.text = displayedItem.itemName;
         }
         else
         {
             itemSprite.sprite = buyOutSprite;
-            costText.text = "69";
+            itemNameText.text = "Out Of Stock";
+            costText.text = "";
         }
 
     }
@@ -70,6 +73,13 @@ public class UnlockTerminal : MonoBehaviour
     public void UnlockDisplayedItem()
     {
         if (displayedItem == null)
+        {
+            return;
+        }
+
+
+        //Za ma³o bitów aby odblokowaæ przedmiot
+        if (displayedItem.UnlockCost > SaveManager.Instance.GetCollectedBits())
         {
             return;
         }

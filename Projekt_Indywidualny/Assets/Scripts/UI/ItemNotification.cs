@@ -14,27 +14,36 @@ public class ItemNotification : MonoBehaviour
     [SerializeField] private GameObject brokenChains;
     [SerializeField] private float fadeTime;
 
+    [SerializeField] private AudioClip unlockSound;
+    [SerializeField] private AudioClip pickupSound;
+
+    private AudioSource audioSource;
     private Animator animator;
 
     private void OnEnable()
     {
         Inventory.OnItemAddedCallback += ShowItemPickupNotification;
         SaveManager.OnItemUnlockedCallback += ShowItemUnlockNotification;
+        SaveManager.OnWeaponUnlockedCallback += ShowItemUnlockNotification;
     }
 
     private void OnDisable()
     {
         Inventory.OnItemAddedCallback -= ShowItemPickupNotification;
         SaveManager.OnItemUnlockedCallback -= ShowItemUnlockNotification;
+        SaveManager.OnWeaponUnlockedCallback -= ShowItemUnlockNotification;
     }
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void ShowItemPickupNotification(Item item)
     {
         itemNotificationBody.SetActive(true);
+        audioSource.clip = pickupSound;
+        audioSource.Play();
         unlockedText.text = "Picked Up";
         brokenChains.SetActive(false);
         itemNameText.text = item.itemName;
@@ -49,6 +58,8 @@ public class ItemNotification : MonoBehaviour
     {
         
         itemNotificationBody.SetActive(true);
+        audioSource.clip = unlockSound;
+        audioSource.Play();
         brokenChains.SetActive(true);
         unlockedText.text = "Unlocked";
         itemNameText.text = item.itemName;

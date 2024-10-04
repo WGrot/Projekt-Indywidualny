@@ -12,7 +12,7 @@ public class SaveManager : MonoBehaviour
     public delegate void OnItemUnlocked(Item item);
     public static event OnItemUnlocked OnItemUnlockedCallback;
 
-    public delegate void OnWeaponUnlocked(int weaponId);
+    public delegate void OnWeaponUnlocked(Item item);
     public static event OnWeaponUnlocked OnWeaponUnlockedCallback;
 
     #region Singleton
@@ -129,7 +129,7 @@ public class SaveManager : MonoBehaviour
         SaveSavedData();
         if (OnWeaponUnlockedCallback!= null)
         {
-            OnWeaponUnlockedCallback(weaponId);
+            OnWeaponUnlockedCallback(ItemPoolsManager.Instance.GetWeaponWithID(weaponId));
         }
     }
 
@@ -141,6 +141,16 @@ public class SaveManager : MonoBehaviour
     public bool CheckIfWeaponUnlocked(int weaponId)
     {
         return saveData.CheckIfWeaponUnlocked(weaponId);
+    }
+
+    public int GetCollectedBits()
+    {
+        return saveData.BitsCollected;
+    }
+
+    public void ChangeAmountOfCollectedBits(int amount)
+    {
+        saveData.ChangeAmountOfCollectedBits(amount);
     }
 
 }
