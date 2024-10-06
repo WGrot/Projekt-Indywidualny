@@ -11,7 +11,7 @@ public class ItemPickup : MonoBehaviour, I_Interactable, ILookable
     [SerializeField] protected ItemPools pool;
 
     protected bool isIconActive = false;
-
+    
     public virtual void Start()
     {
         itemSprite.sprite = item.icon;

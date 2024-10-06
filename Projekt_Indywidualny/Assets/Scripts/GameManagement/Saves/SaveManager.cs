@@ -15,6 +15,9 @@ public class SaveManager : MonoBehaviour
     public delegate void OnWeaponUnlocked(Item item);
     public static event OnWeaponUnlocked OnWeaponUnlockedCallback;
 
+    public delegate void OnBitsChanged();
+    public static event OnBitsChanged OnBitsChangedCallback;
+
     #region Singleton
     public static SaveManager Instance { get; private set; }
     public SaveData SaveData { get => saveData; set => saveData = value; }
@@ -151,6 +154,11 @@ public class SaveManager : MonoBehaviour
     public void ChangeAmountOfCollectedBits(int amount)
     {
         saveData.ChangeAmountOfCollectedBits(amount);
+        SaveSavedData();
+        if (OnBitsChangedCallback!= null)
+        {
+            OnBitsChangedCallback();
+        }
     }
 
 }

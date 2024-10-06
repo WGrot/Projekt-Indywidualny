@@ -6,7 +6,7 @@ public class SaveData {
 
     public bool[] UnlockedPassiveItemsData = new bool[10];
     public bool[] UnlockedWeaponsData = new bool[10];
-    int bitsCollected =100;
+    public int bitsCollected =100;
 
     public int BitsCollected { get => bitsCollected; private set => bitsCollected = value; }
 
