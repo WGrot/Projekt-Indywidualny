@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AtosCurse : MonoBehaviour, ILookable, I_Parryable
+public class StrangeCurse : MonoBehaviour, ILookable, I_Parryable
 {
 
     [SerializeField] private float cameraShakePower;
