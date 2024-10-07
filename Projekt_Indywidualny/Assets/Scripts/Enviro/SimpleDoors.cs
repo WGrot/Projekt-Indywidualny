@@ -22,4 +22,11 @@ public class SimpleDoors : MonoBehaviour
         audioSource.Play();
         animator.SetBool("DoorsAreOpened", true);
     }
+
+    public void CloseDoors()
+    {
+        audioSource.clip = closingDoorsSound;
+        audioSource.Play();
+        animator.SetBool("DoorsAreOpened", false);
+    }
 }
