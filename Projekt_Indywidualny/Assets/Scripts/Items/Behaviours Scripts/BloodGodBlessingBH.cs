@@ -6,18 +6,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/OneTimeUse/BloodGodBlessing")]
 public class BloodGodBlessingBH : ItemBehaviour
 {
-    private static float DamageIncrease = 0.25f;
-    private float BuffTime = 2f;
+    public float DamageIncrease = 0.25f;
+    public float BuffTime = 2f;
     Buff bloodGodBlessingBuff;
     [SerializeField] Sprite buffIcon;
 
     public override void OnPlayerTakeDamage()
     {
-        bloodGodBlessingBuff = new Buff(BuffTime, DamageIncrease, StatType.Damage, this, StatModType.Flat, Time.time, buffIcon);
+        StatModifier statModifier = new StatModifier(DamageIncrease,StatType.Damage, StatModType.Flat, 100, this);
+        bloodGodBlessingBuff = new Buff(BuffTime, statModifier, this, Time.time, buffIcon);
         BuffManager.Instance.AddBuff(bloodGodBlessingBuff);
-        //int clipSize = Inventory.Instance.GetActiveWeapon().ClipSize; 
-        //Inventory.Instance.GetAmmoOfActiveWeapon().ReloadClip(clipSize);
+
     }
+
 
     public override void OnPickup()
     {

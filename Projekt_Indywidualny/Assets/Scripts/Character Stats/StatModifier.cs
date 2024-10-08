@@ -26,6 +26,15 @@ public class StatModifier
         this.order = order;
         this.source = source;
     }
+
+    public StatModifier(float value, StatType statType,StatModType modType, int order, object source)
+    {
+        this.value = value;
+        this.statType = statType;
+        this.modType = modType;
+        this.order = order;
+        this.source = source;
+    }
     public StatModifier(float value, StatModType modType)
     {
         this.value = value;

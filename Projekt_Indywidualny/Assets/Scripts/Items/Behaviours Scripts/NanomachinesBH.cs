@@ -12,7 +12,8 @@ public class NanomachinesBH : ItemBehaviour
 
     public override void OnPlayerTakeDamage()
     {
-        nanomachinesBuff = new Buff(BuffTime, ArmorBoostValue, StatType.Armor, this, StatModType.Flat, Time.time, buffIcon);
+        StatModifier statModifier = new StatModifier(ArmorBoostValue,StatType.Armor, StatModType.Flat, 100, this);
+        nanomachinesBuff = new Buff(BuffTime, statModifier, this, Time.time, buffIcon);
         BuffManager.Instance.AddBuff(nanomachinesBuff);
     }
     

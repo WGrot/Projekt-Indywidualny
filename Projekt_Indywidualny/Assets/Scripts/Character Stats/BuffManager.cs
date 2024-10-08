@@ -77,7 +77,7 @@ public class BuffManager : MonoBehaviour
         for (int i = buffs.Count - 1; i >= 0; i--)
         {
             Buff buff = buffs[i];
-            if (buff.StartTime + buff.Duration < Time.time)
+            if (!buff.AreConditionsMet())
             {
                 RemoveBuff(buff);
             }

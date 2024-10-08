@@ -17,7 +17,8 @@ public class AngryCoinsBH : ItemBehaviour
 
         if (amount > 0)
         {
-            Buff angryCoinsBuff = new Buff(buffTime, (amount * buffMultiplier /100), StatType.Damage, this, StatModType.Flat, Time.time, buffIcon);
+            StatModifier statModifier = new StatModifier(amount * buffMultiplier / 100, StatType.Damage, StatModType.Flat, 100, this);
+            Buff angryCoinsBuff = new Buff(buffTime, statModifier, this, Time.time, buffIcon);
             BuffManager.Instance.AddBuff(angryCoinsBuff);
         }
     }
