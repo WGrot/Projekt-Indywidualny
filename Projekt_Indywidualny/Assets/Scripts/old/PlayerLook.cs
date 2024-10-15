@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
@@ -22,15 +23,28 @@ public class PlayerLook : MonoBehaviour
     private void OnEnable()
     {
         inputActions.Enable();
-        savedMouseSpeed = PlayerPrefs.GetFloat("M_Sensitivity");
+        UpdateMouseSpeed();
+        GameStateManager.GameStateChangeCallback += UpdateMouseSpeed;
+
     }
 
     private void OnDisable()
     {
-        inputActions.Disable();
-    }
+		GameStateManager.GameStateChangeCallback -= UpdateMouseSpeed;
+		inputActions.Disable();
+	}
 
-    private void Start()
+    private void UpdateMouseSpeed()
+    {
+		savedMouseSpeed = PlayerPrefs.GetFloat("M_Sensitivity");
+	}
+
+	private void UpdateMouseSpeed(PauseState state)
+	{
+		savedMouseSpeed = PlayerPrefs.GetFloat("M_Sensitivity");
+	}
+
+	private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
