@@ -23,7 +23,6 @@ public class UnlockTerminal : MonoBehaviour
 
     private void Start()
     {
-        SaveManager.Instance.ResetSave();
         LoadItems();
         ShowDisplayedItem();
 
