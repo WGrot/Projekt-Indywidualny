@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b9a61011937a546a9d27b197c29c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 50
   enemyMainBody: {fileID: 3568258933823976320}
   enemyDrop: {fileID: 8998859292722528358}
 --- !u!1 &3568258933823976320
@@ -179,6 +179,7 @@ MonoBehaviour:
   bulletLifeTime: 3
   waitTimeAfterShot: 3
   burrowTime: 3
+  timeOffset: 0
   burrowSound: {fileID: 8300000, guid: cd4c65c1ca041e94eb4ccd1b9821c1d3, type: 3}
   unBurrowSound: {fileID: 8300000, guid: 1188aba970342c34cba1c27d5ddc84fd, type: 3}
   attackSound: {fileID: 8300000, guid: 9910c35b55e2d544484ecb1c965e710e, type: 3}

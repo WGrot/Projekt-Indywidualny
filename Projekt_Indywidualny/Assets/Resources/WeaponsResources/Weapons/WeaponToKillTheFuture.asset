@@ -18,10 +18,11 @@ MonoBehaviour:
     will do just fine
   shortDescription: It does exactly what is supposed to
   Pools: 00000000
-  Rarity: 0
+  Rarity: 3
   icon: {fileID: 21300000, guid: a6b9d66cd4ac92a44bb9a093fb6f13bf, type: 3}
   itemBehaviour: {fileID: 11400000, guid: 71d8380c1ce4850478be9dc6cace1bb3, type: 2}
   UnlockedAtStart: 1
+  UnlockCost: 0
   WeaponID: 10
   shootConfiguration: {fileID: 0}
   shootStyle: 2
@@ -35,6 +36,8 @@ MonoBehaviour:
   AmmoUsePerShoot: 1
   bulletsPerShoot: 1
   Spread: {x: 0, y: 0, z: 0}
+  ScreenShakeTime: 0.05
+  ScreenShakeIntesivity: 0.1
   SpawnPoint: {x: 0.7, y: -0.2, z: -1}
   SpawnRotation: {x: 0, y: -80, z: 0}
   ModelScale: {x: 0.75, y: 0.75, z: 0.75}

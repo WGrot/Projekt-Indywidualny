@@ -16,9 +16,10 @@ MonoBehaviour:
   description: Dont spend it on drugs
   shortDescription: Finders Keepers
   Pools: 00000000
-  Rarity: 0
+  Rarity: 1
   icon: {fileID: 21300000, guid: 1b80dac23c626cb42af37e92dfa4dbff, type: 3}
   itemBehaviour: {fileID: 11400000, guid: 8f0e88bdb1f026645ae2145447052363, type: 2}
   UnlockedAtStart: 1
+  UnlockCost: 0
   PassiveItemID: 23
   modifiers: []

@@ -16,10 +16,11 @@ MonoBehaviour:
   description: Shell of a huge Cockroach, it can be wore as armor
   shortDescription: armor up
   Pools: 00000000
-  Rarity: 0
+  Rarity: 1
   icon: {fileID: 21300000, guid: 8d05e911358b2234a8535bdd23ff6e3e, type: 3}
   itemBehaviour: {fileID: 0}
   UnlockedAtStart: 1
+  UnlockCost: 0
   PassiveItemID: 21
   modifiers:
   - statType: 1

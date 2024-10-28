@@ -17,10 +17,11 @@ MonoBehaviour:
     armor after taking damage'
   shortDescription: armor for trauma
   Pools: 00000000
-  Rarity: 1
+  Rarity: 2
   icon: {fileID: 21300000, guid: 61642d2462d274545a1b401947571d75, type: 3}
   itemBehaviour: {fileID: 11400000, guid: f05a13aad1dd26c4cb96b0daf387309f, type: 2}
   UnlockedAtStart: 1
+  UnlockCost: 0
   PassiveItemID: 7
   modifiers:
   - statType: 0

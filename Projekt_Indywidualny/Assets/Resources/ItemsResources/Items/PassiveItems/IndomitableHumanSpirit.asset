@@ -17,7 +17,7 @@ MonoBehaviour:
     know our true selves.<br> Allows the bearer to engage in one last heroic fight
   shortDescription: We were born to inherit the stars
   Pools: 00000000
-  Rarity: 0
+  Rarity: 2
   icon: {fileID: 21300000, guid: 30c3519688decca4f83bc70c4224b519, type: 3}
   itemBehaviour: {fileID: 11400000, guid: 4f2712260f5fbc346bd9927c17bea070, type: 2}
   UnlockedAtStart: 1

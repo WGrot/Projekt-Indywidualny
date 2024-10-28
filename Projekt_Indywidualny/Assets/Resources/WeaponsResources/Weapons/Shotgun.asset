@@ -16,10 +16,11 @@ MonoBehaviour:
   description: Its a shotgun, just as advertised
   shortDescription: 
   Pools: 00000000
-  Rarity: 2
+  Rarity: 0
   icon: {fileID: 21300000, guid: e26830b3f49fdff41a5ea0a193b4efb7, type: 3}
   itemBehaviour: {fileID: 0}
   UnlockedAtStart: 1
+  UnlockCost: 0
   WeaponID: 1
   shootConfiguration: {fileID: 0}
   shootStyle: 1

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: put description here
   shortDescription: 
   Pools: 00000000
-  Rarity: 0
+  Rarity: 1
   icon: {fileID: 21300000, guid: a71f601f02d78a14aa428333e8b7ee48, type: 3}
   itemBehaviour: {fileID: 11400000, guid: caea6efc173e0054fad84fdd069799be, type: 2}
   UnlockedAtStart: 0

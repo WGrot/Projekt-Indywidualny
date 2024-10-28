@@ -15,22 +15,28 @@ MonoBehaviour:
   itemName: Hand-Gun
   description: The only chance to defeat someone with this weapon is to wait until
     the opponent dies from laughter
+  shortDescription: 
   Pools: 00000000
-  Rarity: 0
+  Rarity: 3
   icon: {fileID: 21300000, guid: 80b263971b3166c48b6725337e03658d, type: 3}
   itemBehaviour: {fileID: 0}
+  UnlockedAtStart: 1
+  UnlockCost: 0
   WeaponID: 3
   shootConfiguration: {fileID: 0}
   shootStyle: 1
   Damage: 5
   FireRate: 0.3
   ChargeTime: 0
+  ChargeThreshold: 1
   ReloadTime: 1
   ClipSize: 5
   MaxAmmo: 1000
   AmmoUsePerShoot: 1
   bulletsPerShoot: 1
   Spread: {x: 0.05, y: 0.05, z: 0.05}
+  ScreenShakeTime: 0.05
+  ScreenShakeIntesivity: 0.1
   SpawnPoint: {x: 0.7, y: -0.25, z: -1}
   SpawnRotation: {x: 0, y: -80, z: 0}
   ModelScale: {x: 0.7, y: 0.7, z: 0.7}
@@ -40,3 +46,5 @@ MonoBehaviour:
   idleImage: {fileID: 0}
   weaponShootSound: {fileID: 8300000, guid: 967d3243281d67848a82c7ae09427399, type: 3}
   weaponReloadSound: {fileID: 8300000, guid: f871e1a0db5c08943bc60e8b20f403ca, type: 3}
+  chargeSound: {fileID: 0}
+  fullyChargeSound: {fileID: 0}

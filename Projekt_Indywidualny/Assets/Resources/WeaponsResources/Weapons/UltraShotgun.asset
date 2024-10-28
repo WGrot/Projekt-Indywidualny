@@ -16,22 +16,26 @@ MonoBehaviour:
   description: put description here
   shortDescription: 
   Pools: 00000000
-  Rarity: 0
+  Rarity: 2
   icon: {fileID: 21300000, guid: 0ec6e9a2bfc3a2741aaa2068e6626bf2, type: 3}
   itemBehaviour: {fileID: 0}
   UnlockedAtStart: 1
+  UnlockCost: 0
   WeaponID: 8
   shootConfiguration: {fileID: 11400000, guid: fbe301eda5554d5449af51aa4b442038, type: 2}
   shootStyle: 0
   Damage: 10
   FireRate: 0.25
   ChargeTime: 0
+  ChargeThreshold: 1
   ReloadTime: 1
   ClipSize: 10
   MaxAmmo: 100
   AmmoUsePerShoot: 1
   bulletsPerShoot: 4
   Spread: {x: 0.15, y: 0.15, z: 0.15}
+  ScreenShakeTime: 0.05
+  ScreenShakeIntesivity: 0.1
   SpawnPoint: {x: 0.7, y: -0.5, z: -0.8}
   SpawnRotation: {x: 0, y: -85, z: 0}
   ModelScale: {x: 0.75, y: 0.75, z: 0.75}
@@ -39,5 +43,7 @@ MonoBehaviour:
   ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
-  weaponShootSound: {fileID: 0}
-  weaponReloadSound: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: 24a6d9114bddcd740b3278bfd01148b2, type: 3}
+  weaponReloadSound: {fileID: 8300000, guid: ab7d935a5339f8e4f96318b32b59e37f, type: 3}
+  chargeSound: {fileID: 0}
+  fullyChargeSound: {fileID: 0}

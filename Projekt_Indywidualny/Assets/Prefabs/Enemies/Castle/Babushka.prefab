@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b9a61011937a546a9d27b197c29c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 30
+  maxHp: 50
   enemyMainBody: {fileID: 4148091860975132868}
   enemyDrop: {fileID: 1667055690966749227}
 --- !u!114 &1172009384004682503
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chanceForCoins: 30
   minCoinAmount: 1
-  maxCoinAmount: 5
+  maxCoinAmount: 10
   CoinPrefab: {fileID: 5425034988097838731, guid: c9c13cb5bafd52d45af3a76d383e6094,
     type: 3}
 --- !u!1 &3532657039513278183
@@ -297,7 +297,7 @@ MonoBehaviour:
   attackDamage: 20
   attackPoint: {fileID: 0}
   walkingSound: {fileID: 0}
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 984bca74c12ad1649a9613976ef1ab81, type: 3}
   deathSound: {fileID: 0}
 --- !u!195 &8972043008430186905
 NavMeshAgent:

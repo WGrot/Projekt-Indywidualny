@@ -14,23 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: RocketLauncher
   description: put description here
+  shortDescription: 
   Pools: 00000000
-  Rarity: 0
+  Rarity: 2
   icon: {fileID: 21300000, guid: 9ec9827d09ec00c4ab04ede7a8f81cb5, type: 3}
   itemBehaviour: {fileID: 0}
   UnlockedAtStart: 1
+  UnlockCost: 0
   WeaponID: 7
   shootConfiguration: {fileID: 11400000, guid: 9fd22c70e7709974f900dc5b646de5b4, type: 2}
   shootStyle: 0
   Damage: 30
   FireRate: 0.25
   ChargeTime: 0
+  ChargeThreshold: 1
   ReloadTime: 2
   ClipSize: 1
   MaxAmmo: 20
   AmmoUsePerShoot: 1
   bulletsPerShoot: 1
   Spread: {x: 0, y: 0, z: 0}
+  ScreenShakeTime: 0.05
+  ScreenShakeIntesivity: 0.1
   SpawnPoint: {x: 0.7, y: -0.3, z: -1}
   SpawnRotation: {x: 0, y: -85, z: 0}
   ModelScale: {x: 1, y: 1, z: 1}
@@ -38,4 +43,6 @@ MonoBehaviour:
   ModelPrefab: {fileID: 0}
   idleImage: {fileID: 0}
   weaponShootSound: {fileID: 8300000, guid: 471d80b7cf6b0ff488c57071995087a2, type: 3}
-  weaponReloadSound: {fileID: 8300000, guid: 602a16cdecfd21641b35832cca60770c, type: 3}
+  weaponReloadSound: {fileID: 8300000, guid: 14a4bdc454ded67468066ee15e388df6, type: 3}
+  chargeSound: {fileID: 0}
+  fullyChargeSound: {fileID: 0}

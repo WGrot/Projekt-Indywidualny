@@ -16,9 +16,10 @@ MonoBehaviour:
   description: Every time you bless your enemies you regain some of your health
   shortDescription: Bless your enemies
   Pools: 00000000
-  Rarity: 0
+  Rarity: 1
   icon: {fileID: 21300000, guid: f7612391b26a8c44a800cc83a65b14b5, type: 3}
   itemBehaviour: {fileID: 11400000, guid: 161fee32b8fbae24bb7ca7ea42905522, type: 2}
   UnlockedAtStart: 1
+  UnlockCost: 0
   PassiveItemID: 25
   modifiers: []
