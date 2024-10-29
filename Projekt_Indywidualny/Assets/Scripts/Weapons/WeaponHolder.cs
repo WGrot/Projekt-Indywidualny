@@ -309,9 +309,9 @@ public class WeaponHolder : MonoBehaviour
             }
 
         }
-
-        weaponAudioSource.clip = activeWeapon.weaponShootSound;
-        weaponAudioSource.Play();
+        weaponAudioSource.PlayOneShot(activeWeapon.weaponShootSound);
+        //weaponAudioSource.clip = activeWeapon.weaponShootSound;
+        //weaponAudioSource.Play();
         if (OnWeaponShootCallback != null)
         {
             OnWeaponShootCallback(activeWeaponID);

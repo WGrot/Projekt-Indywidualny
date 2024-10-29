@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51598764c5848614dbf708df1bceb5a7, type: 3}
+  m_Name: Uzi
+  m_EditorClassIdentifier: 
+  itemName: Uzi
+  description: not so accurate, but at least fast
+  shortDescription: aaa
+  Pools: 00000000
+  Rarity: 0
+  icon: {fileID: 21300000, guid: 04b4ee5e587b1b149baee37f6f66ba12, type: 3}
+  itemBehaviour: {fileID: 0}
+  UnlockedAtStart: 1
+  UnlockCost: 10
+  WeaponID: 11
+  shootConfiguration: {fileID: 0}
+  shootStyle: 1
+  Damage: 3
+  FireRate: 0.05
+  ChargeTime: 0
+  ChargeThreshold: 1
+  ReloadTime: 2
+  ClipSize: 40
+  MaxAmmo: 160
+  AmmoUsePerShoot: 1
+  bulletsPerShoot: 1
+  Spread: {x: 0.2, y: 0.2, z: 0.2}
+  ScreenShakeTime: 0.05
+  ScreenShakeIntesivity: 0.1
+  SpawnPoint: {x: 0.7, y: -0.4, z: -1}
+  SpawnRotation: {x: 0, y: -80, z: 0}
+  ModelScale: {x: 0.75, y: 0.75, z: 0.75}
+  ShootOffset: {x: 0, y: 0, z: 0}
+  ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
+    type: 3}
+  idleImage: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: adb24d8b41812ee46b60e324d1d01159, type: 3}
+  weaponReloadSound: {fileID: 8300000, guid: 8b3c6022626046b4ca1b7202244b1545, type: 3}
+  chargeSound: {fileID: 0}
+  fullyChargeSound: {fileID: 0}

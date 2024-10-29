@@ -292,6 +292,8 @@ MonoBehaviour:
   maxHp: 30
   enemyMainBody: {fileID: 0}
   enemyDrop: {fileID: 0}
+  deathProp: {fileID: 0}
+  takeDamageSound: {fileID: 0}
 --- !u!65 &66368844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -969,6 +971,8 @@ MonoBehaviour:
   maxHp: 30
   enemyMainBody: {fileID: 0}
   enemyDrop: {fileID: 0}
+  deathProp: {fileID: 0}
+  takeDamageSound: {fileID: 0}
 --- !u!65 &674516742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1181,6 +1185,8 @@ MonoBehaviour:
   maxHp: 30
   enemyMainBody: {fileID: 0}
   enemyDrop: {fileID: 0}
+  deathProp: {fileID: 0}
+  takeDamageSound: {fileID: 0}
 --- !u!65 &744474982
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1416,7 +1422,7 @@ PrefabInstance:
         type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: dbc8e0c321bdada499ad430389045799,
+      objectReference: {fileID: 11400000, guid: 3a67cb3ea9152044da8d566004685c0f,
         type: 2}
     - target: {fileID: 1848068502901021880, guid: 5f42c6827ffc8324d8af8d1cfa933abe,
         type: 3}

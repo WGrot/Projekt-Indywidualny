@@ -8,8 +8,11 @@ public class EnemyHpBase : MonoBehaviour, Ihp
     [SerializeField] protected float maxHp;
     [SerializeField] GameObject enemyMainBody;
     [SerializeField] private EnemyDrop enemyDrop;
+    AudioSource audioSource;
     protected float currentHp;
 
+    [SerializeField] private GameObject deathProp;
+    [SerializeField] AudioClip takeDamageSound;
 
     //Event który triggeruje siê gdy przeciwnik umiera
     public delegate void EnemyDeathAction();
@@ -19,6 +22,7 @@ public class EnemyHpBase : MonoBehaviour, Ihp
     public virtual void Start()
     {
         currentHp = maxHp;
+        audioSource = GetComponent<AudioSource>();
     }
     public virtual void Die()
     {
@@ -34,6 +38,11 @@ public class EnemyHpBase : MonoBehaviour, Ihp
         if (enemyDrop!= null)
         {
             enemyDrop.Drop();
+        }
+
+        if (deathProp != null)
+        {
+            Instantiate(deathProp, transform.position, Quaternion.identity);
         }
 
         if (OnEnemyDeath != null)
@@ -57,7 +66,13 @@ public class EnemyHpBase : MonoBehaviour, Ihp
     public virtual void TakeDamage(float damage)
     {
         currentHp -= damage;
-        Debug.Log("enemy took " + damage + " damage");
+        if (audioSource != null && takeDamageSound != null)
+        {
+            audioSource.PlayOneShot(takeDamageSound);
+            //audioSource.clip = takeDamageSound;
+           // audioSource.Play();
+        }
+
         if (currentHp < 0)
         {
             Die();
