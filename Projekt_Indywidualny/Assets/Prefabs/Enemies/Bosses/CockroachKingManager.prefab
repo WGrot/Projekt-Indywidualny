@@ -971,7 +971,7 @@ MonoBehaviour:
   deathProp: {fileID: 0}
   takeDamageSound: {fileID: 0}
   idleTime: 2.5
-  bossTheme: {fileID: 8300000, guid: d7fe5a84f5d589e4c987aba1eb66332e, type: 3}
+  bossTheme: {fileID: 8300000, guid: 4a953c2c4ea96b04fa662c0a40e0c2eb, type: 3}
   bossIcon: {fileID: 1703588052, guid: ae0d2ee23722b304384114edd2a9ebee, type: 3}
   landingDetectionPoint: {fileID: 845536691937984953}
   shockwaveSpawnPoint: {fileID: 5457199012455116819}

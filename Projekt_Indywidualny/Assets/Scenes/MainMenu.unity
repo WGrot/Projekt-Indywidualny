@@ -2139,7 +2139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &313142487
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7848,18 +7848,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'this demo originated as a project during the 4th semester of Computer
-    science course on EE faculty at WUT. After passing semester i continued to work
-    it and adding new features (and bugs).
+    science course on EE faculty at WUT. After passing semester i expanded it with
+    new features (and bugs).
 
 
     Credits:
 
 
+    Programing, Design, implementation:
 
-    Programing, Design,
-    implementation:
-
-    Wojciech Grot
+    Wojciech
+    Grot
 
 
     Graphics:
@@ -7869,8 +7868,7 @@ MonoBehaviour:
 
     Audio:
 
-    Free
-    tracks from internet'
+    Free tracks from internet'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -8192,7 +8190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1192701700
 RectTransform:
   m_ObjectHideFlags: 0
