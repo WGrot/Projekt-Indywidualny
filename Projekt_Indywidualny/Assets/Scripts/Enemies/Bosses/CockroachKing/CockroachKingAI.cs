@@ -53,14 +53,14 @@ public class CockroachKingAI : BossHpBase
     private Animator animator;
     private Rigidbody rb;
     private bool shockwaveSpawned;
-    private AudioSource audioSource;
+    private AudioSource aiAudioSource;
 
     public override void Start()
     {
         player = PlayerStatus.Instance.GetPlayerBody();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
+        aiAudioSource = GetComponent<AudioSource>();
         idleTimeLeft = idleTime;
         base.currentHp = base.maxHp;
         MusicManager.Instance.PlaySpecialMusic(bossTheme);
@@ -139,8 +139,8 @@ public class CockroachKingAI : BossHpBase
             shockwaveSpawned = true;
             landingShockwave.transform.position = shockwaveSpawnPoint.transform.position;
             landingShockwave.SetActive(true);
-            audioSource.clip = landingSound;
-            audioSource.Play();
+            aiAudioSource.clip = landingSound;
+            aiAudioSource.Play();
         }
     }
 
@@ -156,8 +156,8 @@ public class CockroachKingAI : BossHpBase
         Vector3 jumpVector = new Vector3(0, 25, 0) + moveSpeed * (player.transform.position - transform.position);
 
         rb.velocity = jumpVector;
-        audioSource.clip = jumpSound;
-        audioSource.Play();
+        aiAudioSource.clip = jumpSound;
+        aiAudioSource.Play();
 
 
     }
@@ -196,8 +196,8 @@ public class CockroachKingAI : BossHpBase
     public IEnumerator SummonAttack()
     {
         animator.SetBool("isSummoning", true);
-        audioSource.clip = summonAttackSound; 
-        audioSource.Play();
+        aiAudioSource.clip = summonAttackSound; 
+        aiAudioSource.Play();
         foreach (GameObject enemy in SummonAttackEnemies)
         {
             enemy.SetActive(true);
@@ -210,7 +210,7 @@ public class CockroachKingAI : BossHpBase
     public IEnumerator ProjectileAttack()
     {
         animator.SetBool("isSummoning", true);
-        audioSource.clip = projectileSound;
+        aiAudioSource.clip = projectileSound;
         for (int i = 0; i < projectileAmount; i++)
         {
             Vector3 bulletDirection = player.transform.position + new Vector3(0, 0.25f, 0) - shootPoint.position;
@@ -220,7 +220,7 @@ public class CockroachKingAI : BossHpBase
                                 UnityEngine.Random.Range(-bulletSpread, bulletSpread)
                             );
             EnemyProjectileObjectPool.Instance.ShootBullet(shootPoint.position, bulletDirection, bulletSpeed, bulletLifetime, attackDamage);
-            audioSource.Play();
+            aiAudioSource.Play();
             yield return new WaitForSeconds(delayBetweenProjectiles);
         }
         animator.SetBool("isSummoning", false);

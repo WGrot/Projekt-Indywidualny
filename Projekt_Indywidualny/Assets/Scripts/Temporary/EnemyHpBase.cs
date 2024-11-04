@@ -8,7 +8,7 @@ public class EnemyHpBase : MonoBehaviour, Ihp
     [SerializeField] protected float maxHp;
     [SerializeField] GameObject enemyMainBody;
     [SerializeField] private EnemyDrop enemyDrop;
-    AudioSource audioSource;
+    protected AudioSource audioSource;
     protected float currentHp;
 
     [SerializeField] private GameObject deathProp;

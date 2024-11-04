@@ -10,7 +10,10 @@ public class EnemyDrop : MonoBehaviour
 
     [SerializeField] private GameObject CoinPrefab;
 
-    
+    [SerializeField] private bool dropsBits = false;
+    [SerializeField] private int minBitAmount = 1;
+    [SerializeField] private int maxBitAmount = 5;
+    [SerializeField] private GameObject bitPrefab;
 
     public void Drop()
     {
@@ -18,6 +21,11 @@ public class EnemyDrop : MonoBehaviour
         if (rand < chanceForCoins)
         {
             DropCoins();
+        }
+
+        if (dropsBits)
+        {
+            DropBits();
         }
 
     }
@@ -42,6 +50,27 @@ public class EnemyDrop : MonoBehaviour
             coinScript.SetCoinAmount(CoinPickup.PossibleCoinValues[coinValueIndex]);
 
             amount -= CoinPickup.PossibleCoinValues[coinValueIndex];
+
+            if (amount <= 0)
+            {
+                break;
+            }
+
+
+        }
+
+    }
+
+    public void DropBits()
+    {
+        int amount = Random.Range(minBitAmount, maxBitAmount);
+
+        for (int i = 0; i < amount; i++)
+        {
+           
+            Vector3 bitOffset = new Vector3(Random.Range(-1f, 1f), 1, Random.Range(-1f, 1f));
+
+            GameObject bit = Instantiate(bitPrefab, transform.position + bitOffset, Quaternion.identity);
 
             if (amount <= 0)
             {

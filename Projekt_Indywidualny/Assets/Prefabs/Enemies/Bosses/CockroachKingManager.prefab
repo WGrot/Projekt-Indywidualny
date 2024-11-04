@@ -872,6 +872,7 @@ GameObject:
   - component: {fileID: 3156445690427426442}
   - component: {fileID: 7246429706927976259}
   - component: {fileID: 9217253517812468670}
+  - component: {fileID: 6166956860789672974}
   m_Layer: 0
   m_Name: CockroachKingBody
   m_TagString: Enemy
@@ -966,7 +967,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 300
   enemyMainBody: {fileID: 0}
-  enemyDrop: {fileID: 0}
+  enemyDrop: {fileID: 6166956860789672974}
+  deathProp: {fileID: 0}
+  takeDamageSound: {fileID: 0}
   idleTime: 2.5
   bossTheme: {fileID: 8300000, guid: d7fe5a84f5d589e4c987aba1eb66332e, type: 3}
   bossIcon: {fileID: 1703588052, guid: ae0d2ee23722b304384114edd2a9ebee, type: 3}
@@ -1179,6 +1182,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6166956860789672974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354589132164977926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3857c2ea4cce2294d89492a01c6f2cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chanceForCoins: 100
+  minCoinAmount: 10
+  maxCoinAmount: 20
+  CoinPrefab: {fileID: 5425034988097838731, guid: c9c13cb5bafd52d45af3a76d383e6094,
+    type: 3}
+  dropsBits: 1
+  minBitAmount: 1
+  maxBitAmount: 5
+  bitPrefab: {fileID: 11425878387679107, guid: d13fc5706a0baf3488f732bf64c81a2d, type: 3}
 --- !u!1 &4513624344095013353
 GameObject:
   m_ObjectHideFlags: 0
