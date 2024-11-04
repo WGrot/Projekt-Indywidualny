@@ -178,7 +178,7 @@ public class WeaponHolder : MonoBehaviour
         weaponSprite.sprite = activeWeapon.icon;
     }
 
-    private void EquipNewWeapon()
+    private void EquipNewWeapon(WeaponSO weapon)
     {
         if (activeWeapon != null && activeWeapon.WeaponBehaviour != null)   // Usuwanie BH poprzedniej trzymanej broni z managera, inaczej siê dubluj¹
         {

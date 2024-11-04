@@ -23,6 +23,7 @@ public class ItemNotification : MonoBehaviour
     private void OnEnable()
     {
         Inventory.OnItemAddedCallback += ShowItemPickupNotification;
+        Inventory.OnWeaponAddedCallback += ShowWeaponPickupNotification;
         SaveManager.OnItemUnlockedCallback += ShowItemUnlockNotification;
         SaveManager.OnWeaponUnlockedCallback += ShowItemUnlockNotification;
     }
@@ -30,6 +31,7 @@ public class ItemNotification : MonoBehaviour
     private void OnDisable()
     {
         Inventory.OnItemAddedCallback -= ShowItemPickupNotification;
+        Inventory.OnWeaponAddedCallback -= ShowWeaponPickupNotification;
         SaveManager.OnItemUnlockedCallback -= ShowItemUnlockNotification;
         SaveManager.OnWeaponUnlockedCallback -= ShowItemUnlockNotification;
     }
@@ -47,12 +49,37 @@ public class ItemNotification : MonoBehaviour
         unlockedText.text = "Picked Up";
         brokenChains.SetActive(false);
         itemNameText.text = item.itemName;
-        shortDescription.text = item.shortDescription;
+        if(item is WeaponSO)
+        {
+            shortDescription.text = Inventory.Instance.GetPrefixOfActiveWeapon().PrefixName;
+        }
+        else
+        {
+            shortDescription.text = item.shortDescription;
+        }
+
         itemIcon.sprite = item.icon;
         StopAllCoroutines();
         StartCoroutine(Animate());
 
     }
+
+    private void ShowWeaponPickupNotification(WeaponSO weapon)
+    {
+        itemNotificationBody.SetActive(true);
+        audioSource.clip = pickupSound;
+        audioSource.Play();
+        unlockedText.text = "Picked Up";
+        brokenChains.SetActive(false);
+        itemNameText.text = weapon.itemName;
+        shortDescription.text = Inventory.Instance.GetPrefixOfActiveWeapon().PrefixName;
+        itemIcon.sprite = weapon.icon;
+        StopAllCoroutines();
+        StartCoroutine(Animate());
+
+    }
+
+
 
     private void ShowItemUnlockNotification(Item item)
     {

@@ -51,6 +51,7 @@ public class WeaponSO : Item
     public AudioClip chargeSound;
     public AudioClip fullyChargeSound;
 
+
     private float fireRate = 0.25f;
     private float damage;
     public float chargeTime { get; private set; }

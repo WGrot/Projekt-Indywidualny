@@ -29,10 +29,12 @@ public class WeaponPickup : ItemPickup
         if (isPrefixRandom)
         {
             prefix = ChooseRandomPrefix();
+
         }
         if (weapon != null)
         {
             base.item = weapon;
+
             itemSprite.sprite = item.icon;
         }
 

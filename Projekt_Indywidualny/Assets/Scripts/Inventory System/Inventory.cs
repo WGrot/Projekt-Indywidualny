@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
     public static event OnItemAdded OnItemAddedCallback;
     //public delegate void OnItemRemoved(Item item);
     //public static event OnItemRemoved OnItemRemovedCallback;
-    public delegate void OnItemWeapon();
+    public delegate void OnItemWeapon(WeaponSO weapon);
     public static event OnItemWeapon OnWeaponAddedCallback;
     public delegate void OnAmmoRefiled(int activeweaponID);
     public static event OnAmmoRefiled OnAmmoRefiledCallback;
@@ -124,7 +124,7 @@ public class Inventory : MonoBehaviour
         weapons.Add(weapon);
         weapon.OnPickup();
         //weapon.AddBehavioursToManager();
-        OnWeaponAddedCallback?.Invoke();
+        OnWeaponAddedCallback?.Invoke(weapon);
     }
 
     public bool RemoveWeapon(WeaponSO weapon)
@@ -183,6 +183,10 @@ public class Inventory : MonoBehaviour
         return prefixes[index];
     }
 
+    public WeaponPrefix GetPrefixOfActiveWeapon()
+    {
+        return prefixes[activeWeaponID];
+    }
 
 
 
