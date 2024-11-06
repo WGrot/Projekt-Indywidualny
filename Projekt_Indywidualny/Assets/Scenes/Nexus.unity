@@ -6054,13 +6054,19 @@ PrefabInstance:
     - target: {fileID: 7515302670875014231, guid: 531304d262748bc46a8c644248014123,
         type: 3}
       propertyPath: secrets.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7515302670875014231, guid: 531304d262748bc46a8c644248014123,
         type: 3}
       propertyPath: secrets.Array.data[0]
       value: 
       objectReference: {fileID: 8780488403761617857, guid: ba1015c5da92d7f48bd290bd85312df4,
+        type: 3}
+    - target: {fileID: 7515302670875014231, guid: 531304d262748bc46a8c644248014123,
+        type: 3}
+      propertyPath: secrets.Array.data[1]
+      value: 
+      objectReference: {fileID: 8780488403761617857, guid: 4d45d55b39db5c1488cd6c1a15470752,
         type: 3}
     - target: {fileID: 7515302670875014231, guid: 531304d262748bc46a8c644248014123,
         type: 3}
