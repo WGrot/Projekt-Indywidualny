@@ -7,7 +7,9 @@ public class Doors : MonoBehaviour
 {
     public UnityEvent OnPlayerEnter;
     [SerializeField] private GameObject closedDoor;
+    [SerializeField] private GameObject viewBlock;
     private Collider doorCollider;
+
 
 
     private void OnTriggerEnter(Collider other)
@@ -26,6 +28,7 @@ public class Doors : MonoBehaviour
         doorCollider = GetComponent<Collider>();
         doorCollider.enabled = false;
         closedDoor.SetActive(true);
+        viewBlock.SetActive(false);
         
     }
     public void OpenDoor()
