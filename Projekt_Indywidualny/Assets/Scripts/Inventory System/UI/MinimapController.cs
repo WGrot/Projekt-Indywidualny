@@ -7,6 +7,7 @@ public class MinimapController : MonoBehaviour
 {
     [Header("Referances")]
     [SerializeField] private RawImage mapImage;
+    [SerializeField] private RawImage undiscoveredImage;
     [SerializeField] private GameObject playerMarker;
     [SerializeField] private RectTransform mapPivot;
     [SerializeField] private Texture2D emptyMapTexture;
@@ -19,6 +20,7 @@ public class MinimapController : MonoBehaviour
 
     private float gridsize = 80;
     private float gridScale = 4;
+    int counter = 0;
 
     private void OnEnable()
     {
@@ -37,6 +39,10 @@ public class MinimapController : MonoBehaviour
             Texture2D newMinimap = MiniMapGenerator.Instance.MiniMapSprite;
             mapImage.texture = newMinimap;
             mapImage.gameObject.transform.localScale = new Vector3(minimapScale, minimapScale, minimapScale);
+            Texture2D newUndiscoveredTexture = MiniMapGenerator.Instance.UndiscoveredTexture;
+            undiscoveredImage.texture = newUndiscoveredTexture;
+            undiscoveredImage.gameObject.transform.localScale = new Vector3(minimapScale, minimapScale, minimapScale);
+
             player = GameObject.FindGameObjectWithTag("Player");
             playerStartPos = player.transform.position;
             playerMarker.SetActive(true);
@@ -52,11 +58,22 @@ public class MinimapController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (player != null)
         {
             mapPivot.gameObject.transform.rotation =  new Quaternion(0, 0, player.transform.rotation.y, player.transform.rotation.w);
             mapImage.gameObject.transform.localPosition = 135 * minimapScale * -new Vector3(player.transform.position.x - playerStartPos.x + 8, player.transform.position.z - playerStartPos.z + 8, 0) / (gridsize * gridScale);
-
+            if (counter > 30)
+            {
+                Debug.Log("updating map");
+                counter = 0;
+                MiniMapGenerator.Instance.UpdateUndiscoveredTexture((int)player.transform.position.x, (int)player.transform.position.z, 3);
+            }
+            else
+            {
+                counter++;
+            }
+            Debug.Log(counter);
         }
 
     }
