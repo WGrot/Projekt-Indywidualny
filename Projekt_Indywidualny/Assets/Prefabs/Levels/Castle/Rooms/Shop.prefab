@@ -4830,6 +4830,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691309437430682446, guid: c3044aac143a4ef4c8fa55d179daabc0,
         type: 3}
+      propertyPath: viewBlock
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691309437430682446, guid: c3044aac143a4ef4c8fa55d179daabc0,
+        type: 3}
       propertyPath: closedDoor
       value: 
       objectReference: {fileID: 4387712473162166527}
@@ -4894,7 +4899,8 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 168930922072335422, guid: c3044aac143a4ef4c8fa55d179daabc0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3044aac143a4ef4c8fa55d179daabc0, type: 3}
