@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponProjectile: {fileID: 1188089060144161203, guid: 94ab42c3cee577143839c2bfc848bc61,
     type: 3}
-  shouldAccountPlayerSpeed: 1
+  shouldAccountPlayerSpeed: 0

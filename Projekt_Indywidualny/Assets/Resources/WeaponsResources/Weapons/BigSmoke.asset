@@ -43,7 +43,7 @@ MonoBehaviour:
   ModelPrefab: {fileID: 7459382198750892428, guid: bbd7d3d01e146644ca92d313dc476d6d,
     type: 3}
   idleImage: {fileID: 0}
-  weaponShootSound: {fileID: 0}
+  weaponShootSound: {fileID: 8300000, guid: ceb0d0db8b3e1a94285f0e99dc3f2e42, type: 3}
   weaponReloadSound: {fileID: 0}
-  chargeSound: {fileID: 0}
-  fullyChargeSound: {fileID: 0}
+  chargeSound: {fileID: 8300000, guid: a380230ef3ce8a849932f3c9262588f1, type: 3}
+  fullyChargeSound: {fileID: 8300000, guid: 48dea6cc1ce60b14d9faac7c8761a9f5, type: 3}
