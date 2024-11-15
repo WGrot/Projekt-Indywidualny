@@ -3899,10 +3899,24 @@ MonoBehaviour:
   - dialogueLineText: Hello, my name is SAM
     dialogueLineAudio: {fileID: 8300000, guid: f9b8e3a30bcf140458f1080f3ddc765f, type: 3}
     dialogueLineTime: 3
-  - dialogueLineText: in final game i will guide you and tell you all types of stupid
-      nonsense. But for now, I am just a placeholder.
-    dialogueLineAudio: {fileID: 8300000, guid: 4c23c0ae148eb534d86f5c6ae1ad3cc6, type: 3}
-    dialogueLineTime: 8
+    dialogueImage: {fileID: 21300000, guid: a58791d04c864ab4cb7f7d1f8bece4c3, type: 3}
+  - dialogueLineText: If you're feeling lost, try going through the tutorial.
+    dialogueLineAudio: {fileID: 8300000, guid: e474cf0b81a1ace4296714980b9c6243, type: 3}
+    dialogueLineTime: 4
+    dialogueImage: {fileID: 0}
+  - dialogueLineText: To find its entrance, head left, then go up the stairs. There,
+      you'll find a terminal. Type 1 into it and click OK.
+    dialogueLineAudio: {fileID: 8300000, guid: 8eb576b1b683c5a4cab9f298d373336b, type: 3}
+    dialogueLineTime: 10
+    dialogueImage: {fileID: 0}
+  - dialogueLineText: 'I hope this was helpfull '
+    dialogueLineAudio: {fileID: 8300000, guid: e75b690737073564dbdfba4c889b96cf, type: 3}
+    dialogueLineTime: 2
+    dialogueImage: {fileID: 0}
+  - dialogueLineText: 
+    dialogueLineAudio: {fileID: 0}
+    dialogueLineTime: 0.1
+    dialogueImage: {fileID: 0}
   audioSource: {fileID: 330919125}
 --- !u!65 &330919127
 BoxCollider:

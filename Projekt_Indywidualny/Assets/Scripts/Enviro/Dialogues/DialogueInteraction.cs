@@ -1,27 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueInteraction : MonoBehaviour, I_Interactable
 {
     [SerializeField] private bool playSound = true;
     [SerializeField] private List<DialogueLine> dialogueLines;
     [SerializeField] private AudioSource audioSource;
+    InputActions inputActions;
+
 
     private bool isDialogueActive = false;
     private int activeLineID = -1;
     public void InteractWithPlayer()
     {
-        ManageDialogue();
+        StartDialogue();
+    }
+
+    private void Awake()
+    {
+        inputActions = new InputActions();
     }
 
     private void OnEnable()
     {
+        inputActions.Enable();
+        inputActions.Player_base.Interact.performed += _ => ManageDialogue();
         GameStateManager.GameStateChangeCallback += PauseRunAudio;
+        
     }
 
     private void OnDisable()
     {
+        inputActions.Disable();
+        inputActions.Player_base.Interact.performed -= _ => ManageDialogue();
         GameStateManager.GameStateChangeCallback -= PauseRunAudio;
     }
 
@@ -48,18 +61,26 @@ public class DialogueInteraction : MonoBehaviour, I_Interactable
             SkipToNextLine();
         }
 
-        if (isDialogueActive == false)
+    }
+
+    public void StartDialogue()
+    {
+
+        if (!isDialogueActive)
         {
+
             activeLineID = 0;
-            isDialogueActive = true;
             StartCoroutine(PlayDialogue());
         }
     }
 
     public IEnumerator PlayDialogue()
     {
+        yield return null;
+        isDialogueActive = true;
         for (int i = activeLineID; i < dialogueLines.Count; i++)
         {
+
             activeLineID++;
             DialogueLine line = dialogueLines[i];
             if (DialogueActionCallback != null)
