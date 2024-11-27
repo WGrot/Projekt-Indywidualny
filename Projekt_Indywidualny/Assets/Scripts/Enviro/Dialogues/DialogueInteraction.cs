@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class DialogueInteraction : MonoBehaviour, I_Interactable
@@ -10,6 +11,8 @@ public class DialogueInteraction : MonoBehaviour, I_Interactable
     [SerializeField] private AudioSource audioSource;
     InputActions inputActions;
 
+    public UnityEvent OnDialogueEnded;
+    private bool wasEndEventTriggered = false;
 
     private bool isDialogueActive = false;
     private int activeLineID = -1;
@@ -82,6 +85,7 @@ public class DialogueInteraction : MonoBehaviour, I_Interactable
         {
 
             activeLineID++;
+            Debug.Log(activeLineID);
             DialogueLine line = dialogueLines[i];
             if (DialogueActionCallback != null)
             {
@@ -98,6 +102,11 @@ public class DialogueInteraction : MonoBehaviour, I_Interactable
         }
         activeLineID = 0;
         isDialogueActive = false;
+        if (!wasEndEventTriggered)
+        {
+            wasEndEventTriggered = true;
+            OnDialogueEnded.Invoke();
+        }
     }
 
     public void SkipToNextLine()

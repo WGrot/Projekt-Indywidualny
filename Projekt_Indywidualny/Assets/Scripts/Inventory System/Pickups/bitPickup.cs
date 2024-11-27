@@ -14,7 +14,7 @@ public class bitPickup : MonoBehaviour
         {
             audioSource.clip = PickupSound;
             audioSource.Play();
-            SaveManager.Instance.ChangeAmountOfCollectedBits(1);
+            SaveManager.Instance.ChangeAmountOfCollectedBits(amount);
             gameObject.GetComponent<SphereCollider>().enabled = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             StartCoroutine(DestroyBitAfterPickup());

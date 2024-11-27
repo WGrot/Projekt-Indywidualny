@@ -86,12 +86,14 @@ public class UnlockTerminal : MonoBehaviour
         if (displayedItem is PassiveItem)
         {
             PassiveItem displayedPassiveItem = (PassiveItem)displayedItem;
+            SaveManager.Instance.ChangeAmountOfCollectedBits(-displayedPassiveItem.UnlockCost);
             SaveManager.Instance.UnlockItem(displayedPassiveItem.PassiveItemID);
         }
 
         if(displayedItem is WeaponSO)
         {
             WeaponSO displayedWeapon = (WeaponSO)displayedItem;
+            SaveManager.Instance.ChangeAmountOfCollectedBits(-displayedWeapon.UnlockCost);
             SaveManager.Instance.UnlockWeapon(displayedWeapon.WeaponID);
         }
         LoadItems();

@@ -20,7 +20,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a71f601f02d78a14aa428333e8b7ee48, type: 3}
   itemBehaviour: {fileID: 11400000, guid: caea6efc173e0054fad84fdd069799be, type: 2}
   UnlockedAtStart: 0
-  UnlockCost: 0
+  UnlockCost: 10
   WeaponID: 9
   shootConfiguration: {fileID: 0}
   shootStyle: 0
