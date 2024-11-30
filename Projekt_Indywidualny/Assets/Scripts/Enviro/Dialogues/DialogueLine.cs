@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [System.Serializable]
 public class DialogueLine
@@ -12,6 +13,11 @@ public class DialogueLine
 
     public string DialogueLineText { get => dialogueLineText; private set => dialogueLineText = value; }
     public AudioClip DialogueLineAudio { get => dialogueLineAudio; private set => dialogueLineAudio = value; }
-    public float DialogueLineTime { get => dialogueLineTime; set => dialogueLineTime = value; }
-    public Sprite DialogueImage { get => dialogueImage; set => dialogueImage = value; }
+	public float DialogueLineTime
+	{
+		get => dialogueLineTime = DialogueLineAudio != null ? DialogueLineAudio.length + 0.2f : dialogueLineTime;
+		set => dialogueLineTime = value;
+	}
+	public Sprite DialogueImage { get => dialogueImage; set => dialogueImage = value; }
+
 }
