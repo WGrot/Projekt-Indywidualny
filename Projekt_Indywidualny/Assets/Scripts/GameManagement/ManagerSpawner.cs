@@ -5,10 +5,18 @@ using UnityEngine;
 public class ManagerSpawner : MonoBehaviour
 {
     [SerializeField] GameObject GameManager;
+    [SerializeField] bool shouldDestroyOldManager = false;
 
     public void Awake()
     {
-        if (GameObject.FindGameObjectWithTag("GameManager") == null)
+        GameObject oldManager = GameObject.FindGameObjectWithTag("GameManager");
+
+		if (shouldDestroyOldManager)
+		{
+            Destroy(oldManager);
+		}
+
+		if (oldManager == null)
         {
             Instantiate(GameManager);
         }

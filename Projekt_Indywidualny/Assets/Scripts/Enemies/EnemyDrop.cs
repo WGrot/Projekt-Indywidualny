@@ -36,7 +36,7 @@ public class EnemyDrop : MonoBehaviour
 
         for (int i = 0; i < 100; i++)
         {
-            Debug.Log("spawning some coin");
+
             int coinValueIndex = Random.Range(0, CoinPickup.PossibleCoinValues.Length);
             if (CoinPickup.PossibleCoinValues[coinValueIndex] > amount)
             {

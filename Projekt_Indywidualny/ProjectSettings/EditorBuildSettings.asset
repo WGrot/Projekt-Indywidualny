@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CastleF2.unity
     guid: e018d863e20804e419d2f362c1e7162d
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 8b52cc5d2849da04eb7b74679fbfd116
   m_configObjects: {}

@@ -3918,6 +3918,9 @@ MonoBehaviour:
     dialogueLineTime: 0.1
     dialogueImage: {fileID: 0}
   audioSource: {fileID: 330919125}
+  OnDialogueEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &330919127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6068,7 +6071,7 @@ PrefabInstance:
     - target: {fileID: 7515302670875014231, guid: 531304d262748bc46a8c644248014123,
         type: 3}
       propertyPath: secrets.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7515302670875014231, guid: 531304d262748bc46a8c644248014123,
         type: 3}
@@ -6093,6 +6096,12 @@ PrefabInstance:
       propertyPath: secrets.Array.data[3]
       value: 
       objectReference: {fileID: 8780488403761617857, guid: 0a8d1c375fe7a3940843a27336696a60,
+        type: 3}
+    - target: {fileID: 7515302670875014231, guid: 531304d262748bc46a8c644248014123,
+        type: 3}
+      propertyPath: secrets.Array.data[4]
+      value: 
+      objectReference: {fileID: 8780488403761617857, guid: 3703e84302e63534d9f3aa494cc47253,
         type: 3}
     - target: {fileID: 7515302670875014231, guid: 531304d262748bc46a8c644248014123,
         type: 3}
@@ -41857,6 +41866,11 @@ PrefabInstance:
         type: 3}
       propertyPath: clearOldManager
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342346978576632254, guid: 7f59fb05090666f438367085c3b0cb96,
+        type: 3}
+      propertyPath: shouldDestroyOldManager
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7540697215836414231, guid: 7f59fb05090666f438367085c3b0cb96,
         type: 3}

@@ -93,7 +93,7 @@ public class MusicManager : MonoBehaviour
             nextAudioSource.volume = i/(float)fadeSteps;
 
             yield return new WaitForSeconds((float)(fadeTime /fadeSteps));
-            Debug.Log((float)(fadeTime / fadeSteps));
+
         }
         activeAudioSource.Stop();
         activeAudioSource = nextAudioSource;

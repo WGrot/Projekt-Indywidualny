@@ -87,26 +87,6 @@ public class PlayerStatus : MonoBehaviour
         return playerBody.transform.rotation;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            MusicManager.Instance.PlayFightMusic();
-            
-            
-            //Debug.Log("painkiller");
-            //GameStateManager.Instance.StartSlowTime(0.25F, 4);
-            /*
-            TakeDamage(10);
-            for (int i = 0; i< stats.Count; i++) {
-                Debug.Log(stats[i].value);
-
-            }
-            Debug.Log("PlayerHP = " + currentHp);
-            */
-        }
-
-    }
 
     public void Die()
     {
@@ -117,7 +97,6 @@ public class PlayerStatus : MonoBehaviour
             return;
         }
 
-        Debug.Log("PlayerIsDead");
         IsPlayerDead = true;
         if (OnPlayerDieCallback != null)
         {
@@ -127,7 +106,6 @@ public class PlayerStatus : MonoBehaviour
 
     public void Revive()
     {
-        Debug.Log("PlayerIsNotDead");
         IsPlayerDead = false;
         Heal(stats[0].value);
 
@@ -194,9 +172,9 @@ public class PlayerStatus : MonoBehaviour
 
     public void ReduceCurrentPlayerHP(float amount)
     {
-        Debug.Log(currentHp);
+
         currentHp -= amount;
-        Debug.Log(currentHp);
+
         if (OnPlayersHealthChangedCallback != null)
         {
             OnPlayersHealthChangedCallback();

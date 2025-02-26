@@ -10,7 +10,7 @@ public class Spikes : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("Player Touched Spikes");
+
         if (other.CompareTag("Player"))
         {
             PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();

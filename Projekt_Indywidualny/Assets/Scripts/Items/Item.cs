@@ -22,7 +22,7 @@ public class Item : ScriptableObject
         {
             return;
         }
-        Debug.Log("Added Behaviours from " + name);
+
         Inventory.Instance.itemBehaviourManager.AddFuncToOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
         Inventory.Instance.itemBehaviourManager.AddFuncToOnEnemyDeath(itemBehaviour.OnEnemyDeath);
         Inventory.Instance.itemBehaviourManager.AddFuncToOnCoinAmountChange(itemBehaviour.OnCoinAmountChange);
@@ -37,7 +37,7 @@ public class Item : ScriptableObject
         {
             return;
         }
-        Debug.Log("Removed Behaviours from " + name);
+
         Inventory.Instance.itemBehaviourManager.RemoveFuncFromOnPlayerTakeDamageBH(itemBehaviour.OnPlayerTakeDamage);
         Inventory.Instance.itemBehaviourManager.RemoveFuncFromOnEnemyDeath(itemBehaviour.OnEnemyDeath);
         Inventory.Instance.itemBehaviourManager.RemoveFuncFromOnCoinAmountChange(itemBehaviour.OnCoinAmountChange);

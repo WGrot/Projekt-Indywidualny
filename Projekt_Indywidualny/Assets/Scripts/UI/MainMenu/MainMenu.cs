@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour
 
     private void SkipLoading()
     {
-        Debug.Log("skipped");
+
         PlayerPrefs.SetFloat("M_Sensitivity", 100);
         PlayerPrefs.Save();
         mainMenuScreen.SetActive(true);

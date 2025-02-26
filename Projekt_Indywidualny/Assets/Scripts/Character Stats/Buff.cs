@@ -65,7 +65,7 @@ public class Buff
         {
             return;
         }
-        Debug.Log(modifiers.Count);
+
         foreach (StatModifier modifier in modifiers)
         {
             PlayerStatus.Instance.stats[(int)modifier.statType].AddModifier(modifier);

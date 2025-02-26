@@ -28,7 +28,11 @@ public class Doors : MonoBehaviour
         doorCollider = GetComponent<Collider>();
         doorCollider.enabled = false;
         closedDoor.SetActive(true);
-        viewBlock.SetActive(false);
+        if(viewBlock!= null)
+        {
+			viewBlock.SetActive(false);
+		}
+
         
     }
     public void OpenDoor()

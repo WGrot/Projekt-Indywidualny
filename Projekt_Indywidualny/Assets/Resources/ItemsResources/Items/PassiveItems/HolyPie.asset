@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HolyPie
   m_EditorClassIdentifier: 
   itemName: Holy Pie
-  description: 
+  description: 'Pie that was blessed by some priest '
   shortDescription: tasty
   Pools: 00000000
   Rarity: 0

@@ -56,7 +56,7 @@ public class AmmoData
 
     public void RefillByPercent(int percent)
     {
-        Debug.Log((int)(percent / 100f) * ammoMax);
+
         ammoLeft += (int)((percent / 100f) * ammoMax);
         if (ammoLeft > ammoMax)
         {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Shattered Destiny
   description: Paradox created when someone bruttaly killed their future. When bearer
-    dies he instantly is teleported to alternate timeline in which he lives.
+    dies he is instantly  teleported to alternate timeline in which he lives.
   shortDescription: One time use Quantum Immotality
   Pools: 00000000
   Rarity: 2

@@ -16,6 +16,10 @@ public class RoomManager : MonoBehaviour
 
     public void CloseAllDoors()
     {
+        if (doors.Count < 1)
+        {
+            return;
+        }
         foreach(GameObject door in doors)
         {
             Doors doorScript = door.GetComponent<Doors>();

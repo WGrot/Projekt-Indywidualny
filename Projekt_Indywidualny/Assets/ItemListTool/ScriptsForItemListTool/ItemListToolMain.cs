@@ -41,7 +41,7 @@ public class ItemListToolMain : MonoBehaviour
         weapons = ItemPoolsManager.Instance.AllWeaponsList;
         foreach (WeaponSO weapon in weapons)
         {
-            Debug.Log(weapon.name);
+
             GameObject entry = Instantiate(ItemEntry, WeaponList.transform);
             Itementry script = entry.GetComponent<Itementry>();
             script.LoadItem(weapon);

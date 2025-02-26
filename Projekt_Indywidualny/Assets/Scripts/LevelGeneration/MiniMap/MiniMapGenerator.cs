@@ -54,7 +54,7 @@ public class MiniMapGenerator : MonoBehaviour
         }
         MiniMapSprite.filterMode= FilterMode.Point;
         MiniMapSprite.Apply();
-        Debug.Log("Generated Minimap");
+
     }
 
 }

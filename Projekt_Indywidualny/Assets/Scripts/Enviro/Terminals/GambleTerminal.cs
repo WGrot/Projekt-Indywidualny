@@ -69,7 +69,7 @@ public class GambleTerminal : MonoBehaviour
 
 
         int rand = Random.Range(0, 100);
-        Debug.Log(rand);
+
 
 
         chanceForGoodReward = bid;

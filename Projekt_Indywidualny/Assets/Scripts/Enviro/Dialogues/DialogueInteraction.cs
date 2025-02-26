@@ -85,7 +85,6 @@ public class DialogueInteraction : MonoBehaviour, I_Interactable
         {
 
             activeLineID++;
-            Debug.Log(activeLineID);
             DialogueLine line = dialogueLines[i];
             if (DialogueActionCallback != null)
             {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpiteAmunition
   m_EditorClassIdentifier: 
   itemName: Spite Amunition
-  description: Sometimes you are just so cool that ammo just materializes in your
+  description: Sometimes you are cool enough that ammo just materializes in your
     weapons
   shortDescription: Ammo for parries
   Pools: 00000000
@@ -21,5 +21,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f31f5bec7a3a8f8459e33c8b9b105abf, type: 3}
   itemBehaviour: {fileID: 11400000, guid: e4a6cb00e05289b49a0a4eeb79aba57f, type: 2}
   UnlockedAtStart: 1
+  UnlockCost: 0
   PassiveItemID: 24
   modifiers: []

@@ -198,7 +198,6 @@ public class LevelGenerationV2 : MonoBehaviour
             location[0] = buffour; //4;
             location[1] = levelSize/2 + buffour;
         }
-        Debug.Log(location[0] + " " + location[1] +" " + location[2] +" ");
         return location;
 
     }
@@ -272,6 +271,6 @@ public class LevelGenerationV2 : MonoBehaviour
 
             }
         }
-        levelGrid.printGrid();
+        //levelGrid.printGrid();
     }
 }

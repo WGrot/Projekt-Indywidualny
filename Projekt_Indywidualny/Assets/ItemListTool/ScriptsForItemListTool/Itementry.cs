@@ -92,7 +92,7 @@ public class Itementry : MonoBehaviour
             script.SetName(((ItemPools)i).ToString());
             if (item.Pools.Contains((ItemPools)i))
             {
-                Debug.Log((ItemPools)i);
+
                 script.SetToggleValue(true);
             }
         }

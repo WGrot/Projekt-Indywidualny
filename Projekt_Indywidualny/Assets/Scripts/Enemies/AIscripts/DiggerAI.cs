@@ -88,7 +88,7 @@ public class DiggerAI : MonoBehaviour
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomPoint, out hit, 2f, NavMesh.AllAreas)) 
         {
-            Debug.Log(hit.position.x + " " + hit.position.z);
+
             result = hit.position;
             return result;
         }

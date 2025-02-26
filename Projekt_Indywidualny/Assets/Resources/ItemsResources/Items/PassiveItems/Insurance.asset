@@ -21,5 +21,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 6ef7e2c4cf8cc8b4d9232bcd9575b932, type: 3}
   itemBehaviour: {fileID: 11400000, guid: e91f894d3cf03c748ab484c7794a3857, type: 2}
   UnlockedAtStart: 1
+  UnlockCost: 0
   PassiveItemID: 11
   modifiers: []

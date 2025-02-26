@@ -25,7 +25,7 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         SAVE_FOLDER = Application.persistentDataPath + "/saves/";
-        Debug.Log(Application.persistentDataPath);
+
         if (Instance != null && Instance != this)
         {
             Debug.LogError("More than one ItemPoolManager instance found!");

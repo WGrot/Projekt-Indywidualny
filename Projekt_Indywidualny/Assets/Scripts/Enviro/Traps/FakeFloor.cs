@@ -38,7 +38,6 @@ public class FakeFloor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("Player Touched Platform");
         if (other.CompareTag("Player") && !isCracked)
         {
             IEnumerator crackingCoroutine = CrackFloor();
@@ -46,6 +45,10 @@ public class FakeFloor : MonoBehaviour
         }
     }
 
+    public void StartCracking()
+    {
+		StartCoroutine(CrackFloor());
+	}
     private IEnumerator CrackFloor()
     {
         isCracked = true;
